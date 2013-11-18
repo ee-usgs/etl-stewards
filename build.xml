@@ -29,6 +29,16 @@
         </exec>
     </target>
 
+    <target name="loadResult">
+        <echo>Load the xml into staging database table</echo>
+	    <exec executable="sqlldr" failonerror="true">
+	        <arg value="ars_stewards/${ars_stewards_password_dev}@${instance}"/>
+	        <arg value="BAD=${basedir}/result.bad"/>
+	        <arg value="DISCARD=${basedir}/result.dsc"/>
+	        <arg value="CONTROL=${basedir}/result.ctl"/>
+	    </exec>
+	</target>
+
 
 	
 	
