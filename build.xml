@@ -13,12 +13,27 @@
 	</target>	
 		
     <target name="pullResult">
-        <echo>Pulling Stewards Station Data.</echo>
+        <echo>Pulling Stewards Rersult Data.</echo>
         <exec executable="curl" output="${basedir}/result.xml">
             <arg value="http://www.nrrig.mwa.ars.usda.gov/st10_wqp_test/service1.svc/result?countrycode=us"/>
         </exec>
     </target>   
-        
+	
+   <target name="loadStation">
+        <echo>Load the xml into staging database table</echo>
+        <exec executable="sqlldr" failonerror="true">
+            <arg value="ars_stewards/${ars_stewards_password_dev}@${instance}"/>
+            <arg value="DATA=${basedir}/station.xml"/>
+            <arg value="BAD=${basedir}/station.bad"/>
+            <arg value="DISCARD=${basedir}/station.dsc"/>
+            <arg value="CONTROL=${basedir}/station.ctl"/>
+        </exec>
+    </target>
+
+
+	
+	
+	
 	<target name="buildPackage">
 		<echo>Rebuiling the etl database package and body</echo>
 		<exec executable="sqlplus" failonerror="true">
