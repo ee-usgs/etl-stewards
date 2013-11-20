@@ -9,17 +9,17 @@ select 'start time: ' || systimestamp from dual;
 truncate table organization_temp;
 
 insert /*+ append nologging parallel 4*/ into organization_temp (code_value, description, organization_details, sort_order)
-select value code_value,
-       descr description,
+select code_value,
+       description,
        xmlelement("OrganizationDescription",
-                  xmlelement("OrganizationIdentifier", value),
-                  xmlelement("OrganizationFormalName", descr)
+                  xmlelement("OrganizationIdentifier", code_value),
+                  xmlelement("OrganizationFormalName", description)
                  ),
        rownum sort_order
-  from (select value, descr, details,
+  from (select code_value, descr, details,
                dense_rank() over (partition by value order by descr, rownum) myrank
-          from (select xmlcast(xmlquery('WQX/Organization/OrganizationDescription/OrganizationIdentifier' passing raw_xml returning content) as varchar2(2000 char)) value,
-                       xmlcast(xmlquery('WQX/Organization/OrganizationDescription/OrganizationFormalName' passing raw_xml returning content) as varchar2(2000 char)) descr,
+          from (select xmlcast(xmlquery('WQX/Organization/OrganizationDescription/OrganizationIdentifier' passing raw_xml returning content) as varchar2(2000 char)) code_value,
+                       xmlcast(xmlquery('WQX/Organization/OrganizationDescription/OrganizationFormalName' passing raw_xml returning content) as varchar2(2000 char)) description,
                        deletexml(raw_xml, 'WQX/Organization/MonitoringLocation') details
                   from stewards_raw_xml
                  where file_name like '%station.xml' and
@@ -31,12 +31,12 @@ select value code_value,
    
 commit;
 
-truncat table station_temp;
+truncate table station_temp;
 
-insert /*+ append nologging parallel 4*/ into station (station_pk, station_id, station_details, country_cd, county_cd, geom, huc_8, organization_id, state_cd, site_type)
+insert /*+ append nologging parallel 4*/ into station_temp (station_pk, station_id, station_details, country_cd, county_cd, geom, huc_8, organization_id, state_cd, site_type)
 select rownum,
-       station_id,
-       snipit,
+       organization_id || '-' || station_id,
+       updatexml(station_details, 'MonitoringLocation/MonitoringLocationIdentity/MonitoringLocationIdentifier/text()', organization_id || '-' || station_id) station_details,
        country_cd,
        county_cd,
        mdsys.sdo_geometry(2001,8265,mdsys.sdo_point_type(round(longitude, 7),round(latitude, 7), null), null, null) geom,
@@ -60,7 +60,7 @@ select rownum,
                         site_type varchar2(500 char) path '/MonitoringLocation/MonitoringLocationIdentity/MonitoringLocationTypeName',
                         latitude number path '/MonitoringLocation/MonitoringLocationGeospatial/LatitudeMeasure',
                         longitude number path '/MonitoringLocation/MonitoringLocationGeospatial/LongitudeMeasure',
-                        snipit xmltype path '/MonitoringLocation')
+                        station_details xmltype path '/MonitoringLocation')
  where file_name like '%station.xml' and
        load_timestamp = (select max(load_timestamp) from stewards_raw_xml where file_name like '%station.xml');
 
