@@ -77,7 +77,7 @@ insert all /*+ append nologging parallel 4*/
     values (result_id, results, activity_pk, station_pk, station_id, activity_start, characteristic_name, country_cd, county_cd, huc_8, organization_id, sample_media, state_cd, site_type) 
 select activity_pk,
        activity_id,
-       activity_details,
+              updatexml(station_details, 'Activity/ActivityDescription/MonitoringLocationIdentifier/text()', station_id) activity_details,
        station.station_pk,
        station.organization_id,
        station.station_id,
@@ -98,7 +98,7 @@ select activity_pk,
                results,
                characteristic_name,
                sample_media,
-               station_id,
+               xmlquery('/WQX/Organization/OrganizationDescription/OrganizationIdentifier/text()' passing raw_xml returning content) || '-' || station_id station_id,
                activity_id
           from stewards_raw_xml,
                xmltable('/WQX/Organization/Activity'
