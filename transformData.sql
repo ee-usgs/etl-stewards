@@ -16,8 +16,8 @@ select code_value,
                   xmlelement("OrganizationFormalName", description)
                  ),
        rownum sort_order
-  from (select code_value, descr, details,
-               dense_rank() over (partition by value order by descr, rownum) myrank
+  from (select code_value, description, details,
+               dense_rank() over (partition by code_value order by description, rownum) myrank
           from (select xmlcast(xmlquery('WQX/Organization/OrganizationDescription/OrganizationIdentifier' passing raw_xml returning content) as varchar2(2000 char)) code_value,
                        xmlcast(xmlquery('WQX/Organization/OrganizationDescription/OrganizationFormalName' passing raw_xml returning content) as varchar2(2000 char)) description,
                        deletexml(raw_xml, 'WQX/Organization/MonitoringLocation') details
