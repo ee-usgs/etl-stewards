@@ -77,7 +77,7 @@ insert all /*+ append nologging parallel 4*/
     values (result_id, results, activity_pk, station_pk, station_id, activity_start, characteristic_name, country_cd, county_cd, huc_8, organization_id, sample_media, state_cd, site_type) 
 select activity_pk,
        activity_id,
-              updatexml(station_details, 'Activity/ActivityDescription/MonitoringLocationIdentifier/text()', station_id) activity_details,
+       updatexml(station_details, 'Activity/ActivityDescription/MonitoringLocationIdentifier/text()', station.station_id) activity_details,
        station.station_pk,
        station.organization_id,
        station.station_id,

@@ -1,8 +1,6 @@
 <project name="QwStewardsEtl" default="default">
 	<target name="default" depends="loadStation, loadResult, transformData, loadDw"/>
 
-	<target name="loadDw" depends="cleanupDwBefore, buildDwDataTables, buildDwIndexes, buildDwLookups, analyzeDwTables, grantDwPrivs, validateDw, installDwNewData, cleanupDwAfter"/>
-	
    <target name="loadStation">
         <echo>Load the station xml into staging database table</echo>
         <exec executable="sqlldr" failonerror="true">
@@ -28,6 +26,14 @@
         <exec executable="sqlplus" failonerror="true">
             <arg value="ars_stewards/${ars_stewards_password_stage}@${stageInstance}"/>
             <arg value="@${basedir}/transformData.sql"/>
+        </exec>
+    </target>
+
+    <target name="loadDw">
+        <echo>Running the main ETL Package</echo>
+        <exec executable="sqlplus" failonerror="true">
+            <arg value="ars_stewards/${ars_stewards_password_stage}@${stageInstance}"/>
+            <arg value="@${basedir}/loadDw.sql"/>
         </exec>
     </target>
 

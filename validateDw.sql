@@ -14,6 +14,7 @@ begin
           index_count int;
           grant_count int;
           pass_fail   varchar2(15);
+          end_job     boolean := false;
 
 begin
   select '_' || to_char(nvl(max(to_number(substr(table_name, length('RESULT_') + 1))), 1), 'fm00000')
@@ -30,9 +31,7 @@ begin
     pass_fail := 'PASS';
   else
     pass_fail := 'FAIL';
-    $IF $$empty_db $THEN
-      pass_fail := 'PASS empty_db';
-    $END
+    end_job := true;
   end if;
   dbms_output.put_line(pass_fail || ': table comparison for activity: was ' || trim(to_char(old_rows, '999,999,999')) || ', now ' || trim(to_char(new_rows, '999,999,999'))
                                  || ', stage ' || trim(to_char(stage_rows, '999,999,999')));
@@ -44,9 +43,7 @@ begin
     pass_fail := 'PASS';
   else
     pass_fail := 'FAIL';
-    $IF $$empty_db $THEN
-      pass_fail := 'PASS empty_db';
-    $END
+    end_job := true;
   end if;
   dbms_output.put_line(pass_fail || ': table comparison for characteristicname: was ' || trim(to_char(old_rows, '999,999,999')) || ', now ' || trim(to_char(new_rows, '999,999,999')));
       
@@ -57,9 +54,7 @@ begin
     pass_fail := 'PASS';
   else
     pass_fail := 'FAIL';
-    $IF $$empty_db $THEN
-      pass_fail := 'PASS empty_db';
-    $END
+    end_job := true;
   end if;
   dbms_output.put_line(pass_fail || ': table comparison for country: was ' || trim(to_char(old_rows, '999,999,999')) || ', now ' || trim(to_char(new_rows, '999,999,999')));
       
@@ -70,9 +65,7 @@ begin
     pass_fail := 'PASS';
   else
     pass_fail := 'FAIL';
-    $IF $$empty_db $THEN
-      pass_fail := 'PASS empty_db';
-    $END
+    end_job := true;
   end if;
   dbms_output.put_line(pass_fail || ': table comparison for county: was ' || trim(to_char(old_rows, '999,999,999')) || ', now ' || trim(to_char(new_rows, '999,999,999')));
       
@@ -84,9 +77,7 @@ begin
     pass_fail := 'PASS';
   else
     pass_fail := 'FAIL';
-    $IF $$empty_db $THEN
-      pass_fail := 'PASS empty_db';
-    $END
+    end_job := true;
   end if;
   dbms_output.put_line(pass_fail || ': table comparison for organization: was ' || trim(to_char(old_rows, '999,999,999')) || ', now ' || trim(to_char(new_rows, '999,999,999'))
                                  || ', stage ' || trim(to_char(stage_rows, '999,999,999')));
@@ -99,9 +90,7 @@ begin
     pass_fail := 'PASS';
   else
     pass_fail := 'FAIL';
-    $IF $$empty_db $THEN
-      pass_fail := 'PASS empty_db';
-    $END
+    end_job := true;
   end if;
   dbms_output.put_line(pass_fail || ': table comparison for result: was ' || trim(to_char(old_rows, '999,999,999')) || ', now ' || trim(to_char(new_rows, '999,999,999'))
                                  || ', stage ' || trim(to_char(stage_rows, '999,999,999')));
@@ -113,9 +102,7 @@ begin
     pass_fail := 'PASS';
   else
     pass_fail := 'FAIL';
-    $IF $$empty_db $THEN
-      pass_fail := 'PASS empty_db';
-    $END
+    end_job := true;
   end if;
   dbms_output.put_line(pass_fail || ': table comparison for samplemedia: was ' || trim(to_char(old_rows, '999,999,999')) || ', now ' || trim(to_char(new_rows, '999,999,999')));
       
@@ -126,9 +113,7 @@ begin
     pass_fail := 'PASS';
   else
     pass_fail := 'FAIL';
-    $IF $$empty_db $THEN
-      pass_fail := 'PASS empty_db';
-    $END
+    end_job := true;
   end if;
   dbms_output.put_line(pass_fail || ': table comparison for sitetype: was ' || trim(to_char(old_rows, '999,999,999')) || ', now ' || trim(to_char(new_rows, '999,999,999')));
       
@@ -139,9 +124,7 @@ begin
     pass_fail := 'PASS';
   else
     pass_fail := 'FAIL';
-    $IF $$empty_db $THEN
-      pass_fail := 'PASS empty_db';
-    $END
+    end_job := true;
   end if;
   dbms_output.put_line(pass_fail || ': table comparison for state: was ' || trim(to_char(old_rows, '999,999,999')) || ', now ' || trim(to_char(new_rows, '999,999,999')));
       
@@ -153,9 +136,7 @@ begin
     pass_fail := 'PASS';
   else
     pass_fail := 'FAIL';
-    $IF $$empty_db $THEN
-      pass_fail := 'PASS empty_db';
-    $END
+    end_job := true;
   end if;
   dbms_output.put_line(pass_fail || ': table comparison for station: was ' || trim(to_char(old_rows, '999,999,999')) || ', now ' || trim(to_char(new_rows, '999,999,999'))
                                  || ', stage ' || trim(to_char(stage_rows, '999,999,999')));
@@ -169,6 +150,7 @@ begin
          substr(table_name, -6) = the_suffix;
   if index_count < 30 then  /* there are exactly 30 as of 20NOV2013 */
     pass_fail := 'FAIL';
+    end_job := true;
   else
     pass_fail := 'PASS';
   end if;
@@ -183,15 +165,15 @@ begin
          substr(table_name, -6) = the_suffix;
   if grant_count < 10 then  /* there are exactly 10 as of 20NOV2013 */
     pass_fail := 'FAIL';
+    end_job := true;
   else
     pass_fail := 'PASS';
   end if;
   dbms_output.put_line(pass_fail || ': found ' || to_char(grant_count) || ' grants.');
   
-  exception
-    when others then
-      dbms_output.put_line('FAIL validation ' || SQLERRM);
-
+  if end_job then
+    raise_application_error(-20666, 'Failed to pass one or more validation checks.');
+  end;
 end;
 end;
 /
