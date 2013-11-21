@@ -77,7 +77,7 @@ insert all /*+ append nologging parallel 4*/
     values (result_id, results, activity_pk, station_pk, station_id, activity_start, characteristic_name, country_cd, county_cd, huc_8, organization_id, sample_media, state_cd, site_type) 
 select activity_pk,
        activity_id,
-       updatexml(station_details, 'Activity/ActivityDescription/MonitoringLocationIdentifier/text()', station.station_id) activity_details,
+       updatexml(activity_details, 'Activity/ActivityDescription/MonitoringLocationIdentifier/text()', station.station_id) activity_details,
        station.station_pk,
        station.organization_id,
        station.station_id,
@@ -98,17 +98,17 @@ select activity_pk,
                results,
                characteristic_name,
                sample_media,
-               xmlquery('/WQX/Organization/OrganizationDescription/OrganizationIdentifier/text()' passing raw_xml returning content) || '-' || station_id station_id,
+               organization_id || '-' || station_id station_id,
                activity_id
           from stewards_raw_xml,
-               xmltable('/WQX/Organization/Activity'
+               xmltable('/WQX/Organization'
                         passing raw_xml
+                        columns organization_id varchar2(500 char) path '/Organization/OrganizationDescription/OrganizationIdentifier',
+                                organization_details xmltype path '/Organization'), 
+               xmltable('for $i in /Organization return $i/Activity'
+                        passing organization_details
                         columns activity_pk for ordinality,
-                                activity xmltype path '/'
-                       ) x,
-               xmltable('/'
-                        passing x.activity
-                        columns station_id varchar2(100 char) path '/Activity/ActivityDescription/MonitoringLocationIdentifier',
+                                station_id varchar2(100 char) path '/Activity/ActivityDescription/MonitoringLocationIdentifier',
                                 activity_start_date varchar2(8 char) path '/Activity/ActivityDescription/ActivityStartDate',
                                 activity_start_time varchar2(8 char) path '/Activity/ActivityDescription/ActivityStartTime/Time',
                                 ActivityDescription xmltype path '/Activity/ActivityDescription',
