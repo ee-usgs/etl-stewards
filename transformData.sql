@@ -33,7 +33,8 @@ commit;
 
 truncate table station_temp;
 
-insert /*+ append nologging parallel 4*/ into station_temp (station_pk, station_id, station_details, country_cd, county_cd, geom, huc_8, organization_id, state_cd, site_type)
+insert /*+ append nologging */
+  into station_temp (station_pk, station_id, station_details, country_cd, county_cd, geom, huc_8, organization_id, state_cd, site_type)
 select rownum,
        organization_id || '-' || station_id,
        updatexml(station_details, 'MonitoringLocation/MonitoringLocationIdentity/MonitoringLocationIdentifier/text()', organization_id || '-' || station_id) station_details,
@@ -49,8 +50,7 @@ select rownum,
                 passing raw_xml
                 columns organization_id varchar2(500 char) path '/Organization/OrganizationDescription/OrganizationIdentifier',
                         details xmltype path '/Organization'), 
-       xmltable(
-                'for $i in /Organization return $i/MonitoringLocation'
+       xmltable('for $i in /Organization return $i/MonitoringLocation'
                 passing details
                 columns station_id varchar2(100 char) path '/MonitoringLocation/MonitoringLocationIdentity/MonitoringLocationIdentifier',
                         country_cd varchar2(2 char) path '/MonitoringLocation/MonitoringLocationGeospatial/CountryCode',
@@ -66,23 +66,41 @@ select rownum,
 
 commit;
 
+truncate table split_activity;
+insert all /*+ append nologging */    
+  into split_activity
+select organization_id,
+       activity_pk,
+       activity_details
+          from stewards_raw_xml,
+               xmltable('/WQX/Organization'
+                        passing raw_xml
+                        columns organization_id varchar2(500 char) path '/Organization/OrganizationDescription/OrganizationIdentifier',
+                                organization_details xmltype path '/Organization'), 
+               xmltable('for $i in /Organization return $i/Activity'
+                        passing organization_details
+                        columns activity_pk for ordinality,
+                                activity_details xmltype path '/Activity'
+                       ) y
+         where file_name like '%result.xml' and
+               load_timestamp = (select max(load_timestamp) from stewards_raw_xml where file_name like '%result.xml');
+
 truncate table activity_temp;
 
 truncate table result_temp; 
 
-insert all /*+ append nologging parallel 4*/    
+insert all /*+ append nologging */    
   into activity_temp
     values (activity_pk, activity_details, station_pk, organization_id, station_id, activity_start, activity_id) 
   into result_temp
-    values (result_id, results, activity_pk, station_pk, station_id, activity_start, characteristic_name, country_cd, county_cd, huc_8, organization_id, sample_media, state_cd, site_type) 
+    values (activity_pk, results, activity_pk, station_pk, station_id, activity_start, characteristic_name, country_cd, county_cd, huc_8, organization_id, sample_media, state_cd, site_type) 
 select activity_pk,
        activity_id,
-       updatexml(activity_details, 'Activity/ActivityDescription/MonitoringLocationIdentifier/text()', station.station_id) activity_details,
+       activity_details,
        station.station_pk,
        station.organization_id,
        station.station_id,
        activity_start,
-       result_id,
        results,
        characteristic_name,
        station.country_cd,
@@ -94,21 +112,15 @@ select activity_pk,
   from (select activity_pk,
                xmlelement("Activity", xmlconcat(ActivityDescription, SampleDescription)) activity_details,
                to_date(activity_start_date||' '||activity_start_time, 'mm/dd/yyyy hh24:mi:ss') activity_start,
-               rownum result_id,
                results,
                characteristic_name,
                sample_media,
                organization_id || '-' || station_id station_id,
                activity_id
-          from stewards_raw_xml,
-               xmltable('/WQX/Organization'
-                        passing raw_xml
-                        columns organization_id varchar2(500 char) path '/Organization/OrganizationDescription/OrganizationIdentifier',
-                                organization_details xmltype path '/Organization'), 
-               xmltable('for $i in /Organization return $i/Activity'
-                        passing organization_details
-                        columns activity_pk for ordinality,
-                                station_id varchar2(100 char) path '/Activity/ActivityDescription/MonitoringLocationIdentifier',
+          from split_activity,
+               xmltable('/Activity'
+                        passing activity_details
+                        columns station_id varchar2(100 char) path '/Activity/ActivityDescription/MonitoringLocationIdentifier',
                                 activity_start_date varchar2(8 char) path '/Activity/ActivityDescription/ActivityStartDate',
                                 activity_start_time varchar2(8 char) path '/Activity/ActivityDescription/ActivityStartTime/Time',
                                 ActivityDescription xmltype path '/Activity/ActivityDescription',
@@ -118,8 +130,6 @@ select activity_pk,
                                 sample_media varchar2(30 char) path '/Activity/ActivityDescription/ActivityMediaName',
                                 activity_id varchar2(30 char) path '/Activity/ActivityDescription/ActivityIdentifier'
                        ) y
-         where file_name like '%result.xml' and
-               load_timestamp = (select max(load_timestamp) from stewards_raw_xml where file_name like '%result.xml')
        ) a
        join station_temp station
          on station.station_id = a.station_id;
