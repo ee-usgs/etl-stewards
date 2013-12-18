@@ -8,7 +8,7 @@ select 'build dw data tables start time: ' || systimestamp from dual;
 
 begin
   declare new_suffix varchar2(6 char);
-          dblink user_db_links.db_link%type := nvl(:dblink, '&1';
+          dblink user_db_links.db_link%type := '&1';
 
 begin
   select '_' || to_char(nvl(max(to_number(substr(table_name, length('RESULT_') + 1))) + 1, 1), 'fm00000')
