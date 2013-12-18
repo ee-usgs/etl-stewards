@@ -15,6 +15,7 @@ begin
           grant_count int;
           pass_fail   varchar2(15);
           end_job     boolean := false;
+          dblink      user_db_links.db_link%type := '&1';
 
 begin
   select '_' || to_char(nvl(max(to_number(substr(table_name, length('RESULT_') + 1))), 1), 'fm00000')
@@ -25,7 +26,7 @@ begin
   
   --Activity--
   select count(*) into old_rows from activity;
-  select count(*) into stage_rows from activity_temp;
+  execute immediate 'select count(*) from activity_temp@' || dblink into stage_rows;
   execute immediate 'select count(*) from activity' || the_suffix into new_rows;
   if new_rows > 200000 and new_rows > old_rows - 10000 and new_rows = stage_rows then
     pass_fail := 'PASS';
@@ -71,7 +72,7 @@ begin
       
   --Organization--
   select count(*) into old_rows from organization;
-  select count(*) into stage_rows from organization_temp;
+  execute immediate 'select count(*) from organization_temp@' || dblink into stage_rows;
   execute immediate 'select count(*) from organization' || the_suffix into new_rows;
   if new_rows > 0 and new_rows > old_rows - 5 then
     pass_fail := 'PASS';
@@ -84,7 +85,7 @@ begin
       
   --Result--
   select count(*) into old_rows from result;
-  select count(*) into stage_rows from result_temp;
+  execute immediate 'select count(*) from result_temp@' || dblink into stage_rows;
   execute immediate 'select count(*) from result' || the_suffix into new_rows;
   if new_rows > 200000 and new_rows > old_rows - 10000 and new_rows = stage_rows then
     pass_fail := 'PASS';
@@ -130,7 +131,7 @@ begin
       
   --Station--
   select count(*) into old_rows from station;
-  select count(*) into stage_rows from station_temp;
+  execute immediate 'select count(*) from station_temp@' || dblink into stage_rows;
   execute immediate 'select count(*) from station' || the_suffix into new_rows;
   if new_rows > 45 and new_rows > old_rows - 10 and new_rows = stage_rows then
     pass_fail := 'PASS';
