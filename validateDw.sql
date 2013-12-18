@@ -173,7 +173,7 @@ begin
   
   if end_job then
     raise_application_error(-20666, 'Failed to pass one or more validation checks.');
-  end;
+  end if;
 end;
 end;
 /
