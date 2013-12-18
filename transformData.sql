@@ -69,8 +69,8 @@ commit;
 truncate table split_activity;
 insert all /*+ append nologging */    
   into split_activity
-select organization_id,
-       activity_pk,
+select activity_pk,
+       organization_id,
        activity_details
           from stewards_raw_xml,
                xmltable('/WQX/Organization'
