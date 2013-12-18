@@ -6,6 +6,13 @@ whenever sqlerror exit failure rollback;
 whenever oserror exit failure rollback;
 select 'load dw start time: ' || systimestamp from dual;
 
+variable dblink varchar2(128 char);
+begin
+  :dblink := '@&1';
+  dbms_output.put_line('dblink:' || :dblink || ':');
+end;
+/
+
 prompt ****************************************************************************************************************
 prompt ** cleanupDw.sql - before
 prompt ****************************************************************************************************************

@@ -34,6 +34,7 @@
         <exec executable="sqlplus" failonerror="true">
             <arg value="ars_stewards/${ars_stewards_password_stage}@${stageInstance}"/>
             <arg value="@${basedir}/loadDw.sql"/>
+            <arg value="${dblink}"/>
         </exec>
     </target>
 
@@ -50,6 +51,7 @@
         <exec executable="sqlplus" failonerror="true">
             <arg value="ars_stewards/${ars_stewards_password_dw}@${dwInstance}"/>
             <arg value="@${basedir}/buildDwDataTables.sql"/>
+            <arg value="${dblink}"/>
         </exec>
     </target>
 
