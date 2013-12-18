@@ -32,7 +32,7 @@
     <target name="loadDw">
         <echo>Running the main ETL Package</echo>
         <exec executable="sqlplus" failonerror="true">
-            <arg value="ars_stewards/${ars_stewards_password_stage}@${stageInstance}"/>
+            <arg value="ars_stewards/${ars_stewards_password_dw}@${dwInstance}"/>
             <arg value="@${basedir}/loadDw.sql"/>
             <arg value="${dblink}"/>
         </exec>
