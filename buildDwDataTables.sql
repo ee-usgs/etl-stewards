@@ -17,23 +17,23 @@ begin
    where translate(table_name, '0123456789', '0000000000') = 'RESULT_00000';
   dbms_output.put_line('new suffix:' || new_suffix); 
   
-  execute immediate 'create table organization' || new_suffix || ' as select * from organization_temp@' || dblink;
+  execute immediate 'create table organization' || new_suffix || ' as select /*+ parallel (4) */ * from organization_temp@' || dblink;
   execute immediate 'alter table organization' || new_suffix || ' add constraint organization' || new_suffix || '_pk primary key (code_value)';
   dbms_output.put_line('created table organization' || new_suffix);
   
-  execute immediate 'create table station' || new_suffix || ' as select * from station_temp@' || dblink;
+  execute immediate 'create table station' || new_suffix || ' as select /*+ parallel (4) */ * from station_temp@' || dblink;
   execute immediate 'alter table station' || new_suffix || ' add constraint station' || new_suffix || '_pk primary key (station_pk)';
   execute immediate 'alter table station' || new_suffix || ' add constraint station' || new_suffix || '_org foreign key (organization_id) references organization' ||
                      new_suffix || ' (code_value) disable';
   dbms_output.put_line('created table station' || new_suffix);
 
-  execute immediate 'create table activity' || new_suffix || ' as select * from activity_temp@' || dblink;
+  execute immediate 'create table activity' || new_suffix || ' as select /*+ parallel (4) */ * from activity_temp@' || dblink;
   execute immediate 'alter table activity' || new_suffix || ' add constraint activity' || new_suffix || '_pk primary key (activity_pk)';
   execute immediate 'alter table activity' || new_suffix || ' add constraint activity' || new_suffix || '_station foreign key (station_pk) references station' ||
                      new_suffix || ' (station_pk) disable';
   dbms_output.put_line('created table activity' || new_suffix);
 
-  execute immediate 'create table result' || new_suffix || ' as select * from result_temp@' || dblink;
+  execute immediate 'create table result' || new_suffix || ' as select /*+ parallel (4) */ * from result_temp@' || dblink;
   execute immediate 'alter table result' || new_suffix || ' add constraint result' || new_suffix || '_pk primary key (result_pk)';
   execute immediate 'alter table result' || new_suffix || ' add constraint result' || new_suffix || '_station foreign key (station_pk) references station' ||
                      new_suffix || ' (station_pk) disable';
