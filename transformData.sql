@@ -96,7 +96,7 @@ insert all /*+ append nologging */
     values (activity_pk, results, activity_pk, station_pk, station_id, activity_start, characteristic_name, country_cd, county_cd, huc_8, organization_id, sample_media, state_cd, site_type) 
 select activity_pk,
        activity_id,
-       activity_details,
+       updatexml(activity_details, '/Activity/ActivityDescription/MonitoringLocationIdentifier/text()', organization_id || '-' || station_id) activity_details,
        station.station_pk,
        station.organization_id,
        station.station_id,
