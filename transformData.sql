@@ -94,19 +94,19 @@ insert all /*+ append nologging */
     values (activity_pk, activity_details, station_pk, organization_id, station_id, activity_start, activity_id) 
   into result_temp
     values (activity_pk, results, activity_pk, station_pk, station_id, activity_start, characteristic_name, country_cd, county_cd, huc_8, organization_id, sample_media, state_cd, site_type) 
-select activity_pk,
-       activity_id,
-       updatexml(activity_details, '/Activity/ActivityDescription/MonitoringLocationIdentifier/text()', organization_id || '-' || station_id) activity_details,
+select a.activity_pk,
+       a.activity_id,
+       updatexml(a.activity_details, '/Activity/ActivityDescription/MonitoringLocationIdentifier/text()', station.organization_id || '-' || station.station_id) activity_details,
        station.station_pk,
        station.organization_id,
        station.station_id,
-       activity_start,
-       results,
-       characteristic_name,
+       a.activity_start,
+       a.results,
+       a.characteristic_name,
        station.country_cd,
        station.county_cd,
        station.huc_8,
-       sample_media,
+       a.sample_media,
        station.state_cd,
        station.site_type
   from (select activity_pk,
