@@ -55,10 +55,10 @@ begin
                                from station' || the_suffix || q'! a
                                     join nwis_ws_star.county b
                                       on a.country_cd || ':' || a.state_cd || ':' || a.county_cd = b.code_value
-                              where country_cd is not null
-                                order by country_cd desc,
-                                         state_cd,
-                                         county_cd)!';
+                              where a.country_cd is not null
+                                order by a.country_cd desc,
+                                         a.state_cd,
+                                         a.county_cd)!';
   dbms_output.put_line('created table county' || the_suffix);
 
   execute immediate 'create table country' || the_suffix || ' as
@@ -71,8 +71,8 @@ begin
                                from station' || the_suffix || ' a
                                     join nwis_ws_star.country b
                                       on a.country_cd = b.code_value
-                              where country_cd is not null
-                                 order by 2 desc)';
+                              where a.country_cd is not null
+                                 order by b.description desc)';
   dbms_output.put_line('created table country' || the_suffix);
 
   execute immediate 'create table state' || the_suffix || ' as
@@ -90,9 +90,9 @@ begin
                                from station' || the_suffix || q'! a
                                     join nwis_ws_star.state b
                                       on a.country_cd || ':' ||a.state_cd = b.code_value
-                              where country_cd is not null
-                                 order by country_cd desc,
-                                               state_cd)!';
+                              where a.country_cd is not null
+                                 order by a.country_cd desc,
+                                          a.state_cd)!';
   dbms_output.put_line('created table state' || the_suffix);
 
   execute immediate 'create table sitetype' || the_suffix || ' as
