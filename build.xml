@@ -1,7 +1,7 @@
 <project name="QwStewardsEtl" default="default">
-	<target name="default" depends="loadStation, loadResult, transformData, loadDw"/>
+    <target name="default" depends="loadStation, loadResult, transformData, loadDw"/>
 
-   <target name="loadStation">
+    <target name="loadStation">
         <echo>Load the station xml into staging database table</echo>
         <exec executable="sqlldr" failonerror="true">
             <arg value="ars_stewards/${ars_stewards_password_stage}@${stageInstance}"/>

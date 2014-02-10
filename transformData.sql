@@ -21,9 +21,7 @@ select code_value,
           from (select xmlcast(xmlquery('WQX/Organization/OrganizationDescription/OrganizationIdentifier' passing raw_xml returning content) as varchar2(2000 char)) code_value,
                        xmlcast(xmlquery('WQX/Organization/OrganizationDescription/OrganizationFormalName' passing raw_xml returning content) as varchar2(2000 char)) description,
                        deletexml(raw_xml, 'WQX/Organization/MonitoringLocation') details
-                  from stewards_raw_xml
-                 where file_name like '%station.xml' and
-                       load_timestamp = (select max(load_timestamp) from stewards_raw_xml where file_name like '%station.xml')
+                  from raw_station_xml
                )
        )
  where myrank = 1
@@ -45,7 +43,7 @@ select rownum,
        organization_id,
        state_cd,
        site_type
-  from stewards_raw_xml,
+  from raw_station_xml,
        xmltable('/WQX/Organization'
                 passing raw_xml
                 columns organization_id varchar2(500 char) path '/Organization/OrganizationDescription/OrganizationIdentifier',
@@ -60,9 +58,7 @@ select rownum,
                         site_type varchar2(500 char) path '/MonitoringLocation/MonitoringLocationIdentity/MonitoringLocationTypeName',
                         latitude number path '/MonitoringLocation/MonitoringLocationGeospatial/LatitudeMeasure',
                         longitude number path '/MonitoringLocation/MonitoringLocationGeospatial/LongitudeMeasure',
-                        station_details xmltype path '/MonitoringLocation')
- where file_name like '%station.xml' and
-       load_timestamp = (select max(load_timestamp) from stewards_raw_xml where file_name like '%station.xml');
+                        station_details xmltype path '/MonitoringLocation');
 
 commit;
 
@@ -72,7 +68,7 @@ insert all /*+ append nologging */
 select activity_pk,
        organization_id,
        activity_details
-          from stewards_raw_xml,
+          from raw_result_xml,
                xmltable('/WQX/Organization'
                         passing raw_xml
                         columns organization_id varchar2(500 char) path '/Organization/OrganizationDescription/OrganizationIdentifier',
@@ -81,9 +77,7 @@ select activity_pk,
                         passing organization_details
                         columns activity_pk for ordinality,
                                 activity_details xmltype path '/Activity'
-                       ) y
-         where file_name like '%result.xml' and
-               load_timestamp = (select max(load_timestamp) from stewards_raw_xml where file_name like '%result.xml');
+                       );
 
 truncate table activity_temp;
 
@@ -91,7 +85,7 @@ truncate table result_temp;
 
 insert all /*+ append nologging */    
   into activity_temp
-    values (activity_pk, activity_details, station_pk, organization_id, station_id, activity_start, activity_id) 
+    values (activity_pk, activity_details) 
   into result_temp
     values (activity_pk, results, activity_pk, station_pk, station_id, activity_start, characteristic_name, country_cd, county_cd, huc_8, organization_id, sample_media, state_cd, site_type) 
 select a.activity_pk,
