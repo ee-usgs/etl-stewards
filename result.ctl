@@ -1,12 +1,12 @@
-LOAD DATA
-INFILE *
-TRUNCATE
-INTO TABLE raw_result_xml append
+load data
+infile *
+into table raw_result_xml
+truncate
 (file_name char(100)
 ,load_timestamp expression "current_timestamp"
 ,raw_xml LOBFILE (file_name) TERMINATED BY EOF
 )
-BEGINDATA
+begindata
 /opt/tomcat/.jenkins/ars_stewards/resultAlabama.xml
 /opt/tomcat/.jenkins/ars_stewards/resultAlaska.xml
 /opt/tomcat/.jenkins/ars_stewards/resultArizona.xml

@@ -9,15 +9,17 @@ select 'start time: ' || systimestamp from dual;
 truncate table organization_temp;
 
 prompt inserting into organization_temp
-insert /*+ append nologging parallel 4*/ into organization_temp (code_value, description, organization_details, sort_order)
-select code_value,
+insert /*+ append nologging parallel(4) */ into organization_temp (code_value, description, organization_details, sort_order)
+select /*+ parallel(4) */
+       code_value,
        description,
        xmlelement("OrganizationDescription",
                   xmlelement("OrganizationIdentifier", code_value),
                   xmlelement("OrganizationFormalName", description)
                  ),
        rownum sort_order
-  from (select code_value, description, details,
+  from (select /*+ parallel(4) */
+               code_value, description, details,
                dense_rank() over (partition by code_value order by description, rownum) myrank
           from (select xmlcast(xmlquery('WQX/Organization/OrganizationDescription/OrganizationIdentifier' passing raw_xml returning content) as varchar2(2000 char)) code_value,
                        xmlcast(xmlquery('WQX/Organization/OrganizationDescription/OrganizationFormalName' passing raw_xml returning content) as varchar2(2000 char)) description,
@@ -33,9 +35,10 @@ commit;
 truncate table station_temp;
 
 prompt inserting into station_temp
-insert /*+ append nologging */
+insert /*+ append nologging parallel(4) */
   into station_temp (station_pk, station_id, station_details, country_cd, county_cd, geom, huc_8, organization_id, state_cd, site_type)
-select rownum,
+select /*+ parallel(4) */
+       rownum,
        organization_id || '-' || station_id,
        updatexml(station_details, 'MonitoringLocation/MonitoringLocationIdentity/MonitoringLocationIdentifier/text()', organization_id || '-' || station_id) station_details,
        country_cd,
@@ -67,9 +70,10 @@ commit;
 truncate table split_activity;
 
 prompt inserting into split_activity
-insert all /*+ append nologging */    
+insert all /*+ append nologging parallel(4) */    
   into split_activity
-select rownum activity_pk,
+select /*+ parallel(4) */
+       rownum activity_pk,
        organization_id,
        activity_details
           from raw_result_xml,
@@ -87,12 +91,13 @@ truncate table activity_temp;
 truncate table result_temp; 
 
 prompt inserting into activity_temp and result_temp
-insert all /*+ append nologging */    
+insert all /*+ append nologging parallel(4) */    
   into activity_temp
     values (activity_pk, activity_details) 
   into result_temp
     values (activity_pk, results, activity_pk, station_pk, station_id, activity_start, characteristic_name, country_cd, county_cd, huc_8, organization_id, sample_media, state_cd, site_type) 
-select a.activity_pk,
+select /*+ parallel(4) */
+       a.activity_pk,
        a.activity_id,
        updatexml(a.activity_details, '/Activity/ActivityDescription/MonitoringLocationIdentifier/text()', station.organization_id || '-' || station.station_id) activity_details,
        station.station_pk,
@@ -107,7 +112,8 @@ select a.activity_pk,
        a.sample_media,
        station.state_cd,
        station.site_type
-  from (select activity_pk,
+  from (select /*+ parallel(4) */
+               activity_pk,
                xmlelement("Activity", xmlconcat(ActivityDescription, SampleDescription)) activity_details,
                to_date(activity_start_date||' '||activity_start_time, 'mm/dd/yyyy hh24:mi:ss') activity_start,
                results,
@@ -119,7 +125,7 @@ select a.activity_pk,
                xmltable('/Activity'
                         passing activity_details
                         columns station_id varchar2(100 char) path '/Activity/ActivityDescription/MonitoringLocationIdentifier',
-                                activity_start_date varchar2(8 char) path '/Activity/ActivityDescription/ActivityStartDate',
+                                activity_start_date varchar2(10 char) path '/Activity/ActivityDescription/ActivityStartDate',
                                 activity_start_time varchar2(8 char) path '/Activity/ActivityDescription/ActivityStartTime/Time',
                                 ActivityDescription xmltype path '/Activity/ActivityDescription',
                                 SampleDescription xmltype path '/Activity/SampleDescription',

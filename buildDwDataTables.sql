@@ -29,8 +29,6 @@ begin
 
   execute immediate 'create table activity' || new_suffix || ' as select /*+ parallel (4) */ * from activity_temp@' || dblink;
   execute immediate 'alter table activity' || new_suffix || ' add constraint activity' || new_suffix || '_pk primary key (activity_pk)';
-  execute immediate 'alter table activity' || new_suffix || ' add constraint activity' || new_suffix || '_station foreign key (station_pk) references station' ||
-                     new_suffix || ' (station_pk) disable';
   dbms_output.put_line('created table activity' || new_suffix);
 
   execute immediate 'create table result' || new_suffix || ' as select /*+ parallel (4) */ * from result_temp@' || dblink;
