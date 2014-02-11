@@ -8,6 +8,7 @@ select 'start time: ' || systimestamp from dual;
 
 truncate table organization_temp;
 
+prompt inserting into organization_temp
 insert /*+ append nologging parallel 4*/ into organization_temp (code_value, description, organization_details, sort_order)
 select code_value,
        description,
@@ -31,6 +32,7 @@ commit;
 
 truncate table station_temp;
 
+prompt inserting into station_temp
 insert /*+ append nologging */
   into station_temp (station_pk, station_id, station_details, country_cd, county_cd, geom, huc_8, organization_id, state_cd, site_type)
 select rownum,
@@ -63,9 +65,11 @@ select rownum,
 commit;
 
 truncate table split_activity;
+
+prompt inserting into split_activity
 insert all /*+ append nologging */    
   into split_activity
-select activity_pk,
+select rownum activity_pk,
        organization_id,
        activity_details
           from raw_result_xml,
@@ -75,14 +79,14 @@ select activity_pk,
                                 organization_details xmltype path '/Organization'), 
                xmltable('for $i in /Organization return $i/Activity'
                         passing organization_details
-                        columns activity_pk for ordinality,
-                                activity_details xmltype path '/Activity'
+                        columns activity_details xmltype path '/Activity'
                        );
 
 truncate table activity_temp;
 
 truncate table result_temp; 
 
+prompt inserting into activity_temp and result_temp
 insert all /*+ append nologging */    
   into activity_temp
     values (activity_pk, activity_details) 
