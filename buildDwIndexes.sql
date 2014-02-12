@@ -62,6 +62,8 @@ begin
   dbms_output.put_line('created index result' || the_suffix || '_station_pk');
   execute immediate 'create bitmap index result' || the_suffix || '_site_type on result' || the_suffix || ' (site_type)';
   dbms_output.put_line('created index result' || the_suffix || '_site_type');
+  execute immediate 'create bitmap index result' || the_suffix || '_char_type on result' || the_suffix || ' (characteristic_type)';
+  dbms_output.put_line('created index result' || the_suffix || '_char_type');
 
 end;
 end;

@@ -28,6 +28,18 @@ begin
                                  order by 1)';
   dbms_output.put_line('created table characteristicname' || the_suffix);
 
+  execute immediate 'create table characteristictype' || the_suffix || ' as
+                     select code_value,
+                            description,
+                            rownum sort_order
+                       from (select /*+ parallel (4) */
+                                    distinct characteristic_type code_value,
+                                             cast(null as varchar2(4000 char)) description
+                               from result' || the_suffix || '
+                              where characteristic_type is not null
+                                 order by 1)';
+  dbms_output.put_line('created table characteristictype' || the_suffix);
+
   execute immediate 'create table samplemedia' || the_suffix || ' as
                      select code_value,
                             description,
