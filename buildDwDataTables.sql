@@ -31,7 +31,7 @@ begin
   execute immediate 'alter table activity' || new_suffix || ' add constraint activity' || new_suffix || '_pk primary key (activity_pk)';
   dbms_output.put_line('created table activity' || new_suffix);
 
-  execute immediate 'create table result' || new_suffix || ' as select /*+ parallel (4) */ result_temp.*, characteristic_type, xmlserialize(content result_details as clob no indent) result_clob from result_temp@' || dblink
+  execute immediate 'create table result' || new_suffix || ' as select /*+ parallel (4) */ result_temp.*, nvl(characteristic_type, ''Not Assigned'') characteristic_type, xmlserialize(content result_details as clob no indent) result_clob from result_temp@' || dblink
                      || ' left join characteristic_name_to_type on result_temp.characteristic_name = characteristic_name_to_type.characteristic_name';
   execute immediate 'alter table result' || new_suffix || ' add constraint result' || new_suffix || '_pk primary key (result_pk)';
   execute immediate 'alter table result' || new_suffix || ' add constraint result' || new_suffix || '_station foreign key (station_pk) references station' ||
