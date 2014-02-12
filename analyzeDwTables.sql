@@ -20,6 +20,8 @@ begin
   dbms_stats.gather_table_stats(user, 'ACTIVITY' || the_suffix, null, 100, false, 'FOR ALL COLUMNS SIZE AUTO', 1, 'ALL', true);
   dbms_output.put_line('analyze characteristicname' || the_suffix);
   dbms_stats.gather_table_stats(user, 'CHARACTERISTICNAME' || the_suffix, null, 100, false, 'FOR ALL COLUMNS SIZE AUTO', 1, 'ALL', true);
+  dbms_output.put_line('analyze characteristictype' || the_suffix);
+  dbms_stats.gather_table_stats(user, 'CHARACTERISTICTYPE' || the_suffix, null, 100, false, 'FOR ALL COLUMNS SIZE AUTO', 1, 'ALL', true);
   dbms_output.put_line('analyze country' || the_suffix);
   dbms_stats.gather_table_stats(user, 'COUNTRY' || the_suffix, null, 100, false, 'FOR ALL COLUMNS SIZE AUTO', 1, 'ALL', true);
   dbms_output.put_line('analyze county' || the_suffix);
