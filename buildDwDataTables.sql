@@ -21,7 +21,7 @@ begin
   execute immediate 'alter table organization' || new_suffix || ' add constraint organization' || new_suffix || '_pk primary key (code_value)';
   dbms_output.put_line('created table organization' || new_suffix);
   
-  execute immediate 'create table station' || new_suffix || ' as select /*+ parallel (4) */ * from station_temp@' || dblink;
+  execute immediate 'create table station' || new_suffix || ' as select /*+ parallel (4) */ station_temp.*, xmlserialize(content station_details as clob no indent) station_clob from station_temp@' || dblink;
   execute immediate 'alter table station' || new_suffix || ' add constraint station' || new_suffix || '_pk primary key (station_pk)';
   execute immediate 'alter table station' || new_suffix || ' add constraint station' || new_suffix || '_org foreign key (organization_id) references organization' ||
                      new_suffix || ' (code_value) disable';
