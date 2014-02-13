@@ -40,13 +40,13 @@ insert /*+ append nologging parallel(4) */
 select station_pk,
        station_id,
        station_details,
-       country_code,
-       county_code,
+       country_cd,
+       county_cd,
        geom,
        huc_8,
        organization_id,
        state_cd,
-       primary_site_type
+       nvl(primary_site_type, 'Not Assigned') primary_site_type
   from (select /*+ parallel(4) */
                rownum station_pk,
                organization_id || '-' || station_id,
