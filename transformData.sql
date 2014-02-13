@@ -49,7 +49,7 @@ select station_pk,
        nvl(primary_site_type, 'Not Assigned') primary_site_type
   from (select /*+ parallel(4) */
                rownum station_pk,
-               organization_id || '-' || station_id,
+               organization_id || '-' || station_id station_id,
                updatexml(station_details, 'MonitoringLocation/MonitoringLocationIdentity/MonitoringLocationIdentifier/text()', organization_id || '-' || station_id) station_details,
                country_cd,
                county_cd,
