@@ -37,33 +37,46 @@ truncate table station_temp;
 prompt inserting into station_temp
 insert /*+ append nologging parallel(4) */
   into station_temp (station_pk, station_id, station_details, country_cd, county_cd, geom, huc_8, organization_id, state_cd, site_type)
-select /*+ parallel(4) */
-       rownum,
-       organization_id || '-' || station_id,
-       updatexml(station_details, 'MonitoringLocation/MonitoringLocationIdentity/MonitoringLocationIdentifier/text()', organization_id || '-' || station_id) station_details,
-       country_cd,
-       county_cd,
-       mdsys.sdo_geometry(2001,8265,mdsys.sdo_point_type(round(longitude, 7),round(latitude, 7), null), null, null) geom,
+select station_pk,
+       station_id,
+       station_details,
+       country_code,
+       county_code,
+       geom,
        huc_8,
        organization_id,
        state_cd,
-       site_type
-  from raw_station_xml,
-       xmltable('/WQX/Organization'
-                passing raw_xml
-                columns organization_id varchar2(500 char) path '/Organization/OrganizationDescription/OrganizationIdentifier',
-                        details xmltype path '/Organization'), 
-       xmltable('for $i in /Organization return $i/MonitoringLocation'
-                passing details
-                columns station_id varchar2(100 char) path '/MonitoringLocation/MonitoringLocationIdentity/MonitoringLocationIdentifier',
-                        country_cd varchar2(2 char) path '/MonitoringLocation/MonitoringLocationGeospatial/CountryCode',
-                        county_cd varchar2(3 char) path '/MonitoringLocation/MonitoringLocationGeospatial/CountyCode',
-                        huc_8 varchar2(8 char) path '/MonitoringLocation/MonitoringLocationIdentity/HUCEightDigitCode',
-                        state_cd varchar2(2 char) path '/MonitoringLocation/MonitoringLocationGeospatial/StateCode',
-                        site_type varchar2(500 char) path '/MonitoringLocation/MonitoringLocationIdentity/MonitoringLocationTypeName',
-                        latitude number path '/MonitoringLocation/MonitoringLocationGeospatial/LatitudeMeasure',
-                        longitude number path '/MonitoringLocation/MonitoringLocationGeospatial/LongitudeMeasure',
-                        station_details xmltype path '/MonitoringLocation');
+       primary_site_type
+  from (select /*+ parallel(4) */
+               rownum station_pk,
+               organization_id || '-' || station_id,
+               updatexml(station_details, 'MonitoringLocation/MonitoringLocationIdentity/MonitoringLocationIdentifier/text()', organization_id || '-' || station_id) station_details,
+               country_cd,
+               county_cd,
+               mdsys.sdo_geometry(2001,8265,mdsys.sdo_point_type(round(longitude, 7),round(latitude, 7), null), null, null) geom,
+               huc_8,
+               organization_id,
+               state_cd,
+               site_type
+          from raw_station_xml,
+               xmltable('/WQX/Organization'
+                        passing raw_xml
+                        columns organization_id varchar2(500 char) path '/Organization/OrganizationDescription/OrganizationIdentifier',
+                                details xmltype path '/Organization'), 
+               xmltable('for $i in /Organization return $i/MonitoringLocation'
+                        passing details
+                        columns station_id varchar2(100 char) path '/MonitoringLocation/MonitoringLocationIdentity/MonitoringLocationIdentifier',
+                                country_cd varchar2(2 char) path '/MonitoringLocation/MonitoringLocationGeospatial/CountryCode',
+                                county_cd varchar2(3 char) path '/MonitoringLocation/MonitoringLocationGeospatial/CountyCode',
+                                huc_8 varchar2(8 char) path '/MonitoringLocation/MonitoringLocationIdentity/HUCEightDigitCode',
+                                state_cd varchar2(2 char) path '/MonitoringLocation/MonitoringLocationGeospatial/StateCode',
+                                site_type varchar2(500 char) path '/MonitoringLocation/MonitoringLocationIdentity/MonitoringLocationTypeName',
+                                latitude number path '/MonitoringLocation/MonitoringLocationGeospatial/LatitudeMeasure',
+                                longitude number path '/MonitoringLocation/MonitoringLocationGeospatial/LongitudeMeasure',
+                                station_details xmltype path '/MonitoringLocation')
+       ) station
+       left join site_type_to_primary
+         on site_type_to_primary.site_type = station.site_type;
 
 commit;
 
