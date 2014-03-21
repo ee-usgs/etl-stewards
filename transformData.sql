@@ -112,7 +112,7 @@ insert all /*+ append nologging parallel(4) */
 select /*+ parallel(4) */
        a.activity_pk,
        a.activity_id,
-       updatexml(a.activity_details, '/Activity/ActivityDescription/MonitoringLocationIdentifier/text()', station.organization_id || '-' || station.station_id) activity_details,
+       updatexml(a.activity_details, '/Activity/ActivityDescription/MonitoringLocationIdentifier/text()', station.station_id) activity_details,
        station.station_pk,
        station.organization_id,
        station.station_id,
