@@ -18,6 +18,8 @@ begin
 
   insert into user_sdo_geom_metadata
   values('STATION' || the_suffix, 'GEOM', mdsys.sdo_dim_array( mdsys.sdo_dim_element('X', -180, 180, 0.005), mdsys.sdo_dim_element('Y', -90, 90, 0.005)), 8265);
+  insert into user_sdo_geom_metadata
+  values('RESULT' || the_suffix, 'GEOM', mdsys.sdo_dim_array( mdsys.sdo_dim_element('X', -180, 180, 0.005), mdsys.sdo_dim_element('Y', -90, 90, 0.005)), 8265);
   dbms_output.put_line('Added user_sdo_geom_metadata');
   commit;
 

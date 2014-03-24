@@ -106,7 +106,7 @@ truncate table activity_temp;
 
 truncate table result_temp;
 
-prompt inserting into activity_temp and result_temp
+prompt inserting into result_temp
 insert /*+ append nologging parallel(4) */    
   into result_temp (result_pk, activity_pk, station_pk, station_id, activity_start_date, characteristic_name, country_cd,
                     county_cd, huc_8, organization_id, sample_media, state_cd, site_type, characteristic_type, organization_clob,

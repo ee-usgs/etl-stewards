@@ -30,6 +30,7 @@ begin
   end loop;
   
   execute immediate q'!delete from user_sdo_geom_metadata where table_name like 'STATION%' and table_name <> 'STATION!' || current_suffix || q'!'!';
+  execute immediate q'!delete from user_sdo_geom_metadata where table_name like 'RESULT%' and table_name <> 'RESULT!' || current_suffix || q'!'!';
   dbms_output.put_line('deleted old user_sdo_geom_metadata entries');
   commit;
 
