@@ -9,21 +9,16 @@ select 'start time: ' || systimestamp from dual;
 truncate table organization_temp;
 
 prompt inserting into organization_temp
-insert /*+ append nologging parallel(4) */ into organization_temp (code_value, description, organization_details, sort_order)
+insert /*+ append nologging parallel(4) */ into organization_temp (code_value, description, sort_order)
 select /*+ parallel(4) */
        code_value,
        description,
-       xmlelement("OrganizationDescription",
-                  xmlelement("OrganizationIdentifier", code_value),
-                  xmlelement("OrganizationFormalName", description)
-                 ),
        rownum sort_order
   from (select /*+ parallel(4) */
-               code_value, description, details,
+               code_value, description,
                dense_rank() over (partition by code_value order by description, rownum) myrank
           from (select xmlcast(xmlquery('WQX/Organization/OrganizationDescription/OrganizationIdentifier' passing raw_xml returning content) as varchar2(2000 char)) code_value,
-                       xmlcast(xmlquery('WQX/Organization/OrganizationDescription/OrganizationFormalName' passing raw_xml returning content) as varchar2(2000 char)) description,
-                       deletexml(raw_xml, 'WQX/Organization/MonitoringLocation') details
+                       xmlcast(xmlquery('WQX/Organization/OrganizationDescription/OrganizationFormalName' passing raw_xml returning content) as varchar2(2000 char)) description
                   from raw_station_xml
                )
        )
@@ -36,7 +31,7 @@ truncate table station_temp;
 
 prompt inserting into station_temp
 insert /*+ append nologging parallel(4) */
-  into station_temp (station_pk, station_id, station_details, country_cd, county_cd, geom, huc_8, organization_id, state_cd, site_type)
+  into station_temp (station_pk, station_id, station_details, country_cd, county_cd, geom, huc_8, organization_id, state_cd, site_type, station_clob, organization_clob)
 select station_pk,
        station_id,
        station_details,
@@ -46,7 +41,9 @@ select station_pk,
        huc_8,
        organization_id,
        state_cd,
-       nvl(primary_site_type, 'Not Assigned') primary_site_type
+       nvl(primary_site_type, 'Not Assigned') primary_site_type,
+       xmlserialize(content station_details as clob no indent) station_clob,
+       xmlserialize(content organization_details as clob no indent) organization_clob
   from (select /*+ parallel(4) */
                rownum station_pk,
                organization_id || '-' || station_id station_id,
@@ -57,11 +54,17 @@ select station_pk,
                huc_8,
                organization_id,
                state_cd,
-               site_type
+               site_type,
+               xmlelement("OrganizationDescription",
+                          xmlelement("OrganizationIdentifier", code_value),
+                          xmlelement("OrganizationFormalName", description)
+                         ) organization_details
           from raw_station_xml,
                xmltable('/WQX/Organization'
                         passing raw_xml
                         columns organization_id varchar2(500 char) path '/Organization/OrganizationDescription/OrganizationIdentifier',
+                                code_value varchar2(2000 char) path '/Organization/OrganizationDescription/OrganizationIdentifier',
+                                description varchar2(2000 char) path 'Organization/OrganizationDescription/OrganizationFormalName',
                                 details xmltype path '/Organization'), 
                xmltable('for $i in /Organization return $i/MonitoringLocation'
                         passing details
@@ -101,14 +104,31 @@ select /*+ parallel(4) */
 
 truncate table activity_temp;
 
-truncate table result_temp; 
+truncate table result_temp;
 
 prompt inserting into activity_temp and result_temp
-insert all /*+ append nologging parallel(4) */    
-  into activity_temp
-    values (activity_pk, activity_details) 
-  into result_temp
-    values (activity_pk, results, activity_pk, station_pk, station_id, activity_start, characteristic_name, country_cd, county_cd, huc_8, organization_id, sample_media, state_cd, site_type) 
+insert /*+ append nologging parallel(4) */    
+  into result_temp (result_pk, activity_pk, station_pk, station_id, activity_start_date, characteristic_name, country_cd,
+                    county_cd, huc_8, organization_id, sample_media, state_cd, site_type, characteristic_type, organization_clob,
+                    activity_clob, result_clob, goem)
+    values (rownum,
+            activity_pk,
+            station_pk,
+            station_id,
+            activity_start,
+            characteristic_name,
+            country_cd,
+            county_cd,
+            huc_8,
+            organization_id,
+            sample_media,
+            state_cd,
+            site_type,
+            characteristic_type,
+            organization_clob,
+            xmlserialize(content activity_details as clob no indent),
+            xmlserialize(content results as clob no indent)),
+            geom
 select /*+ parallel(4) */
        a.activity_pk,
        a.activity_id,
@@ -124,7 +144,10 @@ select /*+ parallel(4) */
        station.huc_8,
        a.sample_media,
        station.state_cd,
-       station.site_type
+       station.site_type,
+       station.organization_clob,
+       characteristic_name_to_type.characteristic_type,
+       station.geom
   from (select /*+ parallel(4) */
                activity_pk,
                xmlelement("Activity", xmlconcat(ActivityDescription, SampleDescription)) activity_details,
@@ -149,7 +172,9 @@ select /*+ parallel(4) */
                        ) y
        ) a
        join station_temp station
-         on station.station_id = a.station_id;
+         on station.station_id = a.station_id
+       left join characteristic_name_to_type
+         on a.characteristic_name = characteristic_name_to_type.characteristic_name;
 
 commit; 
 
