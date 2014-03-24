@@ -66,6 +66,8 @@ begin
   dbms_output.put_line('created index result' || the_suffix || '_site_type');
   execute immediate 'create bitmap index result' || the_suffix || '_char_type on result' || the_suffix || ' (characteristic_type)';
   dbms_output.put_line('created index result' || the_suffix || '_char_type');
+  execute immediate 'create index result' || the_suffix || '_geom on result' || the_suffix || q'! (geom) indextype is mdsys.spatial_index parameters('sdo_indx_dims=2 layer_gtype="POINT"')!';
+  dbms_output.put_line('created index result' || the_suffix || '_geom');
 
 end;
 end;
