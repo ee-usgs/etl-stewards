@@ -24,19 +24,6 @@ begin
    where translate(table_name, '0123456789', '0000000000') = 'RESULT_00000';
   dbms_output.put_line('using suffix:' || the_suffix); 
   
-  --Activity--
-  select count(*) into old_rows from activity;
-  execute immediate 'select count(*) from activity_temp@' || dblink into stage_rows;
-  execute immediate 'select count(*) from activity' || the_suffix into new_rows;
-  if new_rows > 200000 and new_rows > old_rows - 10000 and new_rows = stage_rows then
-    pass_fail := 'PASS';
-  else
-    pass_fail := 'FAIL';
-    end_job := true;
-  end if;
-  dbms_output.put_line(pass_fail || ': table comparison for activity: was ' || trim(to_char(old_rows, '999,999,999')) || ', now ' || trim(to_char(new_rows, '999,999,999'))
-                                 || ', stage ' || trim(to_char(stage_rows, '999,999,999')));
-      
   --Characteristicname--
   select count(*) into old_rows from characteristicname;
   execute immediate 'select count(*) from characteristicname' || the_suffix into new_rows;
@@ -149,7 +136,7 @@ begin
    where translate(table_name, '0123456789', '0000000000') in ('ACTIVITY_00000', 'CHARACTERISTICNAME_00000', 'COUNTRY_00000', 'COUNTY_00000', 'ORGANIZATION_00000',
                                                                'RESULT_00000', 'SAMPLEMEDIA_00000', 'SITETYPE_00000', 'STATE_00000', 'STATION_00000') and
          substr(table_name, -6) = the_suffix;
-  if index_count < 30 then  /* there are exactly 30 as of 20NOV2013 */
+  if index_count < 35 then  /* there are exactly 35 as of 24APR2014 */
     pass_fail := 'FAIL';
     end_job := true;
   else
@@ -164,7 +151,7 @@ begin
          translate(table_name, '0123456789', '0000000000') in ('ACTIVITY_00000', 'CHARACTERISTICNAME_00000', 'COUNTRY_00000', 'COUNTY_00000', 'ORGANIZATION_00000',
                                                                'RESULT_00000', 'SAMPLEMEDIA_00000', 'SITETYPE_00000', 'STATE_00000', 'STATION_00000') and
          substr(table_name, -6) = the_suffix;
-  if grant_count < 10 then  /* there are exactly 10 as of 20NOV2013 */
+  if grant_count < 9 then  /* there are exactly 9 as of 24APR2014 */
     pass_fail := 'FAIL';
     end_job := true;
   else
