@@ -16,8 +16,6 @@ begin
    where translate(table_name, '0123456789', '0000000000') = 'RESULT_00000';
   dbms_output.put_line('using suffix:' || the_suffix); 
   
-  execute immediate 'create or replace synonym activity for activity' || the_suffix;
-  dbms_output.put_line('created synonym activity');
   execute immediate 'create or replace synonym characteristicname for characteristicname' || the_suffix;
   dbms_output.put_line('created synonym characteristicname');
   execute immediate 'create or replace synonym characteristictype for characteristictype' || the_suffix;
