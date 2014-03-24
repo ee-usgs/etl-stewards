@@ -16,8 +16,6 @@ begin
    where translate(table_name, '0123456789', '0000000000') = 'RESULT_00000';
   dbms_output.put_line('using suffix:' || the_suffix); 
 
-  dbms_output.put_line('analyze activity' || the_suffix);
-  dbms_stats.gather_table_stats(user, 'ACTIVITY' || the_suffix, null, 100, false, 'FOR ALL COLUMNS SIZE AUTO', 1, 'ALL', true);
   dbms_output.put_line('analyze characteristicname' || the_suffix);
   dbms_stats.gather_table_stats(user, 'CHARACTERISTICNAME' || the_suffix, null, 100, false, 'FOR ALL COLUMNS SIZE AUTO', 1, 'ALL', true);
   dbms_output.put_line('analyze characteristictype' || the_suffix);
