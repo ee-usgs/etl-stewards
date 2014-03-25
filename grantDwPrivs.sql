@@ -50,8 +50,14 @@ begin
                     when 'YES' then ' with grant option'
                   end;
     dbms_output.put_line('about to run grant: ' || grant_text);
-                 
-    execute immediate grant_text;
+    
+    begin
+      execute immediate grant_text;
+    exception
+      when sqlcode = -00942 then
+        dbms_output.put_line('table not found for grant: ' || grant_text);
+    end;
+
   end loop;
 
 end;
