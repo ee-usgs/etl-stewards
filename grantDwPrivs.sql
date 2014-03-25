@@ -25,6 +25,9 @@ begin
           type grants_table is table of cur%rowtype;
           my_grants grants_table;
           grant_text varchar2(4000 char);
+          grant_table_not_found exception;
+          pragma exception_init(grant_table_not_found, -00942);
+
 
 begin
   select '_' || to_char(nvl(max(to_number(substr(table_name, length('RESULT_') + 1))), 1), 'fm00000')
@@ -54,7 +57,7 @@ begin
     begin
       execute immediate grant_text;
     exception
-      when sqlcode = -00942 then
+      when grant_table_not_found then
         dbms_output.put_line('table not found for grant: ' || grant_text);
     end;
 
