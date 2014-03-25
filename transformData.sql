@@ -64,7 +64,7 @@ select station_pk,
                         passing raw_xml
                         columns organization_id varchar2(500 char) path '/Organization/OrganizationDescription/OrganizationIdentifier',
                                 code_value varchar2(2000 char) path '/Organization/OrganizationDescription/OrganizationIdentifier',
-                                description varchar2(2000 char) path 'Organization/OrganizationDescription/OrganizationFormalName',
+                                description varchar2(2000 char) path '/Organization/OrganizationDescription/OrganizationFormalName',
                                 details xmltype path '/Organization'), 
                xmltable('for $i in /Organization return $i/MonitoringLocation'
                         passing details
