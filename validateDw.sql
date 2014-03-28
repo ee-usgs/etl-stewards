@@ -18,10 +18,9 @@ begin
           dblink      user_db_links.db_link%type := '&1';
 
 begin
-  select '_' || to_char(nvl(max(to_number(substr(table_name, length('RESULT_') + 1))), 1), 'fm00000')
+  select current_suffix
     into the_suffix
-    from user_tables
-   where translate(table_name, '0123456789', '0000000000') = 'RESULT_00000';
+    from suffix_magic;
   dbms_output.put_line('using suffix:' || the_suffix); 
   
   --Characteristicname--
