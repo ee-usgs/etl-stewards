@@ -11,7 +11,7 @@ begin
           dblink user_db_links.db_link%type := '&1';
 
 begin
-  select next_suffix
+  select new_suffix
     into new_suffix
     from suffix_magic;
   dbms_output.put_line('new suffix:' || new_suffix); 

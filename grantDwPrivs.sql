@@ -7,11 +7,11 @@ whenever oserror exit failure rollback;
 select 'grant dw privs start time: ' || systimestamp from dual;
 
 begin
-  declare the_suffix varchar2(6 char);
-          cursor cur(p_the_suffix varchar2) is
+  declare new_suffix varchar2(6 char);
+          cursor cur(p_new_suffix varchar2) is
             select user_tab_privs.grantee, 
                    user_tab_privs.table_name,
-                   substr(user_tab_privs.table_name, 1, (length(user_tab_privs.table_name) - 6)) || p_the_suffix new_table_name,
+                   substr(user_tab_privs.table_name, 1, (length(user_tab_privs.table_name) - 6)) || p_new_suffix new_table_name,
                    user_tab_privs.privilege,
                    user_tab_privs.grantable
               from user_tab_privs
@@ -30,17 +30,17 @@ begin
 
 
 begin
-  select current_suffix
-    into the_suffix
+  select new_suffix
+    into new_suffix
     from suffix_magic;
-  dbms_output.put_line('using suffix:' || the_suffix); 
+  dbms_output.put_line('using suffix:' || new_suffix); 
   
-  open cur(the_suffix);
+  open cur(new_suffix);
   fetch cur bulk collect into my_grants;
   if cur%rowcount = 0 then
     dbms_output.put_line('something bad happened - all the grants are missing');
     raise no_data_found;
-  elsif the_suffix = substr(my_grants(1).table_name, -6) then
+  elsif new_suffix = substr(my_grants(1).table_name, -6) then
     dbms_output.put_line('something bad happened - the existing grant points at the new table');
     raise value_error;
   end if;

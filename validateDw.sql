@@ -7,7 +7,7 @@ whenever oserror exit failure rollback;
 select 'validate dw start time: ' || systimestamp from dual;
 
 begin
-  declare the_suffix  varchar2(6 char);
+  declare new_suffix  varchar2(6 char);
           old_rows    int;
           new_rows    int;
           stage_rows  int;
@@ -18,14 +18,14 @@ begin
           dblink      user_db_links.db_link%type := '&1';
 
 begin
-  select current_suffix
-    into the_suffix
+  select new_suffix
+    into new_suffix
     from suffix_magic;
-  dbms_output.put_line('using suffix:' || the_suffix); 
+  dbms_output.put_line('using suffix:' || new_suffix); 
   
   --Characteristicname--
   select count(*) into old_rows from characteristicname;
-  execute immediate 'select count(*) from characteristicname' || the_suffix into new_rows;
+  execute immediate 'select count(*) from characteristicname' || new_suffix into new_rows;
   if new_rows > 8 and new_rows > old_rows - 5 then
     pass_fail := 'PASS';
   else
@@ -36,7 +36,7 @@ begin
       
   --Country--
   select count(*) into old_rows from country;
-  execute immediate 'select count(*) from country' || the_suffix into new_rows;
+  execute immediate 'select count(*) from country' || new_suffix into new_rows;
   if new_rows > 0 and new_rows > old_rows - 5 then
     pass_fail := 'PASS';
   else
@@ -47,7 +47,7 @@ begin
       
   --County--
   select count(*) into old_rows from county;
-  execute immediate 'select count(*) from county' || the_suffix into new_rows;
+  execute immediate 'select count(*) from county' || new_suffix into new_rows;
   if new_rows > 2 and new_rows > old_rows - 5 then
     pass_fail := 'PASS';
   else
@@ -59,7 +59,7 @@ begin
   --Organization--
   select count(*) into old_rows from organization;
   execute immediate 'select count(*) from organization_temp@' || dblink into stage_rows;
-  execute immediate 'select count(*) from organization' || the_suffix into new_rows;
+  execute immediate 'select count(*) from organization' || new_suffix into new_rows;
   if new_rows > 0 and new_rows > old_rows - 5 then
     pass_fail := 'PASS';
   else
@@ -72,7 +72,7 @@ begin
   --Result--
   select count(*) into old_rows from result;
   execute immediate 'select count(*) from result_temp@' || dblink into stage_rows;
-  execute immediate 'select count(*) from result' || the_suffix into new_rows;
+  execute immediate 'select count(*) from result' || new_suffix into new_rows;
   if new_rows > 200000 and new_rows > old_rows - 10000 and new_rows = stage_rows then
     pass_fail := 'PASS';
   else
@@ -84,7 +84,7 @@ begin
       
   --Samplemedia--
   select count(*) into old_rows from samplemedia;
-  execute immediate 'select count(*) from samplemedia' || the_suffix into new_rows;
+  execute immediate 'select count(*) from samplemedia' || new_suffix into new_rows;
   if new_rows > 0 and new_rows > old_rows - 5 then
     pass_fail := 'PASS';
   else
@@ -95,7 +95,7 @@ begin
       
   --Sitetype--
   select count(*) into old_rows from sitetype;
-  execute immediate 'select count(*) from sitetype' || the_suffix into new_rows;
+  execute immediate 'select count(*) from sitetype' || new_suffix into new_rows;
   if new_rows > 0 and new_rows > old_rows - 5 then
     pass_fail := 'PASS';
   else
@@ -106,7 +106,7 @@ begin
       
   --State--
   select count(*) into old_rows from state;
-  execute immediate 'select count(*) from state' || the_suffix into new_rows;
+  execute immediate 'select count(*) from state' || new_suffix into new_rows;
   if new_rows > 0 and new_rows > old_rows - 5 then
     pass_fail := 'PASS';
   else
@@ -118,7 +118,7 @@ begin
   --Station--
   select count(*) into old_rows from station;
   execute immediate 'select count(*) from station_temp@' || dblink into stage_rows;
-  execute immediate 'select count(*) from station' || the_suffix into new_rows;
+  execute immediate 'select count(*) from station' || new_suffix into new_rows;
   if new_rows > 45 and new_rows > old_rows - 10 and new_rows = stage_rows then
     pass_fail := 'PASS';
   else
@@ -134,7 +134,7 @@ begin
     from user_indexes
    where translate(table_name, '0123456789', '0000000000') in ('ACTIVITY_00000', 'CHARACTERISTICNAME_00000', 'COUNTRY_00000', 'COUNTY_00000', 'ORGANIZATION_00000',
                                                                'RESULT_00000', 'SAMPLEMEDIA_00000', 'SITETYPE_00000', 'STATE_00000', 'STATION_00000') and
-         substr(table_name, -6) = the_suffix;
+         substr(table_name, -6) = new_suffix;
   if index_count < 35 then  /* there are exactly 35 as of 24APR2014 */
     pass_fail := 'FAIL';
     end_job := true;
@@ -149,7 +149,7 @@ begin
    where grantee = 'ARS_STEWARDS_USER' and 
          translate(table_name, '0123456789', '0000000000') in ('ACTIVITY_00000', 'CHARACTERISTICNAME_00000', 'COUNTRY_00000', 'COUNTY_00000', 'ORGANIZATION_00000',
                                                                'RESULT_00000', 'SAMPLEMEDIA_00000', 'SITETYPE_00000', 'STATE_00000', 'STATION_00000') and
-         substr(table_name, -6) = the_suffix;
+         substr(table_name, -6) = new_suffix;
   if grant_count < 9 then  /* there are exactly 9 as of 24APR2014 */
     pass_fail := 'FAIL';
     end_job := true;
