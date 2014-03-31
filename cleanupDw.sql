@@ -20,7 +20,7 @@ begin
     dbms_output.put_line('dropped table: ' || tbl.table_name);
     
     /* heavy handed delete of user_sdo_geom_metadata - most executions will not delete anything. */
-    execute immediate q'!delete from user_sdo_geom_metadata where table_name = '!' || table_name || q'!'!';
+    execute immediate q'!delete from user_sdo_geom_metadata where table_name = '!' || tbl.table_name || q'!'!';
   end loop;
   
   commit;
