@@ -13,7 +13,7 @@ begin
                      join user_synonyms
                        on user_tables.table_name like substr(user_synonyms.table_name, 1, (length(user_synonyms.table_name) - 6)) || '______'
                where user_tables.table_name != user_synonyms.table_name and
-                     user_tables.table_name != substr(user_synonyms.table_name, 1, (length(user_synonyms.table_name) - 6)) || '_00000' loop
+                     user_tables.table_name != substr(user_synonyms.table_name, 1, (length(user_synonyms.table_name) - 6)) || '_00000') loop
 
     execute immediate 'drop table ' || tbl.table_name || ' cascade constraints purge';
     
