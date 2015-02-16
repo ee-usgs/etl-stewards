@@ -1,10 +1,13 @@
 <project name="QwStewardsEtl" default="default">
-    <target name="default" depends="loadStation, loadResult, transformData, loadDw"/>
+	
+	<!-- default and it's depends are the normal automated full ETL. -->
+	
+    <target name="default" depends="loadStation, loadResult, transformAndLoadData"/>
 
     <target name="loadStation">
         <echo>Load the station xml into staging database table</echo>
         <exec executable="sqlldr" failonerror="true">
-            <arg value="ars_stewards/${ars_stewards_password_stage}@${stageInstance}"/>
+            <arg value="wqp_core/${wqp_core_password}@${instance}"/>
             <arg value="BAD=${basedir}/station.bad"/>
             <arg value="DISCARD=${basedir}/station.dsc"/>
             <arg value="CONTROL=${basedir}/station.ctl"/>
@@ -14,101 +17,84 @@
     <target name="loadResult">
         <echo>Load the result xml into staging database table</echo>
 	    <exec executable="sqlldr" failonerror="true">
-	        <arg value="ars_stewards/${ars_stewards_password_stage}@${stageInstance}"/>
+            <arg value="wqp_core/${wqp_core_password}@${instance}"/>
 	        <arg value="BAD=${basedir}/result.bad"/>
 	        <arg value="DISCARD=${basedir}/result.dsc"/>
 	        <arg value="CONTROL=${basedir}/result.ctl"/>
 	    </exec>
 	</target>
 
-    <target name="transformData">
+    <target name="transformAndLoadData">
         <echo>Running the main ETL Package</echo>
         <exec executable="sqlplus" failonerror="true">
-            <arg value="ars_stewards/${ars_stewards_password_stage}@${stageInstance}"/>
-            <arg value="@${basedir}/transformData.sql"/>
+            <arg value="wqp_core/${wqp_core_password}@${instance}"/>
+            <arg value="@${basedir}/transformAndLoadData.sql"/>
         </exec>
     </target>
 
-    <target name="loadDw">
-        <echo>Running the main ETL Package</echo>
+	<!-- The rest of these are if you want to run the ETL step-by-step manually. --> 
+	
+    <target name="transformStation">
+        <echo>Transform the Station Data</echo>
         <exec executable="sqlplus" failonerror="true">
-            <arg value="ars_stewards/${ars_stewards_password_dw}@${dwInstance}"/>
-            <arg value="@${basedir}/loadDw.sql"/>
-            <arg value="${dblink}"/>
+            <arg value="wqp_core/${wqp_core_password}@${instance}"/>
+            <arg value="@${basedir}/transformStation.sql"/>
         </exec>
     </target>
 
-	<target name="cleanupDwBefore">
-		<echo>Running the main ETL Package</echo>
-		<exec executable="sqlplus" failonerror="true">
-			<arg value="ars_stewards/${ars_stewards_password_dw}@${dwInstance}"/>
-			<arg value="@${basedir}/cleanupDw.sql"/>
-		</exec>
-	</target>
-
-    <target name="buildDwDataTables">
-        <echo>Running the main ETL Package</echo>
+    <target name="transformResult">
+        <echo>Transform the Result Data</echo>
         <exec executable="sqlplus" failonerror="true">
-            <arg value="ars_stewards/${ars_stewards_password_dw}@${dwInstance}"/>
-            <arg value="@${basedir}/buildDwDataTables.sql"/>
-            <arg value="${dblink}"/>
+            <arg value="wqp_core/${wqp_core_password}@${instance}"/>
+            <arg value="@${basedir}/transformResult.sql"/>
         </exec>
     </target>
 
-    <target name="buildDwIndexes">
-        <echo>Running the main ETL Package</echo>
+    <target name="createSummaries">
+        <echo>Create the Summary Tables</echo>
         <exec executable="sqlplus" failonerror="true">
-            <arg value="ars_stewards/${ars_stewards_password_dw}@${dwInstance}"/>
-            <arg value="@${basedir}/buildDwIndexes.sql"/>
+            <arg value="wqp_core/${wqp_core_password}@${instance}"/>
+            <arg value="@${basedir}/createSummaries.sql"/>
         </exec>
     </target>
 
-    <target name="buildDwLookups">
-        <echo>Running the main ETL Package</echo>
+    <target name="createCodes">
+        <echo>Create the Code Lookup Tables</echo>
         <exec executable="sqlplus" failonerror="true">
-            <arg value="ars_stewards/${ars_stewards_password_dw}@${dwInstance}"/>
-            <arg value="@${basedir}/buildDwLookups.sql"/>
+            <arg value="wqp_core/${wqp_core_password}@${instance}"/>
+            <arg value="@${basedir}/createCodes.sql"/>
         </exec>
     </target>
 
-    <target name="analyzeDwTables">
-        <echo>Running the main ETL Package</echo>
+	<target name="buildIndexes">
+        <echo>Build the Indexes</echo>
         <exec executable="sqlplus" failonerror="true">
-            <arg value="ars_stewards/${ars_stewards_password_dw}@${dwInstance}"/>
-            <arg value="@${basedir}/analyzeDwTables.sql"/>
+            <arg value="wqp_core/${wqp_core_password}@${instance}"/>
+            <arg value="@${basedir}/buildIndexes.sql"/>
+        </exec>
+    </target>
+	
+    <target name="analyze">
+        <echo>Analyze the New Data</echo>
+        <exec executable="sqlplus" failonerror="true">
+            <arg value="wqp_core/${wqp_core_password}@${instance}"/>
+            <arg value="@${basedir}/analyze.sql"/>
         </exec>
     </target>
 
-    <target name="grantDwPrivs">
-        <echo>Running the main ETL Package</echo>
+    <target name="validate">
+        <echo>Validate the ETL Process</echo>
         <exec executable="sqlplus" failonerror="true">
-            <arg value="ars_stewards/${ars_stewards_password_dw}@${dwInstance}"/>
-            <arg value="@${basedir}/grantDwPrivs.sql"/>
+            <arg value="wqp_core/${wqp_core_password}@${instance}"/>
+            <arg value="@${basedir}/validate.sql"/>
         </exec>
     </target>
 
-    <target name="validateDw">
-        <echo>Running the main ETL Package</echo>
+    <target name="install">
+        <echo>Install the New Data</echo>
         <exec executable="sqlplus" failonerror="true">
-            <arg value="ars_stewards/${ars_stewards_password_dw}@${dwInstance}"/>
-            <arg value="@${basedir}/validateDw.sql"/>
-            <arg value="${dblink}"/>
-        </exec>
-    </target>
-
-    <target name="installDwNewData">
-        <echo>Running the main ETL Package</echo>
-        <exec executable="sqlplus" failonerror="true">
-            <arg value="ars_stewards/${ars_stewards_password_dw}@${dwInstance}"/>
-            <arg value="@${basedir}/installDwNewData.sql"/>
-        </exec>
-    </target>
-
-    <target name="cleanupDwAfter">
-        <echo>Running the main ETL Package</echo>
-        <exec executable="sqlplus" failonerror="true">
-            <arg value="ars_stewards/${ars_stewards_password_dw}@${dwInstance}"/>
-            <arg value="@${basedir}/cleanupDw.sql"/>
+            <arg value="wqp_core/${wqp_core_password}@${instance}"/>
+            <arg value="@${basedir}/install.sql"/>
         </exec>
     </target>
 
