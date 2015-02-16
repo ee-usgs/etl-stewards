@@ -7,7 +7,7 @@ whenever oserror exit failure rollback;
 select 'transform result start time: ' || systimestamp from dual;
 
 prompt dropping stewards pc_result indexes
-etl_helper.drop_indexes('pc_result_swap_stewards');
+exec etl_helper.drop_indexes('pc_result_swap_stewards');
 
 prompt populating stewards pc_result
 truncate table pc_result_swap_stewards;

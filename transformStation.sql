@@ -7,7 +7,7 @@ whenever oserror exit failure rollback;
 select 'transform station start time: ' || systimestamp from dual;
 
 prompt dropping stewards station indexes
-etl_helper.drop_indexes('station_swap_stewards');
+exec etl_helper.drop_indexes('station_swap_stewards');
 
 prompt populating stewards station
 truncate table station_swap_stewards;

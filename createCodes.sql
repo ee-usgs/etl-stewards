@@ -6,9 +6,6 @@ whenever sqlerror exit failure rollback;
 whenever oserror exit failure rollback;
 select 'build ookups start time: ' || systimestamp from dual;
 
-begin
-   etl_helper.create_code_tables('stewards');
-end;
-/
+exec etl_helper.create_code_tables('stewards');
 
 select 'build lookups end time: ' || systimestamp from dual;
