@@ -4,7 +4,7 @@ set timing on;
 set serveroutput on;
 whenever sqlerror exit failure rollback;
 whenever oserror exit failure rollback;
-select 'load dw start time: ' || systimestamp from dual;
+select 'transform and load start time: ' || systimestamp from dual;
 
 prompt ****************************************************************************************************************
 prompt ** transformStation.sql 
@@ -46,4 +46,4 @@ prompt ** install.sql
 prompt ****************************************************************************************************************
 @install.sql;
 
-select 'load dw end time: ' || systimestamp from dual;
+select 'transform and load time: ' || systimestamp from dual;
