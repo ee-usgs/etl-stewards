@@ -12,7 +12,7 @@ exec etl_helper.drop_indexes('pc_result_swap_stewards');
 prompt populating stewards pc_result
 truncate table pc_result_swap_stewards;
 
-insert /*+ append nologging parallel */
+insert /*+ append parallel(4) */
   into pc_result_swap_stewards (wqp_id, data_source_id, data_source, station_id, site_id, event_date, analytical_method, p_code, activity,
                                 characteristic_name, characteristic_type, sample_media, organization, site_type, huc_12, governmental_unit_code,
                                 organization_name, activity_type_code, activity_media_subdiv_name, activity_start_time,
@@ -177,7 +177,8 @@ select rownum wqp_id,
        join station_swap_stewards s
          on s.site_id = result.organization || '-' || result.site_id
        left join ars_char_name_to_type
-         on result.characteristic_name = ars_char_name_to_type.characteristic_name;
+         on result.characteristic_name = ars_char_name_to_type.characteristic_name
+     order by s.station_id;
 
 commit;
 
