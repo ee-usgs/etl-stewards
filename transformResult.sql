@@ -13,7 +13,8 @@ prompt populating stewards pc_result
 truncate table pc_result_swap_stewards;
 
 insert /*+ append parallel(4) */
-  into pc_result_swap_stewards (characteristic_name, characteristic_type, sample_media, organization, site_type, huc_12, governmental_unit_code,
+  into pc_result_swap_stewards (data_source_id, data_source, station_id, site_id, event_date, analytical_method, p_code, activity,
+                                characteristic_name, characteristic_type, sample_media, organization, site_type, huc_12, governmental_unit_code,
                                 organization_name, activity_type_code, activity_media_subdiv_name, activity_start_time,
                                 act_start_time_zone, activity_stop_date, activity_stop_time, act_stop_time_zone, activity_depth,
                                 activity_depth_unit, activity_depth_ref_point, activity_upper_depth, activity_upper_depth_unit,
