@@ -26,8 +26,8 @@ insert /*+ append parallel(4) */
                                 temperature_basis_level, particle_size, precision, result_comment, result_depth_meas_value,
                                 result_depth_meas_unit_code, result_depth_alt_ref_pt_txt, sample_tissue_taxonomic_name,
                                 sample_tissue_anatomy_name, analytical_procedure_id, analytical_procedure_source, analytical_method_name,
-                                analytical_method_citation, lab_name, analysis_date_time, lab_remark, myql, myqlunits, myqldesc,
-                                analysis_prep_date_tx)
+                                analytical_method_citation, lab_name, analysis_date_time, lab_remark, detection_limit, detection_limit_unit,
+                                detection_limit_desc, analysis_prep_date_tx)
 select 1 data_source_id,
        s.data_source,
        s.station_id,
@@ -96,9 +96,9 @@ select 1 data_source_id,
        result.lab_name,
        result.analysis_date_time,
        result.lab_remark,
-       result.myql,
-       result.myqlunits,
-       result.myqldesc,
+       result.detection_limit,
+       result.detection_limit_unit,
+       result.detection_limit_desc,
        result.analysis_prep_date_tx
   from (select *
           from ars_raw_result,
@@ -168,9 +168,9 @@ select 1 data_source_id,
                                 lab_name varchar2(4000 char) path '/Result/ResultLabInformation/LaboratoryName',
                                 analysis_date_time varchar2(4000 char) path '/Result/ResultLabInformation/AnalysisStartDate',
                                 lab_remark varchar2(4000 char) path '/Result/ResultLabInformation/ResultLaboratoryCommentText',
-                                myql varchar2(4000 char) path '/Result/ResultLabInformation/ResultDetectionQuantitationLimit/DetectionQuantitationLimitMeasure/MeasureValue',
-                                myqlunits varchar2(4000 char) path '/Result/ResultLabInformation/ResultDetectionQuantitationLimit/DetectionQuantitationLimitMeasure/MeasureUnitCode',
-                                myqldesc varchar2(4000 char) path '/Result/ResultLabInformation/ResultDetectionQuantitationLimit/DetectionQuantitationLimitTypeName',
+                                detection_limit varchar2(4000 char) path '/Result/ResultLabInformation/ResultDetectionQuantitationLimit/DetectionQuantitationLimitMeasure/MeasureValue',
+                                detection_limit_unit varchar2(4000 char) path '/Result/ResultLabInformation/ResultDetectionQuantitationLimit/DetectionQuantitationLimitMeasure/MeasureUnitCode',
+                                detection_limit_desc varchar2(4000 char) path '/Result/ResultLabInformation/ResultDetectionQuantitationLimit/DetectionQuantitationLimitTypeName',
                                 analysis_prep_date_tx varchar2(4000 char) path '/Result/LabSamplePreparation/PreparationStartDate')
        ) result
        join station_swap_stewards s
