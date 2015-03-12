@@ -50,6 +50,8 @@ begin
 	dbms_output.put_line('state');
 	execute immediate 'alter table state exchange partition state_stewards with table state_swap_stewards including indexes';
 
+	etl_helper.update_last_etl(1);
+
 end;
 /
 
