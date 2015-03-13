@@ -13,7 +13,7 @@ prompt populating stewards station
 truncate table station_swap_stewards;
 
 insert /*+ append parallel(4) */
-  into station_swap_stewards (data_source_id, data_source, station_id, site_id, organization, site_type, huc_12, governmental_unit_code,
+  into station_swap_stewards (data_source_id, data_source, station_id, site_id, organization, site_type, huc, governmental_unit_code,
                               geom, station_name, organization_name, description_text, station_type_name, latitude, longitude, map_scale,
                               geopositioning_method, hdatum_id_code, elevation_value, elevation_unit, elevation_method, vdatum_id_code,
                               drain_area_value, drain_area_unit, contrib_drain_area_value, contrib_drain_area_unit,
@@ -26,7 +26,7 @@ select 1 data_source_id,
        site.organization || '-' || site.site_id site_id,
        site.organization,
        nvl(ars_site_type_to_primary.primary_site_type, 'Not Assigned') site_type, 
-       site.huc_12,
+       nvl(site.huc_12, site.huc_8) huc,
        site.country_cd || ':' || site.state_cd || ':' || site.county_cd governmental_unit_code,
        mdsys.sdo_geometry(2001,4269,mdsys.sdo_point_type(round(site.longitude, 7),round(site.latitude, 7), null), null, null) geom,
        site.station_name, 
