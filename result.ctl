@@ -1,6 +1,6 @@
 load data
 infile *
-into table ars_raw_result
+into table raw_result_xml
 truncate
 (file_name char(100)
 ,load_timestamp expression "current_timestamp"
