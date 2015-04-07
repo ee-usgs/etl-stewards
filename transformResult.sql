@@ -37,7 +37,7 @@ select 1 data_source_id,
        null p_code,
        result.activity_identifier,
        result.characteristic_name,
-       ars_char_name_to_type.characteristic_type,
+       char_name_to_type.characteristic_type,
        result.sample_media,
        s.organization,
        s.site_type,
@@ -99,7 +99,7 @@ select 1 data_source_id,
        result.detection_limit_desc,
        result.analysis_prep_date_tx
   from (select *
-          from ars_raw_result,
+          from ars_stewards.raw_result_xml,
                xmltable('/WQX/Organization'
                         passing raw_xml
                         columns organization varchar2(500 char) path '/Organization/OrganizationDescription/OrganizationIdentifier',
@@ -172,8 +172,8 @@ select 1 data_source_id,
        ) result
        join station_swap_stewards s
          on s.site_id = result.organization || '-' || result.site_id
-       left join ars_char_name_to_type
-         on result.characteristic_name = ars_char_name_to_type.characteristic_name
+       left join ars_stewards.char_name_to_type
+         on result.characteristic_name = char_name_to_type.characteristic_name
      order by s.station_id;
 
 commit;

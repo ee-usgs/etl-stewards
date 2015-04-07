@@ -25,7 +25,7 @@ select 1 data_source_id,
        site.station_id,
        site.organization || '-' || site.site_id site_id,
        site.organization,
-       nvl(ars_site_type_to_primary.primary_site_type, 'Not Assigned') site_type, 
+       nvl(site_type_to_primary.primary_site_type, 'Not Assigned') site_type, 
        nvl(site.huc_12, site.huc_8) huc,
        site.country_cd || ':' || site.state_cd || ':' || site.county_cd governmental_unit_code,
        mdsys.sdo_geometry(2001,4269,mdsys.sdo_point_type(round(site.longitude, 7),round(site.latitude, 7), null), null, null) geom,
@@ -59,7 +59,7 @@ select 1 data_source_id,
        site.hole_depth_value,
        site.hole_depth_unit
   from (select *
-          from ars_raw_station,
+          from ars_stewards.raw_station_xml,
                xmltable('/WQX/Organization'
                         passing raw_xml
                         columns organization varchar2(500 char) path '/Organization/OrganizationDescription/OrganizationIdentifier',
@@ -103,8 +103,8 @@ select 1 data_source_id,
                                 hole_depth_unit number path '/MonitoringLocation/WellInformation/WellHoleDepthMeasure/MeasureValue',
                                 hole_depth_value varchar2(4000 char) path '/MonitoringLocation/WellInformation/WellHoleDepthMeasure/MeasureUnitCode')
                ) site
-       left join ars_site_type_to_primary
-         on site.site_type = ars_site_type_to_primary.site_type;
+       left join ars_stewards.site_type_to_primary
+         on site.site_type = site_type_to_primary.site_type;
 
 commit;
 
