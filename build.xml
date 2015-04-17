@@ -7,7 +7,7 @@
     <target name="loadStation">
         <echo>Load the station xml into staging database table</echo>
         <exec executable="sqlldr" failonerror="true">
-            <arg value="wqp_core/${wqp_core_password}@${instance}"/>
+            <arg value="ars_stewards/${ars_stewards_password}@${instance}"/>
             <arg value="BAD=${basedir}/station.bad"/>
             <arg value="DISCARD=${basedir}/station.dsc"/>
             <arg value="CONTROL=${basedir}/station.ctl"/>
@@ -17,7 +17,7 @@
     <target name="loadResult">
         <echo>Load the result xml into staging database table</echo>
 	    <exec executable="sqlldr" failonerror="true">
-            <arg value="wqp_core/${wqp_core_password}@${instance}"/>
+            <arg value="ars_stewards/${ars_stewards_password}@${instance}"/>
 	        <arg value="BAD=${basedir}/result.bad"/>
 	        <arg value="DISCARD=${basedir}/result.dsc"/>
 	        <arg value="CONTROL=${basedir}/result.ctl"/>
