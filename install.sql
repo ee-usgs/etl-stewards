@@ -7,54 +7,8 @@ whenever oserror exit failure rollback;
 select 'install dw new data start time: ' || systimestamp from dual;
 
 begin
-
-	dbms_output.put_line('station');
-    execute immediate 'alter table station exchange partition station_stewards with table station_swap_stewards including indexes';
-    
-    dbms_output.put_line('result');
-   	execute immediate 'alter table result exchange partition result_stewards with table result_swap_stewards including indexes';
-    
-   	dbms_output.put_line('station_sum');
-	execute immediate 'alter table station_sum exchange partition station_sum_stewards with table station_sum_swap_stewards including indexes';
-    
-	dbms_output.put_line('result_sum');
-	execute immediate 'alter table result_sum exchange partition result_sum_stewards with table result_sum_swap_stewards including indexes';
-    
-	dbms_output.put_line('result_ct_sum');
-	execute immediate 'alter table result_ct_sum exchange partition rcts_stewards with table result_ct_sum_swap_stewards including indexes';
-    
-	dbms_output.put_line('result_nr_sum');
-	execute immediate 'alter table result_nr_sum exchange partition res_nr_sum_stewards with table result_nr_sum_swap_stewards including indexes';
-    
-	dbms_output.put_line('characteristic_name');
-	execute immediate 'alter table char_name exchange partition char_name_stewards with table char_name_swap_stewards including indexes';
-    
-	dbms_output.put_line('characteristic_type');
-	execute immediate 'alter table char_type exchange partition char_type_stewards with table char_type_swap_stewards including indexes';
-    
-	dbms_output.put_line('country');
-	execute immediate 'alter table country exchange partition country_stewards with table country_swap_stewards including indexes';
-    
-	dbms_output.put_line('county');
-	execute immediate 'alter table county exchange partition county_stewards with table county_swap_stewards including indexes';
-    
-	dbms_output.put_line('organization');
-	execute immediate 'alter table organization exchange partition organization_stewards with table organization_swap_stewards including indexes';
-    
-	dbms_output.put_line('project');
-	execute immediate 'alter table project exchange partition project_stewards with table project_swap_stewards including indexes';
-
-	dbms_output.put_line('sample_media');
-	execute immediate 'alter table sample_media exchange partition sample_media_stewards with table sample_media_swap_stewards including indexes';
-    
-	dbms_output.put_line('site_type');
-	execute immediate 'alter table site_type exchange partition site_type_stewards with table site_type_swap_stewards including indexes';
-    
-	dbms_output.put_line('state');
-	execute immediate 'alter table state exchange partition state_stewards with table state_swap_stewards including indexes';
-
+	etl_helper.install('stewards');
 	etl_helper.update_last_etl(1);
-
 end;
 /
 
