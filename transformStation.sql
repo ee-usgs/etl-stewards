@@ -58,7 +58,7 @@ select 1 data_source_id,
        site.well_depth_unit,
        site.hole_depth_value,
        site.hole_depth_unit
-  from (select *
+  from (select /*+ parallel(4) */ *
           from ars_stewards.raw_station_xml,
                xmltable('/WQX/Organization'
                         passing raw_xml

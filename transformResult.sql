@@ -99,7 +99,7 @@ select 1 data_source_id,
        result.detection_limit_unit,
        result.detection_limit_desc,
        result.analysis_prep_date_tx
-  from (select *
+  from (select /*+ parallel(4) */ *
           from ars_stewards.raw_result_xml,
                xmltable('/WQX/Organization'
                         passing raw_xml
