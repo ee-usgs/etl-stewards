@@ -58,16 +58,16 @@ begin
   	end if;
   	dbms_output.put_line(pass_fail || ': table comparison for organization: was ' || trim(to_char(old_rows, '999,999,999')) || ', now ' || trim(to_char(new_rows, '999,999,999')));
       
-  	--pc_esult--
-  	select count(*) into old_rows from pc_result partition (pc_result_stewards);
-  	select count(*) into new_rows from pc_result_swap_stewards;
+  	--esult--
+  	select count(*) into old_rows from result partition (result_stewards);
+  	select count(*) into new_rows from result_swap_stewards;
   	if new_rows > 200000 and new_rows > old_rows - 10000 then
     	pass_fail := 'PASS';
   	else
     	pass_fail := 'FAIL';
     	end_job := true;
   	end if;
-  	dbms_output.put_line(pass_fail || ': table comparison for pc_result: was ' || trim(to_char(old_rows, '999,999,999')) || ', now ' || trim(to_char(new_rows, '999,999,999')));
+  	dbms_output.put_line(pass_fail || ': table comparison for result: was ' || trim(to_char(old_rows, '999,999,999')) || ', now ' || trim(to_char(new_rows, '999,999,999')));
       
   	--sample_media--
   	select count(*) into old_rows from sample_media partition (sample_media_stewards);

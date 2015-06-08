@@ -11,20 +11,20 @@ begin
 	dbms_output.put_line('station');
     execute immediate 'alter table station exchange partition station_stewards with table station_swap_stewards including indexes';
     
-    dbms_output.put_line('pc_result');
-   	execute immediate 'alter table pc_result exchange partition pc_result_stewards with table pc_result_swap_stewards including indexes';
+    dbms_output.put_line('result');
+   	execute immediate 'alter table result exchange partition result_stewards with table result_swap_stewards including indexes';
     
    	dbms_output.put_line('station_sum');
 	execute immediate 'alter table station_sum exchange partition station_sum_stewards with table station_sum_swap_stewards including indexes';
     
-	dbms_output.put_line('pc_result_sum');
-	execute immediate 'alter table pc_result_sum exchange partition pc_result_sum_stewards with table pc_result_sum_swap_stewards including indexes';
+	dbms_output.put_line('result_sum');
+	execute immediate 'alter table result_sum exchange partition result_sum_stewards with table result_sum_swap_stewards including indexes';
     
-	dbms_output.put_line('pc_result_ct_sum');
-	execute immediate 'alter table pc_result_ct_sum exchange partition pcrcts_stewards with table pc_result_ct_sum_swap_stewards including indexes';
+	dbms_output.put_line('result_ct_sum');
+	execute immediate 'alter table result_ct_sum exchange partition rcts_stewards with table result_ct_sum_swap_stewards including indexes';
     
-	dbms_output.put_line('pc_result_nr_sum');
-	execute immediate 'alter table pc_result_nr_sum exchange partition pc_res_nr_sum_stewards with table pc_result_nr_sum_swap_stewards including indexes';
+	dbms_output.put_line('result_nr_sum');
+	execute immediate 'alter table result_nr_sum exchange partition res_nr_sum_stewards with table result_nr_sum_swap_stewards including indexes';
     
 	dbms_output.put_line('characteristic_name');
 	execute immediate 'alter table char_name exchange partition char_name_stewards with table char_name_swap_stewards including indexes';
