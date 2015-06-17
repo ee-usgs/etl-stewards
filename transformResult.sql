@@ -179,4 +179,7 @@ select 1 data_source_id,
 
 commit;
 
+prompt building stewards result indexes
+exec etl_helper.create_result_indexes('stewards');
+
 select 'transform result end time: ' || systimestamp from dual;
