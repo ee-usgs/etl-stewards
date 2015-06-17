@@ -108,4 +108,7 @@ select 1 data_source_id,
 
 commit;
 
+prompt building stewards station indexes
+exec etl_helper.create_station_indexes('stewards');
+
 select 'transform station end time: ' || systimestamp from dual;
