@@ -4,51 +4,51 @@ set timing on;
 set serveroutput on;
 whenever sqlerror exit failure rollback;
 whenever oserror exit failure rollback;
-select 'load dw start time: ' || systimestamp from dual;
+select 'transform and load start time: ' || systimestamp from dual;
 
 prompt ****************************************************************************************************************
-prompt ** cleanupDw.sql - before
+prompt ** dropRI.sql 
 prompt ****************************************************************************************************************
-@cleanupDw.sql;
+@dropRI.sql;
 
 prompt ****************************************************************************************************************
-prompt ** buildDwDataTables.sql
+prompt ** transformStation.sql 
 prompt ****************************************************************************************************************
-@buildDwDataTables.sql;
+@transformStation.sql;
 
 prompt ****************************************************************************************************************
-prompt ** buildDwIndexes.sql
+prompt ** transformResult.sql
 prompt ****************************************************************************************************************
-@buildDwIndexes.sql;
+@transformResult.sql;
 
 prompt ****************************************************************************************************************
-prompt ** buildDwLookups.sql
+prompt ** createSummaries.sql
 prompt ****************************************************************************************************************
-@buildDwLookups.sql;
+@createSummaries.sql;
 
 prompt ****************************************************************************************************************
-prompt ** analyzeDwTables.sql
+prompt ** createCodes.sql
 prompt ****************************************************************************************************************
-@analyzeDwTables.sql;
+@createCodes.sql;
 
 prompt ****************************************************************************************************************
-prompt ** grantDwPrivs.sql
+prompt ** addRI.sql 
 prompt ****************************************************************************************************************
-@grantDwPrivs.sql;
+@addRI.sql;
 
 prompt ****************************************************************************************************************
-prompt ** validateDw.sql
+prompt ** analyze.sql
 prompt ****************************************************************************************************************
-@validateDw.sql;
+@analyze.sql;
 
 prompt ****************************************************************************************************************
-prompt ** installDwNewData.sql
+prompt ** validate.sql
 prompt ****************************************************************************************************************
-@installDwNewData.sql;
+@validate.sql;
 
 prompt ****************************************************************************************************************
-prompt ** cleanupDw.sql - after
+prompt ** install.sql
 prompt ****************************************************************************************************************
-@cleanupDw.sql;
+@install.sql;
 
-select 'load dw end time: ' || systimestamp from dual;
+select 'transform and load time: ' || systimestamp from dual;
