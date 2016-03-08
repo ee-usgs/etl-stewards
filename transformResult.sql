@@ -7,7 +7,7 @@ whenever oserror exit failure rollback;
 select 'transform result start time: ' || systimestamp from dual;
 
 prompt dropping stewards result indexes
-exec etl_helper.drop_indexes('result_swap_stewards');
+exec etl_helper_result.drop_indexes('stewards');
 
 prompt populating stewards result
 truncate table result_swap_stewards;
@@ -180,6 +180,6 @@ select 1 data_source_id,
 commit;
 
 prompt building stewards result indexes
-exec etl_helper.create_result_indexes('stewards');
+exec etl_helper_result.create_indexes('stewards');
 
 select 'transform result end time: ' || systimestamp from dual;
