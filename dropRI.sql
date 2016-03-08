@@ -7,7 +7,7 @@ whenever oserror exit failure rollback;
 select 'drop RI start time: ' || systimestamp from dual;
 
 begin
-	etl_helper.drop_ri('stewards');
+	etl_helper_main.drop_ri('stewards');
 end;
 /
 

@@ -7,7 +7,7 @@ whenever oserror exit failure rollback;
 select 'validate dw start time: ' || systimestamp from dual;
 
 begin
-	etl_helper.validate(1);
+	etl_helper_main.validate_transformation('stewards');
 end;
 /
 
