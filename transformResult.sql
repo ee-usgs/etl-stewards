@@ -12,10 +12,41 @@ exec etl_helper_result.drop_indexes('stewards');
 prompt populating stewards result
 truncate table result_swap_stewards;
 
-insert /*+ append parallel(4) */
+insert /*+ append parallel(4) */ all
+  into activity_swap_stewards (data_source_id, data_source, station_id, site_id, event_date, activity,
+                               sample_media, organization, site_type, huc, governmental_unit_code,
+                               organization_name, activity_id, activity_type_code, activity_media_subdiv_name, activity_start_time,
+                               act_start_time_zone, activity_stop_date, activity_stop_time, act_stop_time_zone, activity_depth,
+                               activity_depth_unit, activity_depth_ref_point, activity_upper_depth, activity_upper_depth_unit,
+                               activity_lower_depth, activity_lower_depth_unit, project_id,
+                               activity_conducting_org, activity_comment, sample_aqfr_name, hydrologic_condition_name, hydrologic_event_name,
+                               sample_collect_method_id, sample_collect_method_ctx, sample_collect_method_name, sample_collect_equip_name)
+                       values (data_source_id, data_source, station_id, site_id, event_date, activity,
+                               sample_media, organization, site_type, huc, governmental_unit_code,
+                               organization_name, activity_id, activity_type_code, activity_media_subdiv_name, activity_start_time,
+                               act_start_time_zone, activity_stop_date, activity_stop_time, act_stop_time_zone, activity_depth,
+                               activity_depth_unit, activity_depth_ref_point, activity_upper_depth, activity_upper_depth_unit,
+                               activity_lower_depth, activity_lower_depth_unit, project_id,
+                               activity_conducting_org, activity_comment, sample_aqfr_name, hydrologic_condition_name, hydrologic_event_name,
+                               sample_collect_method_id, sample_collect_method_ctx, sample_collect_method_name, sample_collect_equip_name)
   into result_swap_stewards (data_source_id, data_source, station_id, site_id, event_date, analytical_method, p_code, activity,
                              characteristic_name, characteristic_type, sample_media, organization, site_type, huc, governmental_unit_code,
-                             organization_name, activity_type_code, activity_media_subdiv_name, activity_start_time,
+                             organization_name, activity_id, activity_type_code, activity_media_subdiv_name, activity_start_time,
+                             act_start_time_zone, activity_stop_date, activity_stop_time, act_stop_time_zone, activity_depth,
+                             activity_depth_unit, activity_depth_ref_point, activity_upper_depth, activity_upper_depth_unit,
+                             activity_lower_depth, activity_lower_depth_unit, project_id,
+                             activity_conducting_org, activity_comment, sample_aqfr_name, hydrologic_condition_name, hydrologic_event_name,
+                             sample_collect_method_id, sample_collect_method_ctx, sample_collect_method_name, sample_collect_equip_name,
+                             result_id, result_detection_condition_tx, sample_fraction_type, result_measure_value, result_unit,
+                             result_meas_qual_code, result_value_status, statistic_type, result_value_type, weight_basis_type, duration_basis,
+                             temperature_basis_level, particle_size, precision, result_comment, result_depth_meas_value,
+                             result_depth_meas_unit_code, result_depth_alt_ref_pt_txt, sample_tissue_taxonomic_name,
+                             sample_tissue_anatomy_name, analytical_procedure_id, analytical_procedure_source, analytical_method_name,
+                             analytical_method_citation, lab_name, analysis_start_date, lab_remark, detection_limit, detection_limit_unit,
+                             detection_limit_desc, analysis_prep_date_tx)
+                     values (data_source_id, data_source, station_id, site_id, event_date, analytical_method, p_code, activity,
+                             characteristic_name, characteristic_type, sample_media, organization, site_type, huc, governmental_unit_code,
+                             organization_name, activity_id, activity_type_code, activity_media_subdiv_name, activity_start_time,
                              act_start_time_zone, activity_stop_date, activity_stop_time, act_stop_time_zone, activity_depth,
                              activity_depth_unit, activity_depth_ref_point, activity_upper_depth, activity_upper_depth_unit,
                              activity_lower_depth, activity_lower_depth_unit, project_id,
@@ -35,7 +66,7 @@ select 1 data_source_id,
        to_date(result.activity_start_date, 'mm/dd/yyyy') event_date,
        null analytical_method,
        null p_code,
-       result.activity_identifier,
+       result.activity_identifier activity,
        result.characteristic_name,
        char_name_to_type.characteristic_type,
        result.sample_media,
@@ -44,6 +75,7 @@ select 1 data_source_id,
        s.huc,
        s.governmental_unit_code,
        result.organization_name,
+       result.activity_id,
        result.activity_type_code,
        result.activity_media_subdiv_name,
        result.activity_start_time,
@@ -68,7 +100,7 @@ select 1 data_source_id,
        result.sample_collect_method_ctx,
        result.sample_collect_method_name,
        result.sample_collect_equip_name,
-       rownum result_id,
+       result.result_id,
        result.result_detection_condition_tx,
        result.sample_fraction_type,
        result.result_measure_value,
@@ -93,7 +125,7 @@ select 1 data_source_id,
        result.analytical_method_name,
        result.analytical_method_citation,
        result.lab_name,
-       result.analysis_date_time,
+       result.analysis_date_time analysis_start_date,
        result.lab_remark,
        result.detection_limit,
        result.detection_limit_unit,
@@ -108,7 +140,8 @@ select 1 data_source_id,
                                 organization_details xmltype path '/Organization'), 
                xmltable('for $i in /Organization return $i/Activity'
                         passing organization_details
-                        columns site_id varchar2(100 char) path '/Activity/ActivityDescription/MonitoringLocationIdentifier',
+                        columns activity_id for ordinality,
+                                site_id varchar2(100 char) path '/Activity/ActivityDescription/MonitoringLocationIdentifier',
                                 activity_identifier varchar2(4000 char) path '/Activity/ActivityDescription/ActivityIdentifier',
                                 activity_type_code varchar2(4000 char) path '/Activity/ActivityDescription/ActivityTypeCode',
                                 sample_media varchar2(30 char) path '/Activity/ActivityDescription/ActivityMediaName',
@@ -139,7 +172,8 @@ select 1 data_source_id,
                                 activity_details xmltype path '/Activity'),
                xmltable('for $j in /Activity return $j/Result'
                         passing activity_details
-                        columns characteristic_name varchar2(32 char) path '/Result/ResultDescription/CharacteristicName',
+                        columns result_id for ordinality,
+                                characteristic_name varchar2(32 char) path '/Result/ResultDescription/CharacteristicName',
                                 result_detection_condition_tx varchar2(4000 char) path '/Result/ResultDescription/ResultDetectionConditionText',
                                 sample_fraction_type varchar2(4000 char) path '/Result/ResultDescription/ResultSampleFractionText',
                                 result_measure_value varchar2(4000 char) path '/Result/ResultDescription/ResultMeasure/ResultMeasureValue',
@@ -175,7 +209,7 @@ select 1 data_source_id,
          on s.site_id = result.organization || '-' || result.site_id
        left join ars_stewards.char_name_to_type
          on result.characteristic_name = char_name_to_type.characteristic_name
-     order by s.station_id;
+ where file_name = '/opt/tomcat/.jenkins/ars_stewards/resultMaryland.xml';
 
 commit;
 
