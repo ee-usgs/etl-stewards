@@ -208,8 +208,7 @@ select 1 data_source_id,
        join station_swap_stewards s
          on s.site_id = result.organization || '-' || result.site_id
        left join ars_stewards.char_name_to_type
-         on result.characteristic_name = char_name_to_type.characteristic_name
- where file_name = '/opt/tomcat/.jenkins/ars_stewards/resultMaryland.xml';
+         on result.characteristic_name = char_name_to_type.characteristic_name;
 
 commit;
 
