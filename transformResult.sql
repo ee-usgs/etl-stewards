@@ -6,8 +6,14 @@ whenever sqlerror exit failure rollback;
 whenever oserror exit failure rollback;
 select 'transform result start time: ' || systimestamp from dual;
 
+prompt dropping stewards activity indexes
+exec etl_helper_activity.drop_indexes('stewards');
+
 prompt dropping stewards result indexes
 exec etl_helper_result.drop_indexes('stewards');
+
+prompt populating stewards activity
+truncate table activity_swap_stewards;
 
 prompt populating stewards result
 truncate table result_swap_stewards;
@@ -211,6 +217,9 @@ select 1 data_source_id,
          on result.characteristic_name = char_name_to_type.characteristic_name;
 
 commit;
+
+prompt building stewards activity indexes
+exec etl_helper_activity.create_indexes('stewards');
 
 prompt building stewards result indexes
 exec etl_helper_result.create_indexes('stewards');
