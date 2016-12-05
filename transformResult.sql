@@ -12,12 +12,13 @@ exec etl_helper_activity.drop_indexes('stewards');
 prompt dropping stewards result indexes
 exec etl_helper_result.drop_indexes('stewards');
 
-prompt populating stewards activity
+prompt truncate stewards activity
 truncate table activity_swap_stewards;
 
-prompt populating stewards result
+prompt truncate stewards result
 truncate table result_swap_stewards;
 
+prompt populating stewards activity and result
 insert /*+ append parallel(4) */ all
   into activity_swap_stewards (data_source_id, data_source, station_id, site_id, event_date, activity,
                                sample_media, organization, site_type, huc, governmental_unit_code,
@@ -106,7 +107,7 @@ select 1 data_source_id,
        result.sample_collect_method_ctx,
        result.sample_collect_method_name,
        result.sample_collect_equip_name,
-       result.result_id,
+       rownum result_id,
        result.result_detection_condition_tx,
        result.sample_fraction_type,
        result.result_measure_value,
@@ -137,49 +138,49 @@ select 1 data_source_id,
        result.detection_limit_unit,
        result.detection_limit_desc,
        result.analysis_prep_date_tx
-  from (select /*+ parallel(4) */ *
-          from ars_stewards.raw_result_xml,
-               xmltable('/WQX/Organization'
-                        passing raw_xml
-                        columns organization varchar2(500 char) path '/Organization/OrganizationDescription/OrganizationIdentifier',
-                                organization_name varchar2(2000 char) path '/Organization/OrganizationDescription/OrganizationFormalName',
-                                organization_details xmltype path '/Organization'), 
-               xmltable('for $i in /Organization return $i/Activity'
-                        passing organization_details
-                        columns activity_id for ordinality,
-                                site_id varchar2(100 char) path '/Activity/ActivityDescription/MonitoringLocationIdentifier',
-                                activity_identifier varchar2(4000 char) path '/Activity/ActivityDescription/ActivityIdentifier',
-                                activity_type_code varchar2(4000 char) path '/Activity/ActivityDescription/ActivityTypeCode',
-                                sample_media varchar2(30 char) path '/Activity/ActivityDescription/ActivityMediaName',
-                                activity_media_subdiv_name varchar2(4000 char) path '/Activity/ActivityDescription/ActivityMediaSubdivisionName',
-                                activity_start_date varchar2(10 char) path '/Activity/ActivityDescription/ActivityStartDate',
-                                activity_start_time varchar2(4000 char) path '/Activity/ActivityDescription/ActivityStartTime/Time',
-                                act_start_time_zone varchar2(4000 char) path '/Activity/ActivityDescription/ActivityStartTime/TimeZoneCode',
-                                activity_stop_date varchar2(4000 char) path '/Activity/ActivityDescription/ActivityEndDate',
-                                activity_stop_time varchar2(4000 char) path '/Activity/ActivityDescription/ActivityEndTime/Time',
-                                act_stop_time_zone varchar2(4000 char) path '/Activity/ActivityDescription/ActivityEndTime/TimeZoneCode',
-                                activity_depth varchar2(4000 char) path '/Activity/ActivityDescription/ActivityDepthHeightMeasure/MeasureValue',
-                                activity_depth_unit varchar2(4000 char) path '/Activity/ActivityDescription/ActivityDepthHeightMeasure/MeasureUnitCode',
-                                activity_depth_ref_point varchar2(4000 char) path '/Activity/ActivityDescription/ActivityDepthAltitudeReferencePointText',
-                                activity_upper_depth varchar2(4000 char) path '/Activity/ActivityDescription/ActivityTopDepthHeightMeasure/MeasureValue',
-                                activity_upper_depth_unit varchar2(4000 char) path '/Activity/ActivityDescription/ActivityTopDepthHeightMeasure/MeasureUnitCode',
-                                activity_lower_depth varchar2(4000 char) path '/Activity/ActivityDescription/ActivityBottomDepthHeightMeasure/MeasureValue',
-                                activity_lower_depth_unit varchar2(4000 char) path '/Activity/ActivityDescription/ActivityBottomDepthHeightMeasure/MeasureUnitCode',
-                                project_id varchar2(4000 char) path '/Activity/ActivityDescription/ProjectIdentifier',
-                                activity_conducting_org varchar2(4000 char) path '/Activity/ActivityDescription/ActivityConductingOrganizationText',
-                                activity_comment varchar2(4000 char) path '/Activity/ActivityDescription/ActivityCommentText',
-                                sample_aqfr_name varchar2(4000 char) path '/Activity/ActivityDescription/SampleAquifer',
-                                hydrologic_condition_name varchar2(4000 char) path '/Activity/ActivityDescription/HydrologicCondition',
-                                hydrologic_event_name varchar2(4000 char) path '/Activity/ActivityDescription/HydrologicEvent',
-                                sample_collect_method_id varchar2(4000 char) path '/Activity/SampleDescription/SampleCollectionMethod/MethodIdentifier',
-                                sample_collect_method_ctx varchar2(4000 char) path '/Activity/SampleDescription/SampleCollectionMethod/MethodIdentifierContext',
-                                sample_collect_method_name varchar2(4000 char) path '/Activity/SampleDescription/SampleCollectionMethod/MethodName',
-                                sample_collect_equip_name varchar2(4000 char) path '/Activity/SampleDescription/SampleCollectionEquipmentName',
-                                activity_details xmltype path '/Activity'),
+  from (select *
+          from (select organization.*, activity.*, rownum activity_id
+                  from ars_stewards.raw_result_xml,
+                       xmltable('/WQX/Organization'
+                                passing raw_xml
+                                columns organization varchar2(500 char) path '/Organization/OrganizationDescription/OrganizationIdentifier',
+                                        organization_name varchar2(2000 char) path '/Organization/OrganizationDescription/OrganizationFormalName',
+                                        organization_details xmltype path '/Organization') organization, 
+                       xmltable('for $i in /Organization return $i/Activity'
+                                passing organization_details
+                                columns site_id varchar2(100 char) path '/Activity/ActivityDescription/MonitoringLocationIdentifier',
+                                        activity_identifier varchar2(4000 char) path '/Activity/ActivityDescription/ActivityIdentifier',
+                                        activity_type_code varchar2(4000 char) path '/Activity/ActivityDescription/ActivityTypeCode',
+                                        sample_media varchar2(30 char) path '/Activity/ActivityDescription/ActivityMediaName',
+                                        activity_media_subdiv_name varchar2(4000 char) path '/Activity/ActivityDescription/ActivityMediaSubdivisionName',
+                                        activity_start_date varchar2(10 char) path '/Activity/ActivityDescription/ActivityStartDate',
+                                        activity_start_time varchar2(4000 char) path '/Activity/ActivityDescription/ActivityStartTime/Time',
+                                        act_start_time_zone varchar2(4000 char) path '/Activity/ActivityDescription/ActivityStartTime/TimeZoneCode',
+                                        activity_stop_date varchar2(4000 char) path '/Activity/ActivityDescription/ActivityEndDate',
+                                        activity_stop_time varchar2(4000 char) path '/Activity/ActivityDescription/ActivityEndTime/Time',
+                                        act_stop_time_zone varchar2(4000 char) path '/Activity/ActivityDescription/ActivityEndTime/TimeZoneCode',
+                                        activity_depth varchar2(4000 char) path '/Activity/ActivityDescription/ActivityDepthHeightMeasure/MeasureValue',
+                                        activity_depth_unit varchar2(4000 char) path '/Activity/ActivityDescription/ActivityDepthHeightMeasure/MeasureUnitCode',
+                                        activity_depth_ref_point varchar2(4000 char) path '/Activity/ActivityDescription/ActivityDepthAltitudeReferencePointText',
+                                        activity_upper_depth varchar2(4000 char) path '/Activity/ActivityDescription/ActivityTopDepthHeightMeasure/MeasureValue',
+                                        activity_upper_depth_unit varchar2(4000 char) path '/Activity/ActivityDescription/ActivityTopDepthHeightMeasure/MeasureUnitCode',
+                                        activity_lower_depth varchar2(4000 char) path '/Activity/ActivityDescription/ActivityBottomDepthHeightMeasure/MeasureValue',
+                                        activity_lower_depth_unit varchar2(4000 char) path '/Activity/ActivityDescription/ActivityBottomDepthHeightMeasure/MeasureUnitCode',
+                                        project_id varchar2(4000 char) path '/Activity/ActivityDescription/ProjectIdentifier',
+                                        activity_conducting_org varchar2(4000 char) path '/Activity/ActivityDescription/ActivityConductingOrganizationText',
+                                        activity_comment varchar2(4000 char) path '/Activity/ActivityDescription/ActivityCommentText',
+                                        sample_aqfr_name varchar2(4000 char) path '/Activity/ActivityDescription/SampleAquifer',
+                                        hydrologic_condition_name varchar2(4000 char) path '/Activity/ActivityDescription/HydrologicCondition',
+                                        hydrologic_event_name varchar2(4000 char) path '/Activity/ActivityDescription/HydrologicEvent',
+                                        sample_collect_method_id varchar2(4000 char) path '/Activity/SampleDescription/SampleCollectionMethod/MethodIdentifier',
+                                        sample_collect_method_ctx varchar2(4000 char) path '/Activity/SampleDescription/SampleCollectionMethod/MethodIdentifierContext',
+                                        sample_collect_method_name varchar2(4000 char) path '/Activity/SampleDescription/SampleCollectionMethod/MethodName',
+                                        sample_collect_equip_name varchar2(4000 char) path '/Activity/SampleDescription/SampleCollectionEquipmentName',
+                                        activity_details xmltype path '/Activity') activity
+               ) activity,
                xmltable('for $j in /Activity return $j/Result'
                         passing activity_details
-                        columns result_id for ordinality,
-                                characteristic_name varchar2(32 char) path '/Result/ResultDescription/CharacteristicName',
+                        columns characteristic_name varchar2(32 char) path '/Result/ResultDescription/CharacteristicName',
                                 result_detection_condition_tx varchar2(4000 char) path '/Result/ResultDescription/ResultDetectionConditionText',
                                 sample_fraction_type varchar2(4000 char) path '/Result/ResultDescription/ResultSampleFractionText',
                                 result_measure_value varchar2(4000 char) path '/Result/ResultDescription/ResultMeasure/ResultMeasureValue',
