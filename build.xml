@@ -1,7 +1,7 @@
 <project name="QwStewardsEtl" default="default">
-	
-	<!-- default and it's depends are the normal automated full ETL. -->
-	
+
+    <!-- default and it's depends are the normal automated full ETL. -->
+
     <target name="default" depends="loadStation, loadResult, transformAndLoadData"/>
 
     <target name="loadStation">
@@ -16,13 +16,13 @@
 
     <target name="loadResult">
         <echo>Load the result xml into staging database table</echo>
-	    <exec executable="sqlldr" failonerror="true">
+        <exec executable="sqlldr" failonerror="true">
             <arg value="ars_stewards/${ars_stewards_password}@${instance}"/>
-	        <arg value="BAD=${basedir}/result.bad"/>
-	        <arg value="DISCARD=${basedir}/result.dsc"/>
-	        <arg value="CONTROL=${basedir}/result.ctl"/>
-	    </exec>
-	</target>
+            <arg value="BAD=${basedir}/result.bad"/>
+            <arg value="DISCARD=${basedir}/result.dsc"/>
+            <arg value="CONTROL=${basedir}/result.ctl"/>
+        </exec>
+    </target>
 
     <target name="transformAndLoadData">
         <echo>Running the main ETL Package</echo>
@@ -32,8 +32,8 @@
         </exec>
     </target>
 
-	<!-- The rest of these are if you want to run the ETL step-by-step manually. --> 
-	
+    <!-- The rest of these are if you want to run the ETL step-by-step manually. --> 
+
     <target name="dropRI">
         <echo>Drop the RI</echo>
         <exec executable="sqlplus" failonerror="true">
@@ -55,6 +55,14 @@
         <exec executable="sqlplus" failonerror="true">
             <arg value="wqp_core/${wqp_core_password}@${instance}"/>
             <arg value="@${basedir}/transformResult.sql"/>
+        </exec>
+    </target>
+
+    <target name="transformResDetectQntLmt">
+        <echo>Transform the Result Data</echo>
+        <exec executable="sqlplus" failonerror="true">
+            <arg value="wqp_core/${wqp_core_password}@${instance}"/>
+            <arg value="@${basedir}/transformResDetectQntLmt.sql"/>
         </exec>
     </target>
 

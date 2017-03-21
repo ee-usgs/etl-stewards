@@ -20,6 +20,8 @@ The basic flow is:
 
 * Drop the indexes on the stewards result swap table, populate with transformed data, and rebuild the indexes. (transformResult.sql)
 
+* Drop the indexes on the stewards r\_detect\_qnt\_int swap table, populate with transformed data, and rebuild the indexes. (transformResDetectQntLmt.sql)
+
 * Drop the indexes on the stewards summary swap tables, populate with transformed data, and rebuild the indexes. (createSummaries.sql)
 
 * Drop the indexes on the stewards code lookup swap tables, populate with transformed data, and rebuild the indexes. (createCodes.sql)
