@@ -137,7 +137,8 @@ select 1 data_source_id,
        result.detection_limit,
        result.detection_limit_unit,
        result.detection_limit_desc,
-       result.analysis_prep_date_tx
+       result.analysis_prep_date_tx,
+       1 result_count
   from (select *
           from (select organization.*, activity.*, rownum activity_id
                   from ars_stewards.raw_result_xml,
@@ -212,6 +213,7 @@ select 1 data_source_id,
                                 detection_limit_desc varchar2(4000 char) path '/Result/ResultLabInformation/ResultDetectionQuantitationLimit/DetectionQuantitationLimitTypeName',
                                 analysis_prep_date_tx varchar2(4000 char) path '/Result/LabSamplePreparation/PreparationStartDate')
        ) result
+
        join station_swap_stewards s
          on s.site_id = result.organization || '-' || result.site_id
        left join ars_stewards.char_name_to_type
