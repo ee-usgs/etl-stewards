@@ -27,7 +27,7 @@ insert /*+ append parallel(4) */ all
                                activity_depth_unit, activity_depth_ref_point, activity_upper_depth, activity_upper_depth_unit,
                                activity_lower_depth, activity_lower_depth_unit, project_id,
                                activity_conducting_org, activity_comment, sample_aqfr_name, hydrologic_condition_name, hydrologic_event_name,
-                               sample_collect_method_id, sample_collect_method_ctx, sample_collect_method_name, sample_collect_equip_name, result_count)
+                               sample_collect_method_id, sample_collect_method_ctx, sample_collect_method_name, sample_collect_equip_name)
                        values (data_source_id, data_source, station_id, site_id, event_date, activity,
                                sample_media, organization, site_type, huc, governmental_unit_code,
                                organization_name, activity_id, activity_type_code, activity_media_subdiv_name, activity_start_time,
@@ -35,7 +35,7 @@ insert /*+ append parallel(4) */ all
                                activity_depth_unit, activity_depth_ref_point, activity_upper_depth, activity_upper_depth_unit,
                                activity_lower_depth, activity_lower_depth_unit, project_id,
                                activity_conducting_org, activity_comment, sample_aqfr_name, hydrologic_condition_name, hydrologic_event_name,
-                               sample_collect_method_id, sample_collect_method_ctx, sample_collect_method_name, sample_collect_equip_name, result_count)
+                               sample_collect_method_id, sample_collect_method_ctx, sample_collect_method_name, sample_collect_equip_name)
   into result_swap_stewards (data_source_id, data_source, station_id, site_id, event_date, analytical_method, p_code, activity,
                              characteristic_name, characteristic_type, sample_media, organization, site_type, huc, governmental_unit_code,
                              organization_name, activity_id, activity_type_code, activity_media_subdiv_name, activity_start_time,
@@ -137,8 +137,7 @@ select 1 data_source_id,
        result.detection_limit,
        result.detection_limit_unit,
        result.detection_limit_desc,
-       result.analysis_prep_date_tx,
-       1 result_count
+       result.analysis_prep_date_tx
   from (select *
           from (select organization.*, activity.*, rownum activity_id
                   from ars_stewards.raw_result_xml,
