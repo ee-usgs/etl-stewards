@@ -22,3 +22,8 @@ select DISTINCT /* parallel(4) */
 	   organization,
        organization_name
   from STATION_SWAP_STEWARDS
+  
+prompt building stewards orgData indexes
+exec etl_helper_org_data.create_indexes('stewards');
+
+select 'transform orgData end time: ' || systimestamp from dual;
