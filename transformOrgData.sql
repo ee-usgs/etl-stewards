@@ -14,11 +14,12 @@ exec etl_helper_org_data.drop_indexes('stewards');
 set define off;
 prompt populating org_data_swap_stewards
 truncate table org_data_swap_stewards;
-insert /*+ append parallel(4) */
-  into org_data_swap_stewards (data_source_id, data_source, organization, organization_name)
+insert /* append parallel(4) */
+  into org_data_swap_stewards (data_source_id, data_source, organization_id, organization, organization_name)
 select DISTINCT /* parallel(4) */
        1 data_source_id,
 	   'STEWARDS' data_source,
+       3000000 organization_id,
 	   organization,
        organization_name
   from STATION_SWAP_STEWARDS
