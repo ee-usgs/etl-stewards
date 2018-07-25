@@ -24,6 +24,8 @@ select DISTINCT /* parallel(4) */
        organization_name
   from STATION_SWAP_STEWARDS
   
+commit;
+  
 prompt building stewards orgData indexes
 exec etl_helper_org_data.create_indexes('stewards');
 
