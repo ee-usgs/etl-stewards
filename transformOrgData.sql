@@ -22,7 +22,7 @@ select DISTINCT /* parallel(4) */
        3000000 organization_id,
 	   organization,
        organization_name
-  from STATION_SWAP_STEWARDS
+  from STATION_SWAP_STEWARDS;
   
 commit;
   
