@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <ars_site_type_to_primary
+        site_type="Land Runoff"
+        primary_site_type="Land"
+    />
+    <ars_site_type_to_primary
+        site_type="River/Stream"
+        primary_site_type="Stream"
+    />
+</dataset>

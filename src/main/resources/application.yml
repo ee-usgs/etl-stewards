@@ -1,0 +1,12 @@
+spring:
+  batch:
+    job:
+      enabled: false
+    initialize-schema: always
+#  datasource:
+#    driverClassName: oracle.jdbc.OracleDriver
+#    url: jdbc:oracle:thin:@152.61.236.135:1521:devnolog
+#    username: wqp_core
+#    password: ***REMOVED***
+
+#logging.level.root: TRACE

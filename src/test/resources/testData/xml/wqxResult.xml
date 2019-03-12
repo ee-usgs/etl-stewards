@@ -1,0 +1,1284 @@
+<WQX>
+    <Organization>
+        <OrganizationDescription>
+            <OrganizationIdentifier>ARS</OrganizationIdentifier>
+            <OrganizationFormalName>USDA Agricultural Research Service</OrganizationFormalName>
+        </OrganizationDescription>
+        <Activity>
+            <ActivityDescription>
+                <ActivityIdentifier>INSJALG_20070101</ActivityIdentifier>
+                <ActivityTypeCode>Field Msr/Obs</ActivityTypeCode>
+                <ActivityMediaName>Water</ActivityMediaName>
+                <ActivityStartDate>2007-01-01</ActivityStartDate>
+                <ActivityStartTime>
+                    <Time>10:50:00</Time>
+                    <TimeZoneCode>EST</TimeZoneCode>
+                </ActivityStartTime>
+                <MeasureValue>ActivityDescriptionMeasureValue</MeasureValue>
+                <MeasureUnitCode>ActivityDescriptionMeasureUnitCode</MeasureUnitCode>
+                <ActivityDepthHeightMeasure>ActivityDepthHeightMeasure</ActivityDepthHeightMeasure>
+                <ProjectIdentifier>CEAP</ProjectIdentifier>
+                <MonitoringLocationIdentifier>INSJ-INSJALG</MonitoringLocationIdentifier>
+                <ActivityCommentText>ActivityCommentText</ActivityCommentText>
+            </ActivityDescription>
+            <SampleDescription>
+                <SampleCollectionMethod>
+                    <MethodIdentifier>INSJ_FM1</MethodIdentifier>
+                    <MethodIdentifierContext>ARS Methods Catalog</MethodIdentifierContext>
+                    <MethodName>Stream Level Measurement</MethodName>
+                    <MethodDescriptionText>SampleDescriptionMethodDescriptionText</MethodDescriptionText>
+                </SampleCollectionMethod>
+                <SampleCollectionEquipmentName>SampleCollectionEquipmentName</SampleCollectionEquipmentName>
+                <SampleCollectionEquipmentCommentText>SampleCollectionEquipmentCommentText</SampleCollectionEquipmentCommentText>
+            </SampleDescription>
+            <Result>
+                <ResultDescription>
+                    <CharacteristicName>Ammonia</CharacteristicName>
+                    <ResultMeasure>
+                        <ResultMeasureValue>0.071</ResultMeasureValue>
+                        <MeasureUnitCode>mg/L</MeasureUnitCode>
+                    </ResultMeasure>
+                    <ResultStatusIdentifier>Final</ResultStatusIdentifier>
+                    <ResultValueTypeName>Actual</ResultValueTypeName>
+                    <DataQuality>
+                        <PrecisionValue>10 %</PrecisionValue>
+                    </DataQuality>
+                </ResultDescription>
+                <ResultAnalyticalMethod>
+                    <MethodIdentifier>INSJ_WQ5</MethodIdentifier>
+                    <MethodIdentifierContext>ARS Methods Catalog</MethodIdentifierContext>
+                    <MethodName>Ammonia in water</MethodName>
+                    <MethodDescriptionText>https://www.nrrig.mwa.ars.usda.gov/st40_javascript/methods.aspx?methodstring=INSJ_WQ5</MethodDescriptionText>
+                </ResultAnalyticalMethod>
+                <ResultLabInformation>
+                    <ResultDetectionQuantitationLimit>
+                        <DetectionQuantitationLimitTypeName>Instrument Detection Level</DetectionQuantitationLimitTypeName>
+                        <DetectionQuantitationLimitMeasure>
+                            <MeasureValue>0.1</MeasureValue>
+                            <MeasureUnitCode>mg/L</MeasureUnitCode>
+                        </DetectionQuantitationLimitMeasure>
+                    </ResultDetectionQuantitationLimit>
+                </ResultLabInformation>
+            </Result>
+        </Activity>
+        <Activity>
+            <ActivityDescription>
+                <ActivityIdentifier>INSJALG_20070101</ActivityIdentifier>
+                <ActivityTypeCode>Field Msr/Obs</ActivityTypeCode>
+                <ActivityMediaName>Water</ActivityMediaName>
+                <ActivityStartDate>2007-01-01</ActivityStartDate>
+                <ActivityStartTime>
+                    <Time>10:50:00</Time>
+                    <TimeZoneCode>EST</TimeZoneCode>
+                </ActivityStartTime>
+        <MeasureValue>
+        </MeasureValue>
+        <MeasureUnitCode/>
+        <ActivityDepthHeightMeasure/>
+                <ProjectIdentifier>CEAP</ProjectIdentifier>
+                <MonitoringLocationIdentifier>INSJ-INSJALG</MonitoringLocationIdentifier>
+                <ActivityCommentText/>
+            </ActivityDescription>
+            <SampleDescription>
+                <SampleCollectionMethod>
+                    <MethodIdentifier>INSJ_FM1</MethodIdentifier>
+                    <MethodIdentifierContext>ARS Methods Catalog</MethodIdentifierContext>
+                    <MethodName>Stream Level Measurement</MethodName>
+                    <MethodDescriptionText/>
+                </SampleCollectionMethod>
+                <SampleCollectionEquipmentName/>
+                <SampleCollectionEquipmentCommentText>
+                </SampleCollectionEquipmentCommentText>
+            </SampleDescription>
+            <Result>
+                <ResultDescription>
+                    <ResultDetectionConditionText>Not Reported</ResultDetectionConditionText>
+                    <CharacteristicName>Orthophosphate</CharacteristicName>
+                    <ResultSampleFractionText/>
+                    <ResultMeasure>
+                        <ResultMeasureValue>0.000</ResultMeasureValue>
+                        <MeasureUnitCode>mg/L</MeasureUnitCode>
+                    </ResultMeasure>
+                    <ResultStatusIdentifier>Final</ResultStatusIdentifier>
+                    <ResultValueTypeName>Actual</ResultValueTypeName>
+                    <DataQuality>
+                        <PrecisionValue>10 %</PrecisionValue>
+                    </DataQuality>
+                </ResultDescription>
+                <ResultAnalyticalMethod>
+                    <MethodIdentifier>INSJ_WQ9</MethodIdentifier>
+                    <MethodIdentifierContext>ARS Methods Catalog</MethodIdentifierContext>
+                    <MethodName>ortho phosphate in water</MethodName>
+                    <MethodDescriptionText>https://www.nrrig.mwa.ars.usda.gov/st40_javascript/methods.aspx?methodstring=INSJ_WQ9</MethodDescriptionText>
+                </ResultAnalyticalMethod>
+                <ResultLabInformation>
+                    <ResultDetectionQuantitationLimit>
+                        <DetectionQuantitationLimitTypeName>Instrument Detection Level</DetectionQuantitationLimitTypeName>
+                        <DetectionQuantitationLimitMeasure>
+                            <MeasureValue>0.05</MeasureValue>
+                            <MeasureUnitCode>mg/L</MeasureUnitCode>
+                        </DetectionQuantitationLimitMeasure>
+                    </ResultDetectionQuantitationLimit>
+                </ResultLabInformation>
+            </Result>
+        </Activity>
+        <Activity>
+            <ActivityDescription>
+                <ActivityIdentifier>INSJALG_20070101</ActivityIdentifier>
+                <ActivityTypeCode>Field Msr/Obs</ActivityTypeCode>
+                <ActivityMediaName>Water</ActivityMediaName>
+                <ActivityStartDate>2007-01-01</ActivityStartDate>
+                <ActivityStartTime>
+                    <Time>10:50:00</Time>
+                    <TimeZoneCode>EST</TimeZoneCode>
+                </ActivityStartTime>
+                <ProjectIdentifier>CEAP</ProjectIdentifier>
+                <MonitoringLocationIdentifier>INSJ-INSJALG</MonitoringLocationIdentifier>
+            </ActivityDescription>
+            <SampleDescription>
+                <SampleCollectionMethod>
+                    <MethodIdentifier>INSJ_FM1</MethodIdentifier>
+                    <MethodIdentifierContext>ARS Methods Catalog</MethodIdentifierContext>
+                    <MethodName>Stream Level Measurement</MethodName>
+                </SampleCollectionMethod>
+            </SampleDescription>
+            <Result>
+                <ResultDescription>
+                    <CharacteristicName>Nitrogen</CharacteristicName>
+                    <ResultMeasure>
+                        <ResultMeasureValue>4.825</ResultMeasureValue>
+                        <MeasureUnitCode>mg/L</MeasureUnitCode>
+                    </ResultMeasure>
+                    <ResultStatusIdentifier>Final</ResultStatusIdentifier>
+                    <ResultValueTypeName>Actual</ResultValueTypeName>
+                    <DataQuality>
+                        <PrecisionValue>None</PrecisionValue>
+                    </DataQuality>
+                </ResultDescription>
+                <ResultAnalyticalMethod>
+                    <MethodIdentifier>INSJ_WQ12</MethodIdentifier>
+                    <MethodIdentifierContext>ARS Methods Catalog</MethodIdentifierContext>
+                    <MethodName>Nitrate-nitrite Nitrogen in water by Automated Colorimetry (Hydrazine Reduction)</MethodName>
+                    <MethodDescriptionText>https://www.nrrig.mwa.ars.usda.gov/st40_javascript/methods.aspx?methodstring=INSJ_WQ12</MethodDescriptionText>
+                </ResultAnalyticalMethod>
+                <ResultLabInformation>
+                    <ResultDetectionQuantitationLimit>
+                        <DetectionQuantitationLimitTypeName>Instrument Detection Level</DetectionQuantitationLimitTypeName>
+                        <DetectionQuantitationLimitMeasure>
+                            <MeasureValue>None</MeasureValue>
+                            <MeasureUnitCode>None</MeasureUnitCode>
+                        </DetectionQuantitationLimitMeasure>
+                    </ResultDetectionQuantitationLimit>
+                </ResultLabInformation>
+            </Result>
+        </Activity>
+        <Activity>
+            <ActivityDescription>
+                <ActivityIdentifier>INSJALG_20070101</ActivityIdentifier>
+                <ActivityTypeCode>Field Msr/Obs</ActivityTypeCode>
+                <ActivityMediaName>Water</ActivityMediaName>
+                <ActivityStartDate>2007-01-01</ActivityStartDate>
+                <ActivityStartTime>
+                    <Time>10:50:00</Time>
+                    <TimeZoneCode>EST</TimeZoneCode>
+                </ActivityStartTime>
+                <ProjectIdentifier>CEAP</ProjectIdentifier>
+                <MonitoringLocationIdentifier>INSJ-INSJALG</MonitoringLocationIdentifier>
+            </ActivityDescription>
+            <SampleDescription>
+                <SampleCollectionMethod>
+                    <MethodIdentifier>INSJ_FM1</MethodIdentifier>
+                    <MethodIdentifierContext>ARS Methods Catalog</MethodIdentifierContext>
+                    <MethodName>Stream Level Measurement</MethodName>
+                </SampleCollectionMethod>
+            </SampleDescription>
+            <Result>
+                <ResultDescription>
+                    <CharacteristicName>Nitrogen Kjeldahl</CharacteristicName>
+                    <ResultMeasure>
+                        <ResultMeasureValue>1.318</ResultMeasureValue>
+                        <MeasureUnitCode>mg/L</MeasureUnitCode>
+                    </ResultMeasure>
+                    <ResultStatusIdentifier>Final</ResultStatusIdentifier>
+                    <ResultValueTypeName>Actual</ResultValueTypeName>
+                    <DataQuality>
+                        <PrecisionValue>None</PrecisionValue>
+                    </DataQuality>
+                </ResultDescription>
+                <ResultAnalyticalMethod>
+                    <MethodIdentifier>INSJ_WQ11</MethodIdentifier>
+                    <MethodIdentifierContext>ARS Methods Catalog</MethodIdentifierContext>
+                    <MethodName>Nitrate-nitrite Nitrogen in water by Automated Colorimetry</MethodName>
+                    <MethodDescriptionText>https://www.nrrig.mwa.ars.usda.gov/st40_javascript/methods.aspx?methodstring=INSJ_WQ11</MethodDescriptionText>
+                </ResultAnalyticalMethod>
+                <ResultLabInformation>
+                    <ResultDetectionQuantitationLimit>
+                        <DetectionQuantitationLimitTypeName>Instrument Detection Level</DetectionQuantitationLimitTypeName>
+                        <DetectionQuantitationLimitMeasure>
+                            <MeasureValue>None</MeasureValue>
+                            <MeasureUnitCode>None</MeasureUnitCode>
+                        </DetectionQuantitationLimitMeasure>
+                    </ResultDetectionQuantitationLimit>
+                </ResultLabInformation>
+            </Result>
+        </Activity>
+        <Activity>
+            <ActivityDescription>
+                <ActivityIdentifier>INSJALG_20070101</ActivityIdentifier>
+                <ActivityTypeCode>Field Msr/Obs</ActivityTypeCode>
+                <ActivityMediaName>Water</ActivityMediaName>
+                <ActivityStartDate>2007-01-01</ActivityStartDate>
+                <ActivityStartTime>
+                    <Time>10:50:00</Time>
+                    <TimeZoneCode>EST</TimeZoneCode>
+                </ActivityStartTime>
+                <ProjectIdentifier>CEAP</ProjectIdentifier>
+                <MonitoringLocationIdentifier>INSJ-INSJALG</MonitoringLocationIdentifier>
+            </ActivityDescription>
+            <SampleDescription>
+                <SampleCollectionMethod>
+                    <MethodIdentifier>INSJ_FM1</MethodIdentifier>
+                    <MethodIdentifierContext>ARS Methods Catalog</MethodIdentifierContext>
+                    <MethodName>Stream Level Measurement</MethodName>
+                </SampleCollectionMethod>
+            </SampleDescription>
+            <Result>
+                <ResultDescription>
+                    <CharacteristicName>Phosphorus</CharacteristicName>
+                    <ResultSampleFractionText>Total</ResultSampleFractionText>
+                    <ResultMeasure>
+                        <ResultMeasureValue>0.143</ResultMeasureValue>
+                        <MeasureUnitCode>mg/L</MeasureUnitCode>
+                    </ResultMeasure>
+                    <ResultStatusIdentifier>Final</ResultStatusIdentifier>
+                    <ResultValueTypeName>Actual</ResultValueTypeName>
+                    <DataQuality>
+                        <PrecisionValue>None</PrecisionValue>
+                    </DataQuality>
+                </ResultDescription>
+                <ResultAnalyticalMethod>
+                    <MethodIdentifier>INSJ_WQ14</MethodIdentifier>
+                    <MethodIdentifierContext>ARS Methods Catalog</MethodIdentifierContext>
+                    <MethodName>total phosphorus in water by Spectroscopy (Colorimetry; Photometry)</MethodName>
+                    <MethodDescriptionText>https://www.nrrig.mwa.ars.usda.gov/st40_javascript/methods.aspx?methodstring=INSJ_WQ14</MethodDescriptionText>
+                </ResultAnalyticalMethod>
+                <ResultLabInformation>
+                    <ResultDetectionQuantitationLimit>
+                        <DetectionQuantitationLimitTypeName>Instrument Detection Level</DetectionQuantitationLimitTypeName>
+                        <DetectionQuantitationLimitMeasure>
+                            <MeasureValue>None</MeasureValue>
+                            <MeasureUnitCode>None</MeasureUnitCode>
+                        </DetectionQuantitationLimitMeasure>
+                    </ResultDetectionQuantitationLimit>
+                </ResultLabInformation>
+            </Result>
+        </Activity>
+        <Activity>
+            <ActivityDescription>
+                <ActivityIdentifier>INSJAXL_20070102</ActivityIdentifier>
+                <ActivityTypeCode>Field Msr/Obs</ActivityTypeCode>
+                <ActivityMediaName>Water</ActivityMediaName>
+                <ActivityStartDate>2007-01-02</ActivityStartDate>
+                <ActivityStartTime>
+                    <Time>09:40:00</Time>
+                    <TimeZoneCode>EST</TimeZoneCode>
+                </ActivityStartTime>
+                <ProjectIdentifier>CEAP</ProjectIdentifier>
+                <MonitoringLocationIdentifier>INSJ-INSJAXL</MonitoringLocationIdentifier>
+            </ActivityDescription>
+            <SampleDescription>
+                <SampleCollectionMethod>
+                    <MethodIdentifier>INSJ_FM1</MethodIdentifier>
+                    <MethodIdentifierContext>ARS Methods Catalog</MethodIdentifierContext>
+                    <MethodName>Stream Level Measurement</MethodName>
+                </SampleCollectionMethod>
+            </SampleDescription>
+            <Result>
+                <ResultDescription>
+                    <CharacteristicName>Nitrogen</CharacteristicName>
+                    <ResultMeasure>
+                        <ResultMeasureValue>4.207</ResultMeasureValue>
+                        <MeasureUnitCode>mg/L</MeasureUnitCode>
+                    </ResultMeasure>
+                    <ResultStatusIdentifier>Final</ResultStatusIdentifier>
+                    <ResultValueTypeName>Actual</ResultValueTypeName>
+                    <DataQuality>
+                        <PrecisionValue>None</PrecisionValue>
+                    </DataQuality>
+                </ResultDescription>
+                <ResultAnalyticalMethod>
+                    <MethodIdentifier>INSJ_WQ12</MethodIdentifier>
+                    <MethodIdentifierContext>ARS Methods Catalog</MethodIdentifierContext>
+                    <MethodName>Nitrate-nitrite Nitrogen in water by Automated Colorimetry (Hydrazine Reduction)</MethodName>
+                    <MethodDescriptionText>https://www.nrrig.mwa.ars.usda.gov/st40_javascript/methods.aspx?methodstring=INSJ_WQ12</MethodDescriptionText>
+                </ResultAnalyticalMethod>
+                <ResultLabInformation>
+                    <ResultDetectionQuantitationLimit>
+                        <DetectionQuantitationLimitTypeName>Instrument Detection Level</DetectionQuantitationLimitTypeName>
+                        <DetectionQuantitationLimitMeasure>
+                            <MeasureValue>None</MeasureValue>
+                            <MeasureUnitCode>None</MeasureUnitCode>
+                        </DetectionQuantitationLimitMeasure>
+                    </ResultDetectionQuantitationLimit>
+                </ResultLabInformation>
+            </Result>
+        </Activity>
+        <Activity>
+            <ActivityDescription>
+                <ActivityIdentifier>INSJAXL_20070102</ActivityIdentifier>
+                <ActivityTypeCode>Field Msr/Obs</ActivityTypeCode>
+                <ActivityMediaName>Water</ActivityMediaName>
+                <ActivityStartDate>2007-01-02</ActivityStartDate>
+                <ActivityStartTime>
+                    <Time>09:40:00</Time>
+                    <TimeZoneCode>EST</TimeZoneCode>
+                </ActivityStartTime>
+                <ProjectIdentifier>CEAP</ProjectIdentifier>
+                <MonitoringLocationIdentifier>INSJ-INSJAXL</MonitoringLocationIdentifier>
+            </ActivityDescription>
+            <SampleDescription>
+                <SampleCollectionMethod>
+                    <MethodIdentifier>INSJ_FM1</MethodIdentifier>
+                    <MethodIdentifierContext>ARS Methods Catalog</MethodIdentifierContext>
+                    <MethodName>Stream Level Measurement</MethodName>
+                </SampleCollectionMethod>
+            </SampleDescription>
+            <Result>
+                <ResultDescription>
+                    <CharacteristicName>Nitrogen Kjeldahl</CharacteristicName>
+                    <ResultMeasure>
+                        <ResultMeasureValue>1.169</ResultMeasureValue>
+                        <MeasureUnitCode>mg/L</MeasureUnitCode>
+                    </ResultMeasure>
+                    <ResultStatusIdentifier>Final</ResultStatusIdentifier>
+                    <ResultValueTypeName>Actual</ResultValueTypeName>
+                    <DataQuality>
+                        <PrecisionValue>None</PrecisionValue>
+                    </DataQuality>
+                </ResultDescription>
+                <ResultAnalyticalMethod>
+                    <MethodIdentifier>INSJ_WQ11</MethodIdentifier>
+                    <MethodIdentifierContext>ARS Methods Catalog</MethodIdentifierContext>
+                    <MethodName>Nitrate-nitrite Nitrogen in water by Automated Colorimetry</MethodName>
+                    <MethodDescriptionText>https://www.nrrig.mwa.ars.usda.gov/st40_javascript/methods.aspx?methodstring=INSJ_WQ11</MethodDescriptionText>
+                </ResultAnalyticalMethod>
+                <ResultLabInformation>
+                    <ResultDetectionQuantitationLimit>
+                        <DetectionQuantitationLimitTypeName>Instrument Detection Level</DetectionQuantitationLimitTypeName>
+                        <DetectionQuantitationLimitMeasure>
+                            <MeasureValue>None</MeasureValue>
+                            <MeasureUnitCode>None</MeasureUnitCode>
+                        </DetectionQuantitationLimitMeasure>
+                    </ResultDetectionQuantitationLimit>
+                </ResultLabInformation>
+            </Result>
+        </Activity>
+        <Activity>
+            <ActivityDescription>
+                <ActivityIdentifier>INSJAXL_20070102</ActivityIdentifier>
+                <ActivityTypeCode>Field Msr/Obs</ActivityTypeCode>
+                <ActivityMediaName>Water</ActivityMediaName>
+                <ActivityStartDate>2007-01-02</ActivityStartDate>
+                <ActivityStartTime>
+                    <Time>09:40:00</Time>
+                    <TimeZoneCode>EST</TimeZoneCode>
+                </ActivityStartTime>
+                <ProjectIdentifier>CEAP</ProjectIdentifier>
+                <MonitoringLocationIdentifier>INSJ-INSJAXL</MonitoringLocationIdentifier>
+            </ActivityDescription>
+            <SampleDescription>
+                <SampleCollectionMethod>
+                    <MethodIdentifier>INSJ_FM1</MethodIdentifier>
+                    <MethodIdentifierContext>ARS Methods Catalog</MethodIdentifierContext>
+                    <MethodName>Stream Level Measurement</MethodName>
+                </SampleCollectionMethod>
+            </SampleDescription>
+            <Result>
+                <ResultDescription>
+                    <CharacteristicName>Ammonia</CharacteristicName>
+                    <ResultMeasure>
+                        <ResultMeasureValue>0.118</ResultMeasureValue>
+                        <MeasureUnitCode>mg/L</MeasureUnitCode>
+                    </ResultMeasure>
+                    <ResultStatusIdentifier>Final</ResultStatusIdentifier>
+                    <ResultValueTypeName>Actual</ResultValueTypeName>
+                    <DataQuality>
+                        <PrecisionValue>10 %</PrecisionValue>
+                    </DataQuality>
+                </ResultDescription>
+                <ResultAnalyticalMethod>
+                    <MethodIdentifier>INSJ_WQ5</MethodIdentifier>
+                    <MethodIdentifierContext>ARS Methods Catalog</MethodIdentifierContext>
+                    <MethodName>Ammonia in water</MethodName>
+                    <MethodDescriptionText>https://www.nrrig.mwa.ars.usda.gov/st40_javascript/methods.aspx?methodstring=INSJ_WQ5</MethodDescriptionText>
+                </ResultAnalyticalMethod>
+                <ResultLabInformation>
+                    <ResultDetectionQuantitationLimit>
+                        <DetectionQuantitationLimitTypeName>Instrument Detection Level</DetectionQuantitationLimitTypeName>
+                        <DetectionQuantitationLimitMeasure>
+                            <MeasureValue>0.1</MeasureValue>
+                            <MeasureUnitCode>mg/L</MeasureUnitCode>
+                        </DetectionQuantitationLimitMeasure>
+                    </ResultDetectionQuantitationLimit>
+                </ResultLabInformation>
+            </Result>
+        </Activity>
+        <Activity>
+            <ActivityDescription>
+                <ActivityIdentifier>INSJAXL_20070102</ActivityIdentifier>
+                <ActivityTypeCode>Field Msr/Obs</ActivityTypeCode>
+                <ActivityMediaName>Water</ActivityMediaName>
+                <ActivityStartDate>2007-01-02</ActivityStartDate>
+                <ActivityStartTime>
+                    <Time>09:40:00</Time>
+                    <TimeZoneCode>EST</TimeZoneCode>
+                </ActivityStartTime>
+                <ProjectIdentifier>CEAP</ProjectIdentifier>
+                <MonitoringLocationIdentifier>INSJ-INSJAXL</MonitoringLocationIdentifier>
+            </ActivityDescription>
+            <SampleDescription>
+                <SampleCollectionMethod>
+                    <MethodIdentifier>INSJ_FM1</MethodIdentifier>
+                    <MethodIdentifierContext>ARS Methods Catalog</MethodIdentifierContext>
+                    <MethodName>Stream Level Measurement</MethodName>
+                </SampleCollectionMethod>
+            </SampleDescription>
+            <Result>
+                <ResultDescription>
+                    <CharacteristicName>Orthophosphate</CharacteristicName>
+                    <ResultMeasure>
+                        <ResultMeasureValue>0.010</ResultMeasureValue>
+                        <MeasureUnitCode>mg/L</MeasureUnitCode>
+                    </ResultMeasure>
+                    <ResultStatusIdentifier>Final</ResultStatusIdentifier>
+                    <ResultValueTypeName>Actual</ResultValueTypeName>
+                    <DataQuality>
+                        <PrecisionValue>10 %</PrecisionValue>
+                    </DataQuality>
+                </ResultDescription>
+                <ResultAnalyticalMethod>
+                    <MethodIdentifier>INSJ_WQ9</MethodIdentifier>
+                    <MethodIdentifierContext>ARS Methods Catalog</MethodIdentifierContext>
+                    <MethodName>ortho phosphate in water</MethodName>
+                    <MethodDescriptionText>https://www.nrrig.mwa.ars.usda.gov/st40_javascript/methods.aspx?methodstring=INSJ_WQ9</MethodDescriptionText>
+                </ResultAnalyticalMethod>
+                <ResultLabInformation>
+                    <ResultDetectionQuantitationLimit>
+                        <DetectionQuantitationLimitTypeName>Instrument Detection Level</DetectionQuantitationLimitTypeName>
+                        <DetectionQuantitationLimitMeasure>
+                            <MeasureValue>0.05</MeasureValue>
+                            <MeasureUnitCode>mg/L</MeasureUnitCode>
+                        </DetectionQuantitationLimitMeasure>
+                    </ResultDetectionQuantitationLimit>
+                </ResultLabInformation>
+            </Result>
+        </Activity>
+        <Activity>
+            <ActivityDescription>
+                <ActivityIdentifier>INSJAXL_20070102</ActivityIdentifier>
+                <ActivityTypeCode>Field Msr/Obs</ActivityTypeCode>
+                <ActivityMediaName>Water</ActivityMediaName>
+                <ActivityStartDate>2007-01-02</ActivityStartDate>
+                <ActivityStartTime>
+                    <Time>09:40:00</Time>
+                    <TimeZoneCode>EST</TimeZoneCode>
+                </ActivityStartTime>
+                <ProjectIdentifier>CEAP</ProjectIdentifier>
+                <MonitoringLocationIdentifier>INSJ-INSJAXL</MonitoringLocationIdentifier>
+            </ActivityDescription>
+            <SampleDescription>
+                <SampleCollectionMethod>
+                    <MethodIdentifier>INSJ_FM1</MethodIdentifier>
+                    <MethodIdentifierContext>ARS Methods Catalog</MethodIdentifierContext>
+                    <MethodName>Stream Level Measurement</MethodName>
+                </SampleCollectionMethod>
+            </SampleDescription>
+            <Result>
+                <ResultDescription>
+                    <CharacteristicName>Phosphorus</CharacteristicName>
+                    <ResultSampleFractionText>Total</ResultSampleFractionText>
+                    <ResultMeasure>
+                        <ResultMeasureValue>0.202</ResultMeasureValue>
+                        <MeasureUnitCode>mg/L</MeasureUnitCode>
+                    </ResultMeasure>
+                    <ResultStatusIdentifier>Final</ResultStatusIdentifier>
+                    <ResultValueTypeName>Actual</ResultValueTypeName>
+                    <DataQuality>
+                        <PrecisionValue>None</PrecisionValue>
+                    </DataQuality>
+                </ResultDescription>
+                <ResultAnalyticalMethod>
+                    <MethodIdentifier>INSJ_WQ14</MethodIdentifier>
+                    <MethodIdentifierContext>ARS Methods Catalog</MethodIdentifierContext>
+                    <MethodName>total phosphorus in water by Spectroscopy (Colorimetry; Photometry)</MethodName>
+                    <MethodDescriptionText>https://www.nrrig.mwa.ars.usda.gov/st40_javascript/methods.aspx?methodstring=INSJ_WQ14</MethodDescriptionText>
+                </ResultAnalyticalMethod>
+                <ResultLabInformation>
+                    <ResultDetectionQuantitationLimit>
+                        <DetectionQuantitationLimitTypeName>Instrument Detection Level</DetectionQuantitationLimitTypeName>
+                        <DetectionQuantitationLimitMeasure>
+                            <MeasureValue>None</MeasureValue>
+                            <MeasureUnitCode>None</MeasureUnitCode>
+                        </DetectionQuantitationLimitMeasure>
+                    </ResultDetectionQuantitationLimit>
+                </ResultLabInformation>
+            </Result>
+        </Activity>
+        <Activity>
+            <ActivityDescription>
+                <ActivityIdentifier>INSJCLG_20070102</ActivityIdentifier>
+                <ActivityTypeCode>Field Msr/Obs</ActivityTypeCode>
+                <ActivityMediaName>Water</ActivityMediaName>
+                <ActivityStartDate>2007-01-02</ActivityStartDate>
+                <ActivityStartTime>
+                    <Time>10:30:00</Time>
+                    <TimeZoneCode>EST</TimeZoneCode>
+                </ActivityStartTime>
+                <ProjectIdentifier>CEAP</ProjectIdentifier>
+                <MonitoringLocationIdentifier>INSJ-INSJCLG</MonitoringLocationIdentifier>
+            </ActivityDescription>
+            <SampleDescription>
+                <SampleCollectionMethod>
+                    <MethodIdentifier>INSJ_FM1</MethodIdentifier>
+                    <MethodIdentifierContext>ARS Methods Catalog</MethodIdentifierContext>
+                    <MethodName>Stream Level Measurement</MethodName>
+                </SampleCollectionMethod>
+            </SampleDescription>
+            <Result>
+                <ResultDescription>
+                    <CharacteristicName>Ammonia</CharacteristicName>
+                    <ResultMeasure>
+                        <ResultMeasureValue>0.109</ResultMeasureValue>
+                        <MeasureUnitCode>mg/L</MeasureUnitCode>
+                    </ResultMeasure>
+                    <ResultStatusIdentifier>Final</ResultStatusIdentifier>
+                    <ResultValueTypeName>Actual</ResultValueTypeName>
+                    <DataQuality>
+                        <PrecisionValue>10 %</PrecisionValue>
+                    </DataQuality>
+                </ResultDescription>
+                <ResultAnalyticalMethod>
+                    <MethodIdentifier>INSJ_WQ5</MethodIdentifier>
+                    <MethodIdentifierContext>ARS Methods Catalog</MethodIdentifierContext>
+                    <MethodName>Ammonia in water</MethodName>
+                    <MethodDescriptionText>https://www.nrrig.mwa.ars.usda.gov/st40_javascript/methods.aspx?methodstring=INSJ_WQ5</MethodDescriptionText>
+                </ResultAnalyticalMethod>
+                <ResultLabInformation>
+                    <ResultDetectionQuantitationLimit>
+                        <DetectionQuantitationLimitTypeName>Instrument Detection Level</DetectionQuantitationLimitTypeName>
+                        <DetectionQuantitationLimitMeasure>
+                            <MeasureValue>0.1</MeasureValue>
+                            <MeasureUnitCode>mg/L</MeasureUnitCode>
+                        </DetectionQuantitationLimitMeasure>
+                    </ResultDetectionQuantitationLimit>
+                </ResultLabInformation>
+            </Result>
+        </Activity>
+        <Activity>
+            <ActivityDescription>
+                <ActivityIdentifier>INSJCLG_20070102</ActivityIdentifier>
+                <ActivityTypeCode>Field Msr/Obs</ActivityTypeCode>
+                <ActivityMediaName>Water</ActivityMediaName>
+                <ActivityStartDate>2007-01-02</ActivityStartDate>
+                <ActivityStartTime>
+                    <Time>10:30:00</Time>
+                    <TimeZoneCode>EST</TimeZoneCode>
+                </ActivityStartTime>
+                <ProjectIdentifier>CEAP</ProjectIdentifier>
+                <MonitoringLocationIdentifier>INSJ-INSJCLG</MonitoringLocationIdentifier>
+            </ActivityDescription>
+            <SampleDescription>
+                <SampleCollectionMethod>
+                    <MethodIdentifier>INSJ_FM1</MethodIdentifier>
+                    <MethodIdentifierContext>ARS Methods Catalog</MethodIdentifierContext>
+                    <MethodName>Stream Level Measurement</MethodName>
+                </SampleCollectionMethod>
+            </SampleDescription>
+            <Result>
+                <ResultDescription>
+                    <CharacteristicName>Nitrogen</CharacteristicName>
+                    <ResultMeasure>
+                        <ResultMeasureValue>3.718</ResultMeasureValue>
+                        <MeasureUnitCode>mg/L</MeasureUnitCode>
+                    </ResultMeasure>
+                    <ResultStatusIdentifier>Final</ResultStatusIdentifier>
+                    <ResultValueTypeName>Actual</ResultValueTypeName>
+                    <DataQuality>
+                        <PrecisionValue>None</PrecisionValue>
+                    </DataQuality>
+                </ResultDescription>
+                <ResultAnalyticalMethod>
+                    <MethodIdentifier>INSJ_WQ12</MethodIdentifier>
+                    <MethodIdentifierContext>ARS Methods Catalog</MethodIdentifierContext>
+                    <MethodName>Nitrate-nitrite Nitrogen in water by Automated Colorimetry (Hydrazine Reduction)</MethodName>
+                    <MethodDescriptionText>https://www.nrrig.mwa.ars.usda.gov/st40_javascript/methods.aspx?methodstring=INSJ_WQ12</MethodDescriptionText>
+                </ResultAnalyticalMethod>
+                <ResultLabInformation>
+                    <ResultDetectionQuantitationLimit>
+                        <DetectionQuantitationLimitTypeName>Instrument Detection Level</DetectionQuantitationLimitTypeName>
+                        <DetectionQuantitationLimitMeasure>
+                            <MeasureValue>None</MeasureValue>
+                            <MeasureUnitCode>None</MeasureUnitCode>
+                        </DetectionQuantitationLimitMeasure>
+                    </ResultDetectionQuantitationLimit>
+                </ResultLabInformation>
+            </Result>
+        </Activity>
+        <Activity>
+            <ActivityDescription>
+                <ActivityIdentifier>INSJCLG_20070102</ActivityIdentifier>
+                <ActivityTypeCode>Field Msr/Obs</ActivityTypeCode>
+                <ActivityMediaName>Water</ActivityMediaName>
+                <ActivityStartDate>2007-01-02</ActivityStartDate>
+                <ActivityStartTime>
+                    <Time>10:30:00</Time>
+                    <TimeZoneCode>EST</TimeZoneCode>
+                </ActivityStartTime>
+                <ProjectIdentifier>CEAP</ProjectIdentifier>
+                <MonitoringLocationIdentifier>INSJ-INSJCLG</MonitoringLocationIdentifier>
+            </ActivityDescription>
+            <SampleDescription>
+                <SampleCollectionMethod>
+                    <MethodIdentifier>INSJ_FM1</MethodIdentifier>
+                    <MethodIdentifierContext>ARS Methods Catalog</MethodIdentifierContext>
+                    <MethodName>Stream Level Measurement</MethodName>
+                </SampleCollectionMethod>
+            </SampleDescription>
+            <Result>
+                <ResultDescription>
+                    <CharacteristicName>Nitrogen Kjeldahl</CharacteristicName>
+                    <ResultMeasure>
+                        <ResultMeasureValue>0.891</ResultMeasureValue>
+                        <MeasureUnitCode>mg/L</MeasureUnitCode>
+                    </ResultMeasure>
+                    <ResultStatusIdentifier>Final</ResultStatusIdentifier>
+                    <ResultValueTypeName>Actual</ResultValueTypeName>
+                    <DataQuality>
+                        <PrecisionValue>None</PrecisionValue>
+                    </DataQuality>
+                </ResultDescription>
+                <ResultAnalyticalMethod>
+                    <MethodIdentifier>INSJ_WQ11</MethodIdentifier>
+                    <MethodIdentifierContext>ARS Methods Catalog</MethodIdentifierContext>
+                    <MethodName>Nitrate-nitrite Nitrogen in water by Automated Colorimetry</MethodName>
+                    <MethodDescriptionText>https://www.nrrig.mwa.ars.usda.gov/st40_javascript/methods.aspx?methodstring=INSJ_WQ11</MethodDescriptionText>
+                </ResultAnalyticalMethod>
+                <ResultLabInformation>
+                    <ResultDetectionQuantitationLimit>
+                        <DetectionQuantitationLimitTypeName>Instrument Detection Level</DetectionQuantitationLimitTypeName>
+                        <DetectionQuantitationLimitMeasure>
+                            <MeasureValue>None</MeasureValue>
+                            <MeasureUnitCode>None</MeasureUnitCode>
+                        </DetectionQuantitationLimitMeasure>
+                    </ResultDetectionQuantitationLimit>
+                </ResultLabInformation>
+            </Result>
+        </Activity>
+        <Activity>
+            <ActivityDescription>
+                <ActivityIdentifier>INSJCLG_20070102</ActivityIdentifier>
+                <ActivityTypeCode>Field Msr/Obs</ActivityTypeCode>
+                <ActivityMediaName>Water</ActivityMediaName>
+                <ActivityStartDate>2007-01-02</ActivityStartDate>
+                <ActivityStartTime>
+                    <Time>10:30:00</Time>
+                    <TimeZoneCode>EST</TimeZoneCode>
+                </ActivityStartTime>
+                <ProjectIdentifier>CEAP</ProjectIdentifier>
+                <MonitoringLocationIdentifier>INSJ-INSJCLG</MonitoringLocationIdentifier>
+            </ActivityDescription>
+            <SampleDescription>
+                <SampleCollectionMethod>
+                    <MethodIdentifier>INSJ_FM1</MethodIdentifier>
+                    <MethodIdentifierContext>ARS Methods Catalog</MethodIdentifierContext>
+                    <MethodName>Stream Level Measurement</MethodName>
+                </SampleCollectionMethod>
+            </SampleDescription>
+            <Result>
+                <ResultDescription>
+                    <CharacteristicName>Orthophosphate</CharacteristicName>
+                    <ResultMeasure>
+                        <ResultMeasureValue>0.090</ResultMeasureValue>
+                        <MeasureUnitCode>mg/L</MeasureUnitCode>
+                    </ResultMeasure>
+                    <ResultStatusIdentifier>Final</ResultStatusIdentifier>
+                    <ResultValueTypeName>Actual</ResultValueTypeName>
+                    <DataQuality>
+                        <PrecisionValue>10 %</PrecisionValue>
+                    </DataQuality>
+                </ResultDescription>
+                <ResultAnalyticalMethod>
+                    <MethodIdentifier>INSJ_WQ9</MethodIdentifier>
+                    <MethodIdentifierContext>ARS Methods Catalog</MethodIdentifierContext>
+                    <MethodName>ortho phosphate in water</MethodName>
+                    <MethodDescriptionText>https://www.nrrig.mwa.ars.usda.gov/st40_javascript/methods.aspx?methodstring=INSJ_WQ9</MethodDescriptionText>
+                </ResultAnalyticalMethod>
+                <ResultLabInformation>
+                    <ResultDetectionQuantitationLimit>
+                        <DetectionQuantitationLimitTypeName>Instrument Detection Level</DetectionQuantitationLimitTypeName>
+                        <DetectionQuantitationLimitMeasure>
+                            <MeasureValue>0.05</MeasureValue>
+                            <MeasureUnitCode>mg/L</MeasureUnitCode>
+                        </DetectionQuantitationLimitMeasure>
+                    </ResultDetectionQuantitationLimit>
+                </ResultLabInformation>
+            </Result>
+        </Activity>
+        <Activity>
+            <ActivityDescription>
+                <ActivityIdentifier>INSJCLG_20070102</ActivityIdentifier>
+                <ActivityTypeCode>Field Msr/Obs</ActivityTypeCode>
+                <ActivityMediaName>Water</ActivityMediaName>
+                <ActivityStartDate>2007-01-02</ActivityStartDate>
+                <ActivityStartTime>
+                    <Time>10:30:00</Time>
+                    <TimeZoneCode>EST</TimeZoneCode>
+                </ActivityStartTime>
+                <ProjectIdentifier>CEAP</ProjectIdentifier>
+                <MonitoringLocationIdentifier>INSJ-INSJCLG</MonitoringLocationIdentifier>
+            </ActivityDescription>
+            <SampleDescription>
+                <SampleCollectionMethod>
+                    <MethodIdentifier>INSJ_FM1</MethodIdentifier>
+                    <MethodIdentifierContext>ARS Methods Catalog</MethodIdentifierContext>
+                    <MethodName>Stream Level Measurement</MethodName>
+                </SampleCollectionMethod>
+            </SampleDescription>
+            <Result>
+                <ResultDescription>
+                    <CharacteristicName>Phosphorus</CharacteristicName>
+                    <ResultSampleFractionText>Total</ResultSampleFractionText>
+                    <ResultMeasure>
+                        <ResultMeasureValue>0.446</ResultMeasureValue>
+                        <MeasureUnitCode>mg/L</MeasureUnitCode>
+                    </ResultMeasure>
+                    <ResultStatusIdentifier>Final</ResultStatusIdentifier>
+                    <ResultValueTypeName>Actual</ResultValueTypeName>
+                    <DataQuality>
+                        <PrecisionValue>None</PrecisionValue>
+                    </DataQuality>
+                </ResultDescription>
+                <ResultAnalyticalMethod>
+                    <MethodIdentifier>INSJ_WQ14</MethodIdentifier>
+                    <MethodIdentifierContext>ARS Methods Catalog</MethodIdentifierContext>
+                    <MethodName>total phosphorus in water by Spectroscopy (Colorimetry; Photometry)</MethodName>
+                    <MethodDescriptionText>https://www.nrrig.mwa.ars.usda.gov/st40_javascript/methods.aspx?methodstring=INSJ_WQ14</MethodDescriptionText>
+                </ResultAnalyticalMethod>
+                <ResultLabInformation>
+                    <ResultDetectionQuantitationLimit>
+                        <DetectionQuantitationLimitTypeName>Instrument Detection Level</DetectionQuantitationLimitTypeName>
+                        <DetectionQuantitationLimitMeasure>
+                            <MeasureValue>None</MeasureValue>
+                            <MeasureUnitCode>None</MeasureUnitCode>
+                        </DetectionQuantitationLimitMeasure>
+                    </ResultDetectionQuantitationLimit>
+                </ResultLabInformation>
+            </Result>
+        </Activity>
+        <Activity>
+            <ActivityDescription>
+                <ActivityIdentifier>INSJF34_20070102</ActivityIdentifier>
+                <ActivityTypeCode>Field Msr/Obs</ActivityTypeCode>
+                <ActivityMediaName>Water</ActivityMediaName>
+                <ActivityStartDate>2007-01-02</ActivityStartDate>
+                <ActivityStartTime>
+                    <Time>10:15:00</Time>
+                    <TimeZoneCode>EST</TimeZoneCode>
+                </ActivityStartTime>
+                <ProjectIdentifier>CEAP</ProjectIdentifier>
+                <MonitoringLocationIdentifier>INSJ-INSJF34</MonitoringLocationIdentifier>
+            </ActivityDescription>
+            <SampleDescription>
+                <SampleCollectionMethod>
+                    <MethodIdentifier>INSJ_FM1</MethodIdentifier>
+                    <MethodIdentifierContext>ARS Methods Catalog</MethodIdentifierContext>
+                    <MethodName>Stream Level Measurement</MethodName>
+                </SampleCollectionMethod>
+            </SampleDescription>
+            <Result>
+                <ResultDescription>
+                    <ResultDetectionConditionText>Not Reported</ResultDetectionConditionText>
+                    <CharacteristicName>Orthophosphate</CharacteristicName>
+                    <ResultMeasure>
+                        <ResultMeasureValue>0.000</ResultMeasureValue>
+                        <MeasureUnitCode>mg/L</MeasureUnitCode>
+                    </ResultMeasure>
+                    <ResultStatusIdentifier>Final</ResultStatusIdentifier>
+                    <ResultValueTypeName>Actual</ResultValueTypeName>
+                    <DataQuality>
+                        <PrecisionValue>10 %</PrecisionValue>
+                    </DataQuality>
+                </ResultDescription>
+                <ResultAnalyticalMethod>
+                    <MethodIdentifier>INSJ_WQ9</MethodIdentifier>
+                    <MethodIdentifierContext>ARS Methods Catalog</MethodIdentifierContext>
+                    <MethodName>ortho phosphate in water</MethodName>
+                    <MethodDescriptionText>https://www.nrrig.mwa.ars.usda.gov/st40_javascript/methods.aspx?methodstring=INSJ_WQ9</MethodDescriptionText>
+                </ResultAnalyticalMethod>
+                <ResultLabInformation>
+                    <ResultDetectionQuantitationLimit>
+                        <DetectionQuantitationLimitTypeName>Instrument Detection Level</DetectionQuantitationLimitTypeName>
+                        <DetectionQuantitationLimitMeasure>
+                            <MeasureValue>0.05</MeasureValue>
+                            <MeasureUnitCode>mg/L</MeasureUnitCode>
+                        </DetectionQuantitationLimitMeasure>
+                    </ResultDetectionQuantitationLimit>
+                </ResultLabInformation>
+            </Result>
+        </Activity>
+        <Activity>
+            <ActivityDescription>
+                <ActivityIdentifier>INSJF34_20070102</ActivityIdentifier>
+                <ActivityTypeCode>Field Msr/Obs</ActivityTypeCode>
+                <ActivityMediaName>Water</ActivityMediaName>
+                <ActivityStartDate>2007-01-02</ActivityStartDate>
+                <ActivityStartTime>
+                    <Time>10:15:00</Time>
+                    <TimeZoneCode>EST</TimeZoneCode>
+                </ActivityStartTime>
+                <ProjectIdentifier>CEAP</ProjectIdentifier>
+                <MonitoringLocationIdentifier>INSJ-INSJF34</MonitoringLocationIdentifier>
+            </ActivityDescription>
+            <SampleDescription>
+                <SampleCollectionMethod>
+                    <MethodIdentifier>INSJ_FM1</MethodIdentifier>
+                    <MethodIdentifierContext>ARS Methods Catalog</MethodIdentifierContext>
+                    <MethodName>Stream Level Measurement</MethodName>
+                </SampleCollectionMethod>
+            </SampleDescription>
+            <Result>
+                <ResultDescription>
+                    <CharacteristicName>Phosphorus</CharacteristicName>
+                    <ResultSampleFractionText>Total</ResultSampleFractionText>
+                    <ResultMeasure>
+                        <ResultMeasureValue>0.118</ResultMeasureValue>
+                        <MeasureUnitCode>mg/L</MeasureUnitCode>
+                    </ResultMeasure>
+                    <ResultStatusIdentifier>Final</ResultStatusIdentifier>
+                    <ResultValueTypeName>Actual</ResultValueTypeName>
+                    <DataQuality>
+                        <PrecisionValue>None</PrecisionValue>
+                    </DataQuality>
+                </ResultDescription>
+                <ResultAnalyticalMethod>
+                    <MethodIdentifier>INSJ_WQ14</MethodIdentifier>
+                    <MethodIdentifierContext>ARS Methods Catalog</MethodIdentifierContext>
+                    <MethodName>total phosphorus in water by Spectroscopy (Colorimetry; Photometry)</MethodName>
+                    <MethodDescriptionText>https://www.nrrig.mwa.ars.usda.gov/st40_javascript/methods.aspx?methodstring=INSJ_WQ14</MethodDescriptionText>
+                </ResultAnalyticalMethod>
+                <ResultLabInformation>
+                    <ResultDetectionQuantitationLimit>
+                        <DetectionQuantitationLimitTypeName>Instrument Detection Level</DetectionQuantitationLimitTypeName>
+                        <DetectionQuantitationLimitMeasure>
+                            <MeasureValue>None</MeasureValue>
+                            <MeasureUnitCode>None</MeasureUnitCode>
+                        </DetectionQuantitationLimitMeasure>
+                    </ResultDetectionQuantitationLimit>
+                </ResultLabInformation>
+            </Result>
+        </Activity>
+        <Activity>
+            <ActivityDescription>
+                <ActivityIdentifier>INSJF34_20070102</ActivityIdentifier>
+                <ActivityTypeCode>Field Msr/Obs</ActivityTypeCode>
+                <ActivityMediaName>Water</ActivityMediaName>
+                <ActivityStartDate>2007-01-02</ActivityStartDate>
+                <ActivityStartTime>
+                    <Time>10:15:00</Time>
+                    <TimeZoneCode>EST</TimeZoneCode>
+                </ActivityStartTime>
+                <ProjectIdentifier>CEAP</ProjectIdentifier>
+                <MonitoringLocationIdentifier>INSJ-INSJF34</MonitoringLocationIdentifier>
+            </ActivityDescription>
+            <SampleDescription>
+                <SampleCollectionMethod>
+                    <MethodIdentifier>INSJ_FM1</MethodIdentifier>
+                    <MethodIdentifierContext>ARS Methods Catalog</MethodIdentifierContext>
+                    <MethodName>Stream Level Measurement</MethodName>
+                </SampleCollectionMethod>
+            </SampleDescription>
+            <Result>
+                <ResultDescription>
+                    <ResultDetectionConditionText>Not Reported</ResultDetectionConditionText>
+                    <CharacteristicName>Ammonia</CharacteristicName>
+                    <ResultMeasure>
+                        <ResultMeasureValue>0.000</ResultMeasureValue>
+                        <MeasureUnitCode>mg/L</MeasureUnitCode>
+                    </ResultMeasure>
+                    <ResultStatusIdentifier>Final</ResultStatusIdentifier>
+                    <ResultValueTypeName>Actual</ResultValueTypeName>
+                    <DataQuality>
+                        <PrecisionValue>10 %</PrecisionValue>
+                    </DataQuality>
+                </ResultDescription>
+                <ResultAnalyticalMethod>
+                    <MethodIdentifier>INSJ_WQ5</MethodIdentifier>
+                    <MethodIdentifierContext>ARS Methods Catalog</MethodIdentifierContext>
+                    <MethodName>Ammonia in water</MethodName>
+                    <MethodDescriptionText>https://www.nrrig.mwa.ars.usda.gov/st40_javascript/methods.aspx?methodstring=INSJ_WQ5</MethodDescriptionText>
+                </ResultAnalyticalMethod>
+                <ResultLabInformation>
+                    <ResultDetectionQuantitationLimit>
+                        <DetectionQuantitationLimitTypeName>Instrument Detection Level</DetectionQuantitationLimitTypeName>
+                        <DetectionQuantitationLimitMeasure>
+                            <MeasureValue>0.1</MeasureValue>
+                            <MeasureUnitCode>mg/L</MeasureUnitCode>
+                        </DetectionQuantitationLimitMeasure>
+                    </ResultDetectionQuantitationLimit>
+                </ResultLabInformation>
+            </Result>
+        </Activity>
+        <Activity>
+            <ActivityDescription>
+                <ActivityIdentifier>INSJF34_20070102</ActivityIdentifier>
+                <ActivityTypeCode>Field Msr/Obs</ActivityTypeCode>
+                <ActivityMediaName>Water</ActivityMediaName>
+                <ActivityStartDate>2007-01-02</ActivityStartDate>
+                <ActivityStartTime>
+                    <Time>10:15:00</Time>
+                    <TimeZoneCode>EST</TimeZoneCode>
+                </ActivityStartTime>
+                <ProjectIdentifier>CEAP</ProjectIdentifier>
+                <MonitoringLocationIdentifier>INSJ-INSJF34</MonitoringLocationIdentifier>
+            </ActivityDescription>
+            <SampleDescription>
+                <SampleCollectionMethod>
+                    <MethodIdentifier>INSJ_FM1</MethodIdentifier>
+                    <MethodIdentifierContext>ARS Methods Catalog</MethodIdentifierContext>
+                    <MethodName>Stream Level Measurement</MethodName>
+                </SampleCollectionMethod>
+            </SampleDescription>
+            <Result>
+                <ResultDescription>
+                    <CharacteristicName>Nitrogen</CharacteristicName>
+                    <ResultMeasure>
+                        <ResultMeasureValue>3.961</ResultMeasureValue>
+                        <MeasureUnitCode>mg/L</MeasureUnitCode>
+                    </ResultMeasure>
+                    <ResultStatusIdentifier>Final</ResultStatusIdentifier>
+                    <ResultValueTypeName>Actual</ResultValueTypeName>
+                    <DataQuality>
+                        <PrecisionValue>None</PrecisionValue>
+                    </DataQuality>
+                </ResultDescription>
+                <ResultAnalyticalMethod>
+                    <MethodIdentifier>INSJ_WQ12</MethodIdentifier>
+                    <MethodIdentifierContext>ARS Methods Catalog</MethodIdentifierContext>
+                    <MethodName>Nitrate-nitrite Nitrogen in water by Automated Colorimetry (Hydrazine Reduction)</MethodName>
+                    <MethodDescriptionText>https://www.nrrig.mwa.ars.usda.gov/st40_javascript/methods.aspx?methodstring=INSJ_WQ12</MethodDescriptionText>
+                </ResultAnalyticalMethod>
+                <ResultLabInformation>
+                    <ResultDetectionQuantitationLimit>
+                        <DetectionQuantitationLimitTypeName>Instrument Detection Level</DetectionQuantitationLimitTypeName>
+                        <DetectionQuantitationLimitMeasure>
+                            <MeasureValue>None</MeasureValue>
+                            <MeasureUnitCode>None</MeasureUnitCode>
+                        </DetectionQuantitationLimitMeasure>
+                    </ResultDetectionQuantitationLimit>
+                </ResultLabInformation>
+            </Result>
+        </Activity>
+        <Activity>
+            <ActivityDescription>
+                <ActivityIdentifier>INSJF34_20070102</ActivityIdentifier>
+                <ActivityTypeCode>Field Msr/Obs</ActivityTypeCode>
+                <ActivityMediaName>Water</ActivityMediaName>
+                <ActivityStartDate>2007-01-02</ActivityStartDate>
+                <ActivityStartTime>
+                    <Time>10:15:00</Time>
+                    <TimeZoneCode>EST</TimeZoneCode>
+                </ActivityStartTime>
+                <ProjectIdentifier>CEAP</ProjectIdentifier>
+                <MonitoringLocationIdentifier>INSJ-INSJF34</MonitoringLocationIdentifier>
+            </ActivityDescription>
+            <SampleDescription>
+                <SampleCollectionMethod>
+                    <MethodIdentifier>INSJ_FM1</MethodIdentifier>
+                    <MethodIdentifierContext>ARS Methods Catalog</MethodIdentifierContext>
+                    <MethodName>Stream Level Measurement</MethodName>
+                </SampleCollectionMethod>
+            </SampleDescription>
+            <Result>
+                <ResultDescription>
+                    <CharacteristicName>Nitrogen Kjeldahl</CharacteristicName>
+                    <ResultMeasure>
+                        <ResultMeasureValue>1.514</ResultMeasureValue>
+                        <MeasureUnitCode>mg/L</MeasureUnitCode>
+                    </ResultMeasure>
+                    <ResultStatusIdentifier>Final</ResultStatusIdentifier>
+                    <ResultValueTypeName>Actual</ResultValueTypeName>
+                    <DataQuality>
+                        <PrecisionValue>None</PrecisionValue>
+                    </DataQuality>
+                </ResultDescription>
+                <ResultAnalyticalMethod>
+                    <MethodIdentifier>INSJ_WQ11</MethodIdentifier>
+                    <MethodIdentifierContext>ARS Methods Catalog</MethodIdentifierContext>
+                    <MethodName>Nitrate-nitrite Nitrogen in water by Automated Colorimetry</MethodName>
+                    <MethodDescriptionText>https://www.nrrig.mwa.ars.usda.gov/st40_javascript/methods.aspx?methodstring=INSJ_WQ11</MethodDescriptionText>
+                </ResultAnalyticalMethod>
+                <ResultLabInformation>
+                    <ResultDetectionQuantitationLimit>
+                        <DetectionQuantitationLimitTypeName>Instrument Detection Level</DetectionQuantitationLimitTypeName>
+                        <DetectionQuantitationLimitMeasure>
+                            <MeasureValue>None</MeasureValue>
+                            <MeasureUnitCode>None</MeasureUnitCode>
+                        </DetectionQuantitationLimitMeasure>
+                    </ResultDetectionQuantitationLimit>
+                </ResultLabInformation>
+            </Result>
+        </Activity>
+        <Activity>
+            <ActivityDescription>
+                <ActivityIdentifier>INSJF34_20070218</ActivityIdentifier>
+                <ActivityTypeCode>Field Msr/Obs</ActivityTypeCode>
+                <ActivityMediaName>Water</ActivityMediaName>
+                <ActivityStartDate>2007-02-18</ActivityStartDate>
+                <ActivityStartTime>
+                    <Time>21:20:00</Time>
+                    <TimeZoneCode>EST</TimeZoneCode>
+                </ActivityStartTime>
+                <ProjectIdentifier>CEAP</ProjectIdentifier>
+                <MonitoringLocationIdentifier>INSJ-INSJF34</MonitoringLocationIdentifier>
+            </ActivityDescription>
+            <SampleDescription>
+                <SampleCollectionMethod>
+                    <MethodIdentifier>INSJ_FM1</MethodIdentifier>
+                    <MethodIdentifierContext>ARS Methods Catalog</MethodIdentifierContext>
+                    <MethodName>Stream Level Measurement</MethodName>
+                </SampleCollectionMethod>
+            </SampleDescription>
+            <Result>
+                <ResultDescription>
+                    <ResultDetectionConditionText>Not Reported</ResultDetectionConditionText>
+                    <CharacteristicName>Orthophosphate</CharacteristicName>
+                    <ResultMeasure>
+                        <ResultMeasureValue>0.000</ResultMeasureValue>
+                        <MeasureUnitCode>mg/L</MeasureUnitCode>
+                    </ResultMeasure>
+                    <ResultStatusIdentifier>Final</ResultStatusIdentifier>
+                    <ResultValueTypeName>Actual</ResultValueTypeName>
+                    <DataQuality>
+                        <PrecisionValue>10 %</PrecisionValue>
+                    </DataQuality>
+                </ResultDescription>
+                <ResultAnalyticalMethod>
+                    <MethodIdentifier>INSJ_WQ9</MethodIdentifier>
+                    <MethodIdentifierContext>ARS Methods Catalog</MethodIdentifierContext>
+                    <MethodName>ortho phosphate in water</MethodName>
+                    <MethodDescriptionText>https://www.nrrig.mwa.ars.usda.gov/st40_javascript/methods.aspx?methodstring=INSJ_WQ9</MethodDescriptionText>
+                </ResultAnalyticalMethod>
+                <ResultLabInformation>
+                    <ResultDetectionQuantitationLimit>
+                        <DetectionQuantitationLimitTypeName>Instrument Detection Level</DetectionQuantitationLimitTypeName>
+                        <DetectionQuantitationLimitMeasure>
+                            <MeasureValue>0.05</MeasureValue>
+                            <MeasureUnitCode>mg/L</MeasureUnitCode>
+                        </DetectionQuantitationLimitMeasure>
+                    </ResultDetectionQuantitationLimit>
+                </ResultLabInformation>
+            </Result>
+        </Activity>
+        <Activity>
+            <ActivityDescription>
+                <ActivityIdentifier>INSJF34_20070218</ActivityIdentifier>
+                <ActivityTypeCode>Field Msr/Obs</ActivityTypeCode>
+                <ActivityMediaName>Water</ActivityMediaName>
+                <ActivityStartDate>2007-02-18</ActivityStartDate>
+                <ActivityStartTime>
+                    <Time>21:20:00</Time>
+                    <TimeZoneCode>EST</TimeZoneCode>
+                </ActivityStartTime>
+                <ProjectIdentifier>CEAP</ProjectIdentifier>
+                <MonitoringLocationIdentifier>INSJ-INSJF34</MonitoringLocationIdentifier>
+            </ActivityDescription>
+            <SampleDescription>
+                <SampleCollectionMethod>
+                    <MethodIdentifier>INSJ_FM1</MethodIdentifier>
+                    <MethodIdentifierContext>ARS Methods Catalog</MethodIdentifierContext>
+                    <MethodName>Stream Level Measurement</MethodName>
+                </SampleCollectionMethod>
+            </SampleDescription>
+            <Result>
+                <ResultDescription>
+                    <CharacteristicName>Ammonia</CharacteristicName>
+                    <ResultMeasure>
+                        <ResultMeasureValue>0.101</ResultMeasureValue>
+                        <MeasureUnitCode>mg/L</MeasureUnitCode>
+                    </ResultMeasure>
+                    <ResultStatusIdentifier>Final</ResultStatusIdentifier>
+                    <ResultValueTypeName>Actual</ResultValueTypeName>
+                    <DataQuality>
+                        <PrecisionValue>10 %</PrecisionValue>
+                    </DataQuality>
+                </ResultDescription>
+                <ResultAnalyticalMethod>
+                    <MethodIdentifier>INSJ_WQ5</MethodIdentifier>
+                    <MethodIdentifierContext>ARS Methods Catalog</MethodIdentifierContext>
+                    <MethodName>Ammonia in water</MethodName>
+                    <MethodDescriptionText>https://www.nrrig.mwa.ars.usda.gov/st40_javascript/methods.aspx?methodstring=INSJ_WQ5</MethodDescriptionText>
+                </ResultAnalyticalMethod>
+                <ResultLabInformation>
+                    <ResultDetectionQuantitationLimit>
+                        <DetectionQuantitationLimitTypeName>Instrument Detection Level</DetectionQuantitationLimitTypeName>
+                        <DetectionQuantitationLimitMeasure>
+                            <MeasureValue>0.1</MeasureValue>
+                            <MeasureUnitCode>mg/L</MeasureUnitCode>
+                        </DetectionQuantitationLimitMeasure>
+                    </ResultDetectionQuantitationLimit>
+                </ResultLabInformation>
+            </Result>
+        </Activity>
+        <Activity>
+            <ActivityDescription>
+                <ActivityIdentifier>INSJF34_20070218</ActivityIdentifier>
+                <ActivityTypeCode>Field Msr/Obs</ActivityTypeCode>
+                <ActivityMediaName>Water</ActivityMediaName>
+                <ActivityStartDate>2007-02-18</ActivityStartDate>
+                <ActivityStartTime>
+                    <Time>21:20:00</Time>
+                    <TimeZoneCode>EST</TimeZoneCode>
+                </ActivityStartTime>
+                <ProjectIdentifier>CEAP</ProjectIdentifier>
+                <MonitoringLocationIdentifier>INSJ-INSJF34</MonitoringLocationIdentifier>
+            </ActivityDescription>
+            <SampleDescription>
+                <SampleCollectionMethod>
+                    <MethodIdentifier>INSJ_FM1</MethodIdentifier>
+                    <MethodIdentifierContext>ARS Methods Catalog</MethodIdentifierContext>
+                    <MethodName>Stream Level Measurement</MethodName>
+                </SampleCollectionMethod>
+            </SampleDescription>
+            <Result>
+                <ResultDescription>
+                    <CharacteristicName>Nitrogen</CharacteristicName>
+                    <ResultMeasure>
+                        <ResultMeasureValue>2.702</ResultMeasureValue>
+                        <MeasureUnitCode>mg/L</MeasureUnitCode>
+                    </ResultMeasure>
+                    <ResultStatusIdentifier>Final</ResultStatusIdentifier>
+                    <ResultValueTypeName>Actual</ResultValueTypeName>
+                    <DataQuality>
+                        <PrecisionValue>None</PrecisionValue>
+                    </DataQuality>
+                </ResultDescription>
+                <ResultAnalyticalMethod>
+                    <MethodIdentifier>INSJ_WQ12</MethodIdentifier>
+                    <MethodIdentifierContext>ARS Methods Catalog</MethodIdentifierContext>
+                    <MethodName>Nitrate-nitrite Nitrogen in water by Automated Colorimetry (Hydrazine Reduction)</MethodName>
+                    <MethodDescriptionText>https://www.nrrig.mwa.ars.usda.gov/st40_javascript/methods.aspx?methodstring=INSJ_WQ12</MethodDescriptionText>
+                </ResultAnalyticalMethod>
+                <ResultLabInformation>
+                    <ResultDetectionQuantitationLimit>
+                        <DetectionQuantitationLimitTypeName>Instrument Detection Level</DetectionQuantitationLimitTypeName>
+                        <DetectionQuantitationLimitMeasure>
+                            <MeasureValue>None</MeasureValue>
+                            <MeasureUnitCode>None</MeasureUnitCode>
+                        </DetectionQuantitationLimitMeasure>
+                    </ResultDetectionQuantitationLimit>
+                </ResultLabInformation>
+            </Result>
+        </Activity>
+        <Activity>
+            <ActivityDescription>
+                <ActivityIdentifier>INSJF34_20070218</ActivityIdentifier>
+                <ActivityTypeCode>Field Msr/Obs</ActivityTypeCode>
+                <ActivityMediaName>Water</ActivityMediaName>
+                <ActivityStartDate>2007-02-18</ActivityStartDate>
+                <ActivityStartTime>
+                    <Time>21:20:00</Time>
+                    <TimeZoneCode>EST</TimeZoneCode>
+                </ActivityStartTime>
+                <ProjectIdentifier>CEAP</ProjectIdentifier>
+                <MonitoringLocationIdentifier>INSJ-INSJF34</MonitoringLocationIdentifier>
+            </ActivityDescription>
+            <SampleDescription>
+                <SampleCollectionMethod>
+                    <MethodIdentifier>INSJ_FM1</MethodIdentifier>
+                    <MethodIdentifierContext>ARS Methods Catalog</MethodIdentifierContext>
+                    <MethodName>Stream Level Measurement</MethodName>
+                </SampleCollectionMethod>
+            </SampleDescription>
+            <Result>
+                <ResultDescription>
+                    <CharacteristicName>Phosphorus</CharacteristicName>
+                    <ResultSampleFractionText>Total</ResultSampleFractionText>
+                    <ResultMeasure>
+                        <ResultMeasureValue>0.136</ResultMeasureValue>
+                        <MeasureUnitCode>mg/L</MeasureUnitCode>
+                    </ResultMeasure>
+                    <ResultStatusIdentifier>Final</ResultStatusIdentifier>
+                    <ResultValueTypeName>Actual</ResultValueTypeName>
+                    <DataQuality>
+                        <PrecisionValue>None</PrecisionValue>
+                    </DataQuality>
+                </ResultDescription>
+                <ResultAnalyticalMethod>
+                    <MethodIdentifier>INSJ_WQ14</MethodIdentifier>
+                    <MethodIdentifierContext>ARS Methods Catalog</MethodIdentifierContext>
+                    <MethodName>total phosphorus in water by Spectroscopy (Colorimetry; Photometry)</MethodName>
+                    <MethodDescriptionText>https://www.nrrig.mwa.ars.usda.gov/st40_javascript/methods.aspx?methodstring=INSJ_WQ14</MethodDescriptionText>
+                </ResultAnalyticalMethod>
+                <ResultLabInformation>
+                    <ResultDetectionQuantitationLimit>
+                        <DetectionQuantitationLimitTypeName>Instrument Detection Level</DetectionQuantitationLimitTypeName>
+                        <DetectionQuantitationLimitMeasure>
+                            <MeasureValue>None</MeasureValue>
+                            <MeasureUnitCode>None</MeasureUnitCode>
+                        </DetectionQuantitationLimitMeasure>
+                    </ResultDetectionQuantitationLimit>
+                </ResultLabInformation>
+            </Result>
+        </Activity>
+        <Activity>
+            <ActivityDescription>
+                <ActivityIdentifier>INSJF34_20070218</ActivityIdentifier>
+                <ActivityTypeCode>Field Msr/Obs</ActivityTypeCode>
+                <ActivityMediaName>Water</ActivityMediaName>
+                <ActivityStartDate>2007-02-18</ActivityStartDate>
+                <ActivityStartTime>
+                    <Time>21:20:00</Time>
+                    <TimeZoneCode>EST</TimeZoneCode>
+                </ActivityStartTime>
+                <ProjectIdentifier>CEAP</ProjectIdentifier>
+                <MonitoringLocationIdentifier>INSJ-INSJF34</MonitoringLocationIdentifier>
+            </ActivityDescription>
+            <SampleDescription>
+                <SampleCollectionMethod>
+                    <MethodIdentifier>INSJ_FM1</MethodIdentifier>
+                    <MethodIdentifierContext>ARS Methods Catalog</MethodIdentifierContext>
+                    <MethodName>Stream Level Measurement</MethodName>
+                </SampleCollectionMethod>
+            </SampleDescription>
+            <Result>
+                <ResultDescription>
+                    <CharacteristicName>Nitrogen Kjeldahl</CharacteristicName>
+                    <ResultMeasure>
+                        <ResultMeasureValue>0.730</ResultMeasureValue>
+                        <MeasureUnitCode>mg/L</MeasureUnitCode>
+                    </ResultMeasure>
+                    <ResultStatusIdentifier>Final</ResultStatusIdentifier>
+                    <ResultValueTypeName>Actual</ResultValueTypeName>
+                    <DataQuality>
+                        <PrecisionValue>None</PrecisionValue>
+                    </DataQuality>
+                </ResultDescription>
+                <ResultAnalyticalMethod>
+                    <MethodIdentifier>INSJ_WQ11</MethodIdentifier>
+                    <MethodIdentifierContext>ARS Methods Catalog</MethodIdentifierContext>
+                    <MethodName>Nitrate-nitrite Nitrogen in water by Automated Colorimetry</MethodName>
+                    <MethodDescriptionText>https://www.nrrig.mwa.ars.usda.gov/st40_javascript/methods.aspx?methodstring=INSJ_WQ11</MethodDescriptionText>
+                </ResultAnalyticalMethod>
+                <ResultLabInformation>
+                    <ResultDetectionQuantitationLimit>
+                        <DetectionQuantitationLimitTypeName>Instrument Detection Level</DetectionQuantitationLimitTypeName>
+                        <DetectionQuantitationLimitMeasure>
+                            <MeasureValue>None</MeasureValue>
+                            <MeasureUnitCode>None</MeasureUnitCode>
+                        </DetectionQuantitationLimitMeasure>
+                    </ResultDetectionQuantitationLimit>
+                </ResultLabInformation>
+            </Result>
+        </Activity>
+    </Organization>
+</WQX>

@@ -1,1 +1,5 @@
 /.project
+/target/
+/.attach_pid8354
+/.classpath
+/.settings/
