@@ -15,7 +15,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.io.Resource;
 
-import gov.acwi.wqp.etl.orgData.OrgDataTransformation;
+import gov.acwi.wqp.etl.orgData.TransformOrgData;
 
 @SpringBatchTest
 @SpringBootTest //(classes = {BatchConfiguration.class, OrgDataTransformation.class, DBTestConfig.class})

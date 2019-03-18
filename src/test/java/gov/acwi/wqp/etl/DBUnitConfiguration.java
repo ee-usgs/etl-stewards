@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import com.github.springtestdbunit.bean.DatabaseConfigBean;
 import com.github.springtestdbunit.bean.DatabaseDataSourceConnectionFactoryBean;
 
-@Configuration
+//@Configuration
 public class DBUnitConfiguration {
 
 	@Bean

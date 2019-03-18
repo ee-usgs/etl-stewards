@@ -71,24 +71,22 @@
                     <Time>10:50:00</Time>
                     <TimeZoneCode>EST</TimeZoneCode>
                 </ActivityStartTime>
-        <MeasureValue>
-        </MeasureValue>
-        <MeasureUnitCode/>
-        <ActivityDepthHeightMeasure/>
+                <MeasureValue>ActivityDescriptionMeasureValue</MeasureValue>
+                <MeasureUnitCode>ActivityDescriptionMeasureUnitCode</MeasureUnitCode>
+                <ActivityDepthHeightMeasure>ActivityDepthHeightMeasure</ActivityDepthHeightMeasure>
                 <ProjectIdentifier>CEAP</ProjectIdentifier>
                 <MonitoringLocationIdentifier>INSJ-INSJALG</MonitoringLocationIdentifier>
-                <ActivityCommentText/>
+                <ActivityCommentText>ActivityCommentText</ActivityCommentText>
             </ActivityDescription>
             <SampleDescription>
                 <SampleCollectionMethod>
                     <MethodIdentifier>INSJ_FM1</MethodIdentifier>
                     <MethodIdentifierContext>ARS Methods Catalog</MethodIdentifierContext>
                     <MethodName>Stream Level Measurement</MethodName>
-                    <MethodDescriptionText/>
+                    <MethodDescriptionText>SampleDescriptionMethodDescriptionText</MethodDescriptionText>
                 </SampleCollectionMethod>
-                <SampleCollectionEquipmentName/>
-                <SampleCollectionEquipmentCommentText>
-                </SampleCollectionEquipmentCommentText>
+                <SampleCollectionEquipmentName>SampleCollectionEquipmentName</SampleCollectionEquipmentName>
+                <SampleCollectionEquipmentCommentText>SampleCollectionEquipmentCommentText</SampleCollectionEquipmentCommentText>
             </SampleDescription>
             <Result>
                 <ResultDescription>
@@ -132,15 +130,22 @@
                     <Time>10:50:00</Time>
                     <TimeZoneCode>EST</TimeZoneCode>
                 </ActivityStartTime>
+                <MeasureValue>ActivityDescriptionMeasureValue</MeasureValue>
+                <MeasureUnitCode>ActivityDescriptionMeasureUnitCode</MeasureUnitCode>
+                <ActivityDepthHeightMeasure>ActivityDepthHeightMeasure</ActivityDepthHeightMeasure>
                 <ProjectIdentifier>CEAP</ProjectIdentifier>
                 <MonitoringLocationIdentifier>INSJ-INSJALG</MonitoringLocationIdentifier>
+                <ActivityCommentText>ActivityCommentText</ActivityCommentText>
             </ActivityDescription>
             <SampleDescription>
                 <SampleCollectionMethod>
                     <MethodIdentifier>INSJ_FM1</MethodIdentifier>
                     <MethodIdentifierContext>ARS Methods Catalog</MethodIdentifierContext>
                     <MethodName>Stream Level Measurement</MethodName>
+                    <MethodDescriptionText>SampleDescriptionMethodDescriptionText</MethodDescriptionText>
                 </SampleCollectionMethod>
+                <SampleCollectionEquipmentName>SampleCollectionEquipmentName</SampleCollectionEquipmentName>
+                <SampleCollectionEquipmentCommentText>SampleCollectionEquipmentCommentText</SampleCollectionEquipmentCommentText>
             </SampleDescription>
             <Result>
                 <ResultDescription>
@@ -182,15 +187,22 @@
                     <Time>10:50:00</Time>
                     <TimeZoneCode>EST</TimeZoneCode>
                 </ActivityStartTime>
+                <MeasureValue>ActivityDescriptionMeasureValue</MeasureValue>
+                <MeasureUnitCode>ActivityDescriptionMeasureUnitCode</MeasureUnitCode>
+                <ActivityDepthHeightMeasure>ActivityDepthHeightMeasure</ActivityDepthHeightMeasure>
                 <ProjectIdentifier>CEAP</ProjectIdentifier>
                 <MonitoringLocationIdentifier>INSJ-INSJALG</MonitoringLocationIdentifier>
+                <ActivityCommentText>ActivityCommentText</ActivityCommentText>
             </ActivityDescription>
             <SampleDescription>
                 <SampleCollectionMethod>
                     <MethodIdentifier>INSJ_FM1</MethodIdentifier>
                     <MethodIdentifierContext>ARS Methods Catalog</MethodIdentifierContext>
                     <MethodName>Stream Level Measurement</MethodName>
+                    <MethodDescriptionText>SampleDescriptionMethodDescriptionText</MethodDescriptionText>
                 </SampleCollectionMethod>
+                <SampleCollectionEquipmentName>SampleCollectionEquipmentName</SampleCollectionEquipmentName>
+                <SampleCollectionEquipmentCommentText>SampleCollectionEquipmentCommentText</SampleCollectionEquipmentCommentText>
             </SampleDescription>
             <Result>
                 <ResultDescription>
@@ -232,15 +244,22 @@
                     <Time>10:50:00</Time>
                     <TimeZoneCode>EST</TimeZoneCode>
                 </ActivityStartTime>
+                <MeasureValue>ActivityDescriptionMeasureValue</MeasureValue>
+                <MeasureUnitCode>ActivityDescriptionMeasureUnitCode</MeasureUnitCode>
+                <ActivityDepthHeightMeasure>ActivityDepthHeightMeasure</ActivityDepthHeightMeasure>
                 <ProjectIdentifier>CEAP</ProjectIdentifier>
                 <MonitoringLocationIdentifier>INSJ-INSJALG</MonitoringLocationIdentifier>
+                <ActivityCommentText>ActivityCommentText</ActivityCommentText>
             </ActivityDescription>
             <SampleDescription>
                 <SampleCollectionMethod>
                     <MethodIdentifier>INSJ_FM1</MethodIdentifier>
                     <MethodIdentifierContext>ARS Methods Catalog</MethodIdentifierContext>
                     <MethodName>Stream Level Measurement</MethodName>
+                    <MethodDescriptionText>SampleDescriptionMethodDescriptionText</MethodDescriptionText>
                 </SampleCollectionMethod>
+                <SampleCollectionEquipmentName>SampleCollectionEquipmentName</SampleCollectionEquipmentName>
+                <SampleCollectionEquipmentCommentText>SampleCollectionEquipmentCommentText</SampleCollectionEquipmentCommentText>
             </SampleDescription>
             <Result>
                 <ResultDescription>
@@ -283,15 +302,24 @@
                     <Time>09:40:00</Time>
                     <TimeZoneCode>EST</TimeZoneCode>
                 </ActivityStartTime>
+                <MeasureValue>
+                </MeasureValue>
+                <MeasureUnitCode/>
+                <ActivityDepthHeightMeasure/>
                 <ProjectIdentifier>CEAP</ProjectIdentifier>
                 <MonitoringLocationIdentifier>INSJ-INSJAXL</MonitoringLocationIdentifier>
+                <ActivityCommentText/>
             </ActivityDescription>
             <SampleDescription>
                 <SampleCollectionMethod>
                     <MethodIdentifier>INSJ_FM1</MethodIdentifier>
                     <MethodIdentifierContext>ARS Methods Catalog</MethodIdentifierContext>
                     <MethodName>Stream Level Measurement</MethodName>
+                    <MethodDescriptionText/>
                 </SampleCollectionMethod>
+                <SampleCollectionEquipmentName/>
+                <SampleCollectionEquipmentCommentText>
+                </SampleCollectionEquipmentCommentText>
             </SampleDescription>
             <Result>
                 <ResultDescription>
@@ -333,15 +361,24 @@
                     <Time>09:40:00</Time>
                     <TimeZoneCode>EST</TimeZoneCode>
                 </ActivityStartTime>
+                <MeasureValue>
+                </MeasureValue>
+                <MeasureUnitCode/>
+                <ActivityDepthHeightMeasure/>
                 <ProjectIdentifier>CEAP</ProjectIdentifier>
                 <MonitoringLocationIdentifier>INSJ-INSJAXL</MonitoringLocationIdentifier>
+                <ActivityCommentText/>
             </ActivityDescription>
             <SampleDescription>
                 <SampleCollectionMethod>
                     <MethodIdentifier>INSJ_FM1</MethodIdentifier>
                     <MethodIdentifierContext>ARS Methods Catalog</MethodIdentifierContext>
                     <MethodName>Stream Level Measurement</MethodName>
+                    <MethodDescriptionText/>
                 </SampleCollectionMethod>
+                <SampleCollectionEquipmentName/>
+                <SampleCollectionEquipmentCommentText>
+                </SampleCollectionEquipmentCommentText>
             </SampleDescription>
             <Result>
                 <ResultDescription>
@@ -383,15 +420,24 @@
                     <Time>09:40:00</Time>
                     <TimeZoneCode>EST</TimeZoneCode>
                 </ActivityStartTime>
+                <MeasureValue>
+                </MeasureValue>
+                <MeasureUnitCode/>
+                <ActivityDepthHeightMeasure/>
                 <ProjectIdentifier>CEAP</ProjectIdentifier>
                 <MonitoringLocationIdentifier>INSJ-INSJAXL</MonitoringLocationIdentifier>
+                <ActivityCommentText/>
             </ActivityDescription>
             <SampleDescription>
                 <SampleCollectionMethod>
                     <MethodIdentifier>INSJ_FM1</MethodIdentifier>
                     <MethodIdentifierContext>ARS Methods Catalog</MethodIdentifierContext>
                     <MethodName>Stream Level Measurement</MethodName>
+                    <MethodDescriptionText/>
                 </SampleCollectionMethod>
+                <SampleCollectionEquipmentName/>
+                <SampleCollectionEquipmentCommentText>
+                </SampleCollectionEquipmentCommentText>
             </SampleDescription>
             <Result>
                 <ResultDescription>
@@ -433,15 +479,24 @@
                     <Time>09:40:00</Time>
                     <TimeZoneCode>EST</TimeZoneCode>
                 </ActivityStartTime>
+                <MeasureValue>
+                </MeasureValue>
+                <MeasureUnitCode/>
+                <ActivityDepthHeightMeasure/>
                 <ProjectIdentifier>CEAP</ProjectIdentifier>
                 <MonitoringLocationIdentifier>INSJ-INSJAXL</MonitoringLocationIdentifier>
+                <ActivityCommentText/>
             </ActivityDescription>
             <SampleDescription>
                 <SampleCollectionMethod>
                     <MethodIdentifier>INSJ_FM1</MethodIdentifier>
                     <MethodIdentifierContext>ARS Methods Catalog</MethodIdentifierContext>
                     <MethodName>Stream Level Measurement</MethodName>
+                    <MethodDescriptionText/>
                 </SampleCollectionMethod>
+                <SampleCollectionEquipmentName/>
+                <SampleCollectionEquipmentCommentText>
+                </SampleCollectionEquipmentCommentText>
             </SampleDescription>
             <Result>
                 <ResultDescription>
@@ -483,15 +538,24 @@
                     <Time>09:40:00</Time>
                     <TimeZoneCode>EST</TimeZoneCode>
                 </ActivityStartTime>
+                <MeasureValue>
+                </MeasureValue>
+                <MeasureUnitCode/>
+                <ActivityDepthHeightMeasure/>
                 <ProjectIdentifier>CEAP</ProjectIdentifier>
                 <MonitoringLocationIdentifier>INSJ-INSJAXL</MonitoringLocationIdentifier>
+                <ActivityCommentText/>
             </ActivityDescription>
             <SampleDescription>
                 <SampleCollectionMethod>
                     <MethodIdentifier>INSJ_FM1</MethodIdentifier>
                     <MethodIdentifierContext>ARS Methods Catalog</MethodIdentifierContext>
                     <MethodName>Stream Level Measurement</MethodName>
+                    <MethodDescriptionText/>
                 </SampleCollectionMethod>
+                <SampleCollectionEquipmentName/>
+                <SampleCollectionEquipmentCommentText>
+                </SampleCollectionEquipmentCommentText>
             </SampleDescription>
             <Result>
                 <ResultDescription>

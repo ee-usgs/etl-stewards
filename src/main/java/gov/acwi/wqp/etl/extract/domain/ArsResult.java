@@ -2,16 +2,16 @@ package gov.acwi.wqp.etl.extract.domain;
 
 public class ArsResult {
 
-	private Integer dataSourceId;
-	private String dataSource;
 	private Integer stationId;
 	private String siteId;
 	private String organization;
 	private String organizationName;
-	private String siteType;
-	private String huc;
+	private String monitoringLocationName;
+	private String resolvedMonitoringLocationTypeName;
+	private String hucTwelveDigitCode;
 	private String governmentalUnitCode;
 	private String geom;
+	private String monitoringLocationIdentifier;
 	private Integer activityId;
 	private String activityIdentifier;
 	private String activityTypeCode;
@@ -24,8 +24,6 @@ public class ArsResult {
 	private String activityDepthHeightMeasure;
 	private String projectIdentifier;
 	private String projectName;
-	private String monitoringLocationIdentifier;
-	private String monitoringLocationName;
 	private String activityCommentText;
 	private String sampleCollectionMethodIdentifier;
 	private String sampleCollectionMethodIdentifierContext;
@@ -36,6 +34,7 @@ public class ArsResult {
 	private Integer resultId;
 	private String resultDetectionConditionText;
 	private String characteristicName;
+	private String characteristicType;
 	private String resultSampleFractionText;
 	private String resultMeasureValue;
 	private String resultMeasureUnitCode;
@@ -51,18 +50,6 @@ public class ArsResult {
 	private String detectionQuantitationLimitMeasureValue;
 	private String detectionQuantitationLimitMeasureUnitCode;
 
-	public Integer getDataSourceId() {
-		return dataSourceId;
-	}
-	public void setDataSourceId(Integer dataSourceId) {
-		this.dataSourceId = dataSourceId;
-	}
-	public String getDataSource() {
-		return dataSource;
-	}
-	public void setDataSource(String dataSource) {
-		this.dataSource = dataSource;
-	}
 	public Integer getStationId() {
 		return stationId;
 	}
@@ -87,17 +74,23 @@ public class ArsResult {
 	public void setOrganizationName(String organizationName) {
 		this.organizationName = organizationName;
 	}
-	public String getSiteType() {
-		return siteType;
+	public String getMonitoringLocationName() {
+		return monitoringLocationName;
 	}
-	public void setSiteType(String siteType) {
-		this.siteType = siteType;
+	public void setMonitoringLocationName(String monitoringLocationName) {
+		this.monitoringLocationName = monitoringLocationName;
 	}
-	public String getHuc() {
-		return huc;
+	public String getResolvedMonitoringLocationTypeName() {
+		return resolvedMonitoringLocationTypeName;
 	}
-	public void setHuc(String huc) {
-		this.huc = huc;
+	public void setResolvedMonitoringLocationTypeName(String resolvedMonitoringLocationTypeName) {
+		this.resolvedMonitoringLocationTypeName = resolvedMonitoringLocationTypeName;
+	}
+	public String getHucTwelveDigitCode() {
+		return hucTwelveDigitCode;
+	}
+	public void setHucTwelveDigitCode(String hucTwelveDigitCode) {
+		this.hucTwelveDigitCode = hucTwelveDigitCode;
 	}
 	public String getGovernmentalUnitCode() {
 		return governmentalUnitCode;
@@ -110,6 +103,12 @@ public class ArsResult {
 	}
 	public void setGeom(String geom) {
 		this.geom = geom;
+	}
+	public String getMonitoringLocationIdentifier() {
+		return monitoringLocationIdentifier;
+	}
+	public void setMonitoringLocationIdentifier(String monitoringLocationIdentifier) {
+		this.monitoringLocationIdentifier = monitoringLocationIdentifier;
 	}
 	public Integer getActivityId() {
 		return activityId;
@@ -183,18 +182,6 @@ public class ArsResult {
 	public void setProjectName(String projectName) {
 		this.projectName = projectName;
 	}
-	public String getMonitoringLocationIdentifier() {
-		return monitoringLocationIdentifier;
-	}
-	public void setMonitoringLocationIdentifier(String monitoringLocationIdentifier) {
-		this.monitoringLocationIdentifier = monitoringLocationIdentifier;
-	}
-	public String getMonitoringLocationName() {
-		return monitoringLocationName;
-	}
-	public void setMonitoringLocationName(String monitoringLocationName) {
-		this.monitoringLocationName = monitoringLocationName;
-	}
 	public String getActivityCommentText() {
 		return activityCommentText;
 	}
@@ -254,6 +241,12 @@ public class ArsResult {
 	}
 	public void setCharacteristicName(String characteristicName) {
 		this.characteristicName = characteristicName;
+	}
+	public String getCharacteristicType() {
+		return characteristicType;
+	}
+	public void setCharacteristicType(String characteristicType) {
+		this.characteristicType = characteristicType;
 	}
 	public String getResultSampleFractionText() {
 		return resultSampleFractionText;

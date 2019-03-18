@@ -1,0 +1,1 @@
+select create_swap_table ('stewards', 'wqp', 'org_data');

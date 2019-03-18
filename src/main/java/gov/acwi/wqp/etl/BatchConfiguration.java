@@ -20,10 +20,6 @@ public class BatchConfiguration {
 	@Qualifier("arsExtractFlow")
 	private Flow arsExtractFlow;
 
-//	@Autowired
-//	@Qualifier("databaseSetupFlow")
-//	private Flow databaseSetupFlow;
-
 	@Autowired
 	@Qualifier("orgDataFlow")
 	private Flow orgDataFlow;
@@ -40,27 +36,47 @@ public class BatchConfiguration {
 	@Qualifier("activityFlow")
 	private Flow activityFlow;
 
+	@Autowired
+	@Qualifier("resultFlow")
+	private Flow resultFlow;
+
+	@Autowired
+	@Qualifier("resDetectQntLimitFlow")
+	private Flow resDetectQntLimitFlow;
+
+	@Autowired
+	@Qualifier("createSummariesFlow")
+	private Flow createSummariesFlow;
+
+	@Autowired
+	@Qualifier("createCodesFlow")
+	private Flow createCodesFlow;
+
+	@Autowired
+	@Qualifier("databaseFinalizeFlow")
+	private Flow databaseFinalizeFlow;
+
 	@Bean
 	public Job wqxEtl() {
 		return jobBuilderFactory.get("WQP_ARS_STEWARDS_ETL")
 //				.incrementer(jobIncrementer)
 				.start(arsExtractFlow)
-//				.start(databaseSetupFlow)
 				.next(orgDataFlow)
 				.next(projectDataFlow)
+//				.next(projectObjectFlow)
 				.next(monitoringLocationFlow)
 //				.next(biologicalHabitatMetricFlow)
 //				.next(monitoringLocationObjectFlow)
 				.next(activityFlow)
 //				.next(activityObjectFlow)
 //				.next(activityMetricFlow)
-//				.next(resultFlow)
+				.next(resultFlow)
 //				.next(resultObjectFlow)
-//				.next(resDetectQntLmtFlow)
+				.next(resDetectQntLimitFlow)
 //				.next(projectMlWeightingFlow)
-//				.next(createSummariesFlow)
-//				.next(createCodesFlow)
-//				.next(databaseFinalizeFlow)
+				.next(createSummariesFlow)
+				.next(createCodesFlow)
+				.next(databaseFinalizeFlow)
 				.build()
 				.build();
 	}
