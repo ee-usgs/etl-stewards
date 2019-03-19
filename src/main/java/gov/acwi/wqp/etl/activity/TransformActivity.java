@@ -73,7 +73,8 @@ public class TransformActivity {
 						+ "      join station_swap_stewards"
 						+ "        on ars_result.monitoring_location_identifier = substring(station_swap_stewards.site_id, 5)"
 						+ "      join project_data_swap_stewards"
-						+ "        on ars_result.project_identifier = project_data_swap_stewards.project_identifier) a")
+						+ "        on ars_result.project_identifier = project_data_swap_stewards.project_identifier"
+						+ "   order by ars_result.activity_identifier) a")
 				.rowMapper(new ArsResultActivityRowMapper())
 				.build();
 	}

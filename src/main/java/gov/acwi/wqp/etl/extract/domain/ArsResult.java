@@ -1,5 +1,7 @@
 package gov.acwi.wqp.etl.extract.domain;
 
+import org.postgis.PGgeometry;
+
 public class ArsResult {
 
 	private Integer stationId;
@@ -10,7 +12,7 @@ public class ArsResult {
 	private String resolvedMonitoringLocationTypeName;
 	private String hucTwelveDigitCode;
 	private String governmentalUnitCode;
-	private String geom;
+	private PGgeometry geom;
 	private String monitoringLocationIdentifier;
 	private Integer activityId;
 	private String activityIdentifier;
@@ -98,10 +100,10 @@ public class ArsResult {
 	public void setGovernmentalUnitCode(String governmentalUnitCode) {
 		this.governmentalUnitCode = governmentalUnitCode;
 	}
-	public String getGeom() {
+	public PGgeometry getGeom() {
 		return geom;
 	}
-	public void setGeom(String geom) {
+	public void setGeom(PGgeometry geom) {
 		this.geom = geom;
 	}
 	public String getMonitoringLocationIdentifier() {

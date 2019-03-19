@@ -7,7 +7,6 @@ import java.nio.charset.Charset;
 import java.sql.SQLException;
 
 import javax.annotation.PostConstruct;
-import javax.sql.DataSource;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -17,8 +16,6 @@ import org.springframework.batch.core.JobExecution;
 import org.springframework.batch.core.job.flow.Flow;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.EncodedResource;
 import org.springframework.jdbc.datasource.init.ScriptException;
 import org.springframework.jdbc.datasource.init.ScriptUtils;
@@ -36,12 +33,6 @@ public class TransformProjectDataIT extends BaseFlowIT {
 	@Autowired
 	@Qualifier("projectDataFlow")
 	private Flow projectDataFlow;
-	@Autowired
-	private DataSource dataSource;
-	@Value("classpath:db/test_db.sql")
-	private Resource resource;
-
-	private Job testJob;
 
 	@PostConstruct
 	public void beforeClass() throws ScriptException, SQLException {

@@ -29,7 +29,7 @@ public class ArsStationRowMapper implements RowMapper<ArsStation> {
 	public ArsStation mapRow(ResultSet rs, int rowNum) throws SQLException {
 		ArsStation station = new ArsStation();
 		station.setStationId(rs.getInt(STATION_ID_COLUMN_NAME));
-		station.setOrganization(rs.getNString(ArsOrganizationRowMapper.ORGANIZATION_COLUMN_NAME));
+		station.setOrganization(rs.getString(ArsOrganizationRowMapper.ORGANIZATION_COLUMN_NAME));
 		station.setOrganizationName(rs.getString(ArsOrganizationRowMapper.ORGANIZATION_NAME_COLUMN_NAME));
 		station.setMonitoringLocationIdentifier(rs.getString(MONITORING_LOCATION_IDENTIFIER_COLUMN_NAME));
 		station.setMonitoringLocationName(rs.getString(MONITORING_LOCATION_NAME_COLUMN_NAME));

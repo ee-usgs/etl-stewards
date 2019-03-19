@@ -3,6 +3,7 @@ package gov.acwi.wqp.etl.extract.domain;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.postgis.PGgeometry;
 import org.springframework.jdbc.core.RowMapper;
 
 public class ArsResultActivityRowMapper implements RowMapper<ArsResult> {
@@ -27,30 +28,30 @@ public class ArsResultActivityRowMapper implements RowMapper<ArsResult> {
 
 	@Override
 	public ArsResult mapRow(ResultSet rs, int rowNum) throws SQLException {
-		ArsResult result = new ArsResult();
-		result.setOrganization(rs.getString(ArsOrganizationRowMapper.ORGANIZATION_COLUMN_NAME));
-		result.setOrganizationName(rs.getString(ArsOrganizationRowMapper.ORGANIZATION_NAME_COLUMN_NAME));
-		result.setProjectIdentifier(rs.getString(ArsOrganizationRowMapper.PROJECT_IDENTIFIER_COLUMN_NAME));
-		result.setProjectName(rs.getString(ArsOrganizationRowMapper.PROJECT_NAME_COLUMN_NAME));
-		result.setStationId(rs.getInt(ArsStationRowMapper.STATION_ID_COLUMN_NAME));
-		result.setSiteId(rs.getString(SITE_ID_COLUMN_NAME));
-		result.setMonitoringLocationName(rs.getString(STATION_NAME_COLUMN_NAME));
-		result.setResolvedMonitoringLocationTypeName(rs.getString(SITE_TYPE_COLUMN_NAME));
-		result.setHucTwelveDigitCode(rs.getString(HUC_COLUMN_NAME));
-		result.setGovernmentalUnitCode(rs.getString(GOVERNMENTAL_UNIT_CODE_COLUMN_NAME));
-		result.setGeom(rs.getString(GEOM_COLUMN_NAME));
-		result.setActivityId(rs.getInt(ACTIVITY_ID_COLUMN_NAME));
-		result.setActivityIdentifier(rs.getString(ACTIVITY_IDENTIFIER_COLUMN_NAME));
-		result.setActivityTypeCode(rs.getString(ACTIVITY_TYPE_CODE_COLUMN_NAME));
-		result.setActivityMediaName(rs.getString(ACTIVITY_MEDIA_NAME_COLUMN_NAME));
-		result.setActivityStartDate(rs.getString(ACTIVITY_START_DATE_COLUMN_NAME));
-		result.setActivityStartTime(rs.getString(ACTIVITY_START_TIME_COLUMN_NAME));
-		result.setActivityStartTimeZoneCode(rs.getString(ACTIVITY_START_TIME_ZONE_CODE_COLUMN_NAME));
-		result.setSampleCollectionMethodIdentifier(rs.getString(SAMPLE_COLLECTION_METHOD_IDENTIFIER_COLUMN_NAME));
-		result.setSampleCollectionMethodIdentifierContext(rs.getString(SAMPLE_COLLECTION_METHOD_IDENTIFIER_CONTEXT_COLUMN_NAME));
-		result.setSampleCollectionMethodName(rs.getString(SAMPLE_COLLECTION_METHOD_NAME_COLUMN_NAME));
-		result.setSampleCollectionEquipmentName(rs.getString(SAMPLE_COLLECTION_EQUIPMENT_NAME_COLUMN_NAME));
-		return result;
+		ArsResult arsResult = new ArsResult();
+		arsResult.setOrganization(rs.getString(ArsOrganizationRowMapper.ORGANIZATION_COLUMN_NAME));
+		arsResult.setOrganizationName(rs.getString(ArsOrganizationRowMapper.ORGANIZATION_NAME_COLUMN_NAME));
+		arsResult.setProjectIdentifier(rs.getString(ArsOrganizationRowMapper.PROJECT_IDENTIFIER_COLUMN_NAME));
+		arsResult.setProjectName(rs.getString(ArsOrganizationRowMapper.PROJECT_NAME_COLUMN_NAME));
+		arsResult.setStationId(rs.getInt(ArsStationRowMapper.STATION_ID_COLUMN_NAME));
+		arsResult.setSiteId(rs.getString(SITE_ID_COLUMN_NAME));
+		arsResult.setMonitoringLocationName(rs.getString(STATION_NAME_COLUMN_NAME));
+		arsResult.setResolvedMonitoringLocationTypeName(rs.getString(SITE_TYPE_COLUMN_NAME));
+		arsResult.setHucTwelveDigitCode(rs.getString(HUC_COLUMN_NAME));
+		arsResult.setGovernmentalUnitCode(rs.getString(GOVERNMENTAL_UNIT_CODE_COLUMN_NAME));
+		arsResult.setGeom((PGgeometry) rs.getObject(GEOM_COLUMN_NAME));
+		arsResult.setActivityId(rs.getInt(ACTIVITY_ID_COLUMN_NAME));
+		arsResult.setActivityIdentifier(rs.getString(ACTIVITY_IDENTIFIER_COLUMN_NAME));
+		arsResult.setActivityTypeCode(rs.getString(ACTIVITY_TYPE_CODE_COLUMN_NAME));
+		arsResult.setActivityMediaName(rs.getString(ACTIVITY_MEDIA_NAME_COLUMN_NAME));
+		arsResult.setActivityStartDate(rs.getString(ACTIVITY_START_DATE_COLUMN_NAME));
+		arsResult.setActivityStartTime(rs.getString(ACTIVITY_START_TIME_COLUMN_NAME));
+		arsResult.setActivityStartTimeZoneCode(rs.getString(ACTIVITY_START_TIME_ZONE_CODE_COLUMN_NAME));
+		arsResult.setSampleCollectionMethodIdentifier(rs.getString(SAMPLE_COLLECTION_METHOD_IDENTIFIER_COLUMN_NAME));
+		arsResult.setSampleCollectionMethodIdentifierContext(rs.getString(SAMPLE_COLLECTION_METHOD_IDENTIFIER_CONTEXT_COLUMN_NAME));
+		arsResult.setSampleCollectionMethodName(rs.getString(SAMPLE_COLLECTION_METHOD_NAME_COLUMN_NAME));
+		arsResult.setSampleCollectionEquipmentName(rs.getString(SAMPLE_COLLECTION_EQUIPMENT_NAME_COLUMN_NAME));
+		return arsResult;
 	}
 
 }

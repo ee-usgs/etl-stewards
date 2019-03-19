@@ -7,54 +7,27 @@ import java.nio.charset.Charset;
 import java.sql.SQLException;
 
 import javax.annotation.PostConstruct;
-import javax.sql.DataSource;
 
+import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.batch.core.ExitStatus;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobExecution;
-import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.job.flow.Flow;
-import org.springframework.batch.test.JobLauncherTestUtils;
-import org.springframework.batch.test.StepScopeTestExecutionListener;
-import org.springframework.batch.test.context.SpringBatchTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.EncodedResource;
 import org.springframework.jdbc.datasource.init.ScriptException;
 import org.springframework.jdbc.datasource.init.ScriptUtils;
-import org.springframework.test.context.TestExecutionListeners;
-import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 
-import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.github.springtestdbunit.annotation.ExpectedDatabase;
 import com.github.springtestdbunit.assertion.DatabaseAssertionMode;
 
-@SpringBatchTest
-@SpringBootTest
-@RunWith(SpringRunner.class)
-@TestExecutionListeners({ DependencyInjectionTestExecutionListener.class,
-	StepScopeTestExecutionListener.class,
-	DbUnitTestExecutionListener.class
-	})
-@AutoConfigureTestDatabase(replace=Replace.AUTO_CONFIGURED)
-public class ArsResultPullIT {
-	@Autowired
-	private JobLauncherTestUtils jobLauncherTestUtils;
-	@Autowired
-	private DataSource dataSource;
-	@Value("classpath:db/test_db.sql")
-	private Resource resource;
-	@Autowired
-	private JobBuilderFactory jobBuilderFactory;
+import gov.acwi.wqp.etl.BaseFlowIT;
+
+public class ArsResultPullIT extends BaseFlowIT {
+
 	@Autowired
 	@Qualifier("arsResultPullFlow")
 	private Flow arsResultPullFlow;
@@ -65,12 +38,21 @@ public class ArsResultPullIT {
 		ScriptUtils.executeSqlScript(dataSource.getConnection(), encodedResource);
 	}
 
+	@Before
+	public void setup() {
+		testJob = jobBuilderFactory.get("arsResultPullFlowTest")
+				.start(arsResultPullFlow)
+				.build()
+				.build();
+		jobLauncherTestUtils.setJob(testJob);
+	}
+
 	@Test
 	@DatabaseSetup(value="classpath:/testData/ars/arsResultOld.xml")
 	@ExpectedDatabase(value="classpath:/testResult/ars/arsResultEmpty.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
 	public void truncateArsResultStepTest() {
 		try {
-			JobExecution jobExecution = jobLauncherTestUtils.launchStep("truncateArsResultStep");
+			JobExecution jobExecution = jobLauncherTestUtils.launchStep("truncateArsResultStep", testJobParameters);
 			assertEquals(ExitStatus.COMPLETED, jobExecution.getExitStatus());
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -82,7 +64,8 @@ public class ArsResultPullIT {
 	@ExpectedDatabase(value="classpath:/testResult/ars/arsResult.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
 	public void arsResultPullStepTest() {
 		try {
-			JobExecution jobExecution = jobLauncherTestUtils.launchStep("arsResultPullStep");
+			jdbcTemplate.execute("truncate table ars_result restart identity");
+			JobExecution jobExecution = jobLauncherTestUtils.launchStep("arsResultPullStep", testJobParameters);
 			assertEquals(ExitStatus.COMPLETED, jobExecution.getExitStatus());
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -100,7 +83,7 @@ public class ArsResultPullIT {
 					.build();
 		jobLauncherTestUtils.setJob(arsResultPullFlowTest);
 		try {
-			JobExecution jobExecution = jobLauncherTestUtils.launchJob();
+			JobExecution jobExecution = jobLauncherTestUtils.launchJob(testJobParameters);
 			assertEquals(ExitStatus.COMPLETED, jobExecution.getExitStatus());
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -53,21 +53,15 @@
             <artifactId>spring-oxm</artifactId>
         </dependency>
 
-<!--         <dependency> -->
-<!--             <groupId>org.postgresql</groupId> -->
-<!--             <artifactId>postgresql</artifactId> -->
-<!--         </dependency> -->
-<!--         <dependency> -->
-<!--             <groupId>net.postgis</groupId> -->
-<!--             <artifactId>postgis-jdbc</artifactId> -->
-<!--             <version>2.3.0</version> -->
-<!--         </dependency> -->
-
-<!--         <dependency> -->
-<!--             <groupId>net.postgis</groupId> -->
-<!--             <artifactId>postgis-jdbc</artifactId> -->
-<!--             <version>2.3.0</version> -->
-<!--         </dependency> -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>net.postgis</groupId>
+            <artifactId>postgis-jdbc</artifactId>
+            <version>2.3.0</version>
+        </dependency>
 
 <!--         <dependency> -->
 <!--             <groupId>javax.persistence</groupId> -->

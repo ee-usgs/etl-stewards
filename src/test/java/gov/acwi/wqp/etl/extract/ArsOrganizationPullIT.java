@@ -7,62 +7,27 @@ import java.nio.charset.Charset;
 import java.sql.SQLException;
 
 import javax.annotation.PostConstruct;
-import javax.sql.DataSource;
 
+import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.batch.core.ExitStatus;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobExecution;
-import org.springframework.batch.core.JobParameters;
-import org.springframework.batch.core.JobParametersBuilder;
-import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.job.flow.Flow;
-import org.springframework.batch.test.JobLauncherTestUtils;
-import org.springframework.batch.test.JobRepositoryTestUtils;
-import org.springframework.batch.test.StepScopeTestExecutionListener;
-import org.springframework.batch.test.context.SpringBatchTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Bean;
-import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.EncodedResource;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.init.ScriptException;
 import org.springframework.jdbc.datasource.init.ScriptUtils;
-import org.springframework.test.context.TestExecutionListeners;
-import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 
-import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.github.springtestdbunit.annotation.ExpectedDatabase;
 import com.github.springtestdbunit.assertion.DatabaseAssertionMode;
 
-@SpringBatchTest
-@SpringBootTest
-@RunWith(SpringRunner.class)
-@TestExecutionListeners({ DependencyInjectionTestExecutionListener.class,
-	StepScopeTestExecutionListener.class,
-	DbUnitTestExecutionListener.class
-	})
-@AutoConfigureTestDatabase(replace=Replace.AUTO_CONFIGURED)
-//@DbUnitConfiguration //(dataSetLoader=ColumnSensingFlatXMLDataSetLoader.class)
-public class ArsOrganizationPullIT {
-	@Autowired
-	protected JobLauncherTestUtils jobLauncherTestUtils;
-	@Autowired
-	protected JobRepositoryTestUtils jobRepositoryTestUtils;
-	@Autowired
-	private DataSource dataSource;
-	@Value("classpath:db/test_db.sql")
-	private Resource resource;
-	@Autowired
-	private JobBuilderFactory jobBuilderFactory;
+import gov.acwi.wqp.etl.BaseFlowIT;
+
+public class ArsOrganizationPullIT extends BaseFlowIT {
+
 	@Autowired
 	@Qualifier("arsOrganizationPullFlow")
 	private Flow arsOrganizationPullFlow;
@@ -73,12 +38,21 @@ public class ArsOrganizationPullIT {
 		ScriptUtils.executeSqlScript(dataSource.getConnection(), encodedResource);
 	}
 
+	@Before
+	public void setup() {
+		testJob = jobBuilderFactory.get("arsOrganizationPullFlowest")
+				.start(arsOrganizationPullFlow)
+				.build()
+				.build();
+		jobLauncherTestUtils.setJob(testJob);
+	}
+
 	@Test
 	@DatabaseSetup(value="classpath:/testData/ars/arsOrgProjectOld.xml")
 	@ExpectedDatabase(value="classpath:/testResult/ars/arsOrgProjectEmpty.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
 	public void truncateArsOrgProjectStepTest() {
 		try {
-			JobExecution jobExecution = jobLauncherTestUtils.launchStep("truncateArsOrgProjectStep");
+			JobExecution jobExecution = jobLauncherTestUtils.launchStep("truncateArsOrgProjectStep", testJobParameters);
 			assertEquals(ExitStatus.COMPLETED, jobExecution.getExitStatus());
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -90,7 +64,8 @@ public class ArsOrganizationPullIT {
 	@ExpectedDatabase(value="classpath:/testResult/ars/arsOrgProject.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
 	public void arsOrganizationPullStepTest() {
 		try {
-			JobExecution jobExecution = jobLauncherTestUtils.launchStep("arsOrganizationPullStep");
+			jdbcTemplate.execute("truncate table ars_org_project");
+			JobExecution jobExecution = jobLauncherTestUtils.launchStep("arsOrganizationPullStep", testJobParameters);
 			assertEquals(ExitStatus.COMPLETED, jobExecution.getExitStatus());
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -108,7 +83,7 @@ public class ArsOrganizationPullIT {
 					.build();
 		jobLauncherTestUtils.setJob(arsOrganizationPullFlowTest);
 		try {
-			JobExecution jobExecution = jobLauncherTestUtils.launchJob();
+			JobExecution jobExecution = jobLauncherTestUtils.launchJob(testJobParameters);
 			assertEquals(ExitStatus.COMPLETED, jobExecution.getExitStatus());
 		} catch (Exception e) {
 			e.printStackTrace();

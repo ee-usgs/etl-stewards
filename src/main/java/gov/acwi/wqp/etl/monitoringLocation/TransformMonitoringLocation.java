@@ -63,7 +63,7 @@ public class TransformMonitoringLocation {
 					+ " nat_aqfr_name, aqfr_name, aqfr_type_name, construction_date, well_depth_value, well_depth_unit,"
 					+ " hole_depth_value, hole_depth_unit)"
 				+ " values (:dataSourceId, :dataSource, :stationId, :siteId, :organization, :siteType, :huc, :governmentalUnitCode,"
-					+ " :geom, :stationName, :organizationName, :descriptionText, :stationTypeName, :latitude, :longitude, :mapScale,"
+					+ " :geom::geometry, :stationName, :organizationName, :descriptionText, :stationTypeName, :latitude, :longitude, :mapScale,"
 					+ " :geopositioningMethod, :hdatumIdCode, :elevationValue, :elevationUnit, :elevationMethod, :vdatumIdCode,"
 					+ " :drainAreaValue, :drainAreaUnit, :contribDrainAreaValue, :contribDrainAreaUnit,"
 					+ " :geopositionAccyValue, :geopositionAccyUnit, :verticalAccuracyValue, :verticalAccuracyUnit,"
