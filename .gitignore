@@ -4,4 +4,5 @@
 /.classpath
 /.settings/
 /application.yml
-/.attach_pid48734
+/.attach_pid*
+/bin/

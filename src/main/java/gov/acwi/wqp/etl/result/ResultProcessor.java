@@ -13,8 +13,6 @@ import gov.acwi.wqp.etl.result.Result;
 public class ResultProcessor implements ItemProcessor<ArsResult, Result>{
 	private static final Logger LOG = LoggerFactory.getLogger(ResultProcessor.class);
 
-	public static final int DEFAULT_SRID = 4269;
-
 	@Override
 	public Result process(ArsResult arsResult) throws Exception {
 		Result result = new Result();

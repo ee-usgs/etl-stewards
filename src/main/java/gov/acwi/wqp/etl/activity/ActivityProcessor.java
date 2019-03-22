@@ -13,8 +13,6 @@ import gov.acwi.wqp.etl.extract.domain.ArsResult;
 public class ActivityProcessor implements ItemProcessor<ArsResult, Activity>{
 	private static final Logger LOG = LoggerFactory.getLogger(ActivityProcessor.class);
 
-	public static final int DEFAULT_SRID = 4269;
-
 	@Override
 	public Activity process(ArsResult item) throws Exception {
 		Activity activity = new Activity();
