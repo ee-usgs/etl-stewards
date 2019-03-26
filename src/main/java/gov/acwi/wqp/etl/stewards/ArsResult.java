@@ -1,4 +1,4 @@
-package gov.acwi.wqp.etl.extract.domain;
+package gov.acwi.wqp.etl.stewards;
 
 import org.postgis.PGgeometry;
 

@@ -8,7 +8,7 @@ import org.springframework.batch.item.ItemProcessor;
 
 import gov.acwi.wqp.etl.Application;
 import gov.acwi.wqp.etl.activity.Activity;
-import gov.acwi.wqp.etl.extract.domain.ArsResult;
+import gov.acwi.wqp.etl.stewards.ArsResult;
 
 public class ActivityProcessor implements ItemProcessor<ArsResult, Activity>{
 	private static final Logger LOG = LoggerFactory.getLogger(ActivityProcessor.class);

@@ -1,7 +1,9 @@
-package gov.acwi.wqp.etl.extract.domain;
+package gov.acwi.wqp.etl.stewards;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.batch.item.ItemProcessor;
+
+import gov.acwi.wqp.etl.extract.domain.WqxMonitoringLocation;
 
 public class ArsStationProcessor implements ItemProcessor<WqxMonitoringLocation, ArsStation>{
 

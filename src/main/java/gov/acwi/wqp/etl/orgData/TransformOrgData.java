@@ -18,8 +18,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import gov.acwi.wqp.etl.extract.domain.ArsOrganization;
-import gov.acwi.wqp.etl.extract.domain.ArsOrganizationRowMapper;
+import gov.acwi.wqp.etl.stewards.ArsOrganization;
+import gov.acwi.wqp.etl.stewards.ArsOrganizationRowMapper;
 
 
 @Configuration

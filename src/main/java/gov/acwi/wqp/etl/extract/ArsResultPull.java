@@ -21,8 +21,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.Resource;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 
-import gov.acwi.wqp.etl.extract.domain.ArsResult;
-import gov.acwi.wqp.etl.extract.domain.ArsResultProcessor;
 import gov.acwi.wqp.etl.extract.domain.WqxActivity;
 import gov.acwi.wqp.etl.extract.domain.WqxActivityDescription;
 import gov.acwi.wqp.etl.extract.domain.WqxCollectionMethod;
@@ -36,6 +34,8 @@ import gov.acwi.wqp.etl.extract.domain.WqxResultLabInformation;
 import gov.acwi.wqp.etl.extract.domain.WqxResultMeasure;
 import gov.acwi.wqp.etl.extract.domain.WqxSampleDescription;
 import gov.acwi.wqp.etl.extract.domain.WqxTime;
+import gov.acwi.wqp.etl.stewards.ArsResult;
+import gov.acwi.wqp.etl.stewards.ArsResultProcessor;
 
 
 @Configuration

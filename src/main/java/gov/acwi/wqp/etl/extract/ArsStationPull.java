@@ -21,12 +21,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.Resource;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 
-import gov.acwi.wqp.etl.extract.domain.ArsStation;
-import gov.acwi.wqp.etl.extract.domain.ArsStationProcessor;
 import gov.acwi.wqp.etl.extract.domain.WqxDrainageAreaMeasure;
 import gov.acwi.wqp.etl.extract.domain.WqxMonitoringLocation;
 import gov.acwi.wqp.etl.extract.domain.WqxMonitoringLocationGeospatial;
 import gov.acwi.wqp.etl.extract.domain.WqxMonitoringLocationIdentity;
+import gov.acwi.wqp.etl.stewards.ArsStation;
+import gov.acwi.wqp.etl.stewards.ArsStationProcessor;
 
 
 @Configuration

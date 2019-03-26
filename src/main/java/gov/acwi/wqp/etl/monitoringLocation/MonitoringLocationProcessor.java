@@ -6,7 +6,7 @@ import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.batch.item.ItemProcessor;
 
 import gov.acwi.wqp.etl.Application;
-import gov.acwi.wqp.etl.extract.domain.ArsStation;
+import gov.acwi.wqp.etl.stewards.ArsStation;
 
 public class MonitoringLocationProcessor implements ItemProcessor<ArsStation, MonitoringLocation>{
 

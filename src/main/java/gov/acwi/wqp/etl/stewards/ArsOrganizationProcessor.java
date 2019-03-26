@@ -1,6 +1,8 @@
-package gov.acwi.wqp.etl.extract.domain;
+package gov.acwi.wqp.etl.stewards;
 
 import org.springframework.batch.item.ItemProcessor;
+
+import gov.acwi.wqp.etl.extract.domain.WqxOrganization;
 
 public class ArsOrganizationProcessor implements ItemProcessor<WqxOrganization, ArsOrganization>{
 

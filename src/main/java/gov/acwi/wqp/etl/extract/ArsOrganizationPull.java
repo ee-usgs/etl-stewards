@@ -20,11 +20,11 @@ import org.springframework.core.io.Resource;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.springframework.stereotype.Component;
 
-import gov.acwi.wqp.etl.extract.domain.ArsOrganization;
-import gov.acwi.wqp.etl.extract.domain.ArsOrganizationProcessor;
 import gov.acwi.wqp.etl.extract.domain.WqxOrganization;
 import gov.acwi.wqp.etl.extract.domain.WqxOrganizationDescription;
 import gov.acwi.wqp.etl.extract.domain.WqxProject;
+import gov.acwi.wqp.etl.stewards.ArsOrganization;
+import gov.acwi.wqp.etl.stewards.ArsOrganizationProcessor;
 
 @Component
 public class ArsOrganizationPull {

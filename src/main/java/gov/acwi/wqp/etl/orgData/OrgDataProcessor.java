@@ -3,8 +3,8 @@ package gov.acwi.wqp.etl.orgData;
 import org.springframework.batch.item.ItemProcessor;
 
 import gov.acwi.wqp.etl.Application;
-import gov.acwi.wqp.etl.extract.domain.ArsOrganization;
 import gov.acwi.wqp.etl.orgData.OrgData;
+import gov.acwi.wqp.etl.stewards.ArsOrganization;
 
 public class OrgDataProcessor implements ItemProcessor<ArsOrganization, OrgData>{
 

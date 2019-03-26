@@ -1,4 +1,6 @@
-package gov.acwi.wqp.etl.extract.domain;
+package gov.acwi.wqp.etl.stewards;
+
+import gov.acwi.wqp.etl.extract.domain.WqxOrganization;
 
 public class ArsOrganization {
 
