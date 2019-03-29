@@ -1,5 +1,7 @@
 # etl\-stewards
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/92fd891cf75846cda0a5a817e2d7ebc7)](https://app.codacy.com/app/usgs_wma_dev/etl-stewards?utm_source=github.com&utm_medium=referral&utm_content=NWQMC/etl-stewards&utm_campaign=Badge_Grade_Settings)
+
 ETL Water Quality Data from the ARS Stewards (USDA) System
 
 This ETL is unique in that the source data is in XML.
