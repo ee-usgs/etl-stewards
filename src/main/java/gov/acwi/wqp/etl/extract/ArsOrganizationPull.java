@@ -33,7 +33,8 @@ public class ArsOrganizationPull {
 	private StepBuilderFactory stepBuilderFactory;
 
 	@Autowired
-	private DataSource dataSource;
+	@Qualifier("dataSourceArs")
+	private DataSource dataSourceArs;
 
 	@Value("classpath:testData/xml/wqxOrganization.xml")
 	private Resource resource;
@@ -63,7 +64,7 @@ public class ArsOrganizationPull {
 	@Bean
 	public ItemWriter<ArsOrganization> arsOrganizationWriter() {
 		JdbcBatchItemWriter<ArsOrganization> itemWriter = new JdbcBatchItemWriter<ArsOrganization>();
-		itemWriter.setDataSource(dataSource);
+		itemWriter.setDataSource(dataSourceArs);
 		itemWriter.setSql("insert "
 				+ " into ars_org_project (organization, organization_name, project_identifier, project_name, project_description_text)"
 				+ " values (:organizationIdentifier, :organizationName, :projectIdentifier, :projectName, :projectDescriptionText)");

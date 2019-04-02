@@ -24,11 +24,11 @@ import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.github.springtestdbunit.annotation.ExpectedDatabase;
 import com.github.springtestdbunit.assertion.DatabaseAssertionMode;
 
-import gov.acwi.wqp.etl.BaseFlowIT;
+import gov.acwi.wqp.etl.BaseArsFlowIT;
 import gov.acwi.wqp.etl.projectData.index.BuildProjectDataIndexesFlowIT;
 import gov.acwi.wqp.etl.projectData.table.SetupProjectDataSwapTableFlowIT;
 
-public class TransformProjectDataIT extends BaseFlowIT {
+public class TransformProjectDataIT extends BaseArsFlowIT {
 
 	@Autowired
 	@Qualifier("projectDataFlow")
@@ -51,18 +51,31 @@ public class TransformProjectDataIT extends BaseFlowIT {
 	}
 
 	@Test
-	@DatabaseSetup(value="classpath:/testResult/wqp/projectData/empty.xml")
-	@DatabaseSetup(value="classpath:/testData/wqp/projectData/projectDataOld.xml")
-	@DatabaseSetup(value="classpath:/testResult/ars/arsOrgProject.xml")
-	@ExpectedDatabase(value="classpath:/testResult/wqp/projectData/indexes/all.xml",
+	@DatabaseSetup(value="classpath:/testResult/stewards/projectData/empty.xml")
+	@DatabaseSetup(connection="ars", value="classpath:/testResult/ars/orgProject.xml")
+	@ExpectedDatabase(value="classpath:/testResult/stewards/projectData/projectData.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
+	public void transformProjectDataStepTest() {
+		try {
+			JobExecution jobExecution = jobLauncherTestUtils.launchStep("transformProjectDataStep", testJobParameters);
+			assertEquals(ExitStatus.COMPLETED, jobExecution.getExitStatus());
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail(e.getLocalizedMessage());
+		}
+	}
+
+	@Test
+	@DatabaseSetup(value="classpath:/testData/stewards/projectData/projectDataOld.xml")
+	@DatabaseSetup(connection="ars", value="classpath:/testResult/ars/orgProject.xml")
+	@ExpectedDatabase(value="classpath:/testResult/stewards/projectData/indexes/all.xml",
 			assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED,
 			table=BuildProjectDataIndexesFlowIT.EXPECTED_DATABASE_TABLE,
 			query=BuildProjectDataIndexesFlowIT.EXPECTED_DATABASE_QUERY)
-	@ExpectedDatabase(connection="pg", value="classpath:/testResult/wqp/projectData/create.xml",
+	@ExpectedDatabase(connection="pg", value="classpath:/testResult/stewards/projectData/create.xml",
 			assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED,
 			table=SetupProjectDataSwapTableFlowIT.EXPECTED_DATABASE_TABLE,
 			query=SetupProjectDataSwapTableFlowIT.EXPECTED_DATABASE_QUERY)
-	@ExpectedDatabase(value="classpath:/testResult/wqp/projectData/projectData.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
+	@ExpectedDatabase(value="classpath:/testResult/stewards/projectData/projectData.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
 	public void projectDataFlowTest() {
 		Job projectDataFlowTest = jobBuilderFactory.get("projectDataFlowTest")
 					.start(projectDataFlow)

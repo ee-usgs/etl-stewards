@@ -16,8 +16,8 @@ public class ArsExtract {
 	private Flow arsOrganizationPullFlow;
 
 	@Autowired
-	@Qualifier("arsStationPullFlow")
-	private Flow arsStationPullFlow;
+	@Qualifier("arsMonitoringLocationPullFlow")
+	private Flow arsMonitoringLocationPullFlow;
 
 	@Autowired
 	@Qualifier("arsResultPullFlow")
@@ -27,7 +27,7 @@ public class ArsExtract {
 	public Flow arsExtractFlow() {
 		return new FlowBuilder<SimpleFlow>("arsExtractFlow")
 				.start(arsOrganizationPullFlow)
-				.next(arsStationPullFlow)
+				.next(arsMonitoringLocationPullFlow)
 				.next(arsResultPullFlow)
 				.build();
 	}

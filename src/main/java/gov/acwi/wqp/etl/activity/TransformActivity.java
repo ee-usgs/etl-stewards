@@ -29,7 +29,12 @@ public class TransformActivity {
 	private StepBuilderFactory stepBuilderFactory;
 
 	@Autowired
-	private DataSource dataSource;
+	@Qualifier("dataSourceWqp")
+	private DataSource dataSourceWqp;
+
+	@Autowired
+	@Qualifier("dataSourceArs")
+	private DataSource dataSourceArs;
 
 	@Autowired
 	@Qualifier("setupActivitySwapTableFlow")
@@ -42,23 +47,23 @@ public class TransformActivity {
 	@Bean
 	public JdbcCursorItemReader<ArsResult> activityReader() {
 		return new JdbcCursorItemReaderBuilder<ArsResult>()
-				.dataSource(this.dataSource)
+				.dataSource(dataSourceArs)
 				.name("organizationReader")
 				//TODo cleanup for PostgreSQL
 				.sql("select row_number() over () activity_id, a.* from (select distinct "
-						+ "  ars_result.activity_start_date,"
-						+ "  ars_result.activity_identifier,"
-						+ "  ars_result.activity_media_name,"
-						+ "  ars_result.activity_type_code,"
-						+ "  ars_result.activity_start_time,"
-						+ "  ars_result.activity_start_time_zone_code,"
-						+ "  ars_result.project_identifier,"
-						+ "  ars_result.sample_collection_method_identifier,"
-						+ "  ars_result.sample_collection_method_identifier_context,"
-						+ "  ars_result.sample_collection_method_name,"
-						+ "  ars_result.sample_collection_method_description_text,"
-						+ "  ars_result.sample_collection_equipment_name,"
-						+ "  ars_result.sample_collection_equipment_comment_text,"
+						+ "  result.activity_start_date,"
+						+ "  result.activity_identifier,"
+						+ "  result.activity_media_name,"
+						+ "  result.activity_type_code,"
+						+ "  result.activity_start_time,"
+						+ "  result.activity_start_time_zone_code,"
+						+ "  result.project_identifier,"
+						+ "  result.sample_collection_method_identifier,"
+						+ "  result.sample_collection_method_identifier_context,"
+						+ "  result.sample_collection_method_name,"
+						+ "  result.sample_collection_method_description_text,"
+						+ "  result.sample_collection_equipment_name,"
+						+ "  result.sample_collection_equipment_comment_text,"
 						+ "  station_swap_stewards.station_id,"
 						+ "  station_swap_stewards.site_id,"
 						+ "  station_swap_stewards.organization,"
@@ -69,12 +74,12 @@ public class TransformActivity {
 						+ "  station_swap_stewards.geom,"
 						+ "  station_swap_stewards.station_name,"
 						+ "  project_data_swap_stewards.project_name"
-						+ " from ars_result"
+						+ " from result"
 						+ "      join station_swap_stewards"
-						+ "        on ars_result.monitoring_location_identifier = substring(station_swap_stewards.site_id, 5)"
+						+ "        on result.monitoring_location_identifier = substring(station_swap_stewards.site_id, 5)"
 						+ "      join project_data_swap_stewards"
-						+ "        on ars_result.project_identifier = project_data_swap_stewards.project_identifier"
-						+ "   order by ars_result.activity_identifier) a")
+						+ "        on result.project_identifier = project_data_swap_stewards.project_identifier"
+						+ "   order by result.activity_identifier) a")
 				.rowMapper(new ArsResultActivityRowMapper())
 				.build();
 	}
@@ -82,7 +87,7 @@ public class TransformActivity {
 	@Bean
 	public ItemWriter<Activity> activityWriter() {
 		JdbcBatchItemWriter<Activity> itemWriter = new JdbcBatchItemWriter<Activity>();
-		itemWriter.setDataSource(dataSource);
+		itemWriter.setDataSource(dataSourceWqp);
 		itemWriter.setSql("insert "
 				+ " into activity_swap_stewards (data_source_id, data_source, station_id, site_id, event_date, activity," + 
 				"                                sample_media, organization, site_type, huc, governmental_unit_code, geom," + 

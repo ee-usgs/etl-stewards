@@ -3,10 +3,22 @@ spring:
     job:
       enabled: false
     initialize-schema: always
-#  datasource:
-#    driverClassName: oracle.jdbc.OracleDriver
-#    url: jdbc:oracle:thin:@152.61.236.135:1521:devnolog
-#    username: wqp_core
-#    password: ***REMOVED***
+  datasource-wqp:
+    url: jdbc:postgresql://${WQP_DATABASE_ADDRESS}:${WQP_DATABASE_PORT}/${WQP_DATABASE_NAME}
+    username: ${WQP_SCHEMA_OWNER_USERNAME}
+    password: ${WQP_SCHEMA_OWNER_PASSWORD}
+    hikari:
+      maximumPoolSize: 10
+    initialization-mode: always
+  datasource-ars:
+      url: jdbc:postgresql://${ARS_DATABASE_ADDRESS}:${ARS_DATABASE_PORT}/${ARS_DATABASE_NAME}
+      username: ${ARS_OWNER_USERNAME}
+      password: ${ARS_OWNER_PASSWORD}
+      hikari:
+        maximumPoolSize: 10
 
-#logging.level.root: TRACE
+  liquibase:
+    change-log: classpath:/db/changelog/db.changelog-ars.yaml
+    parameters:
+      WQP_SCHEMA_NAME: ${WQP_SCHEMA_NAME}
+      ARS_OWNER_USERNAME: ${ARS_OWNER_USERNAME}

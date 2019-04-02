@@ -23,11 +23,11 @@ import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.github.springtestdbunit.annotation.ExpectedDatabase;
 import com.github.springtestdbunit.assertion.DatabaseAssertionMode;
 
-import gov.acwi.wqp.etl.BaseFlowIT;
+import gov.acwi.wqp.etl.BaseArsFlowIT;
 import gov.acwi.wqp.etl.orgData.index.BuildOrgDataIndexesFlowIT;
 import gov.acwi.wqp.etl.orgData.table.SetupOrgDataSwapTableFlowIT;
 
-public class TransformOrgDataIT extends BaseFlowIT {
+public class TransformOrgDataIT extends BaseArsFlowIT {
 
 	@Autowired
 	@Qualifier("orgDataFlow")
@@ -49,9 +49,9 @@ public class TransformOrgDataIT extends BaseFlowIT {
 	}
 
 	@Test
-	@DatabaseSetup(value="classpath:/testResult/wqp/orgData/empty.xml")
-	@DatabaseSetup(value="classpath:/testResult/ars/arsOrgProject.xml")
-	@ExpectedDatabase(value="classpath:/testResult/wqp/orgData/orgData.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
+	@DatabaseSetup(value="classpath:/testResult/stewards/orgData/empty.xml")
+	@DatabaseSetup(connection="ars", value="classpath:/testResult/ars/orgProject.xml")
+	@ExpectedDatabase(value="classpath:/testResult/stewards/orgData/orgData.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
 	public void transformOrgDataStepTest() {
 		try {
 			JobExecution jobExecution = jobLauncherTestUtils.launchStep("transformOrgDataStep", testJobParameters);
@@ -63,18 +63,18 @@ public class TransformOrgDataIT extends BaseFlowIT {
 	}
 
 	@Test
-	@DatabaseSetup(value="classpath:/testResult/wqp/orgData/empty.xml")
-	@DatabaseSetup(value="classpath:/testData/wqp/orgData/orgDataOld.xml")
-	@DatabaseSetup(value="classpath:/testResult/ars/arsOrgProject.xml")
-	@ExpectedDatabase(value="classpath:/testResult/wqp/orgData/indexes/all.xml",
+	@DatabaseSetup(value="classpath:/testResult/stewards/orgData/empty.xml")
+	@DatabaseSetup(value="classpath:/testData/stewards/orgData/orgDataOld.xml")
+	@DatabaseSetup(connection="ars", value="classpath:/testResult/ars/orgProject.xml")
+	@ExpectedDatabase(value="classpath:/testResult/stewards/orgData/indexes/all.xml",
 			assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED,
 			table=BuildOrgDataIndexesFlowIT.EXPECTED_DATABASE_TABLE,
 			query=BuildOrgDataIndexesFlowIT.EXPECTED_DATABASE_QUERY)
-	@ExpectedDatabase(connection="pg", value="classpath:/testResult/wqp/orgData/create.xml",
+	@ExpectedDatabase(connection="pg", value="classpath:/testResult/stewards/orgData/create.xml",
 			assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED,
 			table=SetupOrgDataSwapTableFlowIT.EXPECTED_DATABASE_TABLE,
 			query=SetupOrgDataSwapTableFlowIT.EXPECTED_DATABASE_QUERY)
-	@ExpectedDatabase(value="classpath:/testResult/wqp/orgData/orgData.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
+	@ExpectedDatabase(value="classpath:/testResult/stewards/orgData/orgData.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
 	public void orgDataFlowTest() {
 		try {
 			JobExecution jobExecution = jobLauncherTestUtils.launchJob(testJobParameters);

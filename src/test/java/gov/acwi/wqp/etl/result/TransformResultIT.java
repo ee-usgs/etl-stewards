@@ -24,11 +24,11 @@ import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.github.springtestdbunit.annotation.ExpectedDatabase;
 import com.github.springtestdbunit.assertion.DatabaseAssertionMode;
 
-import gov.acwi.wqp.etl.BaseFlowIT;
+import gov.acwi.wqp.etl.BaseArsFlowIT;
 import gov.acwi.wqp.etl.result.index.BuildResultIndexesFlowIT;
 import gov.acwi.wqp.etl.result.table.SetupResultSwapTableFlowIT;
 
-public class TransformResultIT extends BaseFlowIT {
+public class TransformResultIT extends BaseArsFlowIT {
 
 	@Autowired
 	@Qualifier("resultFlow")
@@ -50,11 +50,11 @@ public class TransformResultIT extends BaseFlowIT {
 	}
 
 	@Test
-	@DatabaseSetup(value="classpath:/testResult/wqp/result/empty.xml")
-	@DatabaseSetup(value="classpath:/testResult/wqp/activity/activity.xml")
-	@DatabaseSetup(value="classpath:/testResult/ars/arsResult.xml")
-	@DatabaseSetup(value="classpath:/testData/ars/arsCharNameToType.xml")
-	@ExpectedDatabase(value="classpath:/testResult/wqp/result/result.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
+	@DatabaseSetup(value="classpath:/testResult/stewards/result/empty.xml")
+	@DatabaseSetup(value="classpath:/testResult/stewards/activity/activity.xml")
+	@DatabaseSetup(connection="ars", value="classpath:/testResult/ars/result.xml")
+	@DatabaseSetup(connection="ars", value="classpath:/testData/ars/charNameToType.xml")
+	@ExpectedDatabase(value="classpath:/testResult/stewards/result/result.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
 	public void transformResultStepTest() {
 		try {
 			JobExecution jobExecution = jobLauncherTestUtils.launchStep("transformResultStep", testJobParameters);
@@ -66,20 +66,20 @@ public class TransformResultIT extends BaseFlowIT {
 	}
 
 	@Test
-	@DatabaseSetup(value="classpath:/testResult/wqp/result/empty.xml")
-	@DatabaseSetup(value="classpath:/testResult/wqp/activity/activity.xml")
-	@DatabaseSetup(value="classpath:/testResult/ars/arsResult.xml")
-	@DatabaseSetup(value="classpath:/testData/ars/arsCharNameToType.xml")
-	@ExpectedDatabase(value="classpath:/testResult/wqp/result/result.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
-	@ExpectedDatabase(connection="pg", value="classpath:/testResult/wqp/result/create.xml",
+	@DatabaseSetup(value="classpath:/testResult/stewards/result/empty.xml")
+	@DatabaseSetup(value="classpath:/testResult/stewards/activity/activity.xml")
+	@DatabaseSetup(connection="ars", value="classpath:/testResult/ars/result.xml")
+	@DatabaseSetup(connection="ars", value="classpath:/testData/ars/charNameToType.xml")
+	@ExpectedDatabase(value="classpath:/testResult/stewards/result/result.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
+	@ExpectedDatabase(connection="pg", value="classpath:/testResult/stewards/result/create.xml",
 			assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED,
 			table=SetupResultSwapTableFlowIT.EXPECTED_DATABASE_TABLE,
 			query=SetupResultSwapTableFlowIT.EXPECTED_DATABASE_QUERY)
-	@ExpectedDatabase(value="classpath:/testResult/wqp/result/indexes/all.xml",
+	@ExpectedDatabase(value="classpath:/testResult/stewards/result/indexes/all.xml",
 			assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED,
 			table=BuildResultIndexesFlowIT.EXPECTED_DATABASE_TABLE
 			, query=BuildResultIndexesFlowIT.EXPECTED_DATABASE_QUERY)
-	@ExpectedDatabase(value="classpath:/testResult/wqp/result/result.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
+	@ExpectedDatabase(value="classpath:/testResult/stewards/result/result.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
 	public void resultFlowTest() {
 		Job resultFlowTest = jobBuilderFactory.get("resultFlowTest")
 					.start(resultFlow)

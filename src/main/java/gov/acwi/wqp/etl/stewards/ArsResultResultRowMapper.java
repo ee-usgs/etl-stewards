@@ -34,9 +34,9 @@ public class ArsResultResultRowMapper implements RowMapper<ArsResult> {
 		arsResult.setOrganizationName(rs.getString(ArsOrganizationRowMapper.ORGANIZATION_NAME_COLUMN_NAME));
 		arsResult.setProjectIdentifier(rs.getString(ArsOrganizationRowMapper.PROJECT_IDENTIFIER_COLUMN_NAME));
 		arsResult.setProjectName(rs.getString(ArsOrganizationRowMapper.PROJECT_NAME_COLUMN_NAME));
-		arsResult.setStationId(rs.getInt(ArsStationRowMapper.STATION_ID_COLUMN_NAME));
+		arsResult.setStationId(rs.getInt(ArsMonitoringLocationRowMapper.STATION_ID_COLUMN_NAME));
 		arsResult.setSiteId(rs.getString(ArsResultActivityRowMapper.SITE_ID_COLUMN_NAME));
-		arsResult.setMonitoringLocationName(rs.getString(ArsStationRowMapper.MONITORING_LOCATION_NAME_COLUMN_NAME));
+		arsResult.setMonitoringLocationName(rs.getString(ArsMonitoringLocationRowMapper.MONITORING_LOCATION_NAME_COLUMN_NAME));
 		arsResult.setResolvedMonitoringLocationTypeName(rs.getString(ArsResultActivityRowMapper.SITE_TYPE_COLUMN_NAME));
 		arsResult.setHucTwelveDigitCode(rs.getString(ArsResultActivityRowMapper.HUC_COLUMN_NAME));
 		arsResult.setGovernmentalUnitCode(rs.getString(ArsResultActivityRowMapper.GOVERNMENTAL_UNIT_CODE_COLUMN_NAME));

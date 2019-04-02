@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <pg_indexes
+        tablename="station_sum_swap_stewards"
+        indexname="station_sum_swap_stewards_station_id"
+        indexdef="CREATE INDEX station_sum_swap_stewards_station_id ON wqp.station_sum_swap_stewards USING btree (station_id) WITH (fillfactor='100')"
+     />
+</dataset>

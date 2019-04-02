@@ -24,9 +24,9 @@ import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.github.springtestdbunit.annotation.ExpectedDatabase;
 import com.github.springtestdbunit.assertion.DatabaseAssertionMode;
 
-import gov.acwi.wqp.etl.BaseFlowIT;
+import gov.acwi.wqp.etl.BaseArsFlowIT;
 
-public class ArsOrganizationPullIT extends BaseFlowIT {
+public class ArsOrganizationPullIT extends BaseArsFlowIT {
 
 	@Autowired
 	@Qualifier("arsOrganizationPullFlow")
@@ -48,8 +48,8 @@ public class ArsOrganizationPullIT extends BaseFlowIT {
 	}
 
 	@Test
-	@DatabaseSetup(value="classpath:/testData/ars/arsOrgProjectOld.xml")
-	@ExpectedDatabase(value="classpath:/testResult/ars/arsOrgProjectEmpty.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
+	@DatabaseSetup(connection="ars", value="classpath:/testData/ars/orgProjectOld.xml")
+	@ExpectedDatabase(connection="ars", value="classpath:/testResult/ars/orgProjectEmpty.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
 	public void truncateArsOrgProjectStepTest() {
 		try {
 			JobExecution jobExecution = jobLauncherTestUtils.launchStep("truncateArsOrgProjectStep", testJobParameters);
@@ -61,10 +61,10 @@ public class ArsOrganizationPullIT extends BaseFlowIT {
 	}
 
 	@Test
-	@ExpectedDatabase(value="classpath:/testResult/ars/arsOrgProject.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
+	@DatabaseSetup(connection="ars", value="classpath:/testResult/ars/orgProjectEmpty.xml")
+	@ExpectedDatabase(connection="ars", value="classpath:/testResult/ars/orgProject.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
 	public void arsOrganizationPullStepTest() {
 		try {
-			jdbcTemplate.execute("truncate table ars_org_project");
 			JobExecution jobExecution = jobLauncherTestUtils.launchStep("arsOrganizationPullStep", testJobParameters);
 			assertEquals(ExitStatus.COMPLETED, jobExecution.getExitStatus());
 		} catch (Exception e) {
@@ -74,8 +74,8 @@ public class ArsOrganizationPullIT extends BaseFlowIT {
 	}
 
 	@Test
-	@DatabaseSetup(value="classpath:/testData/ars/arsOrgProjectOld.xml")
-	@ExpectedDatabase(value="classpath:/testResult/ars/arsOrgProject.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
+	@DatabaseSetup(connection="ars", value="classpath:/testData/ars/orgProjectOld.xml")
+	@ExpectedDatabase(connection="ars", value="classpath:/testResult/ars/orgProject.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
 	public void arsOrganizationPullFlowTest() {
 		Job arsOrganizationPullFlowTest = jobBuilderFactory.get("arsOrganizationPullFlowTest")
 					.start(arsOrganizationPullFlow)

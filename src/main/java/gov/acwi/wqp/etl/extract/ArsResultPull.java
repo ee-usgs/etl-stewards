@@ -45,7 +45,8 @@ public class ArsResultPull {
 	private StepBuilderFactory stepBuilderFactory;
 
 	@Autowired
-	private DataSource dataSource;
+	@Qualifier("dataSourceArs")
+	private DataSource dataSourceArs;
 
 	@Value("classpath:testData/xml/wqxResult.xml")
 	private Resource resource;
@@ -80,7 +81,7 @@ public class ArsResultPull {
 	@Bean
 	public ItemWriter<ArsResult> arsResultWriter() {
 		JdbcBatchItemWriter<ArsResult> itemWriter = new JdbcBatchItemWriter<ArsResult>();
-		itemWriter.setDataSource(dataSource);
+		itemWriter.setDataSource(dataSourceArs);
 		itemWriter.setSql("insert "
 				+ " into ars_result (activity_identifier, activity_type_code, activity_media_name, activity_start_date, activity_start_time, activity_start_time_zone_code,"
 					+ " measure_value, measure_unit_code, activity_depth_height_measure, project_identifier, monitoring_location_identifier, activity_comment_text,"

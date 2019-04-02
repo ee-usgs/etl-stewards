@@ -33,7 +33,7 @@ public class ArsResultActivityRowMapper implements RowMapper<ArsResult> {
 		arsResult.setOrganizationName(rs.getString(ArsOrganizationRowMapper.ORGANIZATION_NAME_COLUMN_NAME));
 		arsResult.setProjectIdentifier(rs.getString(ArsOrganizationRowMapper.PROJECT_IDENTIFIER_COLUMN_NAME));
 		arsResult.setProjectName(rs.getString(ArsOrganizationRowMapper.PROJECT_NAME_COLUMN_NAME));
-		arsResult.setStationId(rs.getInt(ArsStationRowMapper.STATION_ID_COLUMN_NAME));
+		arsResult.setStationId(rs.getInt(ArsMonitoringLocationRowMapper.STATION_ID_COLUMN_NAME));
 		arsResult.setSiteId(rs.getString(SITE_ID_COLUMN_NAME));
 		arsResult.setMonitoringLocationName(rs.getString(STATION_NAME_COLUMN_NAME));
 		arsResult.setResolvedMonitoringLocationTypeName(rs.getString(SITE_TYPE_COLUMN_NAME));

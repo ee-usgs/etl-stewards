@@ -18,8 +18,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import gov.acwi.wqp.etl.stewards.ArsStation;
-import gov.acwi.wqp.etl.stewards.ArsStationRowMapper;
+import gov.acwi.wqp.etl.stewards.ArsMonitoringLocation;
+import gov.acwi.wqp.etl.stewards.ArsMonitoringLocationRowMapper;
 
 
 @Configuration
@@ -29,7 +29,12 @@ public class TransformMonitoringLocation {
 	private StepBuilderFactory stepBuilderFactory;
 
 	@Autowired
-	private DataSource dataSource;
+	@Qualifier("dataSourceWqp")
+	private DataSource dataSourceWqp;
+
+	@Autowired
+	@Qualifier("dataSourceArs")
+	private DataSource dataSourceArs;
 
 	@Autowired
 	@Qualifier("setupMonitoringLocationSwapTableFlow")
@@ -40,20 +45,20 @@ public class TransformMonitoringLocation {
 	private Flow buildMonitoringLocationIndexesFlow;
 
 	@Bean
-	public JdbcCursorItemReader<ArsStation> monitoringLocationReader() {
-		return new JdbcCursorItemReaderBuilder<ArsStation>()
-				.dataSource(this.dataSource)
+	public JdbcCursorItemReader<ArsMonitoringLocation> monitoringLocationReader() {
+		return new JdbcCursorItemReaderBuilder<ArsMonitoringLocation>()
+				.dataSource(dataSourceArs)
 				.name("organizationReader")
 				//TODo cleanup for PostgreSQL
-				.sql("select ars_station.*, ars_org_project.*, ars_site_type_to_primary.primary_site_type resolved_monitoring_location_type_name from ars_station join ars_org_project on 1=1 left join ars_site_type_to_primary on ars_station.monitoring_location_type_name = ars_site_type_to_primary.site_type")
-				.rowMapper(new ArsStationRowMapper())
+				.sql("select monitoring_location.*, org_project.*, site_type_to_primary.primary_site_type resolved_monitoring_location_type_name from monitoring_location join org_project on 1=1 left join site_type_to_primary on monitoring_location.monitoring_location_type_name = site_type_to_primary.site_type")
+				.rowMapper(new ArsMonitoringLocationRowMapper())
 				.build();
 	}
 
 	@Bean
 	public ItemWriter<MonitoringLocation> monitoringLocationWriter() {
 		JdbcBatchItemWriter<MonitoringLocation> itemWriter = new JdbcBatchItemWriter<MonitoringLocation>();
-		itemWriter.setDataSource(dataSource);
+		itemWriter.setDataSource(dataSourceWqp);
 		itemWriter.setSql("insert "
 				+ " into station_swap_stewards (data_source_id, data_source, station_id, site_id, organization, site_type, huc, governmental_unit_code,"
 					+ " geom, station_name, organization_name, description_text, station_type_name, latitude, longitude, map_scale,"
@@ -63,7 +68,7 @@ public class TransformMonitoringLocation {
 					+ " nat_aqfr_name, aqfr_name, aqfr_type_name, construction_date, well_depth_value, well_depth_unit,"
 					+ " hole_depth_value, hole_depth_unit)"
 				+ " values (:dataSourceId, :dataSource, :stationId, :siteId, :organization, :siteType, :huc, :governmentalUnitCode,"
-					+ " :geom::geometry, :stationName, :organizationName, :descriptionText, :stationTypeName, :latitude, :longitude, :mapScale,"
+					+ " :geom, :stationName, :organizationName, :descriptionText, :stationTypeName, :latitude, :longitude, :mapScale,"
 					+ " :geopositioningMethod, :hdatumIdCode, :elevationValue, :elevationUnit, :elevationMethod, :vdatumIdCode,"
 					+ " :drainAreaValue, :drainAreaUnit, :contribDrainAreaValue, :contribDrainAreaUnit,"
 					+ " :geopositionAccyValue, :geopositionAccyUnit, :verticalAccuracyValue, :verticalAccuracyUnit,"
@@ -78,7 +83,7 @@ public class TransformMonitoringLocation {
 	public Step transformMonitoringLocationStep() {
 		return stepBuilderFactory
 				.get("transformMonitoringLocationStep")
-				.<ArsStation, MonitoringLocation>chunk(10)
+				.<ArsMonitoringLocation, MonitoringLocation>chunk(10)
 				.reader(monitoringLocationReader())
 				.processor(new MonitoringLocationProcessor())
 				.writer(monitoringLocationWriter())

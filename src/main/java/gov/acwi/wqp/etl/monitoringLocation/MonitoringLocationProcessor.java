@@ -6,14 +6,14 @@ import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.batch.item.ItemProcessor;
 
 import gov.acwi.wqp.etl.Application;
-import gov.acwi.wqp.etl.stewards.ArsStation;
+import gov.acwi.wqp.etl.stewards.ArsMonitoringLocation;
 
-public class MonitoringLocationProcessor implements ItemProcessor<ArsStation, MonitoringLocation>{
+public class MonitoringLocationProcessor implements ItemProcessor<ArsMonitoringLocation, MonitoringLocation>{
 
 	public static final String DEFAULT_SITE_TYPE = "Not Assigned";
 
 	@Override
-	public MonitoringLocation process(ArsStation arsStation) throws Exception {
+	public MonitoringLocation process(ArsMonitoringLocation arsStation) throws Exception {
 		MonitoringLocation monitoringLocation = new MonitoringLocation();
 
 		monitoringLocation.setDataSourceId(Application.DATA_SOURCE_ID);

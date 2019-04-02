@@ -29,7 +29,12 @@ public class TransformOrgData {
 	private StepBuilderFactory stepBuilderFactory;
 
 	@Autowired
-	private DataSource dataSource;
+	@Qualifier("dataSourceWqp")
+	private DataSource dataSourceWqp;
+
+	@Autowired
+	@Qualifier("dataSourceArs")
+	private DataSource dataSourceArs;
 
 	@Autowired
 	@Qualifier("setupOrgDataSwapTableFlow")
@@ -42,9 +47,9 @@ public class TransformOrgData {
 	@Bean
 	public JdbcCursorItemReader<ArsOrganization> wqxOrgReader() {
 		return new JdbcCursorItemReaderBuilder<ArsOrganization>()
-				.dataSource(this.dataSource)
+				.dataSource(dataSourceArs)
 				.name("organizationReader")
-				.sql("select * from ars_org_project")
+				.sql("select * from org_project")
 				.rowMapper(new ArsOrganizationRowMapper())
 				.build();
 	}
@@ -52,7 +57,7 @@ public class TransformOrgData {
 	@Bean
 	public ItemWriter<OrgData> orgDataWriter() {
 		JdbcBatchItemWriter<OrgData> itemWriter = new JdbcBatchItemWriter<OrgData>();
-		itemWriter.setDataSource(dataSource);
+		itemWriter.setDataSource(dataSourceWqp);
 		itemWriter.setSql("insert into org_data_swap_stewards (data_source_id, data_source, organization_id, organization, organization_name)"
 				+ " values (:dataSourceId, :dataSource, :organizationId, :organization, :organizationName)");
 

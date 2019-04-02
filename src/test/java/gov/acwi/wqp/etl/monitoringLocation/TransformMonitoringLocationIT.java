@@ -24,11 +24,11 @@ import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.github.springtestdbunit.annotation.ExpectedDatabase;
 import com.github.springtestdbunit.assertion.DatabaseAssertionMode;
 
-import gov.acwi.wqp.etl.BaseFlowIT;
+import gov.acwi.wqp.etl.BaseArsFlowIT;
 import gov.acwi.wqp.etl.monitoringLocation.index.BuildMonitoringLocationIndexesFlowIT;
 import gov.acwi.wqp.etl.monitoringLocation.table.SetupMonitoringLocationSwapTableFlowIT;
 
-public class TransformMonitoringLocationIT extends BaseFlowIT {
+public class TransformMonitoringLocationIT extends BaseArsFlowIT {
 
 	@Autowired
 	@Qualifier("monitoringLocationFlow")
@@ -50,11 +50,11 @@ public class TransformMonitoringLocationIT extends BaseFlowIT {
 	}
 
 	@Test
-	@DatabaseSetup(value="classpath:/testResult/wqp/station/empty.xml")
-	@DatabaseSetup(value="classpath:/testData/ars/arsSiteTypeToPrimary.xml")
-	@DatabaseSetup(value="classpath:/testResult/ars/arsOrgProject.xml")
-	@DatabaseSetup(value="classpath:/testResult/ars/arsStation.xml")
-	@ExpectedDatabase(value="classpath:/testResult/wqp/station/station.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
+	@DatabaseSetup(value="classpath:/testResult/stewards/monitoringLocation/empty.xml")
+	@DatabaseSetup(connection="ars", value="classpath:/testData/ars/siteTypeToPrimary.xml")
+	@DatabaseSetup(connection="ars", value="classpath:/testResult/ars/orgProject.xml")
+	@DatabaseSetup(connection="ars", value="classpath:/testResult/ars/monitoringLocation.xml")
+	@ExpectedDatabase(value="classpath:/testResult/stewards/monitoringLocation/monitoringLocation.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
 	public void transformMonitoringLocationStepTest() {
 		try {
 			JobExecution jobExecution = jobLauncherTestUtils.launchStep("transformMonitoringLocationStep", testJobParameters);
@@ -66,20 +66,19 @@ public class TransformMonitoringLocationIT extends BaseFlowIT {
 	}
 
 	@Test
-	@DatabaseSetup(value="classpath:/testResult/wqp/station/empty.xml")
-	@DatabaseSetup(value="classpath:/testData/ars/arsSiteTypeToPrimary.xml")
-	@DatabaseSetup(value="classpath:/testData/wqp/station/stationOld.xml")
-	@DatabaseSetup(value="classpath:/testResult/ars/arsOrgProject.xml")
-	@DatabaseSetup(value="classpath:/testResult/ars/arsStation.xml")
-	@ExpectedDatabase(value="classpath:/testResult/wqp/monitoringLocation/indexes/all.xml",
+	@DatabaseSetup(value="classpath:/testResult/stewards/monitoringLocation/empty.xml")
+	@DatabaseSetup(connection="ars", value="classpath:/testData/ars/siteTypeToPrimary.xml")
+	@DatabaseSetup(connection="ars", value="classpath:/testResult/ars/orgProject.xml")
+	@DatabaseSetup(connection="ars", value="classpath:/testResult/ars/monitoringLocation.xml")
+	@ExpectedDatabase(value="classpath:/testResult/stewards/monitoringLocation/indexes/all.xml",
 			assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED,
 				table=BuildMonitoringLocationIndexesFlowIT.EXPECTED_DATABASE_TABLE,
 				query=BuildMonitoringLocationIndexesFlowIT.EXPECTED_DATABASE_QUERY)
-	@ExpectedDatabase(connection="pg", value="classpath:/testResult/wqp/monitoringLocation/create.xml",
+	@ExpectedDatabase(connection="pg", value="classpath:/testResult/stewards/monitoringLocation/create.xml",
 			assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED,
 				table=SetupMonitoringLocationSwapTableFlowIT.EXPECTED_DATABASE_TABLE,
 				query=SetupMonitoringLocationSwapTableFlowIT.EXPECTED_DATABASE_QUERY)
-	@ExpectedDatabase(value="classpath:/testResult/wqp/station/station.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
+	@ExpectedDatabase(value="classpath:/testResult/stewards/monitoringLocation/monitoringLocation.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
 	public void monitoringLocationFlowTest() {
 		Job monitoringLocationFlowTest = jobBuilderFactory.get("monitoringLocationFlowTest")
 					.start(monitoringLocationFlow)

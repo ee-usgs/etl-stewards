@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Profile;
 @SpringBootApplication
 @Profile("it")
 public class ApplicationT {
-	private static final Logger LOG = LoggerFactory.getLogger(ApplicationT.class);
+	private static final Logger LOG = LoggerFactory.getLogger(Application.class);
 
 	public static void main(String[] args) {
 		LOG.info(args.toString());

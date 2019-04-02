@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <pg_indexes
+        tablename="assemblage_swap_stewards"
+        indexname="assemblage_swap_stewards_code_value"
+        indexdef="CREATE INDEX assemblage_swap_stewards_code_value ON wqp.assemblage_swap_stewards USING btree (code_value) WITH (fillfactor='100')"
+     />
+</dataset>

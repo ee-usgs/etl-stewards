@@ -29,7 +29,12 @@ public class TransformResult {
 	private StepBuilderFactory stepBuilderFactory;
 
 	@Autowired
-	private DataSource dataSource;
+	@Qualifier("dataSourceWqp")
+	private DataSource dataSourceWqp;
+
+	@Autowired
+	@Qualifier("dataSourceArs")
+	private DataSource dataSourceArs;
 
 	@Autowired
 	@Qualifier("setupResultSwapTableFlow")
@@ -42,23 +47,23 @@ public class TransformResult {
 	@Bean
 	public JdbcCursorItemReader<ArsResult> resultReader() {
 		return new JdbcCursorItemReaderBuilder<ArsResult>()
-				.dataSource(this.dataSource)
+				.dataSource(dataSourceArs)
 				.name("organizationReader")
 				//TODo cleanup for PostgreSQL
 				.sql("select activity_swap_stewards.activity_id,"
-						+ "  ars_result.activity_start_date,"
-						+ "  ars_result.activity_identifier,"
-						+ "  ars_result.activity_media_name,"
-						+ "  ars_result.activity_type_code,"
-						+ "  ars_result.activity_start_time,"
-						+ "  ars_result.activity_start_time_zone_code,"
-						+ "  ars_result.project_identifier,"
-						+ "  ars_result.sample_collection_method_identifier,"
-						+ "  ars_result.sample_collection_method_identifier_context,"
-						+ "  ars_result.sample_collection_method_name,"
-						+ "  ars_result.sample_collection_method_description_text,"
-						+ "  ars_result.sample_collection_equipment_name,"
-						+ "  ars_result.sample_collection_equipment_comment_text,"
+						+ "  result.activity_start_date,"
+						+ "  result.activity_identifier,"
+						+ "  result.activity_media_name,"
+						+ "  result.activity_type_code,"
+						+ "  result.activity_start_time,"
+						+ "  result.activity_start_time_zone_code,"
+						+ "  result.project_identifier,"
+						+ "  result.sample_collection_method_identifier,"
+						+ "  result.sample_collection_method_identifier_context,"
+						+ "  result.sample_collection_method_name,"
+						+ "  result.sample_collection_method_description_text,"
+						+ "  result.sample_collection_equipment_name,"
+						+ "  result.sample_collection_equipment_comment_text,"
 						+ "  activity_swap_stewards.station_id,"
 						+ "  activity_swap_stewards.site_id,"
 						+ "  activity_swap_stewards.organization,"
@@ -69,29 +74,29 @@ public class TransformResult {
 						+ "  activity_swap_stewards.geom,"
 						+ "  activity_swap_stewards.monitoring_location_name,"
 						+ "  activity_swap_stewards.project_name,"
-						+ "  ars_result.result_id,"
-						+ "  ars_result.result_detection_condition_text,"
-						+ "  ars_result.characteristic_name,"
-						+ "  ars_result.result_sample_fraction_text,"
-						+ "  ars_result.result_measure_value,"
-						+ "  ars_result.result_measure_unit_code,"
-						+ "  ars_result.result_status_identifier,"
-						+ "  ars_result.result_value_type_name,"
-						+ "  ars_result.data_quality_precision_value,"
-						+ "  ars_result.result_comment_text,"
-						+ "  ars_result.result_analytical_method_identifier,"
-						+ "  ars_result.result_analytical_method_identifier_context,"
-						+ "  ars_result.result_analytical_method_name,"
-						+ "  ars_result.result_analytical_method_description_text,"
-						+ "  ars_result.detection_quantitation_limit_type_name,"
-						+ "  ars_result.detection_quantitation_limit_measure_value,"
-						+ "  ars_result.detection_quantitation_limit_measure_unit_code,"
-						+ "  ars_char_name_to_type.characteristic_type"
-						+ " from ars_result"
+						+ "  result.result_id,"
+						+ "  result.result_detection_condition_text,"
+						+ "  result.characteristic_name,"
+						+ "  result.result_sample_fraction_text,"
+						+ "  result.result_measure_value,"
+						+ "  result.result_measure_unit_code,"
+						+ "  result.result_status_identifier,"
+						+ "  result.result_value_type_name,"
+						+ "  result.data_quality_precision_value,"
+						+ "  result.result_comment_text,"
+						+ "  result.result_analytical_method_identifier,"
+						+ "  result.result_analytical_method_identifier_context,"
+						+ "  result.result_analytical_method_name,"
+						+ "  result.result_analytical_method_description_text,"
+						+ "  result.detection_quantitation_limit_type_name,"
+						+ "  result.detection_quantitation_limit_measure_value,"
+						+ "  result.detection_quantitation_limit_measure_unit_code,"
+						+ "  char_name_to_type.characteristic_type"
+						+ " from result"
 						+ "      join activity_swap_stewards"
-						+ "        on ars_result.activity_identifier = activity_swap_stewards.activity"
-						+ "      left join ars_char_name_to_type"
-						+ "        on ars_result.characteristic_name = ars_char_name_to_type.characteristic_name")
+						+ "        on result.activity_identifier = activity_swap_stewards.activity"
+						+ "      left join char_name_to_type"
+						+ "        on result.characteristic_name = char_name_to_type.characteristic_name")
 				.rowMapper(new ArsResultResultRowMapper())
 				.build();
 	}
@@ -99,7 +104,7 @@ public class TransformResult {
 	@Bean
 	public ItemWriter<Result> resultWriter() {
 		JdbcBatchItemWriter<Result> itemWriter = new JdbcBatchItemWriter<Result>();
-		itemWriter.setDataSource(dataSource);
+		itemWriter.setDataSource(dataSourceWqp);
 		itemWriter.setSql("insert "
 				+ " into result_swap_stewards (data_source_id, data_source, station_id, site_id, event_date, activity,"
 				+ "                                sample_media, organization, site_type, huc, governmental_unit_code, geom,"

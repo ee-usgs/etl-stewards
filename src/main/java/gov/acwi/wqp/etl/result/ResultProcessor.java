@@ -2,16 +2,12 @@ package gov.acwi.wqp.etl.result;
 
 import java.time.LocalDate;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.batch.item.ItemProcessor;
 
 import gov.acwi.wqp.etl.Application;
-import gov.acwi.wqp.etl.result.Result;
 import gov.acwi.wqp.etl.stewards.ArsResult;
 
 public class ResultProcessor implements ItemProcessor<ArsResult, Result>{
-	private static final Logger LOG = LoggerFactory.getLogger(ResultProcessor.class);
 
 	@Override
 	public Result process(ArsResult arsResult) throws Exception {
@@ -59,7 +55,6 @@ public class ResultProcessor implements ItemProcessor<ArsResult, Result>{
 		result.setDetectionLimit(arsResult.getDetectionQuantitationLimitMeasureValue());
 		result.setDetectionLimitUnit(arsResult.getDetectionQuantitationLimitMeasureUnitCode());
 		result.setDetectionLimitDesc(arsResult.getDetectionQuantitationLimitTypeName());
-		LOG.info(result.toString());
 		return result;
 	}
 

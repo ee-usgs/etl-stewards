@@ -24,11 +24,11 @@ import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.github.springtestdbunit.annotation.ExpectedDatabase;
 import com.github.springtestdbunit.assertion.DatabaseAssertionMode;
 
-import gov.acwi.wqp.etl.BaseFlowIT;
+import gov.acwi.wqp.etl.BaseArsFlowIT;
 import gov.acwi.wqp.etl.resDetectQntLimit.index.BuildResDetectQntLimitIndexesFlowIT;
 import gov.acwi.wqp.etl.resDetectQntLimit.table.SetupResDetectQntLimitSwapTableFlowIT;
 
-public class TransformResDetectQntLimitIT extends BaseFlowIT {
+public class TransformResDetectQntLimitIT extends BaseArsFlowIT {
 
 	@Autowired
 	@Qualifier("resDetectQntLimitFlow")
@@ -50,9 +50,9 @@ public class TransformResDetectQntLimitIT extends BaseFlowIT {
 	}
 
 	@Test
-	@DatabaseSetup(value="classpath:/testResult/wqp/resDetectQntLimit/empty.xml")
-	@DatabaseSetup(value="classpath:/testResult/wqp/result/result.xml")
-	@ExpectedDatabase(value="classpath:/testResult/wqp/resDetectQntLimit/resDetectQntLimit.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
+	@DatabaseSetup(value="classpath:/testResult/stewards/resDetectQntLimit/empty.xml")
+	@DatabaseSetup(value="classpath:/testResult/stewards/result/result.xml")
+	@ExpectedDatabase(value="classpath:/testResult/stewards/resDetectQntLimit/resDetectQntLimit.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
 	public void transformResDetectQntLimitStepTest() {
 		try {
 			JobExecution jobExecution = jobLauncherTestUtils.launchStep("transformResDetectQntLimitStep", testJobParameters);
@@ -64,19 +64,19 @@ public class TransformResDetectQntLimitIT extends BaseFlowIT {
 	}
 
 	@Test
-	@DatabaseSetup(value="classpath:/testResult/wqp/resDetectQntLimit/empty.xml")
-	@DatabaseSetup(value="classpath:/testResult/wqp/activity/activity.xml")
-	@DatabaseSetup(value="classpath:/testResult/wqp/result/result.xml")
-	@ExpectedDatabase(value="classpath:/testResult/wqp/resDetectQntLimit/resDetectQntLimit.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
-	@ExpectedDatabase(value="classpath:/testResult/wqp/resDetectQntLimit/indexes/all.xml",
+	@DatabaseSetup(value="classpath:/testResult/stewards/resDetectQntLimit/empty.xml")
+	@DatabaseSetup(value="classpath:/testResult/stewards/activity/activity.xml")
+	@DatabaseSetup(value="classpath:/testResult/stewards/result/result.xml")
+	@ExpectedDatabase(value="classpath:/testResult/stewards/resDetectQntLimit/resDetectQntLimit.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
+	@ExpectedDatabase(value="classpath:/testResult/stewards/resDetectQntLimit/indexes/all.xml",
 			assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED,
 			table=BuildResDetectQntLimitIndexesFlowIT.EXPECTED_DATABASE_TABLE,
 			query=BuildResDetectQntLimitIndexesFlowIT.EXPECTED_DATABASE_QUERY)
-	@ExpectedDatabase(connection="pg", value="classpath:/testResult/wqp/resDetectQntLimit/create.xml",
+	@ExpectedDatabase(connection="pg", value="classpath:/testResult/stewards/resDetectQntLimit/create.xml",
 			assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED,
 			table=SetupResDetectQntLimitSwapTableFlowIT.EXPECTED_DATABASE_TABLE,
 			query=SetupResDetectQntLimitSwapTableFlowIT.EXPECTED_DATABASE_QUERY)
-	@ExpectedDatabase(value="classpath:/testResult/wqp/resDetectQntLimit/resDetectQntLimit.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
+	@ExpectedDatabase(value="classpath:/testResult/stewards/resDetectQntLimit/resDetectQntLimit.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
 	public void resDetectQntLimitFlowTest() {
 		Job resDetectQntLimitFlowTest = jobBuilderFactory.get("resDetectQntLimitFlowTest")
 					.start(resDetectQntLimitFlow)

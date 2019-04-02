@@ -48,8 +48,8 @@ public class ArsResultPullIT extends BaseFlowIT {
 	}
 
 	@Test
-	@DatabaseSetup(value="classpath:/testData/ars/arsResultOld.xml")
-	@ExpectedDatabase(value="classpath:/testResult/ars/arsResultEmpty.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
+	@DatabaseSetup(connection="ars", value="classpath:/testData/ars/arsResultOld.xml")
+	@ExpectedDatabase(connection="ars", value="classpath:/testResult/ars/arsResultEmpty.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
 	public void truncateArsResultStepTest() {
 		try {
 			JobExecution jobExecution = jobLauncherTestUtils.launchStep("truncateArsResultStep", testJobParameters);
@@ -61,7 +61,7 @@ public class ArsResultPullIT extends BaseFlowIT {
 	}
 
 	@Test
-	@ExpectedDatabase(value="classpath:/testResult/ars/arsResult.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
+	@ExpectedDatabase(connection="ars", value="classpath:/testResult/ars/arsResult.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
 	public void arsResultPullStepTest() {
 		try {
 			jdbcTemplate.execute("truncate table ars_result restart identity");
@@ -74,8 +74,8 @@ public class ArsResultPullIT extends BaseFlowIT {
 	}
 
 	@Test
-	@DatabaseSetup(value="classpath:/testData/ars/arsResultOld.xml")
-	@ExpectedDatabase(value="classpath:/testResult/ars/arsResult.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
+	@DatabaseSetup(connection="ars", value="classpath:/testData/ars/arsResultOld.xml")
+	@ExpectedDatabase(connection="ars", value="classpath:/testResult/ars/arsResult.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
 	public void arsResultPullFlowTest() {
 		Job arsResultPullFlowTest = jobBuilderFactory.get("arsResultPullFlowTest")
 					.start(arsResultPullFlow)

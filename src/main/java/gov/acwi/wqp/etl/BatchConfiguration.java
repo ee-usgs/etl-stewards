@@ -49,8 +49,8 @@ public class BatchConfiguration {
 	private Flow createSummariesFlow;
 
 	@Autowired
-	@Qualifier("createCodesFlow")
-	private Flow createCodesFlow;
+	@Qualifier("createLookupCodesFlow")
+	private Flow createLookupCodesFlow;
 
 	@Autowired
 	@Qualifier("databaseFinalizeFlow")
@@ -63,19 +63,12 @@ public class BatchConfiguration {
 				.start(arsExtractFlow)
 				.next(orgDataFlow)
 				.next(projectDataFlow)
-//				.next(projectObjectFlow)
 				.next(monitoringLocationFlow)
-//				.next(biologicalHabitatMetricFlow)
-//				.next(monitoringLocationObjectFlow)
 				.next(activityFlow)
-//				.next(activityObjectFlow)
-//				.next(activityMetricFlow)
 				.next(resultFlow)
-//				.next(resultObjectFlow)
 				.next(resDetectQntLimitFlow)
-//				.next(projectMlWeightingFlow)
 				.next(createSummariesFlow)
-				.next(createCodesFlow)
+				.next(createLookupCodesFlow)
 				.next(databaseFinalizeFlow)
 				.build()
 				.build();
