@@ -6,7 +6,7 @@ import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.batch.item.ItemProcessor;
 
 import gov.acwi.wqp.etl.Application;
-import gov.acwi.wqp.etl.stewards.ArsMonitoringLocation;
+import gov.acwi.wqp.etl.stewards.monitoringLocation.ArsMonitoringLocation;
 
 public class MonitoringLocationProcessor implements ItemProcessor<ArsMonitoringLocation, MonitoringLocation>{
 
@@ -34,14 +34,17 @@ public class MonitoringLocationProcessor implements ItemProcessor<ArsMonitoringL
 		monitoringLocation.setHdatumIdCode(arsStation.getHorizontalCoordinateReferenceSystemDatumName());
 		monitoringLocation.setDrainAreaValue(getBigDecimal(arsStation.getDrainageAreaMeasureValue()));
 		monitoringLocation.setDrainAreaUnit(arsStation.getDrainageAreaMeasureUnitCode());
-		monitoringLocation.calculateGeom(
-				monitoringLocation.getLatitude(),
-				monitoringLocation.getLongitude(),
-				MonitoringLocation.DEFAULT_SRID);
+		monitoringLocation.setGeom(
+				MonitoringLocation.calculateGeom(
+						monitoringLocation.getLatitude(),
+						monitoringLocation.getLongitude(),
+						MonitoringLocation.DEFAULT_SRID
+						)
+				);
 		return monitoringLocation;
 	}
 
-	private BigDecimal getBigDecimal(String string) {
+	protected BigDecimal getBigDecimal(String string) {
 		if (NumberUtils.isCreatable(string)) {
 			return NumberUtils.createBigDecimal(string);
 		} else {
