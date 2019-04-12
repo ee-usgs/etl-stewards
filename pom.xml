@@ -7,11 +7,12 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>11</java.version>
+        <wma.maven.url>https://cida.usgs.gov/artifactory/list</wma.maven.url>
     </properties>
 
     <ciManagement>
         <system>Jenkins</system>
-        <url>https://jenkins.wma.usgs.chs.ead/view/WQP/job/etl-stewards-build/</url> 
+        <url>https://jenkins.wma.usgs.chs.ead/view/WQP/job/etl-stewards-build/</url>
     </ciManagement>
 
     <scm>
@@ -20,6 +21,19 @@
         <url>https://github.com/NWQMC/etl-stewards.git</url>
         <tag>HEAD</tag>
     </scm>
+
+<!--     <repositories> -->
+<!--         <repository> -->
+<!--             <id>Central</id> -->
+<!--             <name>Maven Central</name> -->
+<!--             <url>https://repo.maven.apache.org/maven2/</url> -->
+<!--         </repository> -->
+<!--         <repository> -->
+<!--             <id>WMA</id> -->
+<!--             <name>WMA Artifactory</name> -->
+<!--             <url>${wma.maven.url}/wma-maven-centralized/</url> -->
+<!--         </repository> -->
+<!--     </repositories> -->
 
     <parent>
         <groupId>org.springframework.boot</groupId>

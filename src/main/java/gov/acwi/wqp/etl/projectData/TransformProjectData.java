@@ -1,5 +1,7 @@
 package gov.acwi.wqp.etl.projectData;
 
+import java.io.IOException;
+
 import javax.sql.DataSource;
 
 import org.springframework.batch.core.Step;
@@ -14,10 +16,13 @@ import org.springframework.batch.item.database.ItemSqlParameterSourceProvider;
 import org.springframework.batch.item.database.JdbcBatchItemWriter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.Resource;
+import org.springframework.util.FileCopyUtils;
 
-import gov.acwi.wqp.etl.stewards.ArsOrganization;
+import gov.acwi.wqp.etl.stewards.organization.ArsOrganization;
 
 
 @Configuration
@@ -42,13 +47,14 @@ public class TransformProjectData {
 	@Qualifier("wqxOrgReader")
 	private ItemReader<ArsOrganization> wqxOrgReader;
 
+	@Value("classpath:sql/projectData/writeProjectData.sql")
+	private Resource writerResource;
+
 	@Bean
-	public ItemWriter<ProjectData> projectDataWriter() {
+	public ItemWriter<ProjectData> projectDataWriter() throws IOException {
 		JdbcBatchItemWriter<ProjectData> itemWriter = new JdbcBatchItemWriter<ProjectData>();
 		itemWriter.setDataSource(dataSourceWqp);
-		itemWriter.setSql("insert "
-				+ " into project_data_swap_stewards (data_source_id, data_source, organization, organization_name, project_identifier, project_name, description)"
-				+ " values (:dataSourceId, :dataSource, :organization, :organizationName, :projectIdentifier, :projectName, :description)");
+		itemWriter.setSql(new String(FileCopyUtils.copyToByteArray(writerResource.getInputStream())));
 
 		ItemSqlParameterSourceProvider<ProjectData> paramProvider = new BeanPropertyItemSqlParameterSourceProvider<>();
 
@@ -57,7 +63,7 @@ public class TransformProjectData {
 	}
 
 	@Bean
-	public Step transformProjectDataStep() {
+	public Step transformProjectDataStep() throws IOException {
 		return stepBuilderFactory
 				.get("transformProjectDataStep")
 				.<ArsOrganization, ProjectData>chunk(10)
@@ -68,7 +74,7 @@ public class TransformProjectData {
 	}
 
 	@Bean
-	public Flow projectDataFlow() {
+	public Flow projectDataFlow() throws IOException {
 		return new FlowBuilder<SimpleFlow>("projectDataFlow")
 				.start(setupProjectDataSwapTableFlow)
 				.next(transformProjectDataStep())

@@ -1,5 +1,7 @@
 package gov.acwi.wqp.etl.orgData;
 
+import java.io.IOException;
+
 import javax.sql.DataSource;
 
 import org.springframework.batch.core.Step;
@@ -15,11 +17,14 @@ import org.springframework.batch.item.database.JdbcCursorItemReader;
 import org.springframework.batch.item.database.builder.JdbcCursorItemReaderBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.Resource;
+import org.springframework.util.FileCopyUtils;
 
-import gov.acwi.wqp.etl.stewards.ArsOrganization;
-import gov.acwi.wqp.etl.stewards.ArsOrganizationRowMapper;
+import gov.acwi.wqp.etl.stewards.organization.ArsOrganization;
+import gov.acwi.wqp.etl.stewards.organization.ArsOrganizationRowMapper;
 
 
 @Configuration
@@ -44,22 +49,27 @@ public class TransformOrgData {
 	@Qualifier("buildOrgDataIndexesFlow")
 	private Flow buildOrgDataIndexesFlow;
 
+	@Value("classpath:sql/orgData/readArsOrgProject.sql")
+	private Resource readerResource;
+
+	@Value("classpath:sql/orgData/writeOrgData.sql")
+	private Resource writerResource;
+
 	@Bean
-	public JdbcCursorItemReader<ArsOrganization> wqxOrgReader() {
+	public JdbcCursorItemReader<ArsOrganization> wqxOrgReader() throws IOException {
 		return new JdbcCursorItemReaderBuilder<ArsOrganization>()
 				.dataSource(dataSourceArs)
 				.name("organizationReader")
-				.sql("select * from org_project")
+				.sql(new String(FileCopyUtils.copyToByteArray(readerResource.getInputStream())))
 				.rowMapper(new ArsOrganizationRowMapper())
 				.build();
 	}
 
 	@Bean
-	public ItemWriter<OrgData> orgDataWriter() {
+	public ItemWriter<OrgData> orgDataWriter() throws IOException {
 		JdbcBatchItemWriter<OrgData> itemWriter = new JdbcBatchItemWriter<OrgData>();
 		itemWriter.setDataSource(dataSourceWqp);
-		itemWriter.setSql("insert into org_data_swap_stewards (data_source_id, data_source, organization_id, organization, organization_name)"
-				+ " values (:dataSourceId, :dataSource, :organizationId, :organization, :organizationName)");
+		itemWriter.setSql(new String(FileCopyUtils.copyToByteArray(writerResource.getInputStream())));
 
 		ItemSqlParameterSourceProvider<OrgData> paramProvider = new BeanPropertyItemSqlParameterSourceProvider<>();
 
@@ -68,7 +78,7 @@ public class TransformOrgData {
 	}
 
 	@Bean
-	public Step transformOrgDataStep() {
+	public Step transformOrgDataStep() throws IOException {
 		return stepBuilderFactory
 				.get("transformOrgDataStep")
 				.<ArsOrganization, OrgData>chunk(10)
@@ -79,7 +89,7 @@ public class TransformOrgData {
 	}
 
 	@Bean
-	public Flow orgDataFlow() {
+	public Flow orgDataFlow() throws IOException {
 		return new FlowBuilder<SimpleFlow>("orgDataFlow")
 				.start(setupOrgDataSwapTableFlow)
 				.next(transformOrgDataStep())

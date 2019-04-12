@@ -1,0 +1,18 @@
+
+version: '3.6'
+
+services:
+  etl-nwis-lookups:
+    build: .
+    image: etl-nwis-lookups
+    environment:
+      - NWIS_WS_STAR_HOST=${NWIS_WS_STAR_HOST}
+      - NWIS_WS_STAR_PORT=${NWIS_WS_STAR_PORT}
+      - NWIS_WS_STAR_DB=${NWIS_WS_STAR_DB}
+      - NWIS_WS_STAR_USERNAME=${NWIS_WS_STAR_USERNAME}
+      - NWIS_WS_STAR_PASSWORD=${NWIS_WS_STAR_PASSWORD}   
+      - NATDB_HOST=${NATDB_HOST} 
+      - NATDB_PORT=${NATDB_PORT}
+      - NATDB_NWISRA_DB=${NATDB_NWISRA_DB}
+      - NATDB_USERNAME=${NATDB_USERNAME}
+      - NATDB_PASSWORD=${NATDB_PASSWORD}

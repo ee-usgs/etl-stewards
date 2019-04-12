@@ -59,7 +59,6 @@ public class BatchConfiguration {
 	@Bean
 	public Job wqxEtl() {
 		return jobBuilderFactory.get("WQP_ARS_STEWARDS_ETL")
-//				.incrementer(jobIncrementer)
 				.start(arsExtractFlow)
 				.next(orgDataFlow)
 				.next(projectDataFlow)

@@ -3,12 +3,6 @@ package gov.acwi.wqp.etl.resDetectQntLimit;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
-import java.nio.charset.Charset;
-import java.sql.SQLException;
-
-import javax.annotation.PostConstruct;
-
-import org.junit.Before;
 import org.junit.Test;
 import org.springframework.batch.core.ExitStatus;
 import org.springframework.batch.core.Job;
@@ -16,38 +10,18 @@ import org.springframework.batch.core.JobExecution;
 import org.springframework.batch.core.job.flow.Flow;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.core.io.support.EncodedResource;
-import org.springframework.jdbc.datasource.init.ScriptException;
-import org.springframework.jdbc.datasource.init.ScriptUtils;
 
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.github.springtestdbunit.annotation.ExpectedDatabase;
 import com.github.springtestdbunit.assertion.DatabaseAssertionMode;
 
-import gov.acwi.wqp.etl.BaseArsFlowIT;
-import gov.acwi.wqp.etl.resDetectQntLimit.index.BuildResDetectQntLimitIndexesFlowIT;
-import gov.acwi.wqp.etl.resDetectQntLimit.table.SetupResDetectQntLimitSwapTableFlowIT;
+import gov.acwi.wqp.etl.ArsBaseFlowIT;
 
-public class TransformResDetectQntLimitIT extends BaseArsFlowIT {
+public class TransformResDetectQntLimitIT extends ArsBaseFlowIT {
 
 	@Autowired
 	@Qualifier("resDetectQntLimitFlow")
 	private Flow resDetectQntLimitFlow;
-
-	@PostConstruct
-	public void beforeClass() throws ScriptException, SQLException {
-		EncodedResource encodedResource = new EncodedResource(resource, Charset.forName("UTF-8"));
-		ScriptUtils.executeSqlScript(dataSource.getConnection(), encodedResource);
-	}
-
-	@Before
-	public void setup() {
-		testJob = jobBuilderFactory.get("resultFlowTest")
-				.start(resDetectQntLimitFlow)
-				.build()
-				.build();
-		jobLauncherTestUtils.setJob(testJob);
-	}
 
 	@Test
 	@DatabaseSetup(value="classpath:/testResult/stewards/resDetectQntLimit/empty.xml")
@@ -70,12 +44,12 @@ public class TransformResDetectQntLimitIT extends BaseArsFlowIT {
 	@ExpectedDatabase(value="classpath:/testResult/stewards/resDetectQntLimit/resDetectQntLimit.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
 	@ExpectedDatabase(value="classpath:/testResult/stewards/resDetectQntLimit/indexes/all.xml",
 			assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED,
-			table=BuildResDetectQntLimitIndexesFlowIT.EXPECTED_DATABASE_TABLE,
-			query=BuildResDetectQntLimitIndexesFlowIT.EXPECTED_DATABASE_QUERY)
+			table=EXPECTED_DATABASE_TABLE_CHECK_INDEX,
+			query=BASE_EXPECTED_DATABASE_QUERY_CHECK_INDEX + "'r_detect_qnt_lmt_swap_stewards'")
 	@ExpectedDatabase(connection="pg", value="classpath:/testResult/stewards/resDetectQntLimit/create.xml",
 			assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED,
-			table=SetupResDetectQntLimitSwapTableFlowIT.EXPECTED_DATABASE_TABLE,
-			query=SetupResDetectQntLimitSwapTableFlowIT.EXPECTED_DATABASE_QUERY)
+			table=EXPECTED_DATABASE_TABLE_CHECK_TABLE,
+			query=BASE_EXPECTED_DATABASE_QUERY_CHECK_TABLE + "'r_detect_qnt_lmt_swap_stewards'")
 	@ExpectedDatabase(value="classpath:/testResult/stewards/resDetectQntLimit/resDetectQntLimit.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
 	public void resDetectQntLimitFlowTest() {
 		Job resDetectQntLimitFlowTest = jobBuilderFactory.get("resDetectQntLimitFlowTest")

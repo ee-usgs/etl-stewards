@@ -9,14 +9,15 @@
                 <ActivityIdentifier>INSJALG_20070101</ActivityIdentifier>
                 <ActivityTypeCode>Field Msr/Obs</ActivityTypeCode>
                 <ActivityMediaName>Water</ActivityMediaName>
-                <ActivityStartDate>2007-01-01</ActivityStartDate>
+                <ActivityStartDate>1/1/2007</ActivityStartDate>
                 <ActivityStartTime>
                     <Time>10:50:00</Time>
                     <TimeZoneCode>EST</TimeZoneCode>
                 </ActivityStartTime>
-                <MeasureValue>ActivityDescriptionMeasureValue</MeasureValue>
-                <MeasureUnitCode>ActivityDescriptionMeasureUnitCode</MeasureUnitCode>
-                <ActivityDepthHeightMeasure>ActivityDepthHeightMeasure</ActivityDepthHeightMeasure>
+                <MeasureValue>
+                </MeasureValue>
+                <MeasureUnitCode/>
+                <ActivityDepthHeightMeasure/>
                 <ProjectIdentifier>CEAP</ProjectIdentifier>
                 <MonitoringLocationIdentifier>INSJ-INSJALG</MonitoringLocationIdentifier>
                 <ActivityCommentText>ActivityCommentText</ActivityCommentText>
@@ -43,6 +44,7 @@
                     <DataQuality>
                         <PrecisionValue>10 %</PrecisionValue>
                     </DataQuality>
+                    <ResultCommentText>ResultCommentText</ResultCommentText>
                 </ResultDescription>
                 <ResultAnalyticalMethod>
                     <MethodIdentifier>INSJ_WQ5</MethodIdentifier>
@@ -66,14 +68,15 @@
                 <ActivityIdentifier>INSJALG_20070101</ActivityIdentifier>
                 <ActivityTypeCode>Field Msr/Obs</ActivityTypeCode>
                 <ActivityMediaName>Water</ActivityMediaName>
-                <ActivityStartDate>2007-01-01</ActivityStartDate>
+                <ActivityStartDate>1/1/2007</ActivityStartDate>
                 <ActivityStartTime>
                     <Time>10:50:00</Time>
                     <TimeZoneCode>EST</TimeZoneCode>
                 </ActivityStartTime>
-                <MeasureValue>ActivityDescriptionMeasureValue</MeasureValue>
-                <MeasureUnitCode>ActivityDescriptionMeasureUnitCode</MeasureUnitCode>
-                <ActivityDepthHeightMeasure>ActivityDepthHeightMeasure</ActivityDepthHeightMeasure>
+                <MeasureValue>
+                </MeasureValue>
+                <MeasureUnitCode/>
+                <ActivityDepthHeightMeasure/>
                 <ProjectIdentifier>CEAP</ProjectIdentifier>
                 <MonitoringLocationIdentifier>INSJ-INSJALG</MonitoringLocationIdentifier>
                 <ActivityCommentText>ActivityCommentText</ActivityCommentText>
@@ -125,14 +128,15 @@
                 <ActivityIdentifier>INSJALG_20070101</ActivityIdentifier>
                 <ActivityTypeCode>Field Msr/Obs</ActivityTypeCode>
                 <ActivityMediaName>Water</ActivityMediaName>
-                <ActivityStartDate>2007-01-01</ActivityStartDate>
+                <ActivityStartDate>1/1/2007</ActivityStartDate>
                 <ActivityStartTime>
                     <Time>10:50:00</Time>
                     <TimeZoneCode>EST</TimeZoneCode>
                 </ActivityStartTime>
-                <MeasureValue>ActivityDescriptionMeasureValue</MeasureValue>
-                <MeasureUnitCode>ActivityDescriptionMeasureUnitCode</MeasureUnitCode>
-                <ActivityDepthHeightMeasure>ActivityDepthHeightMeasure</ActivityDepthHeightMeasure>
+                <MeasureValue>
+                </MeasureValue>
+                <MeasureUnitCode/>
+                <ActivityDepthHeightMeasure/>
                 <ProjectIdentifier>CEAP</ProjectIdentifier>
                 <MonitoringLocationIdentifier>INSJ-INSJALG</MonitoringLocationIdentifier>
                 <ActivityCommentText>ActivityCommentText</ActivityCommentText>
@@ -182,14 +186,15 @@
                 <ActivityIdentifier>INSJALG_20070101</ActivityIdentifier>
                 <ActivityTypeCode>Field Msr/Obs</ActivityTypeCode>
                 <ActivityMediaName>Water</ActivityMediaName>
-                <ActivityStartDate>2007-01-01</ActivityStartDate>
+                <ActivityStartDate>1/1/2007</ActivityStartDate>
                 <ActivityStartTime>
                     <Time>10:50:00</Time>
                     <TimeZoneCode>EST</TimeZoneCode>
                 </ActivityStartTime>
-                <MeasureValue>ActivityDescriptionMeasureValue</MeasureValue>
-                <MeasureUnitCode>ActivityDescriptionMeasureUnitCode</MeasureUnitCode>
-                <ActivityDepthHeightMeasure>ActivityDepthHeightMeasure</ActivityDepthHeightMeasure>
+                <MeasureValue>
+                </MeasureValue>
+                <MeasureUnitCode/>
+                <ActivityDepthHeightMeasure/>
                 <ProjectIdentifier>CEAP</ProjectIdentifier>
                 <MonitoringLocationIdentifier>INSJ-INSJALG</MonitoringLocationIdentifier>
                 <ActivityCommentText>ActivityCommentText</ActivityCommentText>
@@ -239,14 +244,15 @@
                 <ActivityIdentifier>INSJALG_20070101</ActivityIdentifier>
                 <ActivityTypeCode>Field Msr/Obs</ActivityTypeCode>
                 <ActivityMediaName>Water</ActivityMediaName>
-                <ActivityStartDate>2007-01-01</ActivityStartDate>
+                <ActivityStartDate>1/1/2007</ActivityStartDate>
                 <ActivityStartTime>
                     <Time>10:50:00</Time>
                     <TimeZoneCode>EST</TimeZoneCode>
                 </ActivityStartTime>
-                <MeasureValue>ActivityDescriptionMeasureValue</MeasureValue>
-                <MeasureUnitCode>ActivityDescriptionMeasureUnitCode</MeasureUnitCode>
-                <ActivityDepthHeightMeasure>ActivityDepthHeightMeasure</ActivityDepthHeightMeasure>
+                <MeasureValue>
+                </MeasureValue>
+                <MeasureUnitCode/>
+                <ActivityDepthHeightMeasure/>
                 <ProjectIdentifier>CEAP</ProjectIdentifier>
                 <MonitoringLocationIdentifier>INSJ-INSJALG</MonitoringLocationIdentifier>
                 <ActivityCommentText>ActivityCommentText</ActivityCommentText>
@@ -297,7 +303,7 @@
                 <ActivityIdentifier>INSJAXL_20070102</ActivityIdentifier>
                 <ActivityTypeCode>Field Msr/Obs</ActivityTypeCode>
                 <ActivityMediaName>Water</ActivityMediaName>
-                <ActivityStartDate>2007-01-02</ActivityStartDate>
+                <ActivityStartDate>1/2/2007</ActivityStartDate>
                 <ActivityStartTime>
                     <Time>09:40:00</Time>
                     <TimeZoneCode>EST</TimeZoneCode>
@@ -356,7 +362,7 @@
                 <ActivityIdentifier>INSJAXL_20070102</ActivityIdentifier>
                 <ActivityTypeCode>Field Msr/Obs</ActivityTypeCode>
                 <ActivityMediaName>Water</ActivityMediaName>
-                <ActivityStartDate>2007-01-02</ActivityStartDate>
+                <ActivityStartDate>1/2/2007</ActivityStartDate>
                 <ActivityStartTime>
                     <Time>09:40:00</Time>
                     <TimeZoneCode>EST</TimeZoneCode>
@@ -415,7 +421,7 @@
                 <ActivityIdentifier>INSJAXL_20070102</ActivityIdentifier>
                 <ActivityTypeCode>Field Msr/Obs</ActivityTypeCode>
                 <ActivityMediaName>Water</ActivityMediaName>
-                <ActivityStartDate>2007-01-02</ActivityStartDate>
+                <ActivityStartDate>1/2/2007</ActivityStartDate>
                 <ActivityStartTime>
                     <Time>09:40:00</Time>
                     <TimeZoneCode>EST</TimeZoneCode>
@@ -474,7 +480,7 @@
                 <ActivityIdentifier>INSJAXL_20070102</ActivityIdentifier>
                 <ActivityTypeCode>Field Msr/Obs</ActivityTypeCode>
                 <ActivityMediaName>Water</ActivityMediaName>
-                <ActivityStartDate>2007-01-02</ActivityStartDate>
+                <ActivityStartDate>1/2/2007</ActivityStartDate>
                 <ActivityStartTime>
                     <Time>09:40:00</Time>
                     <TimeZoneCode>EST</TimeZoneCode>
@@ -533,7 +539,7 @@
                 <ActivityIdentifier>INSJAXL_20070102</ActivityIdentifier>
                 <ActivityTypeCode>Field Msr/Obs</ActivityTypeCode>
                 <ActivityMediaName>Water</ActivityMediaName>
-                <ActivityStartDate>2007-01-02</ActivityStartDate>
+                <ActivityStartDate>1/2/2007</ActivityStartDate>
                 <ActivityStartTime>
                     <Time>09:40:00</Time>
                     <TimeZoneCode>EST</TimeZoneCode>
@@ -593,7 +599,7 @@
                 <ActivityIdentifier>INSJCLG_20070102</ActivityIdentifier>
                 <ActivityTypeCode>Field Msr/Obs</ActivityTypeCode>
                 <ActivityMediaName>Water</ActivityMediaName>
-                <ActivityStartDate>2007-01-02</ActivityStartDate>
+                <ActivityStartDate>1/2/2007</ActivityStartDate>
                 <ActivityStartTime>
                     <Time>10:30:00</Time>
                     <TimeZoneCode>EST</TimeZoneCode>
@@ -643,7 +649,7 @@
                 <ActivityIdentifier>INSJCLG_20070102</ActivityIdentifier>
                 <ActivityTypeCode>Field Msr/Obs</ActivityTypeCode>
                 <ActivityMediaName>Water</ActivityMediaName>
-                <ActivityStartDate>2007-01-02</ActivityStartDate>
+                <ActivityStartDate>1/2/2007</ActivityStartDate>
                 <ActivityStartTime>
                     <Time>10:30:00</Time>
                     <TimeZoneCode>EST</TimeZoneCode>
@@ -693,7 +699,7 @@
                 <ActivityIdentifier>INSJCLG_20070102</ActivityIdentifier>
                 <ActivityTypeCode>Field Msr/Obs</ActivityTypeCode>
                 <ActivityMediaName>Water</ActivityMediaName>
-                <ActivityStartDate>2007-01-02</ActivityStartDate>
+                <ActivityStartDate>1/2/2007</ActivityStartDate>
                 <ActivityStartTime>
                     <Time>10:30:00</Time>
                     <TimeZoneCode>EST</TimeZoneCode>
@@ -743,7 +749,7 @@
                 <ActivityIdentifier>INSJCLG_20070102</ActivityIdentifier>
                 <ActivityTypeCode>Field Msr/Obs</ActivityTypeCode>
                 <ActivityMediaName>Water</ActivityMediaName>
-                <ActivityStartDate>2007-01-02</ActivityStartDate>
+                <ActivityStartDate>1/2/2007</ActivityStartDate>
                 <ActivityStartTime>
                     <Time>10:30:00</Time>
                     <TimeZoneCode>EST</TimeZoneCode>
@@ -793,7 +799,7 @@
                 <ActivityIdentifier>INSJCLG_20070102</ActivityIdentifier>
                 <ActivityTypeCode>Field Msr/Obs</ActivityTypeCode>
                 <ActivityMediaName>Water</ActivityMediaName>
-                <ActivityStartDate>2007-01-02</ActivityStartDate>
+                <ActivityStartDate>1/2/2007</ActivityStartDate>
                 <ActivityStartTime>
                     <Time>10:30:00</Time>
                     <TimeZoneCode>EST</TimeZoneCode>
@@ -844,7 +850,7 @@
                 <ActivityIdentifier>INSJF34_20070102</ActivityIdentifier>
                 <ActivityTypeCode>Field Msr/Obs</ActivityTypeCode>
                 <ActivityMediaName>Water</ActivityMediaName>
-                <ActivityStartDate>2007-01-02</ActivityStartDate>
+                <ActivityStartDate>1/2/2007</ActivityStartDate>
                 <ActivityStartTime>
                     <Time>10:15:00</Time>
                     <TimeZoneCode>EST</TimeZoneCode>
@@ -895,7 +901,7 @@
                 <ActivityIdentifier>INSJF34_20070102</ActivityIdentifier>
                 <ActivityTypeCode>Field Msr/Obs</ActivityTypeCode>
                 <ActivityMediaName>Water</ActivityMediaName>
-                <ActivityStartDate>2007-01-02</ActivityStartDate>
+                <ActivityStartDate>1/2/2007</ActivityStartDate>
                 <ActivityStartTime>
                     <Time>10:15:00</Time>
                     <TimeZoneCode>EST</TimeZoneCode>
@@ -946,7 +952,7 @@
                 <ActivityIdentifier>INSJF34_20070102</ActivityIdentifier>
                 <ActivityTypeCode>Field Msr/Obs</ActivityTypeCode>
                 <ActivityMediaName>Water</ActivityMediaName>
-                <ActivityStartDate>2007-01-02</ActivityStartDate>
+                <ActivityStartDate>1/2/2007</ActivityStartDate>
                 <ActivityStartTime>
                     <Time>10:15:00</Time>
                     <TimeZoneCode>EST</TimeZoneCode>
@@ -997,7 +1003,7 @@
                 <ActivityIdentifier>INSJF34_20070102</ActivityIdentifier>
                 <ActivityTypeCode>Field Msr/Obs</ActivityTypeCode>
                 <ActivityMediaName>Water</ActivityMediaName>
-                <ActivityStartDate>2007-01-02</ActivityStartDate>
+                <ActivityStartDate>1/2/2007</ActivityStartDate>
                 <ActivityStartTime>
                     <Time>10:15:00</Time>
                     <TimeZoneCode>EST</TimeZoneCode>
@@ -1047,7 +1053,7 @@
                 <ActivityIdentifier>INSJF34_20070102</ActivityIdentifier>
                 <ActivityTypeCode>Field Msr/Obs</ActivityTypeCode>
                 <ActivityMediaName>Water</ActivityMediaName>
-                <ActivityStartDate>2007-01-02</ActivityStartDate>
+                <ActivityStartDate>1/2/2007</ActivityStartDate>
                 <ActivityStartTime>
                     <Time>10:15:00</Time>
                     <TimeZoneCode>EST</TimeZoneCode>
@@ -1097,7 +1103,7 @@
                 <ActivityIdentifier>INSJF34_20070218</ActivityIdentifier>
                 <ActivityTypeCode>Field Msr/Obs</ActivityTypeCode>
                 <ActivityMediaName>Water</ActivityMediaName>
-                <ActivityStartDate>2007-02-18</ActivityStartDate>
+                <ActivityStartDate>2/18/2007</ActivityStartDate>
                 <ActivityStartTime>
                     <Time>21:20:00</Time>
                     <TimeZoneCode>EST</TimeZoneCode>
@@ -1148,7 +1154,7 @@
                 <ActivityIdentifier>INSJF34_20070218</ActivityIdentifier>
                 <ActivityTypeCode>Field Msr/Obs</ActivityTypeCode>
                 <ActivityMediaName>Water</ActivityMediaName>
-                <ActivityStartDate>2007-02-18</ActivityStartDate>
+                <ActivityStartDate>2/18/2007</ActivityStartDate>
                 <ActivityStartTime>
                     <Time>21:20:00</Time>
                     <TimeZoneCode>EST</TimeZoneCode>
@@ -1198,7 +1204,7 @@
                 <ActivityIdentifier>INSJF34_20070218</ActivityIdentifier>
                 <ActivityTypeCode>Field Msr/Obs</ActivityTypeCode>
                 <ActivityMediaName>Water</ActivityMediaName>
-                <ActivityStartDate>2007-02-18</ActivityStartDate>
+                <ActivityStartDate>2/18/2007</ActivityStartDate>
                 <ActivityStartTime>
                     <Time>21:20:00</Time>
                     <TimeZoneCode>EST</TimeZoneCode>
@@ -1248,7 +1254,7 @@
                 <ActivityIdentifier>INSJF34_20070218</ActivityIdentifier>
                 <ActivityTypeCode>Field Msr/Obs</ActivityTypeCode>
                 <ActivityMediaName>Water</ActivityMediaName>
-                <ActivityStartDate>2007-02-18</ActivityStartDate>
+                <ActivityStartDate>2/18/2007</ActivityStartDate>
                 <ActivityStartTime>
                     <Time>21:20:00</Time>
                     <TimeZoneCode>EST</TimeZoneCode>
@@ -1299,7 +1305,7 @@
                 <ActivityIdentifier>INSJF34_20070218</ActivityIdentifier>
                 <ActivityTypeCode>Field Msr/Obs</ActivityTypeCode>
                 <ActivityMediaName>Water</ActivityMediaName>
-                <ActivityStartDate>2007-02-18</ActivityStartDate>
+                <ActivityStartDate>2/18/2007</ActivityStartDate>
                 <ActivityStartTime>
                     <Time>21:20:00</Time>
                     <TimeZoneCode>EST</TimeZoneCode>

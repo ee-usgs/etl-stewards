@@ -3,12 +3,6 @@ package gov.acwi.wqp.etl.activity;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
-import java.nio.charset.Charset;
-import java.sql.SQLException;
-
-import javax.annotation.PostConstruct;
-
-import org.junit.Before;
 import org.junit.Test;
 import org.springframework.batch.core.ExitStatus;
 import org.springframework.batch.core.Job;
@@ -16,38 +10,18 @@ import org.springframework.batch.core.JobExecution;
 import org.springframework.batch.core.job.flow.Flow;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.core.io.support.EncodedResource;
-import org.springframework.jdbc.datasource.init.ScriptException;
-import org.springframework.jdbc.datasource.init.ScriptUtils;
 
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.github.springtestdbunit.annotation.ExpectedDatabase;
 import com.github.springtestdbunit.assertion.DatabaseAssertionMode;
 
-import gov.acwi.wqp.etl.BaseArsFlowIT;
-import gov.acwi.wqp.etl.activity.index.BuildActivityIndexesFlowIT;
-import gov.acwi.wqp.etl.activity.table.SetupActivitySwapTableFlowIT;
+import gov.acwi.wqp.etl.ArsBaseFlowIT;
 
-public class TransformActivityIT extends BaseArsFlowIT {
+public class TransformActivityIT extends ArsBaseFlowIT {
 
 	@Autowired
 	@Qualifier("activityFlow")
 	private Flow activityFlow;
-
-	@PostConstruct
-	public void beforeClass() throws ScriptException, SQLException {
-		EncodedResource encodedResource = new EncodedResource(resource, Charset.forName("UTF-8"));
-		ScriptUtils.executeSqlScript(dataSource.getConnection(), encodedResource);
-	}
-
-	@Before
-	public void setup() {
-		testJob = jobBuilderFactory.get("activityFlowTest")
-				.start(activityFlow)
-				.build()
-				.build();
-		jobLauncherTestUtils.setJob(testJob);
-	}
 
 	@Test
 	@DatabaseSetup(value="classpath:/testResult/stewards/activity/empty.xml")
@@ -72,12 +46,12 @@ public class TransformActivityIT extends BaseArsFlowIT {
 	@DatabaseSetup(connection="ars", value="classpath:/testResult/ars/result.xml")
 	@ExpectedDatabase(value="classpath:/testResult/stewards/activity/indexes/all.xml",
 			assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED,
-			table=BuildActivityIndexesFlowIT.EXPECTED_DATABASE_TABLE,
-			query=BuildActivityIndexesFlowIT.EXPECTED_DATABASE_QUERY)
+			table=EXPECTED_DATABASE_TABLE_CHECK_INDEX,
+			query=BASE_EXPECTED_DATABASE_QUERY_CHECK_INDEX + "'activity_swap_stewards'")
 	@ExpectedDatabase(connection="pg", value="classpath:/testResult/stewards/activity/create.xml",
 			assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED,
-			table=SetupActivitySwapTableFlowIT.EXPECTED_DATABASE_TABLE,
-			query=SetupActivitySwapTableFlowIT.EXPECTED_DATABASE_QUERY)
+			table=EXPECTED_DATABASE_TABLE_CHECK_TABLE,
+			query=BASE_EXPECTED_DATABASE_QUERY_CHECK_TABLE + "'activity_swap_stewards'")
 	@ExpectedDatabase(value="classpath:/testResult/stewards/activity/activity.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
 	public void activityFlowTest() {
 		Job activityFlowTest = jobBuilderFactory.get("activityFlowTest")

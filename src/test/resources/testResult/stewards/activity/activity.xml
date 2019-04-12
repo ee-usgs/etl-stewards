@@ -21,6 +21,7 @@
         project_id="CEAP"
         project_name="Conservation Effects Assessment Program"
         monitoring_location_name="INSJALG"
+        activity_comment="ActivityCommentText"
         sample_collect_method_id="INSJ_FM1"
         sample_collect_method_ctx="ARS Methods Catalog"
         sample_collect_method_name="Stream Level Measurement"

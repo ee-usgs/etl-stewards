@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import org.springframework.batch.item.ItemProcessor;
 
 import gov.acwi.wqp.etl.Application;
-import gov.acwi.wqp.etl.stewards.ArsResult;
+import gov.acwi.wqp.etl.stewards.result.ArsResult;
 
 public class ResultProcessor implements ItemProcessor<ArsResult, Result>{
 
@@ -16,7 +16,7 @@ public class ResultProcessor implements ItemProcessor<ArsResult, Result>{
 		result.setDataSource(Application.DATA_SOURCE);
 		result.setStationId(arsResult.getStationId());
 		result.setSiteId(arsResult.getSiteId());
-		result.setEventDate(LocalDate.parse(arsResult.getActivityStartDate()));
+		result.setEventDate(LocalDate.parse(arsResult.getActivityStartDate(), Application.ARS_DATE_TIME_FORMATTER));
 		result.setActivity(arsResult.getActivityIdentifier());
 		result.setSampleMedia(arsResult.getActivityMediaName());
 		result.setOrganization(arsResult.getOrganization());
@@ -32,6 +32,7 @@ public class ResultProcessor implements ItemProcessor<ArsResult, Result>{
 		result.setProjectId(arsResult.getProjectIdentifier());
 		result.setProjectName(arsResult.getProjectName());
 		result.setMonitoringLocationName(arsResult.getMonitoringLocationName());
+		result.setActivityComment(arsResult.getActivityCommentText());
 		result.setSampleCollectMethodId(arsResult.getSampleCollectionMethodIdentifier());
 		result.setSampleCollectMethodCtx(arsResult.getSampleCollectionMethodIdentifierContext());
 		result.setSampleCollectMethodName(arsResult.getSampleCollectionMethodName());

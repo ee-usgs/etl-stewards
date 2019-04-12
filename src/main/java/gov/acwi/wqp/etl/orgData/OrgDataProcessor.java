@@ -4,7 +4,7 @@ import org.springframework.batch.item.ItemProcessor;
 
 import gov.acwi.wqp.etl.Application;
 import gov.acwi.wqp.etl.orgData.OrgData;
-import gov.acwi.wqp.etl.stewards.ArsOrganization;
+import gov.acwi.wqp.etl.stewards.organization.ArsOrganization;
 
 public class OrgDataProcessor implements ItemProcessor<ArsOrganization, OrgData>{
 

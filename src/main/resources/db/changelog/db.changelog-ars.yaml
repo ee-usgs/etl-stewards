@@ -1,24 +1,3 @@
-databaseChangeLog:
-  - preConditions:
-    - dbms:
-        type: postgresql
-
-  - changeSet:
-      author: drsteini
-      id: "grant.select.tables.${ARS_OWNER_USERNAME}"
-      changes:
-        - sql:
-            sql: alter default privileges in schema ${WQP_SCHEMA_NAME} grant select on tables to ${ARS_OWNER_USERNAME};
-        - rollback: alter default privileges in schema ${WQP_SCHEMA_NAME} revoke select on tables from ${ARS_OWNER_USERNAME};
-
-  - changeSet:
-      author: drsteini
-      id: "grant.usage.${WQP_SCHEMA_NAME}.to.${ARS_OWNER_USERNAME}"
-      changes:
-        - sql:
-            sql: grant usage on schema ${WQP_SCHEMA_NAME} to ${ARS_OWNER_USERNAME};
-        - rollback: revoke usage on schema ${WQP_SCHEMA_NAME} from ${ARS_OWNER_USERNAME};
-
   - include:
       file: "db.changelog-master.yaml"
       relativeToChangelogFile: true

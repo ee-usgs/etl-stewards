@@ -16,9 +16,7 @@ spring:
       password: ${ARS_OWNER_PASSWORD}
       hikari:
         maximumPoolSize: 10
-
   liquibase:
-    change-log: classpath:/db/changelog/db.changelog-ars.yaml
     parameters:
       WQP_SCHEMA_NAME: ${WQP_SCHEMA_NAME}
-      ARS_OWNER_USERNAME: ${ARS_OWNER_USERNAME}
+      ETL_OWNER_USERNAME: ${ARS_OWNER_USERNAME}

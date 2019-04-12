@@ -6,8 +6,11 @@ import org.springframework.batch.core.scope.context.ChunkContext;
 import org.springframework.batch.core.step.tasklet.Tasklet;
 import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
+import org.springframework.util.FileCopyUtils;
 
 @Component
 @StepScope
@@ -20,45 +23,12 @@ public class TransformResDetectQntLimitTasklet implements Tasklet {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 
+	@Value("classpath:sql/resDetectQntLimit/writeResDetectQntLimit.sql")
+	private Resource executeResource;
+
 	@Override
 	public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
-		jdbcTemplate.execute("insert " + 
-				"  into r_detect_qnt_lmt_swap_stewards(data_source_id, data_source, station_id, site_id, event_date, activity, "
-				+ "                                      analytical_method,"
-				+ " sample_media, organization, site_type, huc, governmental_unit_code,"
-				+ "                                      geom, organization_name, activity_id, project_id, result_id,"
-				+ "                                    characteristic_name, characteristic_type,"
-				//characteristic_type, assemblage_sampled_name, sample_tissue_taxonomic_name, " + 
-				+ "                                      detection_limit_id, detection_limit, detection_limit_unit, detection_limit_desc)" + 
-				" select data_source_id," + 
-				"        data_source," + 
-				"        station_id," + 
-				"        site_id," + 
-				"        event_date," + 
-				"        activity," + 
-				"        analytical_procedure_id," + 
-				"        sample_media," + 
-				"        organization," + 
-				"        site_type," + 
-				"        huc," + 
-				"        governmental_unit_code," + 
-				"        geom," + 
-				"        organization_name," + 
-				"        activity_id," + 
-				"        project_id," + 
-				"        result_id," + 
-				"        characteristic_name," + 
-				"        characteristic_type," + 
-//				"        assemblage_sampled_name," + 
-//				"        sample_tissue_taxonomic_name," + 
-				"        result_id detection_limit_id," + 
-				"        detection_limit," + 
-				"        detection_limit_unit," + 
-				"        detection_limit_desc" + 
-				"   from result_swap_stewards" + 
-				"  where detection_limit is not null or" + 
-				"        detection_limit_unit is not null or" + 
-				"        detection_limit_desc is not null;");
+		jdbcTemplate.execute(new String(FileCopyUtils.copyToByteArray(executeResource.getInputStream())));
 		return RepeatStatus.FINISHED;
 	}
 }

@@ -1,0 +1,33 @@
+insert
+  into ars_monitoring_location (monitoring_location_identifier,
+                                monitoring_location_name,
+                                monitoring_location_type_name,
+                                monitoring_location_description_text,
+                                huc_eight_digit_code,
+                                huc_twelve_digit_code,
+                                drainage_area_measure_value,
+                                drainage_area_measure_unit_code,
+                                latitude_measure,
+                                longitude_measure,
+                                horizontal_collection_method_name,
+                                horizontal_coordinate_reference_system_datum_name,
+                                country_code,
+                                state_code,
+                                county_code
+                               )
+                        values (:monitoringLocationIdentifier,
+                                :monitoringLocationName,
+                                :monitoringLocationTypeName,
+                                :monitoringLocationDescriptionText,
+                                :hucEightDigitCode,
+                                :hucTwelveDigitCode,
+                                :drainageAreaMeasureValue,
+                                :drainageAreaMeasureUnitCode,
+                                :latitudeMeasure,
+                                :longitudeMeasure,
+                                :horizontalCollectionMethodName,
+                                :horizontalCoordinateReferenceSystemDatumName,
+                                :countryCode,
+                                :stateCode,
+                                :countyCode
+                               )
