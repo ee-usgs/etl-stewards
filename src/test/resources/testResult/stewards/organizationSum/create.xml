@@ -3,7 +3,7 @@
     <tables
         table_catalog="wqp_db"
         table_schema="wqp"
-        table_name="org_sum_swap_stewards"
+        table_name="organization_sum_swap_stewards"
         table_type="BASE TABLE"
     />
 </dataset>

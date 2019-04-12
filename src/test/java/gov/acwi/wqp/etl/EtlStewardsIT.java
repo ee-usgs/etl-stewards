@@ -99,7 +99,7 @@ public class EtlStewardsIT extends ArsBaseFlowIT {
 			assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED,
 			table=EXPECTED_DATABASE_TABLE_CHECK_TABLE,
 			query=BASE_EXPECTED_DATABASE_QUERY_CHECK_TABLE + "'ml_grouping_swap_stewards'")
-//TODO	@ExpectedDatabase(connection="pg", value="classpath:/testResult/stewards/orgSum/create.xml",
+//TODO	@ExpectedDatabase(connection="pg", value="classpath:/testResult/stewards/organizationSum/create.xml",
 //			assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED,
 //			table=EXPECTED_DATABASE_TABLE,
 //			query=BASE_EXPECTED_DATABASE_QUERY_CHECK_TABLE + "_stewards'")
@@ -113,7 +113,7 @@ public class EtlStewardsIT extends ArsBaseFlowIT {
 	@ExpectedDatabase(value="classpath:/testResult/stewards/resultSum/resultSum.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
 	@ExpectedDatabase(value="classpath:/testResult/stewards/orgGrouping/orgGrouping.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
 	@ExpectedDatabase(value="classpath:/testResult/stewards/mlGrouping/mlGrouping.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
-//TODO	@ExpectedDatabase(value="classpath:/testResult/stewards/orgSum/orgSum.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
+//TODO	@ExpectedDatabase(value="classpath:/testResult/stewards/organizationSum/organizationSum.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
 	@ExpectedDatabase(value="classpath:/testResult/stewards/monitoringLocationSum/monitoringLocationSum.xml",
 			table=EXPECTED_DATABASE_TABLE_STATION_SUM,
 			query=EXPECTED_DATABASE_QUERY_STATION_SUM)
@@ -135,7 +135,7 @@ public class EtlStewardsIT extends ArsBaseFlowIT {
 			assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED,
 			table=EXPECTED_DATABASE_TABLE_CHECK_INDEX,
 			query=BASE_EXPECTED_DATABASE_QUERY_CHECK_INDEX + "'ml_grouping_swap_stewards'")
-//TODO	@ExpectedDatabase(value="classpath:/testResult/stewards/orgSum/indexes/all.xml",
+//TODO	@ExpectedDatabase(value="classpath:/testResult/stewards/organizationSum/indexes/all.xml",
 //			assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED,
 //			table=EXPECTED_DATABASE_TABLE,
 //			query=BASE_EXPECTED_DATABASE_QUERY_CHECK_INDEX + "'_stewards'")

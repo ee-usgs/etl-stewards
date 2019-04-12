@@ -22,18 +22,18 @@
         <tag>HEAD</tag>
     </scm>
 
-<!--     <repositories> -->
-<!--         <repository> -->
-<!--             <id>Central</id> -->
-<!--             <name>Maven Central</name> -->
-<!--             <url>https://repo.maven.apache.org/maven2/</url> -->
-<!--         </repository> -->
-<!--         <repository> -->
-<!--             <id>WMA</id> -->
-<!--             <name>WMA Artifactory</name> -->
-<!--             <url>${wma.maven.url}/wma-maven-centralized/</url> -->
-<!--         </repository> -->
-<!--     </repositories> -->
+    <repositories>
+        <repository>
+            <id>Central</id>
+            <name>Maven Central</name>
+            <url>https://repo.maven.apache.org/maven2/</url>
+        </repository>
+        <repository>
+            <id>WMA</id>
+            <name>WMA Artifactory</name>
+            <url>${wma.maven.url}/wma-maven-centralized/</url>
+        </repository>
+    </repositories>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
