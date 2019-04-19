@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <pg_indexes
+        tablename="sample_media_swap_stewards"
+        indexname="sample_media_swap_stewards_code_value"
+        indexdef="CREATE INDEX sample_media_swap_stewards_code_value ON wqp.sample_media_swap_stewards USING btree (code_value) WITH (fillfactor='100')"
+     />
+</dataset>

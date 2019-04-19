@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <pg_indexes
+        tablename="monitoring_loc_swap_stewards"
+        indexname="monitoring_loc_swap_stewards_code_value"
+        indexdef="CREATE INDEX monitoring_loc_swap_stewards_code_value ON wqp.monitoring_loc_swap_stewards USING btree (code_value) WITH (fillfactor='100')"
+     />
+</dataset>

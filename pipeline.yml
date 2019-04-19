@@ -1,0 +1,10 @@
+projectName: "wqp-external"
+applicationName: "etl-nwis-lookups"
+dockerImageName: "etl-nwis-lookups"
+artifactoryPath: "wqp"
+gitlabPath: "wma/docker/wqp/etl-nwis-lookups"
+gitRepoUrl: "https://github.com/NWQMC/etl-nwis-lookups"
+gitRepoCredentialsId: "Jenkins-GitHub-Read-Write-Token"
+memory: 768
+rulePriority: 89
+contextPath: "/etl-nwis-lookups/*"
