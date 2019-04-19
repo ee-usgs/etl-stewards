@@ -5,7 +5,7 @@ import org.springframework.batch.item.ItemProcessor;
 
 import gov.acwi.wqp.etl.stewards.wqx.WqxMonitoringLocation;
 
-public class ArsMonitoringLocationProcessor implements ItemProcessor<WqxMonitoringLocation, ArsMonitoringLocation>{
+public class ArsMonitoringLocationProcessor implements ItemProcessor<WqxMonitoringLocation, ArsMonitoringLocation> {
 
 	@Override
 	public ArsMonitoringLocation process(WqxMonitoringLocation wqxMonitoringLocation) throws Exception {

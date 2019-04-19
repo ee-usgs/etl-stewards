@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import gov.acwi.wqp.etl.EtlConstantUtils;
+
 
 @Configuration
 public class TransformResDetectQntLimit {
@@ -19,7 +21,7 @@ public class TransformResDetectQntLimit {
 	private StepBuilderFactory stepBuilderFactory;
 
 	@Autowired
-	@Qualifier("setupResDetectQntLimitSwapTableFlow")
+	@Qualifier(EtlConstantUtils.SETUP_RES_DETECT_QNT_LIMIT_SWAP_TABLE_FLOW)
 	private Flow setupResDetectQntLimitSwapTableFlow;
 
 	@Autowired
@@ -27,7 +29,7 @@ public class TransformResDetectQntLimit {
 	private Tasklet transformResDetectQntLimitTasklet;
 
 	@Autowired
-	@Qualifier("buildResDetectQntLimitIndexesFlow")
+	@Qualifier(EtlConstantUtils.BUILD_RES_DETECT_QNT_LIMIT_INDEXES_FLOW)
 	private Flow buildResDetectQntLimitIndexesFlow;
 
 	@Bean

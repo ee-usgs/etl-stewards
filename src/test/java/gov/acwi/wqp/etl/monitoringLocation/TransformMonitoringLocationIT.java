@@ -25,9 +25,9 @@ public class TransformMonitoringLocationIT extends ArsBaseFlowIT {
 
 	@Test
 	@DatabaseSetup(value="classpath:/testResult/stewards/monitoringLocation/empty.xml")
-	@DatabaseSetup(connection="ars", value="classpath:/testData/ars/siteTypeToPrimary.xml")
-	@DatabaseSetup(connection="ars", value="classpath:/testResult/ars/orgProject.xml")
-	@DatabaseSetup(connection="ars", value="classpath:/testResult/ars/monitoringLocation.xml")
+	@DatabaseSetup(connection=CONNECTION_ARS, value="classpath:/testData/ars/siteTypeToPrimary.xml")
+	@DatabaseSetup(connection=CONNECTION_ARS, value="classpath:/testResult/ars/orgProject.xml")
+	@DatabaseSetup(connection=CONNECTION_ARS, value="classpath:/testResult/ars/monitoringLocation.xml")
 	@ExpectedDatabase(value="classpath:/testResult/stewards/monitoringLocation/monitoringLocation.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
 	public void transformMonitoringLocationStepTest() {
 		try {
@@ -41,14 +41,14 @@ public class TransformMonitoringLocationIT extends ArsBaseFlowIT {
 
 	@Test
 	@DatabaseSetup(value="classpath:/testResult/stewards/monitoringLocation/empty.xml")
-	@DatabaseSetup(connection="ars", value="classpath:/testData/ars/siteTypeToPrimary.xml")
-	@DatabaseSetup(connection="ars", value="classpath:/testResult/ars/orgProject.xml")
-	@DatabaseSetup(connection="ars", value="classpath:/testResult/ars/monitoringLocation.xml")
+	@DatabaseSetup(connection=CONNECTION_ARS, value="classpath:/testData/ars/siteTypeToPrimary.xml")
+	@DatabaseSetup(connection=CONNECTION_ARS, value="classpath:/testResult/ars/orgProject.xml")
+	@DatabaseSetup(connection=CONNECTION_ARS, value="classpath:/testResult/ars/monitoringLocation.xml")
 	@ExpectedDatabase(value="classpath:/testResult/stewards/monitoringLocation/indexes/all.xml",
 			assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED,
 				table=EXPECTED_DATABASE_TABLE_CHECK_INDEX,
 				query=BASE_EXPECTED_DATABASE_QUERY_CHECK_INDEX + "'station_swap_stewards'")
-	@ExpectedDatabase(connection="pg", value="classpath:/testResult/stewards/monitoringLocation/create.xml",
+	@ExpectedDatabase(connection=CONNECTION_INFORMATION_SCHEMA, value="classpath:/testResult/stewards/monitoringLocation/create.xml",
 			assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED,
 				table=EXPECTED_DATABASE_TABLE_CHECK_TABLE,
 				query=BASE_EXPECTED_DATABASE_QUERY_CHECK_TABLE + "'station_swap_stewards'")

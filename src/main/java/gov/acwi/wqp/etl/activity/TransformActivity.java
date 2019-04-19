@@ -9,6 +9,7 @@ import org.springframework.batch.core.configuration.annotation.StepBuilderFactor
 import org.springframework.batch.core.job.builder.FlowBuilder;
 import org.springframework.batch.core.job.flow.Flow;
 import org.springframework.batch.core.job.flow.support.SimpleFlow;
+import org.springframework.batch.item.ItemProcessor;
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.batch.item.database.BeanPropertyItemSqlParameterSourceProvider;
 import org.springframework.batch.item.database.ItemSqlParameterSourceProvider;
@@ -23,6 +24,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.Resource;
 import org.springframework.util.FileCopyUtils;
 
+import gov.acwi.wqp.etl.Application;
+import gov.acwi.wqp.etl.EtlConstantUtils;
 import gov.acwi.wqp.etl.stewards.result.ArsResult;
 import gov.acwi.wqp.etl.stewards.result.ArsResultActivityRowMapper;
 
@@ -30,22 +33,25 @@ import gov.acwi.wqp.etl.stewards.result.ArsResultActivityRowMapper;
 public class TransformActivity {
 
 	@Autowired
+	@Qualifier("activityProcessor")
+	private ItemProcessor<ArsResult, Activity> processor;
+
+	@Autowired
 	private StepBuilderFactory stepBuilderFactory;
 
 	@Autowired
-	@Qualifier("dataSourceWqp")
 	private DataSource dataSourceWqp;
 
 	@Autowired
-	@Qualifier("dataSourceArs")
+	@Qualifier(Application.DATASOURCE_ARS_QUALIFIER)
 	private DataSource dataSourceArs;
 
 	@Autowired
-	@Qualifier("setupActivitySwapTableFlow")
+	@Qualifier(EtlConstantUtils.SETUP_ACTIVITY_SWAP_TABLE_FLOW)
 	private Flow setupActivitySwapTableFlow;
 
 	@Autowired
-	@Qualifier("buildActivityIndexesFlow")
+	@Qualifier(EtlConstantUtils.BUILD_ACTIVITY_INDEXES_FLOW)
 	private Flow buildActivityIndexesFlow;
 
 	@Value("classpath:sql/activity/readArsActivity.sql")
@@ -80,7 +86,7 @@ public class TransformActivity {
 				.get("transformActivityStep")
 				.<ArsResult, Activity>chunk(10)
 				.reader(activityReader())
-				.processor(new ActivityProcessor())
+				.processor(processor)
 				.writer(activityWriter())
 				.build();
 	}

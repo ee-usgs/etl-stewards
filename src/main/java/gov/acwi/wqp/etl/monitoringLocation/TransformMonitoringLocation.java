@@ -9,6 +9,7 @@ import org.springframework.batch.core.configuration.annotation.StepBuilderFactor
 import org.springframework.batch.core.job.builder.FlowBuilder;
 import org.springframework.batch.core.job.flow.Flow;
 import org.springframework.batch.core.job.flow.support.SimpleFlow;
+import org.springframework.batch.item.ItemProcessor;
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.batch.item.database.BeanPropertyItemSqlParameterSourceProvider;
 import org.springframework.batch.item.database.ItemSqlParameterSourceProvider;
@@ -23,30 +24,34 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.Resource;
 import org.springframework.util.FileCopyUtils;
 
+import gov.acwi.wqp.etl.Application;
+import gov.acwi.wqp.etl.EtlConstantUtils;
 import gov.acwi.wqp.etl.stewards.monitoringLocation.ArsMonitoringLocation;
 import gov.acwi.wqp.etl.stewards.monitoringLocation.ArsMonitoringLocationRowMapper;
-
 
 @Configuration
 public class TransformMonitoringLocation {
 
 	@Autowired
+	@Qualifier("monitoringLocationProcessor")
+	private ItemProcessor<ArsMonitoringLocation, MonitoringLocation> processor;
+
+	@Autowired
 	private StepBuilderFactory stepBuilderFactory;
 
 	@Autowired
-	@Qualifier("dataSourceWqp")
 	private DataSource dataSourceWqp;
 
 	@Autowired
-	@Qualifier("dataSourceArs")
+	@Qualifier(Application.DATASOURCE_ARS_QUALIFIER)
 	private DataSource dataSourceArs;
 
 	@Autowired
-	@Qualifier("setupMonitoringLocationSwapTableFlow")
+	@Qualifier(EtlConstantUtils.SETUP_MONITORING_LOCATION_SWAP_TABLE_FLOW)
 	private Flow setupMonitoringLocationSwapTableFlow;
 
 	@Autowired
-	@Qualifier("buildMonitoringLocationIndexesFlow")
+	@Qualifier(EtlConstantUtils.BUILD_MONITORING_LOCATION_INDEXES_FLOW)
 	private Flow buildMonitoringLocationIndexesFlow;
 
 	@Value("classpath:sql/monitoringLocation/readArsMonitoringLocation.sql")
@@ -59,7 +64,7 @@ public class TransformMonitoringLocation {
 	public JdbcCursorItemReader<ArsMonitoringLocation> monitoringLocationReader() throws IOException {
 		return new JdbcCursorItemReaderBuilder<ArsMonitoringLocation>()
 				.dataSource(dataSourceArs)
-				.name("organizationReader")
+				.name("monitoringLocationReader")
 				.sql(new String(FileCopyUtils.copyToByteArray(readerResource.getInputStream())))
 				.rowMapper(new ArsMonitoringLocationRowMapper())
 				.build();
@@ -81,7 +86,7 @@ public class TransformMonitoringLocation {
 				.get("transformMonitoringLocationStep")
 				.<ArsMonitoringLocation, MonitoringLocation>chunk(10)
 				.reader(monitoringLocationReader())
-				.processor(new MonitoringLocationProcessor())
+				.processor(processor)
 				.writer(monitoringLocationWriter())
 				.build();
 	}

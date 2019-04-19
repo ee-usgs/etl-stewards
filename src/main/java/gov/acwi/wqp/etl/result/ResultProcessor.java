@@ -3,17 +3,28 @@ package gov.acwi.wqp.etl.result;
 import java.time.LocalDate;
 
 import org.springframework.batch.item.ItemProcessor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import gov.acwi.wqp.etl.Application;
+import gov.acwi.wqp.etl.ConfigurationService;
 import gov.acwi.wqp.etl.stewards.result.ArsResult;
 
-public class ResultProcessor implements ItemProcessor<ArsResult, Result>{
+@Component
+public class ResultProcessor implements ItemProcessor<ArsResult, Result> {
+
+	private final ConfigurationService configurationService;
+
+	@Autowired
+	public ResultProcessor(ConfigurationService configurationService) {
+		this.configurationService = configurationService;
+	}
 
 	@Override
 	public Result process(ArsResult arsResult) throws Exception {
 		Result result = new Result();
-		result.setDataSourceId(Application.DATA_SOURCE_ID);
-		result.setDataSource(Application.DATA_SOURCE);
+		result.setDataSourceId(configurationService.getEtlDataSourceId());
+		result.setDataSource(configurationService.getEtlDataSource());
 		result.setStationId(arsResult.getStationId());
 		result.setSiteId(arsResult.getSiteId());
 		result.setEventDate(LocalDate.parse(arsResult.getActivityStartDate(), Application.ARS_DATE_TIME_FORMATTER));

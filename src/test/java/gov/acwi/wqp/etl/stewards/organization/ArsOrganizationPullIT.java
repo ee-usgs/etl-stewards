@@ -24,8 +24,8 @@ public class ArsOrganizationPullIT extends ArsBaseFlowIT {
 	private Flow arsOrganizationPullFlow;
 
 	@Test
-	@DatabaseSetup(connection="ars", value="classpath:/testData/ars/orgProjectOld.xml")
-	@ExpectedDatabase(connection="ars", value="classpath:/testResult/ars/orgProjectEmpty.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
+	@DatabaseSetup(connection=CONNECTION_ARS, value="classpath:/testData/ars/orgProjectOld.xml")
+	@ExpectedDatabase(connection=CONNECTION_ARS, value="classpath:/testResult/ars/orgProjectEmpty.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
 	public void truncateArsOrgProjectStepTest() {
 		try {
 			JobExecution jobExecution = jobLauncherTestUtils.launchStep("truncateArsOrgProjectStep", testJobParameters);
@@ -37,8 +37,8 @@ public class ArsOrganizationPullIT extends ArsBaseFlowIT {
 	}
 
 	@Test
-	@DatabaseSetup(connection="ars", value="classpath:/testResult/ars/orgProjectEmpty.xml")
-	@ExpectedDatabase(connection="ars", value="classpath:/testResult/ars/orgProject.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
+	@DatabaseSetup(connection=CONNECTION_ARS, value="classpath:/testResult/ars/orgProjectEmpty.xml")
+	@ExpectedDatabase(connection=CONNECTION_ARS, value="classpath:/testResult/ars/orgProject.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
 	public void arsOrganizationPullStepTest() {
 		try {
 			JobExecution jobExecution = jobLauncherTestUtils.launchStep("arsOrganizationPullStep", testJobParameters);
@@ -50,8 +50,8 @@ public class ArsOrganizationPullIT extends ArsBaseFlowIT {
 	}
 
 	@Test
-	@DatabaseSetup(connection="ars", value="classpath:/testData/ars/orgProjectOld.xml")
-	@ExpectedDatabase(connection="ars", value="classpath:/testResult/ars/orgProject.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
+	@DatabaseSetup(connection=CONNECTION_ARS, value="classpath:/testData/ars/orgProjectOld.xml")
+	@ExpectedDatabase(connection=CONNECTION_ARS, value="classpath:/testResult/ars/orgProject.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
 	public void arsOrganizationPullFlowTest() {
 		Job arsOrganizationPullFlowTest = jobBuilderFactory.get("arsOrganizationPullFlowTest")
 					.start(arsOrganizationPullFlow)

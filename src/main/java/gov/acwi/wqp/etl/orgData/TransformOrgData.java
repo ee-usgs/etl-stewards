@@ -9,6 +9,7 @@ import org.springframework.batch.core.configuration.annotation.StepBuilderFactor
 import org.springframework.batch.core.job.builder.FlowBuilder;
 import org.springframework.batch.core.job.flow.Flow;
 import org.springframework.batch.core.job.flow.support.SimpleFlow;
+import org.springframework.batch.item.ItemProcessor;
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.batch.item.database.BeanPropertyItemSqlParameterSourceProvider;
 import org.springframework.batch.item.database.ItemSqlParameterSourceProvider;
@@ -23,6 +24,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.Resource;
 import org.springframework.util.FileCopyUtils;
 
+import gov.acwi.wqp.etl.Application;
+import gov.acwi.wqp.etl.EtlConstantUtils;
 import gov.acwi.wqp.etl.stewards.organization.ArsOrganization;
 import gov.acwi.wqp.etl.stewards.organization.ArsOrganizationRowMapper;
 
@@ -31,22 +34,25 @@ import gov.acwi.wqp.etl.stewards.organization.ArsOrganizationRowMapper;
 public class TransformOrgData {
 
 	@Autowired
+	@Qualifier("orgDataProcessor")
+	private ItemProcessor<ArsOrganization, OrgData> processor;
+
+	@Autowired
 	private StepBuilderFactory stepBuilderFactory;
 
 	@Autowired
-	@Qualifier("dataSourceWqp")
 	private DataSource dataSourceWqp;
 
 	@Autowired
-	@Qualifier("dataSourceArs")
+	@Qualifier(Application.DATASOURCE_ARS_QUALIFIER)
 	private DataSource dataSourceArs;
 
 	@Autowired
-	@Qualifier("setupOrgDataSwapTableFlow")
+	@Qualifier(EtlConstantUtils.SETUP_ORG_DATA_SWAP_TABLE_FLOW)
 	private Flow setupOrgDataSwapTableFlow;
 
 	@Autowired
-	@Qualifier("buildOrgDataIndexesFlow")
+	@Qualifier(EtlConstantUtils.BUILD_ORG_DATA_INDEXES_FLOW)
 	private Flow buildOrgDataIndexesFlow;
 
 	@Value("classpath:sql/orgData/readArsOrgProject.sql")
@@ -83,7 +89,7 @@ public class TransformOrgData {
 				.get("transformOrgDataStep")
 				.<ArsOrganization, OrgData>chunk(10)
 				.reader(wqxOrgReader())
-				.processor(new OrgDataProcessor())
+				.processor(processor)
 				.writer(orgDataWriter())
 				.build();
 	}

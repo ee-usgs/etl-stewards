@@ -29,8 +29,8 @@ public class ArsMonitoringLocationPullIT extends ArsBaseFlowIT {
 	private JdbcTemplate jdbcTemplateArs;
 
 	@Test
-	@DatabaseSetup(connection="ars", value="classpath:/testData/ars/monitoringLocationOld.xml")
-	@ExpectedDatabase(connection="ars", value="classpath:/testResult/ars/monitoringLocationEmpty.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
+	@DatabaseSetup(connection=CONNECTION_ARS, value="classpath:/testData/ars/monitoringLocationOld.xml")
+	@ExpectedDatabase(connection=CONNECTION_ARS, value="classpath:/testResult/ars/monitoringLocationEmpty.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
 	public void truncateArsMonitoringLocationStepTest() {
 		try {
 			JobExecution jobExecution = jobLauncherTestUtils.launchStep("truncateArsMonitoringLocationStep", testJobParameters);
@@ -42,7 +42,7 @@ public class ArsMonitoringLocationPullIT extends ArsBaseFlowIT {
 	}
 
 	@Test
-	@ExpectedDatabase(connection="ars", value="classpath:/testResult/ars/monitoringLocation.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
+	@ExpectedDatabase(connection=CONNECTION_ARS, value="classpath:/testResult/ars/monitoringLocation.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
 	public void arsMonitoringLocationPullStepTest() {
 		try {
 			//Manually truncating to guarantee that the identity is reset. DBUnit @DatabaseSetup will not accomplish this.
@@ -56,8 +56,8 @@ public class ArsMonitoringLocationPullIT extends ArsBaseFlowIT {
 	}
 
 	@Test
-	@DatabaseSetup(connection="ars", value="classpath:/testData/ars/monitoringLocationOld.xml")
-	@ExpectedDatabase(connection="ars", value="classpath:/testResult/ars/monitoringLocation.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
+	@DatabaseSetup(connection=CONNECTION_ARS, value="classpath:/testData/ars/monitoringLocationOld.xml")
+	@ExpectedDatabase(connection=CONNECTION_ARS, value="classpath:/testResult/ars/monitoringLocation.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
 	public void arsMonitoringLocationPullFlowTest() {
 		Job arsMonitoringLocationPullFlowTest = jobBuilderFactory.get("arsMonitoringLocationPullFlowTest")
 					.start(arsMonitoringLocationPullFlow)

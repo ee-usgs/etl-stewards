@@ -28,15 +28,17 @@ public class JobCommandLineRunner implements CommandLineRunner {
 	private JobLauncher jobLauncher;
 	@Autowired
 	private JobExplorer jobExplorer;
+	@Autowired
+	private ConfigurationService configurationService;
 
 	@Override
 	public void run(String... args) throws Exception {
 		JobParameters parameters = new JobParametersBuilder(jobExplorer)
 				.addString(EtlConstantUtils.JOB_ID, LocalDate.now().toString(), true)
-				.addString(EtlConstantUtils.JOB_PARM_DATA_SOURCE_ID, Application.DATA_SOURCE_ID.toString(), true)
-				.addString(EtlConstantUtils.JOB_PARM_DATA_SOURCE, Application.DATA_SOURCE.toLowerCase(), true)
-				.addString(EtlConstantUtils.JOB_PARM_SCHEMA, EtlConstantUtils.WQP_SCHEMA_NAME, false)
-				.addString(EtlConstantUtils.JOB_PARM_GEO_SCHEMA, EtlConstantUtils.NWIS_SCHEMA_NAME, false)
+				.addString(EtlConstantUtils.JOB_PARM_DATA_SOURCE_ID, configurationService.getEtlDataSourceId().toString(), true)
+				.addString(EtlConstantUtils.JOB_PARM_DATA_SOURCE, configurationService.getEtlDataSource().toLowerCase(), true)
+				.addString(EtlConstantUtils.JOB_PARM_WQP_SCHEMA, configurationService.getWqpSchemaName(), false)
+				.addString(EtlConstantUtils.JOB_PARM_GEO_SCHEMA, configurationService.getGeoSchemaName(), false)
 				.toJobParameters();
 		try {
 			JobExecution jobExecution = jobLauncher.run(job, parameters);

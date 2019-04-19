@@ -26,6 +26,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.springframework.util.FileCopyUtils;
 
+import gov.acwi.wqp.etl.Application;
 import gov.acwi.wqp.etl.stewards.ArsUrlResource;
 import gov.acwi.wqp.etl.stewards.wqx.WqxDrainageAreaMeasure;
 import gov.acwi.wqp.etl.stewards.wqx.WqxMonitoringLocation;
@@ -39,7 +40,7 @@ public class ArsMonitoringLocationPull {
 	private StepBuilderFactory stepBuilderFactory;
 
 	@Autowired
-	@Qualifier("dataSourceArs")
+	@Qualifier(Application.DATASOURCE_ARS_QUALIFIER)
 	private DataSource dataSourceArs;
 
 	@Value("${wqx.monitoringLocation}")

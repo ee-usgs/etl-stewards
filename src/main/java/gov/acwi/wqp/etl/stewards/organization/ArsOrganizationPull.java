@@ -25,6 +25,7 @@ import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.springframework.stereotype.Component;
 import org.springframework.util.FileCopyUtils;
 
+import gov.acwi.wqp.etl.Application;
 import gov.acwi.wqp.etl.stewards.ArsUrlResource;
 import gov.acwi.wqp.etl.stewards.wqx.WqxOrganization;
 import gov.acwi.wqp.etl.stewards.wqx.WqxOrganizationDescription;
@@ -37,7 +38,7 @@ public class ArsOrganizationPull {
 	private StepBuilderFactory stepBuilderFactory;
 
 	@Autowired
-	@Qualifier("dataSourceArs")
+	@Qualifier(Application.DATASOURCE_ARS_QUALIFIER)
 	private DataSource dataSourceArs;
 
 	@Value("${wqx.organization}")

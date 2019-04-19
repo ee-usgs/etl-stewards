@@ -4,20 +4,30 @@ import java.math.BigDecimal;
 
 import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.batch.item.ItemProcessor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-import gov.acwi.wqp.etl.Application;
+import gov.acwi.wqp.etl.ConfigurationService;
 import gov.acwi.wqp.etl.stewards.monitoringLocation.ArsMonitoringLocation;
 
-public class MonitoringLocationProcessor implements ItemProcessor<ArsMonitoringLocation, MonitoringLocation>{
+@Component
+public class MonitoringLocationProcessor implements ItemProcessor<ArsMonitoringLocation, MonitoringLocation> {
 
 	public static final String DEFAULT_SITE_TYPE = "Not Assigned";
+
+	private final ConfigurationService configurationService;
+
+	@Autowired
+	public MonitoringLocationProcessor(ConfigurationService configurationService) {
+		this.configurationService = configurationService;
+	}
 
 	@Override
 	public MonitoringLocation process(ArsMonitoringLocation arsStation) throws Exception {
 		MonitoringLocation monitoringLocation = new MonitoringLocation();
 
-		monitoringLocation.setDataSourceId(Application.DATA_SOURCE_ID);
-		monitoringLocation.setDataSource(Application.DATA_SOURCE);
+		monitoringLocation.setDataSourceId(configurationService.getEtlDataSourceId());
+		monitoringLocation.setDataSource(configurationService.getEtlDataSource());
 		monitoringLocation.setStationId(arsStation.getStationId());
 		monitoringLocation.setSiteId(String.join("-", arsStation.getOrganization(), arsStation.getMonitoringLocationIdentifier()));
 		monitoringLocation.setOrganization(arsStation.getOrganization());
