@@ -5,7 +5,7 @@ import org.springframework.batch.item.ItemProcessor;
 
 import gov.acwi.wqp.etl.stewards.wqx.WqxOrganization;
 
-public class ArsOrganizationProcessor implements ItemProcessor<WqxOrganization, ArsOrganization>{
+public class ArsOrganizationProcessor implements ItemProcessor<WqxOrganization, ArsOrganization> {
 
 	@Override
 	public ArsOrganization process(WqxOrganization wqxOrganization) throws Exception {

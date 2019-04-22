@@ -26,8 +26,8 @@ public class TransformResultIT extends ArsBaseFlowIT {
 	@Test
 	@DatabaseSetup(value="classpath:/testResult/stewards/result/empty.xml")
 	@DatabaseSetup(value="classpath:/testResult/stewards/activity/activity.xml")
-	@DatabaseSetup(connection="ars", value="classpath:/testResult/ars/result.xml")
-	@DatabaseSetup(connection="ars", value="classpath:/testData/ars/charNameToType.xml")
+	@DatabaseSetup(connection=CONNECTION_ARS, value="classpath:/testResult/ars/result.xml")
+	@DatabaseSetup(connection=CONNECTION_ARS, value="classpath:/testData/ars/charNameToType.xml")
 	@ExpectedDatabase(value="classpath:/testResult/stewards/result/result.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
 	public void transformResultStepTest() {
 		try {
@@ -42,10 +42,10 @@ public class TransformResultIT extends ArsBaseFlowIT {
 	@Test
 	@DatabaseSetup(value="classpath:/testResult/stewards/result/empty.xml")
 	@DatabaseSetup(value="classpath:/testResult/stewards/activity/activity.xml")
-	@DatabaseSetup(connection="ars", value="classpath:/testResult/ars/result.xml")
-	@DatabaseSetup(connection="ars", value="classpath:/testData/ars/charNameToType.xml")
+	@DatabaseSetup(connection=CONNECTION_ARS, value="classpath:/testResult/ars/result.xml")
+	@DatabaseSetup(connection=CONNECTION_ARS, value="classpath:/testData/ars/charNameToType.xml")
 	@ExpectedDatabase(value="classpath:/testResult/stewards/result/result.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
-	@ExpectedDatabase(connection="pg", value="classpath:/testResult/stewards/result/create.xml",
+	@ExpectedDatabase(connection=CONNECTION_INFORMATION_SCHEMA, value="classpath:/testResult/stewards/result/create.xml",
 			assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED,
 			table=EXPECTED_DATABASE_TABLE_CHECK_TABLE,
 			query=BASE_EXPECTED_DATABASE_QUERY_CHECK_TABLE + "'result_swap_stewards'")

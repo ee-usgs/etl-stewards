@@ -7,7 +7,6 @@ import java.math.BigDecimal;
 
 import org.junit.Test;
 
-import gov.acwi.wqp.etl.Application;
 import gov.acwi.wqp.etl.BaseProcessorTest;
 import gov.acwi.wqp.etl.stewards.monitoringLocation.ArsMonitoringLocation;
 
@@ -15,7 +14,7 @@ public class MonitoringLocationProcessorTest extends BaseProcessorTest {
 
 	@Test
 	public void getBigDecimalTest() {
-		MonitoringLocationProcessor processor = new MonitoringLocationProcessor();
+		MonitoringLocationProcessor processor = new MonitoringLocationProcessor(configurationService);
 		assertNull(processor.getBigDecimal("abc"));
 		assertNull(processor.getBigDecimal("a1c"));
 		assertNull(processor.getBigDecimal(null));
@@ -26,11 +25,11 @@ public class MonitoringLocationProcessorTest extends BaseProcessorTest {
 	public void happyPathTest() throws Exception {
 		ArsMonitoringLocation arsMonitoringLocation = buildArsMonitoringLocation(TEST_SITE_TYPE, TEST_HUC_12);
 
-		MonitoringLocationProcessor processor = new MonitoringLocationProcessor();
+		MonitoringLocationProcessor processor = new MonitoringLocationProcessor(configurationService);
 
 		MonitoringLocation monitoringLocation = processor.process(arsMonitoringLocation);
-		assertEquals(Application.DATA_SOURCE_ID, monitoringLocation.getDataSourceId());
-		assertEquals(Application.DATA_SOURCE, monitoringLocation.getDataSource());
+		assertEquals(TEST_DATA_SOURCE_ID, monitoringLocation.getDataSourceId());
+		assertEquals(TEST_DATA_SOURCE, monitoringLocation.getDataSource());
 		assertEquals(TEST_STATION_ID, monitoringLocation.getStationId());
 		assertEquals(TEST_SITE_ID, monitoringLocation.getSiteId());
 		assertEquals(TEST_ORG_ID, monitoringLocation.getOrganization());
@@ -54,11 +53,11 @@ public class MonitoringLocationProcessorTest extends BaseProcessorTest {
 	public void defaultedTest() throws Exception {
 		ArsMonitoringLocation arsMonitoringLocation = buildArsMonitoringLocation(null, null);
 
-		MonitoringLocationProcessor processor = new MonitoringLocationProcessor();
+		MonitoringLocationProcessor processor = new MonitoringLocationProcessor(configurationService);
 
 		MonitoringLocation monitoringLocation = processor.process(arsMonitoringLocation);
-		assertEquals(Application.DATA_SOURCE_ID, monitoringLocation.getDataSourceId());
-		assertEquals(Application.DATA_SOURCE, monitoringLocation.getDataSource());
+		assertEquals(TEST_DATA_SOURCE_ID, monitoringLocation.getDataSourceId());
+		assertEquals(TEST_DATA_SOURCE, monitoringLocation.getDataSource());
 		assertEquals(TEST_STATION_ID, monitoringLocation.getStationId());
 		assertEquals(TEST_SITE_ID, monitoringLocation.getSiteId());
 		assertEquals(TEST_ORG_ID, monitoringLocation.getOrganization());

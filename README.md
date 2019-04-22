@@ -4,39 +4,39 @@
 
 ETL Water Quality Data from the ARS Stewards (USDA) System
 
-This ETL is unique in that the source data is in XML.
+[![Build Status](https://travis-ci.org/NWQMC/etl-stewards.svg?branch=master)](https://travis-ci.org/NWQMC/etl-stewards)
 
-These scripts are run by the OWI Jenkins Job Runners. The job names are WQP\_STEWARDS\_ETL and WQP\_STEWARDS\_ETL\_Pull\_Data. They follow the general OWI ETL pattern using ant to control the execution of PL/SQL scripts.
+### Environment variables
+Create an application.yml file in the project directory containing the following (shown are example values - they should match the values you used in creating the etlDB):
 
-The basic flow is:
+```
+WQP_DATABASE_ADDRESS: <localhost>
+WQP_DATABASE_PORT: <5437>
+WQP_DATABASE_NAME: <wqp_db>
+WQP_SCHEMA_NAME: <wqp>
+WQP_SCHEMA_OWNER_USERNAME: <wqp_core>
+WQP_SCHEMA_OWNER_PASSWORD: <changeMe>
 
-* Download the data from the ARS webservice using curl. (WQP\_STEWARDS\_ETL\_Pull\_Data job)
+ARS_DATABASE_ADDRESS: <localhost>
+ARS_DATABASE_PORT: <5437>
+ARS_DATABASE_NAME: <wqp_db>
+ARS_SCHEMA_NAME: <ars>
+ARS_OWNER_USERNAME: <ars_owner>
+ARS_OWNER_PASSWORD: <changeMe>
 
-* Load the station data into the nolog ars_stewards schema with sqlldr.
+NWIS_DATABASE_ADDRESS: <localhost>
+NWIS_DATABASE_PORT: <5437>
+NWIS_DATABASE_NAME: <wqp_db>
+NWIS_SCHEMA_OWNER_USERNAME: <nwis_ws_star>
+NWIS_SCHEMA_OWNER_PASSWORD: <changeMe>
 
-* Load the result data into the nolog ars_stewards scheam with sqlldr.
+ETL_OWNER_USERNAME: <ars_owner>
+GEO_SCHEMA_NAME: <nwis>
+ETL_DATA_SOURCE_ID: <1>
+ETL_DATA_SOURCE: <STEWARDS>
+QWPORTAL_SUMMARY_ETL: <false>
+NWIS_OR_EPA: <>
 
-* Drop the referential integrity constraints on the stewards swap tables of the wqp_core schema. (dropRI.sql)
+```
 
-* Drop the indexes on the stewards station swap table, populate with transformed data, and rebuild the indexes. (transformStation.sql)
-
-* Drop the indexes on the stewards result swap table, populate with transformed data, and rebuild the indexes. (transformResult.sql)
-
-* Drop the indexes on the stewards r\_detect\_qnt\_int swap table, populate with transformed data, and rebuild the indexes. (transformResDetectQntLmt.sql)
-
-* Drop the indexes on the stewards summary swap tables, populate with transformed data, and rebuild the indexes. (createSummaries.sql)
-
-* Drop the indexes on the stewards code lookup swap tables, populate with transformed data, and rebuild the indexes. (createCodes.sql)
-
-	**Note:** Several code lookup values are dependent on data from the WQP\_NWIS\_ETL correctly collecting data from natprod.
-
-
-* Add back the referential integrity constraints on the stewards swap tables of the wqp_core schema. (addRI.sql)
-
-* Analyze the stewards swap tables of the wqp_core schema. (analyze.sql)
-
-* Validate that rows counts and change in row counts are within the tolerated values. (validate.sql)
-
-* Install the new data using partition exchanges. (install.sql)
-
-The translation of data is specific to this repository. The heavy lifting (indexing, RI, partition exchanges, etc.) is done using common packages in the wqp_core schema. These are defined in the schema-wqp-core repository.
+#### Environment variable definitions

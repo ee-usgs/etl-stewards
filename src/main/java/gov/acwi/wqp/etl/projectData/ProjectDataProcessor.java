@@ -1,18 +1,29 @@
 package gov.acwi.wqp.etl.projectData;
 
 import org.springframework.batch.item.ItemProcessor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import gov.acwi.wqp.etl.Application;
+import gov.acwi.wqp.etl.ConfigurationService;
 import gov.acwi.wqp.etl.projectData.ProjectData;
 import gov.acwi.wqp.etl.stewards.organization.ArsOrganization;
 
-public class ProjectDataProcessor implements ItemProcessor<ArsOrganization, ProjectData>{
+@Component
+public class ProjectDataProcessor implements ItemProcessor<ArsOrganization, ProjectData> {
+
+	private final ConfigurationService configurationService;
+
+	@Autowired
+	public ProjectDataProcessor(ConfigurationService configurationService) {
+		this.configurationService = configurationService;
+	}
 
 	@Override
 	public ProjectData process(ArsOrganization arsOrganization) throws Exception {
 		ProjectData projectData = new ProjectData();
-		projectData.setDataSourceId(Application.DATA_SOURCE_ID);
-		projectData.setDataSource(Application.DATA_SOURCE);
+		projectData.setDataSourceId(configurationService.getEtlDataSourceId());
+		projectData.setDataSource(configurationService.getEtlDataSource());
 		projectData.setOrganizationId(Application.ORGANIZATION_ID);
 		if (null != arsOrganization) {
 			projectData.setOrganization(arsOrganization.getOrganizationIdentifier());

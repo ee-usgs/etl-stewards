@@ -14,7 +14,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 public class DbConfig {
 
 	@Bean
-	@ConfigurationProperties(prefix="spring.datasource-wqp")
+	@ConfigurationProperties(prefix=EtlConstantUtils.SPRING_DATASOURCE_WQP)
 	@Primary
 	@Profile("default")
 	public DataSourceProperties dataSourcePropertiesWqp() {

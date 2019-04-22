@@ -45,15 +45,15 @@ public class BatchConfiguration {
 	private Flow resDetectQntLimitFlow;
 
 	@Autowired
-	@Qualifier("createSummariesFlow")
+	@Qualifier(EtlConstantUtils.CREATE_SUMMARIES_FLOW)
 	private Flow createSummariesFlow;
 
 	@Autowired
-	@Qualifier("createLookupCodesFlow")
+	@Qualifier(EtlConstantUtils.CREATE_LOOKUP_CODES_FLOW)
 	private Flow createLookupCodesFlow;
 
 	@Autowired
-	@Qualifier("databaseFinalizeFlow")
+	@Qualifier(EtlConstantUtils.CREATE_DATABASE_FINALIZE_FLOW)
 	private Flow databaseFinalizeFlow;
 
 	@Bean

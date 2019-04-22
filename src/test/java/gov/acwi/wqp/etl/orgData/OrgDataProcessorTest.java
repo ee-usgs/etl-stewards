@@ -15,11 +15,11 @@ public class OrgDataProcessorTest extends BaseProcessorTest {
 	public void happyPathTest() throws Exception {
 		ArsOrganization arsOrganization = buildArsOrganization();
 
-		OrgDataProcessor processor = new OrgDataProcessor();
+		OrgDataProcessor processor = new OrgDataProcessor(configurationService);
 
 		OrgData orgData = processor.process(arsOrganization);
-		assertEquals(Application.DATA_SOURCE_ID, orgData.getDataSourceId());
-		assertEquals(Application.DATA_SOURCE, orgData.getDataSource());
+		assertEquals(TEST_DATA_SOURCE_ID, orgData.getDataSourceId());
+		assertEquals(TEST_DATA_SOURCE, orgData.getDataSource());
 		assertEquals(Application.ORGANIZATION_ID, orgData.getOrganizationId());
 		assertEquals(TEST_ORG_ID, orgData.getOrganization());
 		assertEquals(TEST_ORG_NAME, orgData.getOrganizationName());
@@ -29,11 +29,11 @@ public class OrgDataProcessorTest extends BaseProcessorTest {
 	public void nullTest() throws Exception {
 		ArsOrganization arsOrganization = new ArsOrganization();
 
-		OrgDataProcessor processor = new OrgDataProcessor();
+		OrgDataProcessor processor = new OrgDataProcessor(configurationService);
 
 		OrgData orgData = processor.process(arsOrganization);
-		assertEquals(Application.DATA_SOURCE_ID, orgData.getDataSourceId());
-		assertEquals(Application.DATA_SOURCE, orgData.getDataSource());
+		assertEquals(TEST_DATA_SOURCE_ID, orgData.getDataSourceId());
+		assertEquals(TEST_DATA_SOURCE, orgData.getDataSource());
 		assertEquals(Application.ORGANIZATION_ID, orgData.getOrganizationId());
 		assertNull(orgData.getOrganization());
 		assertNull(orgData.getOrganizationName());

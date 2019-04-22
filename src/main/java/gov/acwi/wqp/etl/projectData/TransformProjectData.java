@@ -9,6 +9,7 @@ import org.springframework.batch.core.configuration.annotation.StepBuilderFactor
 import org.springframework.batch.core.job.builder.FlowBuilder;
 import org.springframework.batch.core.job.flow.Flow;
 import org.springframework.batch.core.job.flow.support.SimpleFlow;
+import org.springframework.batch.item.ItemProcessor;
 import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.batch.item.database.BeanPropertyItemSqlParameterSourceProvider;
@@ -22,6 +23,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.Resource;
 import org.springframework.util.FileCopyUtils;
 
+import gov.acwi.wqp.etl.EtlConstantUtils;
 import gov.acwi.wqp.etl.stewards.organization.ArsOrganization;
 
 
@@ -29,18 +31,21 @@ import gov.acwi.wqp.etl.stewards.organization.ArsOrganization;
 public class TransformProjectData {
 
 	@Autowired
+	@Qualifier("projectDataProcessor")
+	private ItemProcessor<ArsOrganization, ProjectData> processor;
+
+	@Autowired
 	private StepBuilderFactory stepBuilderFactory;
 
 	@Autowired
-	@Qualifier("dataSourceWqp")
 	private DataSource dataSourceWqp;
 
 	@Autowired
-	@Qualifier("setupProjectDataSwapTableFlow")
+	@Qualifier(EtlConstantUtils.SETUP_PROJECT_DATA_SWAP_TABLE_FLOW)
 	private Flow setupProjectDataSwapTableFlow;
 
 	@Autowired
-	@Qualifier("buildProjectDataIndexesFlow")
+	@Qualifier(EtlConstantUtils.BUILD_PROJECT_DATA_INDEXES_FLOW)
 	private Flow buildProjectDataIndexesFlow;
 
 	@Autowired
@@ -68,7 +73,7 @@ public class TransformProjectData {
 				.get("transformProjectDataStep")
 				.<ArsOrganization, ProjectData>chunk(10)
 				.reader(wqxOrgReader)
-				.processor(new ProjectDataProcessor())
+				.processor(processor)
 				.writer(projectDataWriter())
 				.build();
 	}

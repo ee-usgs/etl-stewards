@@ -33,6 +33,7 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.util.ResourceUtils;
 
+import gov.acwi.wqp.etl.Application;
 import gov.acwi.wqp.etl.stewards.ArsUrlResource;
 import gov.acwi.wqp.etl.stewards.wqx.WqxActivity;
 import gov.acwi.wqp.etl.stewards.wqx.WqxActivityDescription;
@@ -56,7 +57,7 @@ public class ArsResultPull {
 	private StepBuilderFactory stepBuilderFactory;
 
 	@Autowired
-	@Qualifier("dataSourceArs")
+	@Qualifier(Application.DATASOURCE_ARS_QUALIFIER)
 	private DataSource dataSourceArs;
 
 	@Value("${wqx.result}")

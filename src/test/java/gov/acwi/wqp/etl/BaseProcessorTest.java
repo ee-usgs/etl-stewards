@@ -3,6 +3,7 @@ package gov.acwi.wqp.etl;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+import org.junit.Before;
 import org.postgis.PGgeometry;
 
 import gov.acwi.wqp.etl.monitoringLocation.MonitoringLocation;
@@ -10,6 +11,9 @@ import gov.acwi.wqp.etl.monitoringLocation.MonitoringLocation;
 public abstract class BaseProcessorTest {
 
 	public static final String SPACES = "   ";
+
+	public static final Integer TEST_DATA_SOURCE_ID = 0;
+	public static final String TEST_DATA_SOURCE = "TESTSRC";
 
 	public static final String TEST_ORG_ID = "ARS";
 	public static final String TEST_ORG_NAME = "USDA Agricultural Research Service";
@@ -85,5 +89,14 @@ public abstract class BaseProcessorTest {
 
 	public static final Integer TEST_RESULT_ID = 26;
 	public static final String TEST_CHARACTERISTIC_TYPE = "Nutrient";
+
+	protected ConfigurationService configurationService;
+
+	@Before
+	public void setup() {
+		configurationService = new ConfigurationService();
+		configurationService.setEtlDataSourceId(TEST_DATA_SOURCE_ID);
+		configurationService.setEtlDataSource(TEST_DATA_SOURCE);
+	}
 
 }

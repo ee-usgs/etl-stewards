@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import gov.acwi.wqp.etl.Application;
 import gov.acwi.wqp.etl.BaseProcessorTest;
 import gov.acwi.wqp.etl.result.ResultProcessorTest;
 import gov.acwi.wqp.etl.stewards.result.ArsResult;
@@ -15,7 +14,7 @@ public class ActivityProcessorTest extends BaseProcessorTest {
 	public void processorTest() throws Exception {
 		ArsResult arsResult = ResultProcessorTest.buildArsResult();
 
-		ActivityProcessor processor = new ActivityProcessor();
+		ActivityProcessor processor = new ActivityProcessor(configurationService);
 
 		Activity activity = processor.process(arsResult);
 
@@ -23,8 +22,8 @@ public class ActivityProcessorTest extends BaseProcessorTest {
 	}
 
 	public static void assertActivity(Activity activity) {
-		assertEquals(Application.DATA_SOURCE_ID, activity.getDataSourceId());
-		assertEquals(Application.DATA_SOURCE, activity.getDataSource());
+		assertEquals(TEST_DATA_SOURCE_ID, activity.getDataSourceId());
+		assertEquals(TEST_DATA_SOURCE, activity.getDataSource());
 		assertEquals(TEST_STATION_ID, activity.getStationId());
 		assertEquals(TEST_SITE_ID, activity.getSiteId());
 		assertEquals(TEST_EVENT_DATE_LOCAL_DATE, activity.getEventDate());

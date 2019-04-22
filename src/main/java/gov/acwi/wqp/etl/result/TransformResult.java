@@ -9,6 +9,7 @@ import org.springframework.batch.core.configuration.annotation.StepBuilderFactor
 import org.springframework.batch.core.job.builder.FlowBuilder;
 import org.springframework.batch.core.job.flow.Flow;
 import org.springframework.batch.core.job.flow.support.SimpleFlow;
+import org.springframework.batch.item.ItemProcessor;
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.batch.item.database.BeanPropertyItemSqlParameterSourceProvider;
 import org.springframework.batch.item.database.ItemSqlParameterSourceProvider;
@@ -23,6 +24,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.Resource;
 import org.springframework.util.FileCopyUtils;
 
+import gov.acwi.wqp.etl.Application;
+import gov.acwi.wqp.etl.EtlConstantUtils;
 import gov.acwi.wqp.etl.stewards.result.ArsResult;
 import gov.acwi.wqp.etl.stewards.result.ArsResultRowMapper;
 
@@ -30,22 +33,25 @@ import gov.acwi.wqp.etl.stewards.result.ArsResultRowMapper;
 public class TransformResult {
 
 	@Autowired
+	@Qualifier("resultProcessor")
+	private ItemProcessor<ArsResult, Result> processor;
+
+	@Autowired
 	private StepBuilderFactory stepBuilderFactory;
 
 	@Autowired
-	@Qualifier("dataSourceWqp")
 	private DataSource dataSourceWqp;
 
 	@Autowired
-	@Qualifier("dataSourceArs")
+	@Qualifier(Application.DATASOURCE_ARS_QUALIFIER)
 	private DataSource dataSourceArs;
 
 	@Autowired
-	@Qualifier("setupResultSwapTableFlow")
+	@Qualifier(EtlConstantUtils.SETUP_RESULT_SWAP_TABLE_FLOW)
 	private Flow setupResultSwapTableFlow;
 
 	@Autowired
-	@Qualifier("buildResultIndexesFlow")
+	@Qualifier(EtlConstantUtils.BUILD_RESULT_INDEXES_FLOW)
 	private Flow buildResultIndexesFlow;
 
 	@Value("classpath:sql/result/readArsResult.sql")
@@ -80,7 +86,7 @@ public class TransformResult {
 				.get("transformResultStep")
 				.<ArsResult, Result>chunk(10)
 				.reader(resultReader())
-				.processor(new ResultProcessor())
+				.processor(processor)
 				.writer(resultWriter())
 				.build();
 	}

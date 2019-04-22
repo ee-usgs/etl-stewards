@@ -14,7 +14,7 @@ public class ResultProcessorTest extends BaseProcessorTest {
 	public void processorTest() throws Exception {
 		ArsResult arsResult = buildArsResult();
 
-		ResultProcessor processor = new ResultProcessor();
+		ResultProcessor processor = new ResultProcessor(configurationService);
 
 		Result result = processor.process(arsResult);
 
