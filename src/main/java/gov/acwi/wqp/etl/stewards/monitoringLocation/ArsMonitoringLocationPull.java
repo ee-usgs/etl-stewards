@@ -43,7 +43,7 @@ public class ArsMonitoringLocationPull {
 	@Qualifier(Application.DATASOURCE_ARS_QUALIFIER)
 	private DataSource dataSourceArs;
 
-	@Value("${wqx.monitoringLocation}")
+	@Value("${wqx.monitoringLocation:classpath:/testData/xml/wqxMonitoringLocation.xml}")
 	private URL url;
 
 	@Autowired

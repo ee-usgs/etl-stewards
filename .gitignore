@@ -3,6 +3,6 @@
 /.attach_pid8354
 /.classpath
 /.settings/
-/application.yml
+/application*.yml
 /.attach_pid*
 /bin/

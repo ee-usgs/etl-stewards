@@ -144,6 +144,11 @@
                         <WQP_SCHEMA_NAME>wqp</WQP_SCHEMA_NAME>
                         <WQP_SCHEMA_OWNER_USERNAME>wqp_core</WQP_SCHEMA_OWNER_USERNAME>
                         <WQP_SCHEMA_OWNER_PASSWORD>changeMe</WQP_SCHEMA_OWNER_PASSWORD>
+                        <ARS_DATABASE_ADDRESS>127.0.0.1</ARS_DATABASE_ADDRESS>
+                        <ARS_DATABASE_PORT>5434</ARS_DATABASE_PORT>
+                        <ARS_DATABASE_NAME>wqp_db</ARS_DATABASE_NAME>
+                        <ARS_SCHEMA_OWNER_USERNAME>ars_owner</ARS_SCHEMA_OWNER_USERNAME>
+                        <ARS_SCHEMA_OWNER_PASSWORD>changeMe</ARS_SCHEMA_OWNER_PASSWORD>
                         <NWIS_DATABASE_ADDRESS>127.0.0.1</NWIS_DATABASE_ADDRESS>
                         <NWIS_DATABASE_PORT>5434</NWIS_DATABASE_PORT>
                         <NWIS_DATABASE_NAME>wqp_db</NWIS_DATABASE_NAME>
@@ -151,10 +156,10 @@
                         <NWIS_SCHEMA_OWNER_PASSWORD>changeMe</NWIS_SCHEMA_OWNER_PASSWORD>
                         <ETL_OWNER_USERNAME>wqp_core</ETL_OWNER_USERNAME>
                         <GEO_SCHEMA_NAME>nwis</GEO_SCHEMA_NAME>
-                        <ETL_DATA_SOURCE_ID>0</ETL_DATA_SOURCE_ID>
-                        <ETL_DATA_SOURCE>TESTSRC</ETL_DATA_SOURCE>
-                        <QWPORTAL_SUMMARY_ETL>true</QWPORTAL_SUMMARY_ETL>
-                        <NWIS_OR_EPA>E</NWIS_OR_EPA>
+                        <ETL_DATA_SOURCE_ID>1</ETL_DATA_SOURCE_ID>
+                        <ETL_DATA_SOURCE>STEWARDS</ETL_DATA_SOURCE>
+                        <QWPORTAL_SUMMARY_ETL>false</QWPORTAL_SUMMARY_ETL>
+                        <NWIS_OR_EPA></NWIS_OR_EPA>
                     </environmentVariables>
                 </configuration>
                 <executions>

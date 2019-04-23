@@ -41,7 +41,7 @@ public class ArsOrganizationPull {
 	@Qualifier(Application.DATASOURCE_ARS_QUALIFIER)
 	private DataSource dataSourceArs;
 
-	@Value("${wqx.organization}")
+	@Value("${wqx.organization:classpath:/testData/xml/wqxOrganization.xml}")
 	private URL url;
 
 	@Autowired
