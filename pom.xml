@@ -190,7 +190,7 @@
                     <showLogs>true</showLogs>
                     <images>
                         <image>
-                            <name>wqp_db_etl</name>
+                            <name>usgswma/wqp_db:etl</name>
                             <run>
                                 <ports>
                                     <port>5434:5432</port>
@@ -229,7 +229,7 @@
                                     <NWIS_SCHEMA_OWNER_PASSWORD>changeMe</NWIS_SCHEMA_OWNER_PASSWORD>
                                 </env>
                                 <wait>
-                                    <time>150000</time>
+                                    <time>60000</time>
                                 </wait>
                             </run>
                         </image>
