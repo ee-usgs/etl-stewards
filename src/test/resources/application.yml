@@ -15,8 +15,8 @@ spring:
     initialization-mode: always
   datasource-ars:
       url: jdbc:postgresql://${ARS_DATABASE_ADDRESS}:${ARS_DATABASE_PORT}/${ARS_DATABASE_NAME}
-      username: ${ARS_OWNER_USERNAME}
-      password: ${ARS_OWNER_PASSWORD}
+      username: ${ARS_SCHEMA_OWNER_USERNAME}
+      password: ${ARS_SCHEMA_OWNER_PASSWORD}
       hikari:
         maximumPoolSize: 10
   datasource-nwis:
@@ -29,4 +29,4 @@ spring:
   liquibase:
     parameters:
       WQP_SCHEMA_NAME: ${WQP_SCHEMA_NAME}
-      ETL_OWNER_USERNAME: ${ARS_OWNER_USERNAME}
+      ETL_OWNER_USERNAME: ${ARS_SCHEMA_OWNER_USERNAME}

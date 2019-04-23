@@ -60,7 +60,7 @@ public class ArsResultPull {
 	@Qualifier(Application.DATASOURCE_ARS_QUALIFIER)
 	private DataSource dataSourceArs;
 
-	@Value("${wqx.result}")
+	@Value("${wqx.result:classpath:testData/xml/wqxResult.xml}")
 	private List<String> paths;
 
 	@Autowired
