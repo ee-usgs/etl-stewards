@@ -1,10 +1,31 @@
 select create_swap_table ('stewards', 'wqp', 'org_data');
 select create_swap_table ('stewards', 'wqp', 'project_data');
 select create_swap_table ('stewards', 'wqp', 'station');
+select create_swap_table ('stewards', 'wqp', 'bio_hab_metric');
 select create_swap_table ('stewards', 'wqp', 'activity');
+select create_swap_table ('stewards', 'wqp', 'act_metric');
 select create_swap_table ('stewards', 'wqp', 'result');
 select create_swap_table ('stewards', 'wqp', 'r_detect_qnt_lmt');
+select create_swap_table ('stewards', 'wqp', 'prj_ml_weighting');
 
-select create_swap_table ('stewards', 'wqp', 'act_metric');
-
+select create_swap_table ('stewards', 'wqp', 'activity_sum');
+select create_swap_table ('stewards', 'wqp', 'result_sum');
+select create_swap_table ('stewards', 'wqp', 'org_grouping');
+select create_swap_table ('stewards', 'wqp', 'ml_grouping');
 select create_swap_table ('stewards', 'wqp', 'organization_sum');
+select create_swap_table ('stewards', 'wqp', 'station_sum');
+select create_swap_table ('stewards', 'wqp', 'qwportal_summary');
+
+select create_swap_table ('stewards', 'wqp', 'assemblage');
+select create_swap_table ('stewards', 'wqp', 'char_name');
+select create_swap_table ('stewards', 'wqp', 'char_type');
+select create_swap_table ('stewards', 'wqp', 'country');
+select create_swap_table ('stewards', 'wqp', 'county');
+select create_swap_table ('stewards', 'wqp', 'monitoring_loc');
+select create_swap_table ('stewards', 'wqp', 'organization');
+select create_swap_table ('stewards', 'wqp', 'project');
+select create_swap_table ('stewards', 'wqp', 'project_dim');
+select create_swap_table ('stewards', 'wqp', 'sample_media');
+select create_swap_table ('stewards', 'wqp', 'site_type');
+select create_swap_table ('stewards', 'wqp', 'state');
+select create_swap_table ('stewards', 'wqp', 'taxa_name');

@@ -8,7 +8,10 @@ import org.springframework.context.annotation.Import;
 import com.github.springtestdbunit.annotation.DbUnitConfiguration;
 
 @Import({DBTestConfig.class, ArsDBTestConfig.class})
-@DbUnitConfiguration(databaseConnection={BaseFlowIT.CONNECTION_WQP,ArsBaseFlowIT.CONNECTION_ARS,BaseFlowIT.CONNECTION_NWIS,BaseFlowIT.CONNECTION_INFORMATION_SCHEMA})
+@DbUnitConfiguration(
+		databaseConnection={BaseFlowIT.CONNECTION_WQP,ArsBaseFlowIT.CONNECTION_ARS,BaseFlowIT.CONNECTION_NWIS,BaseFlowIT.CONNECTION_INFORMATION_SCHEMA},
+		dataSetLoader=FileSensingDataSetLoader.class
+)
 public abstract class ArsBaseFlowIT extends BaseFlowIT {
 
 	public static final String CONNECTION_ARS = "ars";
