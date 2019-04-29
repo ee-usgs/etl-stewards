@@ -4,6 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.batch.item.ItemProcessor;
 
 import gov.acwi.wqp.etl.stewards.wqx.WqxActivity;
+import gov.acwi.wqp.etl.stewards.wqx.WqxActivityDescription;
 
 public class ArsResultProcessor implements ItemProcessor<WqxActivity, ArsResult> {
 
@@ -11,17 +12,18 @@ public class ArsResultProcessor implements ItemProcessor<WqxActivity, ArsResult>
 	public ArsResult process(WqxActivity wqxActivity) throws Exception {
 		ArsResult arsResult = new ArsResult();
 		if (null != wqxActivity.getActivityDescription()) {
-			arsResult.setActivityIdentifier(StringUtils.trimToNull(wqxActivity.getActivityDescription().getActivityIdentifier()));
-			arsResult.setActivityTypeCode(StringUtils.trimToNull(wqxActivity.getActivityDescription().getActivityTypeCode()));
-			arsResult.setActivityMediaName(StringUtils.trimToNull(wqxActivity.getActivityDescription().getActivityMediaName()));
-			arsResult.setActivityStartDate(StringUtils.trimToNull(wqxActivity.getActivityDescription().getActivityStartDate()));
-			if (null != wqxActivity.getActivityDescription().getActivityStartTime()) {
-				arsResult.setActivityStartTime(StringUtils.trimToNull(wqxActivity.getActivityDescription().getActivityStartTime().getTime()));
-				arsResult.setActivityStartTimeZoneCode(StringUtils.trimToNull(wqxActivity.getActivityDescription().getActivityStartTime().getTimeZoneCode()));
+			WqxActivityDescription activityDescription = wqxActivity.getActivityDescription();
+			arsResult.setActivityIdentifier(StringUtils.trimToNull(activityDescription.getActivityIdentifier()));
+			arsResult.setActivityTypeCode(StringUtils.trimToNull(activityDescription.getActivityTypeCode()));
+			arsResult.setActivityMediaName(StringUtils.trimToNull(activityDescription.getActivityMediaName()));
+			arsResult.setActivityStartDate(StringUtils.trimToNull(activityDescription.getActivityStartDate()));
+			if (null != activityDescription.getActivityStartTime()) {
+				arsResult.setActivityStartTime(StringUtils.trimToNull(activityDescription.getActivityStartTime().getTime()));
+				arsResult.setActivityStartTimeZoneCode(StringUtils.trimToNull(activityDescription.getActivityStartTime().getTimeZoneCode()));
 			}
-			arsResult.setProjectIdentifier(StringUtils.trimToNull(wqxActivity.getActivityDescription().getProjectIdentifier()));
-			arsResult.setMonitoringLocationIdentifier(StringUtils.trimToNull(wqxActivity.getActivityDescription().getMonitoringLocationIdentifier()));
-			arsResult.setActivityCommentText(StringUtils.trimToNull(wqxActivity.getActivityDescription().getActivityCommentText()));
+			arsResult.setProjectIdentifier(StringUtils.trimToNull(activityDescription.getProjectIdentifier()));
+			arsResult.setMonitoringLocationIdentifier(StringUtils.trimToNull(activityDescription.getMonitoringLocationIdentifier()));
+			arsResult.setActivityCommentText(StringUtils.trimToNull(activityDescription.getActivityCommentText()));
 		}
 		if (null != wqxActivity.getSampleDescription()) {
 			if (null != wqxActivity.getSampleDescription().getSampleCollectionMethod()) {

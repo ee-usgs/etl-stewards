@@ -12,8 +12,8 @@ public abstract class BaseProcessorTest {
 
 	public static final String SPACES = "   ";
 
-	public static final Integer TEST_DATA_SOURCE_ID = 0;
-	public static final String TEST_DATA_SOURCE = "TESTSRC";
+	public static final Integer TEST_DATA_SOURCE_ID = 1;
+	public static final String TEST_DATA_SOURCE = "STEWARDS";
 
 	public static final String TEST_ORG_ID = "ARS";
 	public static final String TEST_ORG_NAME = "USDA Agricultural Research Service";
