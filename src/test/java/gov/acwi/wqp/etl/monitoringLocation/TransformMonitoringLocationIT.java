@@ -40,7 +40,7 @@ public class TransformMonitoringLocationIT extends ArsBaseFlowIT {
 	}
 
 	@Test
-	@DatabaseSetup(value="classpath:/testResult/stewards/monitoringLocation/empty.xml")
+	@DatabaseSetup(value="classpath:/testData/stewards/monitoringLocation/monitoringLocationOld.xml")
 	@DatabaseSetup(connection=CONNECTION_ARS, value="classpath:/testData/ars/siteTypeToPrimary.xml")
 	@DatabaseSetup(connection=CONNECTION_ARS, value="classpath:/testResult/ars/orgProject.xml")
 	@DatabaseSetup(connection=CONNECTION_ARS, value="classpath:/testResult/ars/monitoringLocation.xml")

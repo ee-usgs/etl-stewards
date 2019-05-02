@@ -13,7 +13,7 @@ RUN mvn -B clean package
 
 FROM usgswma/openjdk:debian-stretch-openjdk-11.0.2-89c4dd2d55ba476c77aa8fd5274dcb8a1ef115b7
 
-COPY --chown=1000:1000 --from=build /build/target/wqp-etl-nwis-lookups-*.jar app.jar
+COPY --chown=1000:1000 --from=build /build/target/wqp-etl-stewards-*.jar app.jar
 
 USER $USER
 

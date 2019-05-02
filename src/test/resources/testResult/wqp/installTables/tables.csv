@@ -40,8 +40,6 @@
 "wqp_db","wqp","project_object_stewards","BASE TABLE"
 "wqp_db","wqp","project_stewards","BASE TABLE"
 "wqp_db","wqp","project_stewards_old","BASE TABLE"
-"wqp_db","wqp","qwportal_summary_stewards","BASE TABLE"
-"wqp_db","wqp","qwportal_summary_stewards_old","BASE TABLE"
 "wqp_db","wqp","r_detect_qnt_lmt_stewards","BASE TABLE"
 "wqp_db","wqp","r_detect_qnt_lmt_stewards_old","BASE TABLE"
 "wqp_db","wqp","result_object_stewards","BASE TABLE"

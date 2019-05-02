@@ -38,7 +38,6 @@ public class TransformOrgDataIT extends ArsBaseFlowIT {
 	}
 
 	@Test
-	@DatabaseSetup(value="classpath:/testResult/stewards/orgData/empty.xml")
 	@DatabaseSetup(value="classpath:/testData/stewards/orgData/orgDataOld.xml")
 	@DatabaseSetup(connection=CONNECTION_ARS, value="classpath:/testResult/ars/orgProject.xml")
 	@ExpectedDatabase(value="classpath:/testResult/stewards/orgData/indexes/all.xml",

@@ -38,7 +38,7 @@ public class TransformResDetectQntLimitIT extends ArsBaseFlowIT {
 	}
 
 	@Test
-	@DatabaseSetup(value="classpath:/testResult/stewards/resDetectQntLimit/empty.xml")
+	@DatabaseSetup(value="classpath:/testData/stewards/resDetectQntLimit/resDetectQntLimitOld.xml")
 	@DatabaseSetup(value="classpath:/testResult/stewards/activity/activity.xml")
 	@DatabaseSetup(value="classpath:/testResult/stewards/result/result.xml")
 	@ExpectedDatabase(value="classpath:/testResult/stewards/resDetectQntLimit/resDetectQntLimit.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
