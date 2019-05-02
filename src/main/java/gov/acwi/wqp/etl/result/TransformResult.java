@@ -67,6 +67,7 @@ public class TransformResult {
 				.name("organizationReader")
 				.sql(new String(FileCopyUtils.copyToByteArray(readerResource.getInputStream())))
 				.rowMapper(new ArsResultRowMapper())
+				.fetchSize(500)
 				.build();
 	}
 
