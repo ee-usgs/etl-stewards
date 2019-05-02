@@ -1,10 +1,10 @@
 projectName: "wqp-external"
-applicationName: "etl-nwis-lookups"
-dockerImageName: "etl-nwis-lookups"
+applicationName: "etl-stewards"
+dockerImageName: "etl-stewards"
 artifactoryPath: "wqp"
-gitlabPath: "wma/docker/wqp/etl-nwis-lookups"
-gitRepoUrl: "https://github.com/NWQMC/etl-nwis-lookups"
+gitlabPath: "wma/docker/wqp/etl-stewards"
+gitRepoUrl: "https://github.com/NWQMC/etl-stewards"
 gitRepoCredentialsId: "Jenkins-GitHub-Read-Write-Token"
 memory: 768
 rulePriority: 89
-contextPath: "/etl-nwis-lookups/*"
+contextPath: "/etl-stewards/*"
