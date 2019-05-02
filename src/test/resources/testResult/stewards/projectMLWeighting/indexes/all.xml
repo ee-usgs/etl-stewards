@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <pg_indexes
+        tablename="prj_ml_weighting_swap_stewards"
+        indexname="prj_ml_weighting_swap_stewards_organization"
+        indexdef="CREATE INDEX prj_ml_weighting_swap_stewards_organization ON wqp.prj_ml_weighting_swap_stewards USING btree (organization) WITH (fillfactor='100')"
+     />
+</dataset>

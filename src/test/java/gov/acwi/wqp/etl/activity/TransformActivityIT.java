@@ -40,7 +40,7 @@ public class TransformActivityIT extends ArsBaseFlowIT {
 	}
 
 	@Test
-	@DatabaseSetup(value="classpath:/testResult/stewards/activity/empty.xml")
+	@DatabaseSetup(value="classpath:/testData/stewards/activity/activityOld.xml")
 	@DatabaseSetup(value="classpath:/testResult/stewards/projectData/projectData.xml")
 	@DatabaseSetup(value="classpath:/testResult/stewards/monitoringLocation/monitoringLocation.xml")
 	@DatabaseSetup(connection=CONNECTION_ARS, value="classpath:/testResult/ars/result.xml")

@@ -6,3 +6,4 @@
 /application*.yml
 /.attach_pid*
 /bin/
+/.env

@@ -14,7 +14,6 @@ select create_swap_table ('stewards', 'wqp', 'org_grouping');
 select create_swap_table ('stewards', 'wqp', 'ml_grouping');
 select create_swap_table ('stewards', 'wqp', 'organization_sum');
 select create_swap_table ('stewards', 'wqp', 'station_sum');
-select create_swap_table ('stewards', 'wqp', 'qwportal_summary');
 
 select create_swap_table ('stewards', 'wqp', 'assemblage');
 select create_swap_table ('stewards', 'wqp', 'char_name');
