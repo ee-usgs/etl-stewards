@@ -17,4 +17,4 @@ COPY --chown=1000:1000 --from=build /build/target/wqp-etl-stewards-*.jar app.jar
 
 USER $USER
 
-CMD ["java", "-Xmx512M", "-server", "-jar", "app.jar"]
+CMD ["java", "-Xmx2G", "-server", "-jar", "app.jar"]
