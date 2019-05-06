@@ -84,7 +84,7 @@ public class TransformActivity {
 	public Step transformActivityStep() throws IOException {
 		return stepBuilderFactory
 				.get("transformActivityStep")
-				.<ArsResult, Activity>chunk(10)
+				.<ArsResult, Activity>chunk(10000)
 				.reader(activityReader())
 				.processor(processor)
 				.writer(activityWriter())

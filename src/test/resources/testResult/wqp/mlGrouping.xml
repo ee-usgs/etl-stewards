@@ -6,7 +6,7 @@
         station_id="5"
         years_window="9"
         characteristic_type="Nutrient"
-        total_activities="1"
+        total_activities="5"
         total_results="5"
         grouping_id="1001"
     />
@@ -16,7 +16,7 @@
         station_id="11"
         years_window="9"
         characteristic_type="Nutrient"
-        total_activities="1"
+        total_activities="5"
         total_results="5"
         grouping_id="1001"
     />
@@ -26,7 +26,7 @@
         station_id="14"
         years_window="9"
         characteristic_type="Nutrient"
-        total_activities="1"
+        total_activities="5"
         total_results="5"
         grouping_id="1001"
     />
@@ -36,7 +36,7 @@
         station_id="16"
         years_window="9"
         characteristic_type="Nutrient"
-        total_activities="2"
+        total_activities="10"
         total_results="10"
         grouping_id="1001"
     />
