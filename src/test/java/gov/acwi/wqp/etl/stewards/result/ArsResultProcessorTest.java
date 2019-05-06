@@ -26,7 +26,7 @@ public class ArsResultProcessorTest extends BaseProcessorTest {
 	public void happyPathTest() throws Exception {
 		WqxActivity wqxActivity = new WqxActivity();
 		wqxActivity.setActivityDescription(buildWqxActivityDescription(buildActivityStartTime()));
-		wqxActivity.setSampleDescription(BuildWqxSampleDescription(buildSampleCollectionMethod()));
+		wqxActivity.setSampleDescription(buildWqxSampleDescription(buildSampleCollectionMethod()));
 		wqxActivity.setResult(
 				buildWqxResult(
 						buildResultDescription(buildResultMeasure(),buildDataQuality()),
@@ -78,7 +78,7 @@ public class ArsResultProcessorTest extends BaseProcessorTest {
 	public void nullStartTimeCollectionMethodAndDQMTest() throws Exception {
 		WqxActivity wqxActivity = new WqxActivity();
 		wqxActivity.setActivityDescription(buildWqxActivityDescription(null));
-		wqxActivity.setSampleDescription(BuildWqxSampleDescription(null));
+		wqxActivity.setSampleDescription(buildWqxSampleDescription(null));
 		wqxActivity.setResult(
 				buildWqxResult(
 						buildResultDescription(buildResultMeasure(),buildDataQuality()),
@@ -279,7 +279,7 @@ public class ArsResultProcessorTest extends BaseProcessorTest {
 		return wqxTime;
 	}
 
-	private WqxSampleDescription BuildWqxSampleDescription(WqxCollectionMethod wqxCollectionMethod) {
+	private WqxSampleDescription buildWqxSampleDescription(WqxCollectionMethod wqxCollectionMethod) {
 		WqxSampleDescription wqxSampleDescription = new WqxSampleDescription();
 		wqxSampleDescription.setSampleCollectionMethod(wqxCollectionMethod);
 		wqxSampleDescription.setSampleCollectionEquipmentName(SPACES.concat(TEST_SAMPLE_COLLECTION_EQUIPMENT).concat(SPACES));

@@ -84,7 +84,7 @@ public class TransformMonitoringLocation {
 	public Step transformMonitoringLocationStep() throws IOException {
 		return stepBuilderFactory
 				.get("transformMonitoringLocationStep")
-				.<ArsMonitoringLocation, MonitoringLocation>chunk(10)
+				.<ArsMonitoringLocation, MonitoringLocation>chunk(100)
 				.reader(monitoringLocationReader())
 				.processor(processor)
 				.writer(monitoringLocationWriter())

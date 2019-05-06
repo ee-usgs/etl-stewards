@@ -87,7 +87,7 @@ public class ArsMonitoringLocationPull {
 	@Bean
 	public Step arsMonitoringLocationPullStep() throws IOException {
 		return stepBuilderFactory.get("arsMonitoringLocationPullStep")
-				.<WqxMonitoringLocation, ArsMonitoringLocation>chunk(10)
+				.<WqxMonitoringLocation, ArsMonitoringLocation>chunk(100)
 				.reader(arsMonitoringLocationReader())
 				.processor(new ArsMonitoringLocationProcessor())
 				.writer(arsMonitoringLocationWriter())

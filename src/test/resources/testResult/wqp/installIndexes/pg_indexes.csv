@@ -1,4 +1,5 @@
 "tablename","indexname","indexdef"
+"activity_stewards","activity_stewards_activity","CREATE INDEX activity_stewards_activity ON wqp.activity_stewards USING btree (activity) WITH (fillfactor='100')"
 "activity_stewards","activity_stewards_organization","CREATE INDEX activity_stewards_organization ON wqp.activity_stewards USING btree (organization) WITH (fillfactor='100')"
 "act_metric_stewards","act_metric_stewards_organization","CREATE INDEX act_metric_stewards_organization ON wqp.act_metric_stewards USING btree (organization) WITH (fillfactor='100')"
 "activity_sum_stewards","activity_sum_stewards_organization","CREATE INDEX activity_sum_stewards_organization ON wqp.activity_sum_stewards USING btree (organization) WITH (fillfactor='100')"
