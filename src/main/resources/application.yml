@@ -17,6 +17,7 @@ spring:
       hikari:
         maximumPoolSize: 10
   liquibase:
+    change-log: db/changelog/db.changelog-ars.yaml
     parameters:
       WQP_SCHEMA_NAME: ${WQP_SCHEMA_NAME}
       ETL_OWNER_USERNAME: ${ARS_SCHEMA_OWNER_USERNAME}
