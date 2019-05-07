@@ -1,3 +1,5 @@
 artifactoryPath: "wqp"
 dockerImageName: "etl-stewards"
 gitlabPath: "wma/docker/wqp"
+gitRepoUrl: "https://github.com/NWQMC/etl-stewards.git"
+gitRepoCredentialsId: "Jenkins-GitHub-Read-Write-Token"

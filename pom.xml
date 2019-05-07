@@ -154,7 +154,7 @@
                         <NWIS_DATABASE_NAME>wqp_db</NWIS_DATABASE_NAME>
                         <NWIS_SCHEMA_OWNER_USERNAME>nwis_ws_star</NWIS_SCHEMA_OWNER_USERNAME>
                         <NWIS_SCHEMA_OWNER_PASSWORD>changeMe</NWIS_SCHEMA_OWNER_PASSWORD>
-                        <ETL_OWNER_USERNAME>wqp_core</ETL_OWNER_USERNAME>
+                        <ETL_OWNER_USERNAME>ars_owner</ETL_OWNER_USERNAME>
                         <GEO_SCHEMA_NAME>nwis</GEO_SCHEMA_NAME>
                         <ETL_DATA_SOURCE_ID>1</ETL_DATA_SOURCE_ID>
                         <ETL_DATA_SOURCE>STEWARDS</ETL_DATA_SOURCE>
