@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.batch.core.ExitStatus;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobExecution;
-import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.JobParametersBuilder;
 import org.springframework.batch.core.explore.JobExplorer;
 import org.springframework.batch.core.launch.JobLauncher;
@@ -33,15 +32,20 @@ public class JobCommandLineRunner implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		JobParameters parameters = new JobParametersBuilder(jobExplorer)
+		JobParametersBuilder jobParametersBuilder = new JobParametersBuilder(jobExplorer)
 				.addString(EtlConstantUtils.JOB_ID, LocalDate.now().toString(), true)
 				.addString(EtlConstantUtils.JOB_PARM_DATA_SOURCE_ID, configurationService.getEtlDataSourceId().toString(), true)
 				.addString(EtlConstantUtils.JOB_PARM_DATA_SOURCE, configurationService.getEtlDataSource().toLowerCase(), true)
 				.addString(EtlConstantUtils.JOB_PARM_WQP_SCHEMA, configurationService.getWqpSchemaName(), false)
-				.addString(EtlConstantUtils.JOB_PARM_GEO_SCHEMA, configurationService.getGeoSchemaName(), false)
-				.toJobParameters();
+				.addString(EtlConstantUtils.JOB_PARM_GEO_SCHEMA, configurationService.getGeoSchemaName(), false);
+
+		if (null != args && args.length > 0) {
+			//Only handling one extra parameter for now...
+			jobParametersBuilder.addString("tie-breaker", args[0], true);
+		}
+
 		try {
-			JobExecution jobExecution = jobLauncher.run(job, parameters);
+			JobExecution jobExecution = jobLauncher.run(job, jobParametersBuilder.toJobParameters());
 			if (null == jobExecution 
 					|| ExitStatus.UNKNOWN.getExitCode().contentEquals(jobExecution.getExitStatus().getExitCode())
 					|| ExitStatus.FAILED.getExitCode().contentEquals(jobExecution.getExitStatus().getExitCode())
