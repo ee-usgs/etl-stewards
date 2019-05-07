@@ -59,46 +59,46 @@ public class TransformResult {
 	@Qualifier(EtlConstantUtils.BUILD_RESULT_INDEXES_FLOW)
 	private Flow buildResultIndexesFlow;
 
-//	@Value("classpath:sql/result/readArsResult.sql")
-//	private Resource readerResource;
-	@Value("classpath:sql/result/selectArsResult.sql")
-	private Resource selectClause;
-	@Value("classpath:sql/result/fromArsResult.sql")
-	private Resource fromClause;
-	@Value("classpath:sql/result/whereArsResult.sql")
-	private Resource whereClause;
+	@Value("classpath:sql/result/readArsResult.sql")
+	private Resource readerResource;
+//	@Value("classpath:sql/result/selectArsResult.sql")
+//	private Resource selectClause;
+//	@Value("classpath:sql/result/fromArsResult.sql")
+//	private Resource fromClause;
+//	@Value("classpath:sql/result/whereArsResult.sql")
+//	private Resource whereClause;
 
 	@Value("classpath:sql/result/writeResult.sql")
 	private Resource writerResource;
 
-//	@Bean
-//	public JdbcCursorItemReader<ArsResult> resultReader() throws IOException {
-//		return new JdbcCursorItemReaderBuilder<ArsResult>()
-//				.dataSource(dataSourceArs)
-//				.name("organizationReader")
-//				.sql(new String(FileCopyUtils.copyToByteArray(readerResource.getInputStream())))
-//				.rowMapper(new ArsResultRowMapper())
-//				.fetchSize(500)
-//				.maxRows(5000)
-//				.build();
-//	}
 	@Bean
-	public ItemReader<ArsResult> resultReader() throws Exception {
-		SqlPagingQueryProviderFactoryBean providerFactory = new SqlPagingQueryProviderFactoryBean();
-		providerFactory.setDataSource(dataSourceArs);
-		providerFactory.setSelectClause(new String(FileCopyUtils.copyToByteArray(selectClause.getInputStream())));
-		providerFactory.setFromClause(new String(FileCopyUtils.copyToByteArray(fromClause.getInputStream())));
-		providerFactory.setWhereClause(new String(FileCopyUtils.copyToByteArray(whereClause.getInputStream())));
-		providerFactory.setSortKey("result_id");
-
-		return new JdbcPagingItemReaderBuilder<ArsResult>()
+	public JdbcCursorItemReader<ArsResult> resultReader() throws IOException {
+		return new JdbcCursorItemReaderBuilder<ArsResult>()
 				.dataSource(dataSourceArs)
 				.name("organizationReader")
-				.pageSize(5000)
+				.sql(new String(FileCopyUtils.copyToByteArray(readerResource.getInputStream())))
 				.rowMapper(new ArsResultRowMapper())
-				.queryProvider(providerFactory.getObject())
+				.fetchSize(500)
+				.maxRows(5000)
 				.build();
 	}
+//	@Bean
+//	public ItemReader<ArsResult> resultReader() throws Exception {
+//		SqlPagingQueryProviderFactoryBean providerFactory = new SqlPagingQueryProviderFactoryBean();
+//		providerFactory.setDataSource(dataSourceArs);
+//		providerFactory.setSelectClause(new String(FileCopyUtils.copyToByteArray(selectClause.getInputStream())));
+//		providerFactory.setFromClause(new String(FileCopyUtils.copyToByteArray(fromClause.getInputStream())));
+//		providerFactory.setWhereClause(new String(FileCopyUtils.copyToByteArray(whereClause.getInputStream())));
+//		providerFactory.setSortKey("result_id");
+//
+//		return new JdbcPagingItemReaderBuilder<ArsResult>()
+//				.dataSource(dataSourceArs)
+//				.name("organizationReader")
+//				.pageSize(5000)
+//				.rowMapper(new ArsResultRowMapper())
+//				.queryProvider(providerFactory.getObject())
+//				.build();
+//	}
 
 	@Bean
 	public ItemWriter<Result> resultWriter() throws IOException {
