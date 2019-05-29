@@ -29,9 +29,9 @@ public class EtlStewardsIT extends ArsBaseFlowIT {
 	public static final String EXPECTED_DATABASE_QUERY_STATION_SUM = BASE_EXPECTED_DATABASE_QUERY_STATION_SUM + EXPECTED_DATABASE_TABLE_STATION_SUM;
 
 	public static final String EXPECTED_DATABASE_QUERY_TABLE = BASE_EXPECTED_DATABASE_QUERY_CHECK_TABLE_LIKE
-			+ "'%old' or table_name like '%stewards' or table_name like '%swap%'";
+			+ "'%stewards_old' or table_name like '%stewards' or table_name like '%swap_stewards'";
 	public static final String EXPECTED_DATABASE_QUERY_INDEX = BASE_EXPECTED_DATABASE_QUERY_CHECK_INDEX_LIKE
-			+ "'%old' or tablename like '%stewards' or tablename like '%swap%'";
+			+ "'%stewards_old' or tablename like '%stewards' or tablename like '%swap_stewards%'";
 
 	@Value("classpath:db/testInstall/setup.sql")
 	protected Resource setupScript;
@@ -75,7 +75,7 @@ public class EtlStewardsIT extends ArsBaseFlowIT {
 	@ExpectedDatabase(value="classpath:/testResult/wqp/resultSum.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
 	@ExpectedDatabase(value="classpath:/testResult/wqp/orgGrouping.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
 	@ExpectedDatabase(value="classpath:/testResult/wqp/mlGrouping.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
-//TODO	@ExpectedDatabase(value="classpath:/testResult/stewards/organizationSum/organizationSum.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
+//TODO	@ExpectedDatabase(value="classpath:/testResult/wqp/organizationSum/organizationSum.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
 	@ExpectedDatabase(value="classpath:/testResult/wqp/monitoringLocationSum.xml",
 			assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED,
 			table=EXPECTED_DATABASE_TABLE_STATION_SUM,
