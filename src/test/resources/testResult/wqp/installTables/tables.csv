@@ -18,7 +18,6 @@
 "wqp_db","wqp","country_stewards_old","BASE TABLE"
 "wqp_db","wqp","county_stewards","BASE TABLE"
 "wqp_db","wqp","county_stewards_old","BASE TABLE"
-"wqp_db","wqp","etl_threshold","BASE TABLE"
 "wqp_db","wqp","ml_grouping_stewards","BASE TABLE"
 "wqp_db","wqp","ml_grouping_stewards_old","BASE TABLE"
 "wqp_db","wqp","monitoring_loc_stewards","BASE TABLE"

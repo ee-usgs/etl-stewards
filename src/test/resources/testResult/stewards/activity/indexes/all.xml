@@ -7,7 +7,92 @@
      />
     <pg_indexes
         tablename="activity_swap_stewards"
+        indexname="activity_swap_stewards_activity_id"
+        indexdef="CREATE INDEX activity_swap_stewards_activity_id ON wqp.activity_swap_stewards USING btree (activity_id) WITH (fillfactor='100')"
+     />
+    <pg_indexes
+        tablename="activity_swap_stewards"
+        indexname="activity_swap_stewards_country"
+        indexdef="CREATE INDEX activity_swap_stewards_country ON wqp.activity_swap_stewards USING btree (&quot;substring&quot;((governmental_unit_code)::text, '^[^:]+'::text)) WITH (fillfactor='100')"
+     />
+    <pg_indexes
+        tablename="activity_swap_stewards"
+        indexname="activity_swap_stewards_county"
+        indexdef="CREATE INDEX activity_swap_stewards_county ON wqp.activity_swap_stewards USING btree (&quot;substring&quot;((governmental_unit_code)::text, '^[^:]+:[^:]+:[^:]+$'::text)) WITH (fillfactor='100')"
+     />
+    <pg_indexes
+        tablename="activity_swap_stewards"
+        indexname="activity_swap_stewards_event_date"
+        indexdef="CREATE INDEX activity_swap_stewards_event_date ON wqp.activity_swap_stewards USING btree (event_date) WITH (fillfactor='100')"
+     />
+    <pg_indexes
+        tablename="activity_swap_stewards"
+        indexname="activity_swap_stewards_geom"
+        indexdef="CREATE INDEX activity_swap_stewards_geom ON wqp.activity_swap_stewards USING gist (geom) WITH (fillfactor='100')"
+     />
+    <pg_indexes
+        tablename="activity_swap_stewards"
+        indexname="activity_swap_stewards_huc_10"
+        indexdef="CREATE INDEX activity_swap_stewards_huc_10 ON wqp.activity_swap_stewards USING btree (&quot;substring&quot;((huc)::text, '[0-9]{10}'::text)) WITH (fillfactor='100')"
+     />
+    <pg_indexes
+        tablename="activity_swap_stewards"
+        indexname="activity_swap_stewards_huc_12"
+        indexdef="CREATE INDEX activity_swap_stewards_huc_12 ON wqp.activity_swap_stewards USING btree (&quot;substring&quot;((huc)::text, '[0-9]{12}'::text)) WITH (fillfactor='100')"
+     />
+    <pg_indexes
+        tablename="activity_swap_stewards"
+        indexname="activity_swap_stewards_huc_2"
+        indexdef="CREATE INDEX activity_swap_stewards_huc_2 ON wqp.activity_swap_stewards USING btree (&quot;substring&quot;((huc)::text, '[0-9]{2}'::text)) WITH (fillfactor='100')"
+     />
+    <pg_indexes
+        tablename="activity_swap_stewards"
+        indexname="activity_swap_stewards_huc_4"
+        indexdef="CREATE INDEX activity_swap_stewards_huc_4 ON wqp.activity_swap_stewards USING btree (&quot;substring&quot;((huc)::text, '[0-9]{4}'::text)) WITH (fillfactor='100')"
+     />
+    <pg_indexes
+        tablename="activity_swap_stewards"
+        indexname="activity_swap_stewards_huc_6"
+        indexdef="CREATE INDEX activity_swap_stewards_huc_6 ON wqp.activity_swap_stewards USING btree (&quot;substring&quot;((huc)::text, '[0-9]{6}'::text)) WITH (fillfactor='100')"
+     />
+    <pg_indexes
+        tablename="activity_swap_stewards"
+        indexname="activity_swap_stewards_huc_8"
+        indexdef="CREATE INDEX activity_swap_stewards_huc_8 ON wqp.activity_swap_stewards USING btree (&quot;substring&quot;((huc)::text, '[0-9]{8}'::text)) WITH (fillfactor='100')"
+     />
+    <pg_indexes
+        tablename="activity_swap_stewards"
         indexname="activity_swap_stewards_organization"
         indexdef="CREATE INDEX activity_swap_stewards_organization ON wqp.activity_swap_stewards USING btree (organization) WITH (fillfactor='100')"
+     />
+    <pg_indexes
+        tablename="activity_swap_stewards"
+        indexname="activity_swap_stewards_project_id"
+        indexdef="CREATE INDEX activity_swap_stewards_project_id ON wqp.activity_swap_stewards USING btree (project_id) WITH (fillfactor='100')"
+     />
+    <pg_indexes
+        tablename="activity_swap_stewards"
+        indexname="activity_swap_stewards_sample_media"
+        indexdef="CREATE INDEX activity_swap_stewards_sample_media ON wqp.activity_swap_stewards USING btree (sample_media) WITH (fillfactor='100')"
+     />
+    <pg_indexes
+        tablename="activity_swap_stewards"
+        indexname="activity_swap_stewards_site_id"
+        indexdef="CREATE INDEX activity_swap_stewards_site_id ON wqp.activity_swap_stewards USING btree (site_id) WITH (fillfactor='100')"
+     />
+    <pg_indexes
+        tablename="activity_swap_stewards"
+        indexname="activity_swap_stewards_site_type"
+        indexdef="CREATE INDEX activity_swap_stewards_site_type ON wqp.activity_swap_stewards USING btree (site_type) WITH (fillfactor='100')"
+     />
+    <pg_indexes
+        tablename="activity_swap_stewards"
+        indexname="activity_swap_stewards_state"
+        indexdef="CREATE INDEX activity_swap_stewards_state ON wqp.activity_swap_stewards USING btree (&quot;substring&quot;((governmental_unit_code)::text, '^[^:]+:[^:]+'::text)) WITH (fillfactor='100')"
+     />
+    <pg_indexes
+        tablename="activity_swap_stewards"
+        indexname="activity_swap_stewards_station_id"
+        indexdef="CREATE INDEX activity_swap_stewards_station_id ON wqp.activity_swap_stewards USING btree (station_id) WITH (fillfactor='100')"
      />
 </dataset>
