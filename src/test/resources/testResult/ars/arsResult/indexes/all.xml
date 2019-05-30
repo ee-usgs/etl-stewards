@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <pg_indexes
+        tablename="ars_result"
+        indexname="ars_result_result_id"
+        indexdef="CREATE UNIQUE INDEX ars_result_result_id ON ars.ars_result USING btree (result_id) WITH (fillfactor='100')"
+     />
+</dataset>

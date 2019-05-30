@@ -20,6 +20,8 @@ import gov.acwi.wqp.etl.ArsBaseFlowIT;
 
 public class ArsMonitoringLocationPullIT extends ArsBaseFlowIT {
 
+	public static final String EXPECTED_DATABASE_QUERY_ANALYZE = BASE_EXPECTED_DATABASE_QUERY_ANALYZE + "'ars_monitoring_location'";
+
 	@Autowired
 	@Qualifier("arsMonitoringLocationPullFlow")
 	private Flow arsMonitoringLocationPullFlow;
@@ -30,7 +32,7 @@ public class ArsMonitoringLocationPullIT extends ArsBaseFlowIT {
 
 	@Test
 	@DatabaseSetup(connection=CONNECTION_ARS, value="classpath:/testData/ars/monitoringLocationOld.xml")
-	@ExpectedDatabase(connection=CONNECTION_ARS, value="classpath:/testResult/ars/monitoringLocationEmpty.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
+	@ExpectedDatabase(connection=CONNECTION_ARS, value="classpath:/testResult/ars/arsMonitoringLocation/empty.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
 	public void truncateArsMonitoringLocationStepTest() {
 		try {
 			JobExecution jobExecution = jobLauncherTestUtils.launchStep("truncateArsMonitoringLocationStep", testJobParameters);
@@ -42,7 +44,7 @@ public class ArsMonitoringLocationPullIT extends ArsBaseFlowIT {
 	}
 
 	@Test
-	@ExpectedDatabase(connection=CONNECTION_ARS, value="classpath:/testResult/ars/monitoringLocation.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
+	@ExpectedDatabase(connection=CONNECTION_ARS, value="classpath:/testResult/ars/arsMonitoringLocation/arsMonitoringLocation.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
 	public void arsMonitoringLocationPullStepTest() {
 		try {
 			//Manually truncating to guarantee that the identity is reset. DBUnit @DatabaseSetup will not accomplish this.
@@ -56,8 +58,28 @@ public class ArsMonitoringLocationPullIT extends ArsBaseFlowIT {
 	}
 
 	@Test
+	@ExpectedDatabase(value="classpath:/testResult/ars/analyze/arsMonitoringLocation.xml",
+			assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED,
+			table=TABLE_NAME_PG_STAT_ALL_TABLES,
+			query=EXPECTED_DATABASE_QUERY_ANALYZE)
+	public void analyzeArsMonitoringLocationTest() {
+		try {
+			JobExecution jobExecution = jobLauncherTestUtils.launchStep("analyzeArsMonitoringLocationStep", testJobParameters);
+			assertEquals(ExitStatus.COMPLETED, jobExecution.getExitStatus());
+			Thread.sleep(1000);
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail(e.getLocalizedMessage());
+		}
+	}
+
+	@Test
 	@DatabaseSetup(connection=CONNECTION_ARS, value="classpath:/testData/ars/monitoringLocationOld.xml")
-	@ExpectedDatabase(connection=CONNECTION_ARS, value="classpath:/testResult/ars/monitoringLocation.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
+	@ExpectedDatabase(connection=CONNECTION_ARS, value="classpath:/testResult/ars/arsMonitoringLocation/arsMonitoringLocation.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
+	@ExpectedDatabase(value="classpath:/testResult/ars/analyze/arsMonitoringLocation.xml",
+			assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED,
+			table=TABLE_NAME_PG_STAT_ALL_TABLES,
+			query=EXPECTED_DATABASE_QUERY_ANALYZE)
 	public void arsMonitoringLocationPullFlowTest() {
 		Job arsMonitoringLocationPullFlowTest = jobBuilderFactory.get("arsMonitoringLocationPullFlowTest")
 					.start(arsMonitoringLocationPullFlow)
@@ -67,6 +89,7 @@ public class ArsMonitoringLocationPullIT extends ArsBaseFlowIT {
 		try {
 			JobExecution jobExecution = jobLauncherTestUtils.launchJob(testJobParameters);
 			assertEquals(ExitStatus.COMPLETED, jobExecution.getExitStatus());
+			Thread.sleep(1000);
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail(e.getLocalizedMessage());

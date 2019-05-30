@@ -23,11 +23,16 @@ public class TransformActivityMetric {
 	@Qualifier(EtlConstantUtils.BUILD_ACTIVITY_METRIC_INDEXES_FLOW)
 	private Flow buildActivityMetricIndexesFlow;
 
+	@Autowired
+	@Qualifier(EtlConstantUtils.ANALYZE_ACTIVITY_METRIC_FLOW)
+	private Flow analyzeActivityMetricFlow;
+
 	@Bean
 	public Flow activityMetricFlow() throws IOException {
 		return new FlowBuilder<SimpleFlow>("activityMetricFlow")
 				.start(setupActivityMetricSwapTableFlow)
 				.next(buildActivityMetricIndexesFlow)
+				.next(analyzeActivityMetricFlow)
 				.build();
 	}
 

@@ -49,6 +49,10 @@ public class TransformProjectData {
 	private Flow buildProjectDataIndexesFlow;
 
 	@Autowired
+	@Qualifier(EtlConstantUtils.ANALYZE_PROJECT_DATA_FLOW)
+	private Flow analyzeProjectDataFlow;
+
+	@Autowired
 	@Qualifier("wqxOrgReader")
 	private ItemReader<ArsOrganization> wqxOrgReader;
 
@@ -84,6 +88,7 @@ public class TransformProjectData {
 				.start(setupProjectDataSwapTableFlow)
 				.next(transformProjectDataStep())
 				.next(buildProjectDataIndexesFlow)
+				.next(analyzeProjectDataFlow)
 				.build();
 	}
 
