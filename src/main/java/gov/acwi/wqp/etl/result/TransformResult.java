@@ -55,6 +55,10 @@ public class TransformResult {
 	@Qualifier(EtlConstantUtils.BUILD_RESULT_INDEXES_FLOW)
 	private Flow buildResultIndexesFlow;
 
+	@Autowired
+	@Qualifier(EtlConstantUtils.ANALYZE_RESULT_FLOW)
+	private Flow analyzeResultFlow;
+
 	@Value("classpath:sql/result/selectArsResult.sql")
 	private Resource selectClause;
 	@Value("classpath:sql/result/fromArsResult.sql")
@@ -110,6 +114,7 @@ public class TransformResult {
 				.start(setupResultSwapTableFlow)
 				.next(transformResultStep())
 				.next(buildResultIndexesFlow)
+				.next(analyzeResultFlow)
 				.build();
 	}
 

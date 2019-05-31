@@ -27,9 +27,9 @@ public class ArsExtractIT extends ArsBaseFlowIT {
 	@DatabaseSetup(connection=CONNECTION_ARS, value="classpath:/testData/ars/orgProjectOld.xml")
 	@DatabaseSetup(connection=CONNECTION_ARS, value="classpath:/testData/ars/monitoringLocationOld.xml")
 	@DatabaseSetup(connection=CONNECTION_ARS, value="classpath:/testData/ars/resultOld.xml")
-	@ExpectedDatabase(connection=CONNECTION_ARS, value="classpath:/testResult/ars/orgProject.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
-	@ExpectedDatabase(connection=CONNECTION_ARS, value="classpath:/testResult/ars/monitoringLocation.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
-	@ExpectedDatabase(connection=CONNECTION_ARS, value="classpath:/testResult/ars/result.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
+	@ExpectedDatabase(connection=CONNECTION_ARS, value="classpath:/testResult/ars/arsOrgProject/arsOrgProject.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
+	@ExpectedDatabase(connection=CONNECTION_ARS, value="classpath:/testResult/ars/arsMonitoringLocation/arsMonitoringLocation.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
+	@ExpectedDatabase(connection=CONNECTION_ARS, value="classpath:/testResult/ars/arsResult/arsResult.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
 	public void arsOrganizationPullFlowTest() {
 		Job arsExtractFlowTest = jobBuilderFactory.get("arsOrganizationPullFlowTest")
 					.start(arsExtractFlow)

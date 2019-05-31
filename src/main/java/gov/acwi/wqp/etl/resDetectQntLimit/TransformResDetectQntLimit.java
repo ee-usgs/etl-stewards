@@ -32,6 +32,10 @@ public class TransformResDetectQntLimit {
 	@Qualifier(EtlConstantUtils.BUILD_RES_DETECT_QNT_LIMIT_INDEXES_FLOW)
 	private Flow buildResDetectQntLimitIndexesFlow;
 
+	@Autowired
+	@Qualifier(EtlConstantUtils.ANALYZE_RES_DETECT_QNT_LIMIT_FLOW)
+	private Flow analyzeResDetectQntLimitFlow;
+
 	@Bean
 	public Step transformResDetectQntLimitStep() {
 		return stepBuilderFactory
@@ -46,6 +50,7 @@ public class TransformResDetectQntLimit {
 				.start(setupResDetectQntLimitSwapTableFlow)
 				.next(transformResDetectQntLimitStep())
 				.next(buildResDetectQntLimitIndexesFlow)
+				.next(analyzeResDetectQntLimitFlow)
 				.build();
 	}
 

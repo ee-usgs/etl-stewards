@@ -33,6 +33,9 @@ public class EtlStewardsIT extends ArsBaseFlowIT {
 	public static final String EXPECTED_DATABASE_QUERY_INDEX = BASE_EXPECTED_DATABASE_QUERY_CHECK_INDEX_LIKE
 			+ "'%stewards_old' or tablename like '%stewards' or tablename like '%swap_stewards%'";
 
+	public static final String EXPECTED_DATABASE_QUERY_ANALYZE = BASE_EXPECTED_DATABASE_QUERY_ANALYZE_BARE
+			+ "where relname like '%_stewards' and relname not like '%swap%' and relname not like '%object%'";
+
 	@Value("classpath:db/testInstall/setup.sql")
 	protected Resource setupScript;
 
@@ -56,8 +59,14 @@ public class EtlStewardsIT extends ArsBaseFlowIT {
 
 	//Indexes
 	@ExpectedDatabase(connection=CONNECTION_INFORMATION_SCHEMA, value="classpath:/testResult/wqp/installIndexes/",
-		assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED,
-		table=EXPECTED_DATABASE_TABLE_CHECK_INDEX, query=EXPECTED_DATABASE_QUERY_INDEX)
+			assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED,
+			table=EXPECTED_DATABASE_TABLE_CHECK_INDEX, query=EXPECTED_DATABASE_QUERY_INDEX)
+
+	//Analyzed
+	@ExpectedDatabase(value="classpath:/testResult/wqp/installAnalyzed/",
+			assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED,
+			table=TABLE_NAME_PG_STAT_ALL_TABLES,
+			query=EXPECTED_DATABASE_QUERY_ANALYZE)
 
 	//Stewards Base Data
 	@ExpectedDatabase(value="classpath:/testResult/wqp/orgData.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
@@ -104,6 +113,7 @@ public class EtlStewardsIT extends ArsBaseFlowIT {
 		try {
 			JobExecution jobExecution = jobLauncherTestUtils.launchJob(testJobParameters);
 			assertEquals(ExitStatus.COMPLETED, jobExecution.getExitStatus());
+			Thread.sleep(1000);
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail(e.getLocalizedMessage());

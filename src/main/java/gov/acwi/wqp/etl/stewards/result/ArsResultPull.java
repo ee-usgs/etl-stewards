@@ -67,6 +67,18 @@ public class ArsResultPull {
 	@Qualifier("truncateArsResult")
 	private Tasklet truncateArsResult;
 
+	@Autowired
+	@Qualifier("dropArsResultResultIdIndex")
+	private Tasklet dropArsResultResultIdIndex;
+
+	@Autowired
+	@Qualifier("buildArsResultResultIdIndex")
+	private Tasklet buildArsResultResultIdIndex;
+
+	@Autowired
+	@Qualifier("analyzeArsResult")
+	private Tasklet analyzeArsResult;
+
 	@Value("classpath:sql/result/writeArsResult.sql")
 	private Resource writerResource;
 
@@ -104,6 +116,30 @@ public class ArsResultPull {
 		return stepBuilderFactory
 				.get("truncateArsResultStep")
 				.tasklet(truncateArsResult)
+				.build();
+	}
+
+	@Bean
+	public Step dropArsResultResultIdIndexStep() {
+		return stepBuilderFactory
+				.get("dropArsResultResultIdIndexStep")
+				.tasklet(dropArsResultResultIdIndex)
+				.build();
+	}
+
+	@Bean
+	public Step buildArsResultResultIdIndexStep() {
+		return stepBuilderFactory
+				.get("buildArsResultResultIdIndexStep")
+				.tasklet(buildArsResultResultIdIndex)
+				.build();
+	}
+
+	@Bean
+	public Step analyzeArsResultStep() {
+		return stepBuilderFactory
+				.get("analyzeArsResultStep")
+				.tasklet(analyzeArsResult)
 				.build();
 	}
 
@@ -155,7 +191,10 @@ public class ArsResultPull {
 	public Flow arsResultPullFlow() throws IOException {
 		return new FlowBuilder<SimpleFlow>("arsResultPullFlow")
 				.start(truncateArsResultStep())
+				.next(dropArsResultResultIdIndexStep())
 				.next(arsResultPullStep())
+				.next(buildArsResultResultIdIndexStep())
+				.next(analyzeArsResultStep())
 				.build();
 	}
 

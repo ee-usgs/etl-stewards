@@ -50,6 +50,10 @@ public class ArsMonitoringLocationPull {
 	@Qualifier("truncateArsMonitoringLocation")
 	private Tasklet truncateArsMonitoringLocation;
 
+	@Autowired
+	@Qualifier("analyzeArsMonitoringLocation")
+	private Tasklet analyzeArsMonitoringLocation;
+
 	@Value("classpath:sql/monitoringLocation/writeArsMonitoringLocation.sql")
 	private Resource writerResource;
 
@@ -84,6 +88,15 @@ public class ArsMonitoringLocationPull {
 				.tasklet(truncateArsMonitoringLocation)
 				.build();
 	}
+
+	@Bean
+	public Step analyzeArsMonitoringLocationStep() {
+		return stepBuilderFactory
+				.get("analyzeArsMonitoringLocationStep")
+				.tasklet(analyzeArsMonitoringLocation)
+				.build();
+	}
+
 	@Bean
 	public Step arsMonitoringLocationPullStep() throws IOException {
 		return stepBuilderFactory.get("arsMonitoringLocationPullStep")
@@ -99,6 +112,7 @@ public class ArsMonitoringLocationPull {
 		return new FlowBuilder<SimpleFlow>("arsMonitoringLocationPullFlow")
 				.start(truncateArsMonitoringLocationStep())
 				.next(arsMonitoringLocationPullStep())
+				.next(analyzeArsMonitoringLocationStep())
 				.build();
 	}
 

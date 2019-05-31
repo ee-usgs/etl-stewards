@@ -48,6 +48,10 @@ public class ArsOrganizationPull {
 	@Qualifier("truncateArsOrgProject")
 	private Tasklet truncateArsOrgProject;
 
+	@Autowired
+	@Qualifier("analyzeArsOrgProject")
+	private Tasklet analyzeArsOrgProject;
+
 	@Value("classpath:sql/orgData/writeArsOrgProject.sql")
 	private Resource writerResource;
 
@@ -81,6 +85,14 @@ public class ArsOrganizationPull {
 	}
 
 	@Bean
+	public Step analyzeArsOrgProjectStep() {
+		return stepBuilderFactory
+				.get("analyzeArsOrgProjectStep")
+				.tasklet(analyzeArsOrgProject)
+				.build();
+	}
+
+	@Bean
 	public Step arsOrganizationPullStep() throws IOException {
 		return stepBuilderFactory
 				.get("arsOrganizationPullStep")
@@ -96,6 +108,7 @@ public class ArsOrganizationPull {
 		return new FlowBuilder<SimpleFlow>("arsOrganizationPullFlow")
 				.start(truncateArsOrgProjectStep())
 				.next(arsOrganizationPullStep())
+				.next(analyzeArsOrgProjectStep())
 				.build();
 	}
 

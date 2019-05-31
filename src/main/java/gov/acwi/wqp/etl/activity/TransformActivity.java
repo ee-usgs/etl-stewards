@@ -54,6 +54,10 @@ public class TransformActivity {
 	@Qualifier(EtlConstantUtils.BUILD_ACTIVITY_INDEXES_FLOW)
 	private Flow buildActivityIndexesFlow;
 
+	@Autowired
+	@Qualifier(EtlConstantUtils.ANALYZE_ACTIVITY_FLOW)
+	private Flow analyzeActivityFlow;
+
 	@Value("classpath:sql/activity/readArsActivity.sql")
 	private Resource readerResource;
 
@@ -97,6 +101,7 @@ public class TransformActivity {
 				.start(setupActivitySwapTableFlow)
 				.next(transformActivityStep())
 				.next(buildActivityIndexesFlow)
+				.next(analyzeActivityFlow)
 				.build();
 	}
 

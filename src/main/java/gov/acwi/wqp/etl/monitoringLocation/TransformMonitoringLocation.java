@@ -54,6 +54,10 @@ public class TransformMonitoringLocation {
 	@Qualifier(EtlConstantUtils.BUILD_MONITORING_LOCATION_INDEXES_FLOW)
 	private Flow buildMonitoringLocationIndexesFlow;
 
+	@Autowired
+	@Qualifier(EtlConstantUtils.ANALYZE_MONITORING_LOCATION_FLOW)
+	private Flow analyzeMonitoringLocationFlow;
+
 	@Value("classpath:sql/monitoringLocation/readArsMonitoringLocation.sql")
 	private Resource readerResource;
 
@@ -97,6 +101,7 @@ public class TransformMonitoringLocation {
 				.start(setupMonitoringLocationSwapTableFlow)
 				.next(transformMonitoringLocationStep())
 				.next(buildMonitoringLocationIndexesFlow)
+				.next(analyzeMonitoringLocationFlow)
 				.build();
 	}
 

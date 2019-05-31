@@ -55,6 +55,10 @@ public class TransformOrgData {
 	@Qualifier(EtlConstantUtils.BUILD_ORG_DATA_INDEXES_FLOW)
 	private Flow buildOrgDataIndexesFlow;
 
+	@Autowired
+	@Qualifier(EtlConstantUtils.ANALYZE_ORG_DATA_FLOW)
+	private Flow analyzeOrgDataFlow;
+
 	@Value("classpath:sql/orgData/readArsOrgProject.sql")
 	private Resource readerResource;
 
@@ -100,6 +104,7 @@ public class TransformOrgData {
 				.start(setupOrgDataSwapTableFlow)
 				.next(transformOrgDataStep())
 				.next(buildOrgDataIndexesFlow)
+				.next(analyzeOrgDataFlow)
 				.build();
 	}
 
