@@ -52,12 +52,8 @@ public class TransformOrgData {
 	private Flow setupOrgDataSwapTableFlow;
 
 	@Autowired
-	@Qualifier(EtlConstantUtils.BUILD_ORG_DATA_INDEXES_FLOW)
-	private Flow buildOrgDataIndexesFlow;
-
-	@Autowired
-	@Qualifier(EtlConstantUtils.ANALYZE_ORG_DATA_FLOW)
-	private Flow analyzeOrgDataFlow;
+	@Qualifier(EtlConstantUtils.AFTER_LOAD_ORG_DATA_FLOW)
+	private Flow afterLoadOrgDataFlow;
 
 	@Value("classpath:sql/orgData/readArsOrgProject.sql")
 	private Resource readerResource;
@@ -103,8 +99,7 @@ public class TransformOrgData {
 		return new FlowBuilder<SimpleFlow>("orgDataFlow")
 				.start(setupOrgDataSwapTableFlow)
 				.next(transformOrgDataStep())
-				.next(buildOrgDataIndexesFlow)
-				.next(analyzeOrgDataFlow)
+				.next(afterLoadOrgDataFlow)
 				.build();
 	}
 

@@ -52,9 +52,10 @@ public class ArsOrganizationPullIT extends ArsBaseFlowIT {
 	}
 
 	@Test
-	@ExpectedDatabase(value="classpath:/testResult/ars/analyze/arsOrgProject.xml",
+	@ExpectedDatabase(
+			value="classpath:/testResult/ars/analyze/arsOrgProject.xml",
 			assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED,
-			table=TABLE_NAME_PG_STAT_ALL_TABLES,
+			table=EXPECTED_DATABASE_TABLE_CHECK_ANALYZE,
 			query=EXPECTED_DATABASE_QUERY_ANALYZE)
 	public void analyzeArsOrgProjectTest() {
 		try {
@@ -70,9 +71,10 @@ public class ArsOrganizationPullIT extends ArsBaseFlowIT {
 	@Test
 	@DatabaseSetup(connection=CONNECTION_ARS, value="classpath:/testData/ars/orgProjectOld.xml")
 	@ExpectedDatabase(connection=CONNECTION_ARS, value="classpath:/testResult/ars/arsOrgProject/arsOrgProject.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
-	@ExpectedDatabase(value="classpath:/testResult/ars/analyze/arsOrgProject.xml",
+	@ExpectedDatabase(
+			value="classpath:/testResult/ars/analyze/arsOrgProject.xml",
 			assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED,
-			table=TABLE_NAME_PG_STAT_ALL_TABLES,
+			table=EXPECTED_DATABASE_TABLE_CHECK_ANALYZE,
 			query=EXPECTED_DATABASE_QUERY_ANALYZE)
 	public void arsOrganizationPullFlowTest() {
 		Job arsOrganizationPullFlowTest = jobBuilderFactory.get("arsOrganizationPullFlowTest")

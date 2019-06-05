@@ -52,12 +52,8 @@ public class TransformResult {
 	private Flow setupResultSwapTableFlow;
 
 	@Autowired
-	@Qualifier(EtlConstantUtils.BUILD_RESULT_INDEXES_FLOW)
-	private Flow buildResultIndexesFlow;
-
-	@Autowired
-	@Qualifier(EtlConstantUtils.ANALYZE_RESULT_FLOW)
-	private Flow analyzeResultFlow;
+	@Qualifier(EtlConstantUtils.AFTER_LOAD_RESULT_FLOW)
+	private Flow afterLoadResultFlow;
 
 	@Value("classpath:sql/result/selectArsResult.sql")
 	private Resource selectClause;
@@ -113,8 +109,7 @@ public class TransformResult {
 		return new FlowBuilder<SimpleFlow>("resultFlow")
 				.start(setupResultSwapTableFlow)
 				.next(transformResultStep())
-				.next(buildResultIndexesFlow)
-				.next(analyzeResultFlow)
+				.next(afterLoadResultFlow)
 				.build();
 	}
 

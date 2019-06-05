@@ -58,7 +58,7 @@ public class ResultProcessorTest extends BaseProcessorTest {
 		arsResult.setActivityTypeCode(TEST_ACTIVITY_TYPE_CODE);
 		arsResult.setActivityStartTime(TEST_ACTIVITY_START_TIME);
 		arsResult.setActivityStartTimeZoneCode(TEST_ACTIVITY_START_TIMEZONE);
-		arsResult.setProjectIdentifier(TEST_PROJECT_ID);
+		arsResult.setProjectIdentifier(TEST_PROJECT_IDENTIFIER);
 		arsResult.setProjectName(TEST_PROJECT_NAME);
 		arsResult.setMonitoringLocationName(TEST_ML_NAME);
 		arsResult.setActivityCommentText(TEST_ACTIVITY_COMMENT);

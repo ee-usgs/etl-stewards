@@ -16,26 +16,22 @@ import com.github.springtestdbunit.annotation.ExpectedDatabase;
 import com.github.springtestdbunit.assertion.DatabaseAssertionMode;
 
 import gov.acwi.wqp.etl.ArsBaseFlowIT;
-import gov.acwi.wqp.etl.EtlConstantUtils;
 
 public class TransformActivityIT extends ArsBaseFlowIT {
 
-	public static final String EXPECTED_DATABASE_QUERY_ANALYZE = BASE_EXPECTED_DATABASE_QUERY_ANALYZE + "'activity_swap_stewards'";
+	public static final String TABLE_NAME = "'activity_swap_stewards'";
+	public static final String EXPECTED_DATABASE_QUERY_ANALYZE = BASE_EXPECTED_DATABASE_QUERY_ANALYZE + TABLE_NAME;
+	public static final String EXPECTED_DATABASE_QUERY_PRIMARY_KEY = BASE_EXPECTED_DATABASE_QUERY_PRIMARY_KEY
+			+ EQUALS_QUERY + TABLE_NAME;
+	public static final String EXPECTED_DATABASE_QUERY_FOREIGN_KEY = BASE_EXPECTED_DATABASE_QUERY_FOREIGN_KEY
+			+ EQUALS_QUERY + TABLE_NAME;
 
 	@Autowired
 	@Qualifier("activityFlow")
 	private Flow activityFlow;
 
-	@Autowired
-	@Qualifier(EtlConstantUtils.ANALYZE_ACTIVITY_FLOW)
-	private Flow analyzeActivityFlow;
-
 	private Job setupFlowTestJob() {
 		return jobBuilderFactory.get("activityFlowTest").start(activityFlow).build().build();
-	}
-
-	private Job setupAnalyzeTestJob() {
-		return jobBuilderFactory.get("analyzeActivityFlowTest").start(analyzeActivityFlow).build().build();
 	}
 
 	@Test
@@ -56,42 +52,45 @@ public class TransformActivityIT extends ArsBaseFlowIT {
 	}
 
 	@Test
-	@ExpectedDatabase(value="classpath:/testResult/stewards/analyze/activity.xml",
-			assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED,
-			table=TABLE_NAME_PG_STAT_ALL_TABLES,
-			query=EXPECTED_DATABASE_QUERY_ANALYZE)
-	public void analyzeActivityFlowTest() {
-		jobLauncherTestUtils.setJob(setupAnalyzeTestJob());
-		try {
-			JobExecution jobExecution = jobLauncherTestUtils.launchJob(testJobParameters);
-			assertEquals(ExitStatus.COMPLETED, jobExecution.getExitStatus());
-			Thread.sleep(1000);
-		} catch (Exception e) {
-			e.printStackTrace();
-			fail(e.getLocalizedMessage());
-		}
-	}
-
-	@Test
 	@DatabaseSetup(value="classpath:/testData/stewards/activity/activityOld.xml")
 	@DatabaseSetup(value="classpath:/testResult/stewards/projectData/projectData.xml")
 	@DatabaseSetup(value="classpath:/testResult/stewards/monitoringLocation/monitoringLocation.xml")
 	@DatabaseSetup(connection=CONNECTION_ARS, value="classpath:/testResult/ars/arsResult/arsResult.xml")
-	@ExpectedDatabase(value="classpath:/testResult/stewards/activity/indexes/all.xml",
+	@ExpectedDatabase(
+			value="classpath:/testResult/stewards/activity/indexes/all.xml",
 			assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED,
 			table=EXPECTED_DATABASE_TABLE_CHECK_INDEX,
-			query=BASE_EXPECTED_DATABASE_QUERY_CHECK_INDEX + "'activity_swap_stewards'")
-	@ExpectedDatabase(connection=CONNECTION_INFORMATION_SCHEMA, value="classpath:/testResult/stewards/activity/create.xml",
+			query=BASE_EXPECTED_DATABASE_QUERY_CHECK_INDEX + TABLE_NAME)
+	@ExpectedDatabase(
+			connection=CONNECTION_INFORMATION_SCHEMA,
+			value="classpath:/testResult/stewards/activity/create.xml",
 			assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED,
 			table=EXPECTED_DATABASE_TABLE_CHECK_TABLE,
-			query=BASE_EXPECTED_DATABASE_QUERY_CHECK_TABLE + "'activity_swap_stewards'")
+			query=BASE_EXPECTED_DATABASE_QUERY_CHECK_TABLE + TABLE_NAME)
 	@ExpectedDatabase(value="classpath:/testResult/stewards/activity/activity.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
-	@ExpectedDatabase(value="classpath:/testResult/stewards/analyze/activity.xml",
+	@ExpectedDatabase(
+			value="classpath:/testResult/stewards/analyze/activity.xml",
 			assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED,
-			table=TABLE_NAME_PG_STAT_ALL_TABLES,
+			table=EXPECTED_DATABASE_TABLE_CHECK_ANALYZE,
 			query=EXPECTED_DATABASE_QUERY_ANALYZE)
+	@ExpectedDatabase(
+			value="classpath:/testResult/stewards/activity/primaryKey.xml",
+			assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED,
+			table=EXPECTED_DATABASE_TABLE_CHECK_PRIMARY_KEY,
+			query=EXPECTED_DATABASE_QUERY_PRIMARY_KEY)
+	@ExpectedDatabase(
+			value="classpath:/testResult/stewards/activity/foreignKey.xml",
+			assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED,
+			table=EXPECTED_DATABASE_TABLE_CHECK_FOREIGN_KEY,
+			query=EXPECTED_DATABASE_QUERY_FOREIGN_KEY)
+	@ExpectedDatabase(
+			value="classpath:/testResult/stewards/activity/indexes/pk.xml",
+			assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED,
+			table=EXPECTED_DATABASE_TABLE_CHECK_INDEX,
+			query=BASE_EXPECTED_DATABASE_QUERY_CHECK_INDEX_PK + TABLE_NAME)
 	public void activityFlowTest() {
 		jobLauncherTestUtils.setJob(setupFlowTestJob());
+		jdbcTemplate.execute("select add_monitoring_location_primary_key('stewards', 'wqp', 'station')");
 		try {
 			JobExecution jobExecution = jobLauncherTestUtils.launchJob(testJobParameters);
 			assertEquals(ExitStatus.COMPLETED, jobExecution.getExitStatus());

@@ -25,7 +25,7 @@ public class ArsOrganizationProcessorTest extends BaseProcessorTest {
 		assertEquals(TEST_ORG_ID, arsOrganization.getOrganizationIdentifier());
 		assertEquals(TEST_ORG_NAME, arsOrganization.getOrganizationName());
 
-		assertEquals(TEST_PROJECT_ID, arsOrganization.getProjectIdentifier());
+		assertEquals(TEST_PROJECT_IDENTIFIER, arsOrganization.getProjectIdentifier());
 		assertEquals(TEST_PROJECT_NAME, arsOrganization.getProjectName());
 		assertEquals(TEST_PROJECT_DESCRIPTION, arsOrganization.getProjectDescriptionText());
 	}
@@ -42,7 +42,7 @@ public class ArsOrganizationProcessorTest extends BaseProcessorTest {
 		assertNull(arsOrganization.getOrganizationIdentifier());
 		assertNull(arsOrganization.getOrganizationName());
 
-		assertEquals(TEST_PROJECT_ID, arsOrganization.getProjectIdentifier());
+		assertEquals(TEST_PROJECT_IDENTIFIER, arsOrganization.getProjectIdentifier());
 		assertEquals(TEST_PROJECT_NAME, arsOrganization.getProjectName());
 		assertEquals(TEST_PROJECT_DESCRIPTION, arsOrganization.getProjectDescriptionText());
 	}
@@ -73,7 +73,7 @@ public class ArsOrganizationProcessorTest extends BaseProcessorTest {
 
 	private WqxProject buildWqxProject() {
 		WqxProject wqxProject = new WqxProject();
-		wqxProject.setProjectIdentifier(SPACES.concat(TEST_PROJECT_ID).concat(SPACES));
+		wqxProject.setProjectIdentifier(SPACES.concat(TEST_PROJECT_IDENTIFIER).concat(SPACES));
 		wqxProject.setProjectName(SPACES.concat(TEST_PROJECT_NAME).concat(SPACES));
 		wqxProject.setProjectDescriptionText(SPACES.concat(TEST_PROJECT_DESCRIPTION).concat(SPACES));
 		return wqxProject;

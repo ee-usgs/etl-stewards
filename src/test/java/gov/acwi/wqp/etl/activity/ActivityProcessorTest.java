@@ -39,7 +39,7 @@ public class ActivityProcessorTest extends BaseProcessorTest {
 		assertEquals(TEST_ACTIVITY_TYPE_CODE, activity.getActivityTypeCode());
 		assertEquals(TEST_ACTIVITY_START_TIME, activity.getActivityStartTime());
 		assertEquals(TEST_ACTIVITY_START_TIMEZONE, activity.getActStartTimeZone());
-		assertEquals(TEST_PROJECT_ID, activity.getProjectId());
+		assertEquals(TEST_PROJECT_IDENTIFIER, activity.getProjectId());
 		assertEquals(TEST_PROJECT_NAME, activity.getProjectName());
 		assertEquals(TEST_ML_NAME, activity.getMonitoringLocationName());
 		assertEquals(TEST_ACTIVITY_COMMENT, activity.getActivityComment());

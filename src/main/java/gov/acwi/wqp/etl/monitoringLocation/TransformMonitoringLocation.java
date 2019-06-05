@@ -51,12 +51,8 @@ public class TransformMonitoringLocation {
 	private Flow setupMonitoringLocationSwapTableFlow;
 
 	@Autowired
-	@Qualifier(EtlConstantUtils.BUILD_MONITORING_LOCATION_INDEXES_FLOW)
-	private Flow buildMonitoringLocationIndexesFlow;
-
-	@Autowired
-	@Qualifier(EtlConstantUtils.ANALYZE_MONITORING_LOCATION_FLOW)
-	private Flow analyzeMonitoringLocationFlow;
+	@Qualifier(EtlConstantUtils.AFTER_LOAD_MONITORING_LOCATION_FLOW)
+	private Flow afterLoadMonitoringLocationFlow;
 
 	@Value("classpath:sql/monitoringLocation/readArsMonitoringLocation.sql")
 	private Resource readerResource;
@@ -100,8 +96,7 @@ public class TransformMonitoringLocation {
 		return new FlowBuilder<SimpleFlow>("monitoringLocationFlow")
 				.start(setupMonitoringLocationSwapTableFlow)
 				.next(transformMonitoringLocationStep())
-				.next(buildMonitoringLocationIndexesFlow)
-				.next(analyzeMonitoringLocationFlow)
+				.next(afterLoadMonitoringLocationFlow)
 				.build();
 	}
 

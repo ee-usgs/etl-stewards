@@ -18,7 +18,8 @@ public abstract class BaseProcessorTest {
 	public static final String TEST_ORG_ID = "ARS";
 	public static final String TEST_ORG_NAME = "USDA Agricultural Research Service";
 
-	public static final String TEST_PROJECT_ID = "CEAP";
+	public static final Integer TEST_PROJECT_ID = 1;
+	public static final String TEST_PROJECT_IDENTIFIER = "CEAP";
 	public static final String TEST_PROJECT_NAME = "Conservation Effects Assessment Program";
 	public static final String TEST_PROJECT_DESCRIPTION = "CEAP Description";
 
