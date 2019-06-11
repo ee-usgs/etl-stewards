@@ -58,9 +58,10 @@ public class ArsMonitoringLocationPullIT extends ArsBaseFlowIT {
 	}
 
 	@Test
-	@ExpectedDatabase(value="classpath:/testResult/ars/analyze/arsMonitoringLocation.xml",
+	@ExpectedDatabase(
+			value="classpath:/testResult/ars/analyze/arsMonitoringLocation.xml",
 			assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED,
-			table=TABLE_NAME_PG_STAT_ALL_TABLES,
+			table=EXPECTED_DATABASE_TABLE_CHECK_ANALYZE,
 			query=EXPECTED_DATABASE_QUERY_ANALYZE)
 	public void analyzeArsMonitoringLocationTest() {
 		try {
@@ -76,9 +77,10 @@ public class ArsMonitoringLocationPullIT extends ArsBaseFlowIT {
 	@Test
 	@DatabaseSetup(connection=CONNECTION_ARS, value="classpath:/testData/ars/monitoringLocationOld.xml")
 	@ExpectedDatabase(connection=CONNECTION_ARS, value="classpath:/testResult/ars/arsMonitoringLocation/arsMonitoringLocation.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
-	@ExpectedDatabase(value="classpath:/testResult/ars/analyze/arsMonitoringLocation.xml",
+	@ExpectedDatabase(
+			value="classpath:/testResult/ars/analyze/arsMonitoringLocation.xml",
 			assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED,
-			table=TABLE_NAME_PG_STAT_ALL_TABLES,
+			table=EXPECTED_DATABASE_TABLE_CHECK_ANALYZE,
 			query=EXPECTED_DATABASE_QUERY_ANALYZE)
 	public void arsMonitoringLocationPullFlowTest() {
 		Job arsMonitoringLocationPullFlowTest = jobBuilderFactory.get("arsMonitoringLocationPullFlowTest")

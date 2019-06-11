@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <pg_constraint
+        conrelid="act_metric_swap_stewards"
+        conname="act_metric_stewards_fk_activity"
+        pg_get_constraintdef="FOREIGN KEY (data_source_id, station_id, activity_id) REFERENCES activity_swap_stewards(data_source_id, station_id, activity_id)"
+    />
+</dataset>

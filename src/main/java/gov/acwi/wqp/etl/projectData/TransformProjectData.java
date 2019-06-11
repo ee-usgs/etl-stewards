@@ -45,12 +45,8 @@ public class TransformProjectData {
 	private Flow setupProjectDataSwapTableFlow;
 
 	@Autowired
-	@Qualifier(EtlConstantUtils.BUILD_PROJECT_DATA_INDEXES_FLOW)
-	private Flow buildProjectDataIndexesFlow;
-
-	@Autowired
-	@Qualifier(EtlConstantUtils.ANALYZE_PROJECT_DATA_FLOW)
-	private Flow analyzeProjectDataFlow;
+	@Qualifier(EtlConstantUtils.AFTER_LOAD_PROJECT_DATA_FLOW)
+	private Flow afterLoadProjectDataFlow;
 
 	@Autowired
 	@Qualifier("wqxOrgReader")
@@ -87,8 +83,7 @@ public class TransformProjectData {
 		return new FlowBuilder<SimpleFlow>("projectDataFlow")
 				.start(setupProjectDataSwapTableFlow)
 				.next(transformProjectDataStep())
-				.next(buildProjectDataIndexesFlow)
-				.next(analyzeProjectDataFlow)
+				.next(afterLoadProjectDataFlow)
 				.build();
 	}
 

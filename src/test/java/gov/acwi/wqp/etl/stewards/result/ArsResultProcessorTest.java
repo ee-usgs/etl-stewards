@@ -47,7 +47,7 @@ public class ArsResultProcessorTest extends BaseProcessorTest {
 		assertEquals(TEST_ACTIVITY_START_DATE, arsResult.getActivityStartDate());
 		assertEquals(TEST_ACTIVITY_START_TIME, arsResult.getActivityStartTime());
 		assertEquals(TEST_ACTIVITY_START_TIMEZONE, arsResult.getActivityStartTimeZoneCode());
-		assertEquals(TEST_PROJECT_ID, arsResult.getProjectIdentifier());
+		assertEquals(TEST_PROJECT_IDENTIFIER, arsResult.getProjectIdentifier());
 		assertEquals(TEST_ML_ID, arsResult.getMonitoringLocationIdentifier());
 		assertEquals(TEST_ACTIVITY_COMMENT, arsResult.getActivityCommentText());
 		assertEquals(TEST_SAMPLE_COLLECTION_METHOD_ID, arsResult.getSampleCollectionMethodIdentifier());
@@ -99,7 +99,7 @@ public class ArsResultProcessorTest extends BaseProcessorTest {
 		assertEquals(TEST_ACTIVITY_START_DATE, arsResult.getActivityStartDate());
 		assertNull(arsResult.getActivityStartTime());
 		assertNull(arsResult.getActivityStartTimeZoneCode());
-		assertEquals(TEST_PROJECT_ID, arsResult.getProjectIdentifier());
+		assertEquals(TEST_PROJECT_IDENTIFIER, arsResult.getProjectIdentifier());
 		assertEquals(TEST_ML_ID, arsResult.getMonitoringLocationIdentifier());
 		assertEquals(TEST_ACTIVITY_COMMENT, arsResult.getActivityCommentText());
 		assertNull(arsResult.getSampleCollectionMethodIdentifier());
@@ -266,7 +266,7 @@ public class ArsResultProcessorTest extends BaseProcessorTest {
 		wqxActivityDescription.setActivityMediaName(SPACES.concat(TEST_ACTIVITY_MEDIA_NAME).concat(SPACES));
 		wqxActivityDescription.setActivityStartDate(SPACES.concat(TEST_ACTIVITY_START_DATE).concat(SPACES));
 		wqxActivityDescription.setActivityStartTime(wqxTime);
-		wqxActivityDescription.setProjectIdentifier(SPACES.concat(TEST_PROJECT_ID).concat(SPACES));
+		wqxActivityDescription.setProjectIdentifier(SPACES.concat(TEST_PROJECT_IDENTIFIER).concat(SPACES));
 		wqxActivityDescription.setMonitoringLocationIdentifier(SPACES.concat(TEST_ML_ID).concat(SPACES));
 		wqxActivityDescription.setActivityCommentText(SPACES.concat(TEST_ACTIVITY_COMMENT).concat(SPACES));
 		return wqxActivityDescription;

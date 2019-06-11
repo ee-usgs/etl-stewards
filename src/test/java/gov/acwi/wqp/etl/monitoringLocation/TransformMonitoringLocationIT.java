@@ -16,29 +16,27 @@ import com.github.springtestdbunit.annotation.ExpectedDatabase;
 import com.github.springtestdbunit.assertion.DatabaseAssertionMode;
 
 import gov.acwi.wqp.etl.ArsBaseFlowIT;
-import gov.acwi.wqp.etl.EtlConstantUtils;
 
 public class TransformMonitoringLocationIT extends ArsBaseFlowIT {
 
-	public static final String EXPECTED_DATABASE_QUERY_ANALYZE = BASE_EXPECTED_DATABASE_QUERY_ANALYZE + "'station_swap_stewards'";
+	public static final String TABLE_NAME = "'station_swap_stewards'";
+	public static final String EXPECTED_DATABASE_QUERY_ANALYZE = BASE_EXPECTED_DATABASE_QUERY_ANALYZE + TABLE_NAME;
+	public static final String EXPECTED_DATABASE_QUERY_PRIMARY_KEY = BASE_EXPECTED_DATABASE_QUERY_PRIMARY_KEY
+			+ EQUALS_QUERY + TABLE_NAME;
+	public static final String EXPECTED_DATABASE_QUERY_FOREIGN_KEY = BASE_EXPECTED_DATABASE_QUERY_FOREIGN_KEY
+			+ EQUALS_QUERY + TABLE_NAME;
 
 	@Autowired
 	@Qualifier("monitoringLocationFlow")
 	private Flow monitoringLocationFlow;
 
-	@Autowired
-	@Qualifier(EtlConstantUtils.ANALYZE_MONITORING_LOCATION_FLOW)
-	private Flow analyzeMonitoringLocationFlow;
-
 	private Job setupFlowTestJob() {
 		return jobBuilderFactory.get("monitoringLocationFlowTest").start(monitoringLocationFlow).build().build();
 	}
 
-	private Job setupAnalyzeTestJob() {
-		return jobBuilderFactory.get("analyzeMonitoringLocationFlowTest").start(analyzeMonitoringLocationFlow).build().build();
-	}
-
 	@Test
+	@DatabaseSetup(value="classpath:/testResult/stewards/result/empty.xml")
+	@DatabaseSetup(value="classpath:/testResult/stewards/activity/empty.xml")
 	@DatabaseSetup(value="classpath:/testResult/stewards/monitoringLocation/empty.xml")
 	@DatabaseSetup(connection=CONNECTION_ARS, value="classpath:/testData/ars/siteTypeToPrimary.xml")
 	@DatabaseSetup(connection=CONNECTION_ARS, value="classpath:/testResult/ars/arsOrgProject/arsOrgProject.xml")
@@ -56,40 +54,44 @@ public class TransformMonitoringLocationIT extends ArsBaseFlowIT {
 	}
 
 	@Test
-	@ExpectedDatabase(value="classpath:/testResult/stewards/analyze/monitoringLocation.xml",
-			assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED,
-			table=TABLE_NAME_PG_STAT_ALL_TABLES,
-			query=EXPECTED_DATABASE_QUERY_ANALYZE)
-	public void analyzeMonitoringLocationFlowTest() {
-		jobLauncherTestUtils.setJob(setupAnalyzeTestJob());
-		try {
-			JobExecution jobExecution = jobLauncherTestUtils.launchJob(testJobParameters);
-			assertEquals(ExitStatus.COMPLETED, jobExecution.getExitStatus());
-			Thread.sleep(1000);
-		} catch (Exception e) {
-			e.printStackTrace();
-			fail(e.getLocalizedMessage());
-		}
-	}
-
-	@Test
+	@DatabaseSetup(value="classpath:/testResult/stewards/result/empty.xml")
+	@DatabaseSetup(value="classpath:/testResult/stewards/activity/empty.xml")
 	@DatabaseSetup(value="classpath:/testData/stewards/monitoringLocation/monitoringLocationOld.xml")
 	@DatabaseSetup(connection=CONNECTION_ARS, value="classpath:/testData/ars/siteTypeToPrimary.xml")
 	@DatabaseSetup(connection=CONNECTION_ARS, value="classpath:/testResult/ars/arsOrgProject/arsOrgProject.xml")
 	@DatabaseSetup(connection=CONNECTION_ARS, value="classpath:/testResult/ars/arsMonitoringLocation/arsMonitoringLocation.xml")
-	@ExpectedDatabase(value="classpath:/testResult/stewards/monitoringLocation/indexes/all.xml",
+	@ExpectedDatabase(
+			value="classpath:/testResult/stewards/monitoringLocation/indexes/all.xml",
 			assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED,
-				table=EXPECTED_DATABASE_TABLE_CHECK_INDEX,
-				query=BASE_EXPECTED_DATABASE_QUERY_CHECK_INDEX + "'station_swap_stewards'")
-	@ExpectedDatabase(connection=CONNECTION_INFORMATION_SCHEMA, value="classpath:/testResult/stewards/monitoringLocation/create.xml",
+			table=EXPECTED_DATABASE_TABLE_CHECK_INDEX,
+			query=BASE_EXPECTED_DATABASE_QUERY_CHECK_INDEX + TABLE_NAME)
+	@ExpectedDatabase(
+			connection=CONNECTION_INFORMATION_SCHEMA,
+			value="classpath:/testResult/stewards/monitoringLocation/create.xml",
 			assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED,
-				table=EXPECTED_DATABASE_TABLE_CHECK_TABLE,
-				query=BASE_EXPECTED_DATABASE_QUERY_CHECK_TABLE + "'station_swap_stewards'")
+			table=EXPECTED_DATABASE_TABLE_CHECK_TABLE,
+			query=BASE_EXPECTED_DATABASE_QUERY_CHECK_TABLE + TABLE_NAME)
 	@ExpectedDatabase(value="classpath:/testResult/stewards/monitoringLocation/monitoringLocation.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
-	@ExpectedDatabase(value="classpath:/testResult/stewards/analyze/monitoringLocation.xml",
+	@ExpectedDatabase(
+			value="classpath:/testResult/stewards/analyze/monitoringLocation.xml",
 			assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED,
-			table=TABLE_NAME_PG_STAT_ALL_TABLES,
+			table=EXPECTED_DATABASE_TABLE_CHECK_ANALYZE,
 			query=EXPECTED_DATABASE_QUERY_ANALYZE)
+	@ExpectedDatabase(
+			value="classpath:/testResult/stewards/monitoringLocation/primaryKey.xml",
+			assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED,
+			table=EXPECTED_DATABASE_TABLE_CHECK_PRIMARY_KEY,
+			query=EXPECTED_DATABASE_QUERY_PRIMARY_KEY)
+	@ExpectedDatabase(
+			value="classpath:/testResult/stewards/monitoringLocation/foreignKey.xml",
+			assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED,
+			table=EXPECTED_DATABASE_TABLE_CHECK_FOREIGN_KEY,
+			query=EXPECTED_DATABASE_QUERY_FOREIGN_KEY)
+	@ExpectedDatabase(
+			value="classpath:/testResult/stewards/monitoringLocation/indexes/pk.xml",
+			assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED,
+			table=EXPECTED_DATABASE_TABLE_CHECK_INDEX,
+			query=BASE_EXPECTED_DATABASE_QUERY_CHECK_INDEX_PK + TABLE_NAME)
 	public void monitoringLocationFlowTest() {
 		jobLauncherTestUtils.setJob(setupFlowTestJob());
 		try {

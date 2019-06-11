@@ -3,6 +3,7 @@ insert
                                    data_source,
                                    organization,
                                    organization_name,
+                                   project_id,
                                    project_identifier,
                                    project_name,
                                    description
@@ -11,6 +12,7 @@ insert
                                    :dataSource,
                                    :organization,
                                    :organizationName,
+                                   :projectId,
                                    :projectIdentifier,
                                    :projectName,
                                    :description

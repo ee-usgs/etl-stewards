@@ -13,6 +13,7 @@ import gov.acwi.wqp.etl.stewards.organization.ArsOrganization;
 public class ProjectDataProcessor implements ItemProcessor<ArsOrganization, ProjectData> {
 
 	private final ConfigurationService configurationService;
+	private static final int DEFAULT_PROJECT_ID = 1;
 
 	@Autowired
 	public ProjectDataProcessor(ConfigurationService configurationService) {
@@ -25,6 +26,7 @@ public class ProjectDataProcessor implements ItemProcessor<ArsOrganization, Proj
 		projectData.setDataSourceId(configurationService.getEtlDataSourceId());
 		projectData.setDataSource(configurationService.getEtlDataSource());
 		projectData.setOrganizationId(Application.ORGANIZATION_ID);
+		projectData.setProjectId(DEFAULT_PROJECT_ID);
 		if (null != arsOrganization) {
 			projectData.setOrganization(arsOrganization.getOrganizationIdentifier());
 			projectData.setOrganizationName(arsOrganization.getOrganizationName());

@@ -43,7 +43,7 @@ public class OrgDataProcessorTest extends BaseProcessorTest {
 		ArsOrganization arsOrganization = new ArsOrganization();
 		arsOrganization.setOrganizationIdentifier(TEST_ORG_ID);
 		arsOrganization.setOrganizationName(TEST_ORG_NAME);
-		arsOrganization.setProjectIdentifier(TEST_PROJECT_ID);
+		arsOrganization.setProjectIdentifier(TEST_PROJECT_IDENTIFIER);
 		arsOrganization.setProjectName(TEST_PROJECT_NAME);
 		arsOrganization.setProjectDescriptionText(TEST_PROJECT_DESCRIPTION);
 		return arsOrganization;

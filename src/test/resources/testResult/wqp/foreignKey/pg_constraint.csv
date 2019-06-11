@@ -1,0 +1,8 @@
+conrelid,conname,pg_get_constraintdef
+activity_stewards,activity_stewards_fk_station,"FOREIGN KEY (data_source_id, station_id) REFERENCES station_stewards(data_source_id, station_id)"
+act_metric_stewards,act_metric_stewards_fk_activity,"FOREIGN KEY (data_source_id, station_id, activity_id) REFERENCES activity_stewards(data_source_id, station_id, activity_id)"
+ml_grouping_stewards,ml_grouping_stewards_fk_station_sum,"FOREIGN KEY (data_source_id, station_id) REFERENCES station_sum_stewards(data_source_id, station_id)"
+prj_ml_weighting_stewards,prj_ml_weighting_stewards_fk_station,"FOREIGN KEY (data_source_id, station_id) REFERENCES station_stewards(data_source_id, station_id)"
+prj_ml_weighting_stewards,prj_ml_weighting_stewards_fk_project_data,"FOREIGN KEY (data_source_id, project_id) REFERENCES project_data_stewards(data_source_id, project_id)"
+result_stewards,result_stewards_fk_station,"FOREIGN KEY (data_source_id, station_id) REFERENCES station_stewards(data_source_id, station_id)"
+result_sum_stewards,result_sum_stewards_fk_station_sum,"FOREIGN KEY (data_source_id, station_id) REFERENCES station_sum_stewards(data_source_id, station_id)"

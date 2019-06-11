@@ -87,9 +87,10 @@ public class ArsResultPullIT extends ArsBaseFlowIT {
 	}
 
 	@Test
-	@ExpectedDatabase(value="classpath:/testResult/ars/analyze/arsResult.xml",
+	@ExpectedDatabase(
+			value="classpath:/testResult/ars/analyze/arsResult.xml",
 			assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED,
-			table=TABLE_NAME_PG_STAT_ALL_TABLES,
+			table=EXPECTED_DATABASE_TABLE_CHECK_ANALYZE,
 			query=EXPECTED_DATABASE_QUERY_ANALYZE)
 	public void analyzeArsResultTest() {
 		try {
@@ -105,9 +106,10 @@ public class ArsResultPullIT extends ArsBaseFlowIT {
 	@Test
 	@DatabaseSetup(connection=CONNECTION_ARS, value="classpath:/testData/ars/resultOld.xml")
 	@ExpectedDatabase(connection=CONNECTION_ARS, value="classpath:/testResult/ars/arsResult/arsResult.xml", assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED)
-	@ExpectedDatabase(value="classpath:/testResult/ars/analyze/arsResult.xml",
+	@ExpectedDatabase(
+			value="classpath:/testResult/ars/analyze/arsResult.xml",
 			assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED,
-			table=TABLE_NAME_PG_STAT_ALL_TABLES,
+			table=EXPECTED_DATABASE_TABLE_CHECK_ANALYZE,
 			query=EXPECTED_DATABASE_QUERY_ANALYZE)
 	@ExpectedDatabase(value="classpath:/testResult/ars/arsResult/indexes/all.xml",
 			assertionMode=DatabaseAssertionMode.NON_STRICT_UNORDERED,
