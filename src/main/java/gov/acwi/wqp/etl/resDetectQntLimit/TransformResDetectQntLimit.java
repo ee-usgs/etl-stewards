@@ -13,7 +13,6 @@ import org.springframework.context.annotation.Configuration;
 
 import gov.acwi.wqp.etl.EtlConstantUtils;
 
-
 @Configuration
 public class TransformResDetectQntLimit {
 
@@ -29,12 +28,8 @@ public class TransformResDetectQntLimit {
 	private Tasklet transformResDetectQntLimitTasklet;
 
 	@Autowired
-	@Qualifier(EtlConstantUtils.BUILD_RES_DETECT_QNT_LIMIT_INDEXES_FLOW)
-	private Flow buildResDetectQntLimitIndexesFlow;
-
-	@Autowired
-	@Qualifier(EtlConstantUtils.ANALYZE_RES_DETECT_QNT_LIMIT_FLOW)
-	private Flow analyzeResDetectQntLimitFlow;
+	@Qualifier(EtlConstantUtils.AFTER_LOAD_RES_DETECT_QNT_LIMIT_FLOW)
+	private Flow afterLoadResDetectQntLimitFlow;
 
 	@Bean
 	public Step transformResDetectQntLimitStep() {
@@ -49,8 +44,7 @@ public class TransformResDetectQntLimit {
 		return new FlowBuilder<SimpleFlow>("resDetectQntLimitFlow")
 				.start(setupResDetectQntLimitSwapTableFlow)
 				.next(transformResDetectQntLimitStep())
-				.next(buildResDetectQntLimitIndexesFlow)
-				.next(analyzeResDetectQntLimitFlow)
+				.next(afterLoadResDetectQntLimitFlow)
 				.build();
 	}
 
