@@ -17,6 +17,11 @@
      />
     <pg_indexes
         tablename="station_swap_stewards"
+        indexname="station_swap_stewards_geom_2163"
+        indexdef="CREATE INDEX station_swap_stewards_geom_2163 ON wqp.station_swap_stewards USING gist (st_transform(geom, 2163)) WITH (fillfactor='100')"
+     />
+    <pg_indexes
+        tablename="station_swap_stewards"
         indexname="station_swap_stewards_huc_10"
         indexdef="CREATE INDEX station_swap_stewards_huc_10 ON wqp.station_swap_stewards USING btree (&quot;substring&quot;((huc)::text, '[0-9]{10}'::text)) WITH (fillfactor='100')"
      />
