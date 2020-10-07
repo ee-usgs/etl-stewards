@@ -104,6 +104,7 @@
 "prj_ml_weighting_stewards","prj_ml_weighting_stewards_station_id","CREATE INDEX prj_ml_weighting_stewards_station_id ON wqp.prj_ml_weighting_stewards USING btree (station_id) WITH (fillfactor='100')"
 "project_data_stewards","project_data_stewards_organization","CREATE INDEX project_data_stewards_organization ON wqp.project_data_stewards USING btree (organization) WITH (fillfactor='100')"
 "project_data_stewards","project_data_stewards_project_identifier","CREATE INDEX project_data_stewards_project_identifier ON wqp.project_data_stewards USING btree (project_identifier) WITH (fillfactor='100')"
+"project_dim_stewards","project_dim_stewards_data_source_id","CREATE INDEX project_dim_stewards_data_source_id ON wqp.project_dim_stewards USING btree (data_source_id) WITH (fillfactor='100')"
 "project_dim_stewards","project_dim_stewards_code_value","CREATE INDEX project_dim_stewards_code_value ON wqp.project_dim_stewards USING btree (code_value) WITH (fillfactor='100')"
 "project_dim_stewards","project_dim_stewards_project_dim_value","CREATE INDEX project_dim_stewards_project_dim_value ON wqp.project_dim_stewards USING btree (project_dim_value) WITH (fillfactor='100')"
 "project_object_stewards","project_object_stewards_organization","CREATE INDEX project_object_stewards_organization ON wqp.project_object_stewards USING btree (organization) WITH (fillfactor='100')"
