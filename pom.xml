@@ -7,21 +7,28 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>11</java.version>
-        <wma.maven.url>https://artifactory.wma.usgs.gov/artifactory</wma.maven.url>
         <wqp-etl-core.version>0.2.1</wqp-etl-core.version>
     </properties>
 
-    <ciManagement>
-        <system>Jenkins</system>
-        <url>https://jenkins.wma.usgs.chs.ead/view/WQP/job/etl-stewards-build/</url>
-    </ciManagement>
-
     <scm>
-        <connection>scm:git:https://github.com/NWQMC/etl-stewards.git</connection>
-        <developerConnection>scm:git:git@github.com:NWQMC/etl-stewards.git</developerConnection>
-        <url>https://github.com/NWQMC/etl-stewards.git</url>
+        <connection>scm:git:https://github.com/NWQMC/etl-epa.git</connection>
+        <developerConnection>scm:git@github.com:NWQMC/etl-stewards.git</developerConnection>
+        <url>https://github.com/NWQMC/etl-stewards</url>
         <tag>HEAD</tag>
     </scm>
+
+    <distributionManagement>
+        <repository>
+            <id>wma-maven-releases</id>
+            <name>wma-maven-releases</name>
+            <url>${wma.maven.url}/wma-maven-releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>wma-maven-snapshots</id>
+            <name>wma-maven-snapshots</name>
+            <url>${wma.maven.url}/wma-maven-snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
 
     <repositories>
         <repository>
@@ -29,6 +36,7 @@
             <name>Maven Central</name>
             <url>https://repo.maven.apache.org/maven2/</url>
         </repository>
+
         <repository>
             <id>WMA</id>
             <name>WMA Artifactory</name>
@@ -39,7 +47,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.3.4.RELEASE</version>
+        <version>2.3.5.RELEASE</version>
     </parent>
 
     <dependencies>

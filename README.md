@@ -16,33 +16,32 @@ This application utilizes a PostgreSQL database. The Docker Hub image usgswma/wq
 Create an application.yml file in the project directory containing the following (shown are example values - they should match the values you used in creating the etlDB):
 
 ```yml
-WQP_DATABASE_ADDRESS: <localhost>
-WQP_DATABASE_PORT: <5437>
-WQP_DATABASE_NAME: <wqp_db>
-WQP_SCHEMA_NAME: <wqp>
-WQP_SCHEMA_OWNER_USERNAME: <wqp_core>
-WQP_SCHEMA_OWNER_PASSWORD: <changeMe>
+WQP_DATABASE_ADDRESS: localhost
+WQP_DATABASE_PORT: 5437
+WQP_DATABASE_NAME: wqp_db
+WQP_SCHEMA_NAME: wqp
+WQP_SCHEMA_OWNER_USERNAME: wqp_core
+WQP_SCHEMA_OWNER_PASSWORD: changeMe
 
-ARS_DATABASE_ADDRESS: <localhost>
-ARS_DATABASE_PORT: <5437>
-ARS_DATABASE_NAME: <wqp_db>
-ARS_SCHEMA_NAME: <ars>
-ARS_SCHEMA_OWNER_USERNAME: <ars_owner>
-ARS_SCHEMA_OWNER_PASSWORD: <changeMe>
+ARS_DATABASE_ADDRESS: localhost
+ARS_DATABASE_PORT: 5437
+ARS_DATABASE_NAME: wqp_db
+ARS_SCHEMA_NAME: ars
+ARS_SCHEMA_OWNER_USERNAME: ars_owner
+ARS_SCHEMA_OWNER_PASSWORD: changeMe
 
-NWIS_DATABASE_ADDRESS: <localhost>
-NWIS_DATABASE_PORT: <5437>
-NWIS_DATABASE_NAME: <wqp_db>
-NWIS_SCHEMA_OWNER_USERNAME: <nwis_ws_star>
-NWIS_SCHEMA_OWNER_PASSWORD: <changeMe>
+NWIS_DATABASE_ADDRESS: localhost
+NWIS_DATABASE_PORT: 5437
+NWIS_DATABASE_NAME: wqp_db
+NWIS_SCHEMA_OWNER_USERNAME: nwis_ws_star
+NWIS_SCHEMA_OWNER_PASSWORD: changeMe
 
-ETL_OWNER_USERNAME: <ars_owner>
-GEO_SCHEMA_NAME: <nwis>
-ETL_DATA_SOURCE_ID: <1>
-ETL_DATA_SOURCE: <STEWARDS>
-QWPORTAL_SUMMARY_ETL: <false>
-NWIS_OR_EPA: <>
-
+ETL_OWNER_USERNAME: ars_owner
+GEO_SCHEMA_NAME: nwis
+ETL_DATA_SOURCE_ID: 1
+ETL_DATA_SOURCE: STEWARDS
+QWPORTAL_SUMMARY_ETL: false
+NWIS_OR_EPA:
 ```
 
 #### Environment variable definitions
