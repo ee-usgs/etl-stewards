@@ -12,8 +12,8 @@
 
     <scm>
         <connection>scm:git:https://github.com/NWQMC/etl-epa.git</connection>
-        <developerConnection>scm:git:git@github.com:NWQMC/etl-epa.git</developerConnection>
-        <url>https://github.com/NWQMC/etl-epa.git</url>
+        <developerConnection>scm:git@github.com:NWQMC/etl-stewards.git</developerConnection>
+        <url>https://github.com/NWQMC/etl-stewards</url>
         <tag>HEAD</tag>
     </scm>
 
