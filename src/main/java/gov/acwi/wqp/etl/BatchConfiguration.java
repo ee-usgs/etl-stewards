@@ -14,6 +14,9 @@ import org.springframework.context.annotation.Configuration;
 public class BatchConfiguration {
 
 	@Autowired
+	ConcurrentDbStepsUtil concurrentDbStepsUtil;
+
+	@Autowired
 	private JobBuilderFactory jobBuilderFactory;
 
 	@Autowired
@@ -88,6 +91,7 @@ public class BatchConfiguration {
 	@Bean
 	public Job wqxEtl() {
 		return jobBuilderFactory.get("WQP_ARS_STEWARDS_ETL")
+				.listener(concurrentDbStepsUtil) /* Required to shutdown the Threadpool, otherwise it hangs on completion */
 				.start(arsExtractFlow)
 				.next(orgDataFlow)
 				.next(projectDataFlow)
