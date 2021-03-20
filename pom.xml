@@ -12,9 +12,9 @@
     </properties>
 
     <scm>
-        <connection>scm:git:https://github.com/NWQMC/etl-epa.git</connection>
+        <connection>scm:git:https://github.com/NWQMC/etl-stewards.git</connection>
         <developerConnection>scm:git@github.com:NWQMC/etl-stewards.git</developerConnection>
-        <url>https://github.com/NWQMC/etl-stewards</url>
+        <url>https://github.com/NWQMC/etl-stewards.git</url>
         <tag>HEAD</tag>
     </scm>
 
